@@ -1,0 +1,6 @@
+framework module Pods_Foresome {
+  umbrella header "Pods-Foresome-umbrella.h"
+
+  export *
+  module * { export * }
+}

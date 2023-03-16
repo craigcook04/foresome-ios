@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomNavigationBar" customModule="Challenger" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="kRs-pd-I0g" id="OrV-JB-aoh"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="iYv-g1-FYm"/>
+                <outlet property="progressBar" destination="INj-6A-TFL" id="7xw-qD-UeT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXz-4d-cid">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRs-pd-I0g">
+                            <rect key="frame" x="24" y="1" width="48" height="48"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="48" id="Q2Z-hU-nPL"/>
+                                <constraint firstAttribute="height" constant="48" id="h06-t2-vpN"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="backWithgrayBg"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="24"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="TYO-zA-ftV"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SR4-88-MMG">
+                            <rect key="frame" x="0.0" y="73" width="414" height="1"/>
+                            <color key="backgroundColor" name="Super_Light_Grey"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="u8t-DX-Cgf"/>
+                            </constraints>
+                        </view>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="INj-6A-TFL" customClass="CustomProgressBar" customModule="Challenger" customModuleProvider="target">
+                            <rect key="frame" x="123" y="21" width="168" height="8"/>
+                            <color key="tintColor" name="Pink_Main"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="qte-c7-NFL"/>
+                            </constraints>
+                            <color key="progressTintColor" name="Pink_Main"/>
+                            <color key="trackTintColor" name="Super_Light_Grey"/>
+                        </progressView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SR4-88-MMG" firstAttribute="top" secondItem="kRs-pd-I0g" secondAttribute="bottom" constant="24" id="Arm-05-xvq"/>
+                        <constraint firstAttribute="trailing" secondItem="INj-6A-TFL" secondAttribute="trailing" constant="123" id="GfE-Cw-4QK"/>
+                        <constraint firstItem="kRs-pd-I0g" firstAttribute="leading" secondItem="zXz-4d-cid" secondAttribute="leading" constant="24" id="Vxh-5c-7GU"/>
+                        <constraint firstItem="INj-6A-TFL" firstAttribute="centerY" secondItem="kRs-pd-I0g" secondAttribute="centerY" id="bV4-lR-X7b"/>
+                        <constraint firstAttribute="bottom" secondItem="SR4-88-MMG" secondAttribute="bottom" id="dhW-Qs-ky3"/>
+                        <constraint firstItem="SR4-88-MMG" firstAttribute="leading" secondItem="zXz-4d-cid" secondAttribute="leading" id="nPE-mB-6SU"/>
+                        <constraint firstItem="INj-6A-TFL" firstAttribute="centerX" secondItem="zXz-4d-cid" secondAttribute="centerX" id="ngI-ui-1rb"/>
+                        <constraint firstItem="kRs-pd-I0g" firstAttribute="top" secondItem="zXz-4d-cid" secondAttribute="top" constant="1" id="ps0-ru-Leo"/>
+                        <constraint firstAttribute="trailing" secondItem="SR4-88-MMG" secondAttribute="trailing" id="zTJ-x2-gKn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="zXz-4d-cid" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9Qs-13-wxb"/>
+                <constraint firstItem="zXz-4d-cid" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PD8-DK-Dml"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zXz-4d-cid" secondAttribute="bottom" id="SWu-2g-0Ti"/>
+                <constraint firstItem="zXz-4d-cid" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wXZ-rt-qlI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-171.09375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backWithgrayBg" width="48" height="48.5"/>
+        <namedColor name="Pink_Main">
+            <color red="0.98431372549019602" green="0.12941176470588237" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Super_Light_Grey">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
