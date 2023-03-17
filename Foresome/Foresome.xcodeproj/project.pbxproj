@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		161747277C886A4B54615363 /* Pods_Foresome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */; };
+		4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B221A9D29C4730E00690026 /* Tutorial Model.swift */; };
 		4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */; };
 		4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */; };
 		4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */; };
@@ -28,9 +29,6 @@
 		4B68F32B29C3463800D80A85 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F31829C3463700D80A85 /* Poppins-Italic.ttf */; };
 		4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F31929C3463700D80A85 /* Poppins-MediumItalic.ttf */; };
 		4B68F32F29C34AE400D80A85 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68F32D29C34AE400D80A85 /* TutorialViewController.swift */; };
-		4B68F33029C34AE400D80A85 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F32E29C34AE400D80A85 /* TutorialViewController.xib */; };
-		4B68F33729C34E7C00D80A85 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68F33529C34E7C00D80A85 /* TutorialCollectionViewCell.swift */; };
-		4B68F33829C34E7C00D80A85 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F33629C34E7C00D80A85 /* TutorialCollectionViewCell.xib */; };
 		4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75972529C3325F00A8E1B6 /* AppDelegate.swift */; };
 		4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75972729C3325F00A8E1B6 /* SceneDelegate.swift */; };
 		4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75972B29C3325F00A8E1B6 /* Main.storyboard */; };
@@ -101,11 +99,14 @@
 		4B75987929C3352800A8E1B6 /* UIStoryboard+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983329C3352700A8E1B6 /* UIStoryboard+Custom.swift */; };
 		4B75987A29C3352800A8E1B6 /* RadicalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983429C3352700A8E1B6 /* RadicalView.swift */; };
 		4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983529C3352700A8E1B6 /* UITableView+Custom.swift */; };
+		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
+		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F7E287788C2CCE7946F71F7 /* Pods-Foresome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.debug.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.debug.xcconfig"; sourceTree = "<group>"; };
 		40DA7F11957B87E0C433D616 /* Pods-Foresome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.release.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.release.xcconfig"; sourceTree = "<group>"; };
+		4B221A9D29C4730E00690026 /* Tutorial Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tutorial Model.swift"; sourceTree = "<group>"; };
 		4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -126,9 +127,6 @@
 		4B68F31829C3463700D80A85 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		4B68F31929C3463700D80A85 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		4B68F32D29C34AE400D80A85 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		4B68F32E29C34AE400D80A85 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
-		4B68F33529C34E7C00D80A85 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
-		4B68F33629C34E7C00D80A85 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B75972229C3325F00A8E1B6 /* Foresome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foresome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B75972529C3325F00A8E1B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B75972729C3325F00A8E1B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +199,8 @@
 		4B75983329C3352700A8E1B6 /* UIStoryboard+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Custom.swift"; sourceTree = "<group>"; };
 		4B75983429C3352700A8E1B6 /* RadicalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadicalView.swift; sourceTree = "<group>"; };
 		4B75983529C3352700A8E1B6 /* UITableView+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Custom.swift"; sourceTree = "<group>"; };
+		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
+		4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionCell.xib; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -231,6 +231,14 @@
 				76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B221A9C29C472EC00690026 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B221A9D29C4730E00690026 /* Tutorial Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4B68F30629C3463700D80A85 /* Poppins */ = {
@@ -268,19 +276,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4B68F33229C34C4B00D80A85 /* Tutorial Screen */ = {
+		4B68F33229C34C4B00D80A85 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				4B221A9C29C472EC00690026 /* Model */,
 				4B68F33129C34B6C00D80A85 /* View */,
 			);
-			path = "Tutorial Screen";
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		4B68F33329C34CB600D80A85 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4B68F32D29C34AE400D80A85 /* TutorialViewController.swift */,
-				4B68F32E29C34AE400D80A85 /* TutorialViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,8 +296,8 @@
 		4B68F33429C34D1100D80A85 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				4B68F33529C34E7C00D80A85 /* TutorialCollectionViewCell.swift */,
-				4B68F33629C34E7C00D80A85 /* TutorialCollectionViewCell.xib */,
+				4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */,
+				4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -334,7 +342,7 @@
 		4B75973D29C3340500A8E1B6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				4B68F33229C34C4B00D80A85 /* Tutorial Screen */,
+				4B68F33229C34C4B00D80A85 /* Tutorial */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -635,6 +643,7 @@
 				4B75973229C3326100A8E1B6 /* Assets.xcassets in Resources */,
 				4B75984E29C3352700A8E1B6 /* successSign.json in Resources */,
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
+				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
@@ -645,7 +654,6 @@
 				4B75986529C3352800A8E1B6 /* CustomPickerController.xib in Resources */,
 				4B68F32029C3463800D80A85 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				4B75984329C3352700A8E1B6 /* Lato-Bold.ttf in Resources */,
-				4B68F33829C34E7C00D80A85 /* TutorialCollectionViewCell.xib in Resources */,
 				4B75984429C3352700A8E1B6 /* Lato-Black.ttf in Resources */,
 				4B75985E29C3352700A8E1B6 /* cancel_notes@2x.png in Resources */,
 				4B68F32829C3463800D80A85 /* Poppins-Black.ttf in Resources */,
@@ -656,7 +664,6 @@
 				4B75984F29C3352700A8E1B6 /* CountryCodes.json in Resources */,
 				4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */,
 				4B68F32929C3463800D80A85 /* Poppins-Thin.ttf in Resources */,
-				4B68F33029C34AE400D80A85 /* TutorialViewController.xib in Resources */,
 				4B68F32B29C3463800D80A85 /* Poppins-Italic.ttf in Resources */,
 				4B75984529C3352700A8E1B6 /* LatoSemibold.ttf in Resources */,
 				4B68F32329C3463800D80A85 /* Poppins-BlackItalic.ttf in Resources */,
@@ -721,7 +728,6 @@
 				4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */,
 				4B75986629C3352800A8E1B6 /* UILabel+Custom.swift in Sources */,
 				4B75985329C3352700A8E1B6 /* ActivityIndicator.swift in Sources */,
-				4B68F33729C34E7C00D80A85 /* TutorialCollectionViewCell.swift in Sources */,
 				4B75985429C3352700A8E1B6 /* UserData.swift in Sources */,
 				4B75973029C3325F00A8E1B6 /* Foresome.xcdatamodeld in Sources */,
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
@@ -741,6 +747,7 @@
 				4B75986D29C3352800A8E1B6 /* Date+Custom.swift in Sources */,
 				4B75983F29C3352700A8E1B6 /* ApiHandler.swift in Sources */,
 				4B75985829C3352700A8E1B6 /* OTPTextField.swift in Sources */,
+				4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */,
 				4B75986F29C3352800A8E1B6 /* UIViewController+Custom.swift in Sources */,
 				4B75986229C3352800A8E1B6 /* CustomProgressBar.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,
@@ -755,6 +762,7 @@
 				4B75985629C3352700A8E1B6 /* UserDefaultsCustom.swift in Sources */,
 				4B75986E29C3352800A8E1B6 /* UICollectionView+Custom.swift in Sources */,
 				4B75986729C3352800A8E1B6 /* UIView+Custom.swift in Sources */,
+				4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */,
 				4B75983B29C3352700A8E1B6 /* ErrorResponseModel.swift in Sources */,
 				4B75987429C3352800A8E1B6 /* UIFont+Custom.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
