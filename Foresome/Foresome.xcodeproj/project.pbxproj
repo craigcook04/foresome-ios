@@ -99,6 +99,8 @@
 		4B75987929C3352800A8E1B6 /* UIStoryboard+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983329C3352700A8E1B6 /* UIStoryboard+Custom.swift */; };
 		4B75987A29C3352800A8E1B6 /* RadicalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983429C3352700A8E1B6 /* RadicalView.swift */; };
 		4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75983529C3352700A8E1B6 /* UITableView+Custom.swift */; };
+		4B93905129C9A01600D60450 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93904F29C9A01600D60450 /* SignUpViewController.swift */; };
+		4B93905229C9A01600D60450 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B93905029C9A01600D60450 /* SignUpViewController.xib */; };
 		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
 		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
 /* End PBXBuildFile section */
@@ -199,6 +201,8 @@
 		4B75983329C3352700A8E1B6 /* UIStoryboard+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Custom.swift"; sourceTree = "<group>"; };
 		4B75983429C3352700A8E1B6 /* RadicalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadicalView.swift; sourceTree = "<group>"; };
 		4B75983529C3352700A8E1B6 /* UITableView+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Custom.swift"; sourceTree = "<group>"; };
+		4B93904F29C9A01600D60450 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4B93905029C9A01600D60450 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
 		4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionCell.xib; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,6 +346,7 @@
 		4B75973D29C3340500A8E1B6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				4B93904E29C99F8A00D60450 /* SignUp */,
 				4B68F33229C34C4B00D80A85 /* Tutorial */,
 			);
 			path = Onboarding;
@@ -569,6 +574,23 @@
 			path = ../Storyboards;
 			sourceTree = "<group>";
 		};
+		4B93904E29C99F8A00D60450 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				4BA5A62229C9E92B00419D12 /* View */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		4BA5A62229C9E92B00419D12 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B93904F29C9A01600D60450 /* SignUpViewController.swift */,
+				4B93905029C9A01600D60450 /* SignUpViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -645,6 +667,7 @@
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
+				4B93905229C9A01600D60450 /* SignUpViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
 				4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */,
@@ -754,6 +777,7 @@
 				4B75986A29C3352800A8E1B6 /* Array+Custom.swift in Sources */,
 				4B75987729C3352800A8E1B6 /* UIImageView+Custom.swift in Sources */,
 				4B75987329C3352800A8E1B6 /* Data+Custom.swift in Sources */,
+				4B93905129C9A01600D60450 /* SignUpViewController.swift in Sources */,
 				4B75985729C3352700A8E1B6 /* AppNavigation.swift in Sources */,
 				4B75984C29C3352700A8E1B6 /* Constants.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,
