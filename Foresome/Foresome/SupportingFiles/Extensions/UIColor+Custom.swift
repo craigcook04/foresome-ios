@@ -348,6 +348,12 @@ extension UIColor {
     open class var offlineColor: UIColor {
         return UIColor(hexString: "E02020")
     }
+    open class var blue_Color: UIColor {
+        return UIColor(hexString: "307AFF")
+    }
+    open class var black_Color: UIColor {
+        return UIColor(hexString: "222831")
+    }
     
     
     
@@ -381,9 +387,10 @@ extension UIColor {
         case gradient_yellow_dark =  "#BB962D"
         case fadeGrey = "#707070"
         case whiteTransparent = "whiteTransparent"
-        case lightYellow = "lightYellow"
+        case blueMain = "Blue_main"
         case backgroundWhite = "backgroundWhite"
-        case lightGray = "lightGray"
+        case blackMain = "Black_main"
+        
         
        
     }
@@ -445,12 +452,12 @@ extension UIColor {
             return UIColor(named: AppAssetColor.fadeGrey.rawValue)
         case .whiteTransparent:
             return UIColor(named: AppAssetColor.whiteTransparent.rawValue)
-        case .lightYellow:
-            return UIColor(named: AppAssetColor.lightYellow.rawValue)
+        case .blueMain:
+            return UIColor(named: AppAssetColor.blueMain.rawValue)
         case .backgroundWhite:
             return UIColor(named: AppAssetColor.backgroundWhite.rawValue)
-        case .lightGray:
-            return UIColor(named: AppAssetColor.lightGray.rawValue)
+        case .blackMain:
+            return UIColor(named: AppAssetColor.blackMain.rawValue)
             
         }
         

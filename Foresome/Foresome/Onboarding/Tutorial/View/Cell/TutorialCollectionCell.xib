@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="310" height="613"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dbM-ka-Pis">
-                                <rect key="frame" x="24" y="255" width="262" height="176"/>
+                                <rect key="frame" x="24" y="273" width="262" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite and play together with friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-ia-YrX">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="105"/>
@@ -57,20 +56,13 @@
                                     <constraint firstAttribute="bottom" secondItem="AT9-8c-x7c" secondAttribute="bottom" id="ulZ-Vx-4n4"/>
                                 </constraints>
                             </stackView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8BA-de-lnZ">
-                                <rect key="frame" x="-10" y="455" width="115.66666666666667" height="26"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" name="pageCtrlColor"/>
-                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="8BA-de-lnZ" secondAttribute="bottom" constant="132" id="0uI-Qx-ejj"/>
                             <constraint firstItem="dbM-ka-Pis" firstAttribute="leading" secondItem="qHe-Xv-MTI" secondAttribute="leading" constant="24" id="A9Q-55-eCB"/>
                             <constraint firstAttribute="trailing" secondItem="3hz-N2-3V2" secondAttribute="trailing" id="JTo-o6-ycY"/>
-                            <constraint firstItem="8BA-de-lnZ" firstAttribute="leading" secondItem="qHe-Xv-MTI" secondAttribute="leading" constant="-10" id="JmF-R0-k3a"/>
                             <constraint firstItem="dbM-ka-Pis" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qHe-Xv-MTI" secondAttribute="top" constant="20" id="NHY-EJ-2au"/>
-                            <constraint firstItem="8BA-de-lnZ" firstAttribute="top" secondItem="dbM-ka-Pis" secondAttribute="bottom" constant="24" id="Wxj-Bw-Rcq"/>
+                            <constraint firstAttribute="bottom" secondItem="dbM-ka-Pis" secondAttribute="bottom" constant="164" id="O36-as-aeZ"/>
                             <constraint firstItem="3hz-N2-3V2" firstAttribute="leading" secondItem="qHe-Xv-MTI" secondAttribute="leading" id="b1J-Zk-4eD"/>
                             <constraint firstAttribute="bottom" secondItem="3hz-N2-3V2" secondAttribute="bottom" id="rld-PA-KLT"/>
                             <constraint firstAttribute="trailing" secondItem="dbM-ka-Pis" secondAttribute="trailing" constant="24" id="sp8-a5-med"/>
@@ -88,7 +80,6 @@
             </constraints>
             <size key="customSize" width="310" height="613"/>
             <connections>
-                <outlet property="pageControl" destination="8BA-de-lnZ" id="hHs-zx-jaH"/>
                 <outlet property="tutorialHeadingLbl" destination="Pgn-ia-YrX" id="zZH-Ia-esq"/>
             </connections>
             <point key="canvasLocation" x="238.1679389312977" y="127.11267605633803"/>
@@ -96,9 +87,6 @@
     </objects>
     <resources>
         <image name="tutorial_screen" width="375" height="812"/>
-        <namedColor name="pageCtrlColor">
-            <color red="1" green="0.70980392156862748" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

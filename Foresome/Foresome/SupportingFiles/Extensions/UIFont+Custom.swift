@@ -33,6 +33,7 @@ enum FONT_NAME: String {
     case SSP_Light = "SourceSansPro-Light"
     case SSP_ExtraLightIt = "SourceSansPro-ExtraLightIt"
     case SSP_ExtraLight = "SourceSansPro-ExtraLight"
+    case poppinsMedium = "Poppins-Medium"
     
 //MARK:-    version 2 Fonts
     case latoThinItalic = "Lato-ThinItalic"

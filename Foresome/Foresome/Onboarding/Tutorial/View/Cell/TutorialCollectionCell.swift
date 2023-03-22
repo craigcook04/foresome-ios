@@ -14,12 +14,10 @@ class TutorialCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var tutorialHeadingLbl: UILabel!
     
-    @IBOutlet weak var pageControl: UIPageControl!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        pageControl.currentPage = 0
+        
         
     }
 

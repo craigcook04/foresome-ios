@@ -16,9 +16,11 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var tutorialCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageControl.currentPage = 0
         setCollectionView()
     }
     
@@ -29,7 +31,7 @@ class TutorialViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        let vc = SignUpViewController()
+        let vc = LoginViewController()
        self.navigationController?.pushViewController(vc, animated: true)
     
     }
@@ -46,8 +48,8 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorialCollectionCell", for: indexPath) as! TutorialCollectionCell
-        cell.pageControl.numberOfPages =  tutorialData.count
-        cell.pageControl.currentPage = indexPath.item
+        self.pageControl.numberOfPages =  tutorialData.count
+        self.pageControl.currentPage = indexPath.item
         return cell
     }
     
@@ -65,7 +67,7 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
 
         guard let indexPath = tutorialCollectionView.indexPathForItem(at: visiblePoint) else { return }
         let cell = tutorialCollectionView.cellForItem(at: indexPath) as? TutorialCollectionCell
-        cell?.pageControl.currentPage = indexPath.item
+        self.pageControl.currentPage = indexPath.item
 
     }
     @objc func changeImage() {
@@ -81,6 +83,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
                counter = 1
            }
         let cell = tutorialCollectionView.cellForItem(at: IndexPath(item: counter, section: 0)) as? TutorialCollectionCell
-               cell?.pageControl.currentPage = counter
+               self.pageControl.currentPage = counter
       }
 }

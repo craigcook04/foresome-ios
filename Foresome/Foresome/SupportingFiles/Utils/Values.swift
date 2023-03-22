@@ -39,6 +39,10 @@ struct AppStrings {
     static let hotelName = "This is non transferable coupon"
     static let coupon = "Coupon_ic"
     static let city = "City"
+    static let termAndPrivacy = "By using this app you agree to the FORESOME \nTerms of services and Privacy policy."
+    static let termsOfService = "Terms of services"
+    static let privacyPolicy = "Privacy policy"
+    static let titleLabel = "Where are you \nfrom?"
 }
 
 struct Messages {

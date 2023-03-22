@@ -30,7 +30,7 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-14-jaJ">
-                                <rect key="frame" x="24" y="726" width="345" height="56"/>
+                                <rect key="frame" x="24" y="760" width="345" height="56"/>
                                 <color key="backgroundColor" name="nxtBtnColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="vUt-83-eCq"/>
@@ -50,22 +50,33 @@
                                     <action selector="nextAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dv3-TG-lhd"/>
                                 </connections>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="d3e-Rz-3G8">
+                                <rect key="frame" x="-10" y="712" width="116" height="8"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="dd8-fm-oKs"/>
+                                </constraints>
+                                <color key="currentPageIndicatorTintColor" name="pageCtrlColor"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PI5-14-jaJ" secondAttribute="bottom" constant="36" id="1aI-9r-LWS"/>
+                            <constraint firstAttribute="bottom" secondItem="PI5-14-jaJ" secondAttribute="bottom" constant="36" id="1aI-9r-LWS"/>
                             <constraint firstItem="1fB-Ay-bPH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ka7-Vh-9bJ"/>
                             <constraint firstAttribute="bottom" secondItem="1fB-Ay-bPH" secondAttribute="bottom" id="Ocr-mW-jOZ"/>
+                            <constraint firstItem="PI5-14-jaJ" firstAttribute="top" secondItem="d3e-Rz-3G8" secondAttribute="bottom" constant="40" id="VNb-xh-Oso"/>
                             <constraint firstItem="PI5-14-jaJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="haz-yd-xRQ"/>
                             <constraint firstItem="1fB-Ay-bPH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="l9u-OG-Ojz"/>
                             <constraint firstItem="1fB-Ay-bPH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="siZ-rz-TRf"/>
+                            <constraint firstItem="d3e-Rz-3G8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-10" id="uaF-OJ-wj0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PI5-14-jaJ" secondAttribute="trailing" constant="24" id="zrQ-4A-0K6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Y3k-zP-aOB"/>
                     <connections>
                         <outlet property="nextButton" destination="PI5-14-jaJ" id="VwM-GI-t2r"/>
+                        <outlet property="pageControl" destination="d3e-Rz-3G8" id="tQC-w9-bvq"/>
                         <outlet property="tutorialCollectionView" destination="1fB-Ay-bPH" id="S8Q-Vs-X2E"/>
                     </connections>
                 </viewController>
@@ -76,10 +87,9 @@
         <!--Navigation Controller-->
         <scene sceneID="REF-K1-ZcY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JyZ-1Z-j7g" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JyZ-1Z-j7g" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cP2-HY-St5">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -95,6 +105,9 @@
     <resources>
         <namedColor name="nxtBtnColor">
             <color red="0.25098039215686274" green="0.80392156862745101" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pageCtrlColor">
+            <color red="1" green="0.70980392156862748" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

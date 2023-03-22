@@ -203,5 +203,28 @@ extension UILabel {
         attributedString.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSRange(location: 0, length: self.text?.count ?? 0))
             self.attributedText = attributedString
         }
+    
+    func attributedTextWithMultipleRange(str:String,color1:UIColor? = .white, font1:UIFont? = .systemFont(ofSize: 13),color2:UIColor? = .white, font2:UIFont? = .systemFont(ofSize: 13) , highlightedWords: [String],alignment:NSTextAlignment = .center){
+            let attributedString = NSMutableAttributedString(string: str)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: font1 ?? .systemFont(ofSize: 13), range: NSRange(location:0, length: str.count))
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color1 ?? .white, range: NSRange(location:0, length: str.count))
+                
+            for highlightedWord in highlightedWords {
+                let textRange = (str as NSString).range(of: highlightedWord)
+
+                attributedString.addAttribute(NSAttributedString.Key.font, value: font2 ?? .systemFont(ofSize: 13), range: textRange)
+                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color2 ?? .white, range: textRange)
+            }
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            paragraphStyle.alignment = alignment
+            
+            attributedString.addAttribute(.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            self.attributedText = attributedString
+            self.sizeToFit()
+        }
+    
+    
+    
     }
 
