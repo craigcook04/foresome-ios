@@ -384,12 +384,13 @@ extension UIColor {
         case gradient_light_black =  "#343434"
         case gradient_dark_black =  "#000000"
         case gradient_yellow_shadow =  "#F8D777"
-        case gradient_yellow_dark =  "#BB962D"
-        case fadeGrey = "#707070"
+        case yellow_dark =  "pageCtrlColor"
+        case Grey_dark = "greyMain"
         case whiteTransparent = "whiteTransparent"
         case blueMain = "Blue_main"
         case backgroundWhite = "backgroundWhite"
         case blackMain = "Black_main"
+        
         
         
        
@@ -446,10 +447,10 @@ extension UIColor {
             return UIColor(named: AppAssetColor.gradient_dark_black.rawValue)
         case .gradient_yellow_shadow:
             return UIColor(named: AppAssetColor.gradient_yellow_shadow.rawValue)
-        case .gradient_yellow_dark:
-            return UIColor(named: AppAssetColor.gradient_yellow_dark.rawValue)
-        case .fadeGrey:
-            return UIColor(named: AppAssetColor.fadeGrey.rawValue)
+        case .yellow_dark:
+            return UIColor(named: AppAssetColor.yellow_dark.rawValue)
+        case .Grey_dark:
+            return UIColor(named: AppAssetColor.Grey_dark.rawValue)
         case .whiteTransparent:
             return UIColor(named: AppAssetColor.whiteTransparent.rawValue)
         case .blueMain:

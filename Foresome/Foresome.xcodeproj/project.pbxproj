@@ -33,6 +33,8 @@
 		4B68F32B29C3463800D80A85 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F31829C3463700D80A85 /* Poppins-Italic.ttf */; };
 		4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F31929C3463700D80A85 /* Poppins-MediumItalic.ttf */; };
 		4B68F32F29C34AE400D80A85 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68F32D29C34AE400D80A85 /* TutorialViewController.swift */; };
+		4B6A6D5629CC1A8500CF44EC /* SkillLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A6D5429CC1A8500CF44EC /* SkillLevelViewController.swift */; };
+		4B6A6D5729CC1A8500CF44EC /* SkillLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B6A6D5529CC1A8500CF44EC /* SkillLevelViewController.xib */; };
 		4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75972529C3325F00A8E1B6 /* AppDelegate.swift */; };
 		4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75972729C3325F00A8E1B6 /* SceneDelegate.swift */; };
 		4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75972B29C3325F00A8E1B6 /* Main.storyboard */; };
@@ -149,6 +151,8 @@
 		4B68F31829C3463700D80A85 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		4B68F31929C3463700D80A85 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		4B68F32D29C34AE400D80A85 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		4B6A6D5429CC1A8500CF44EC /* SkillLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillLevelViewController.swift; sourceTree = "<group>"; };
+		4B6A6D5529CC1A8500CF44EC /* SkillLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillLevelViewController.xib; sourceTree = "<group>"; };
 		4B75972229C3325F00A8E1B6 /* Foresome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foresome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B75972529C3325F00A8E1B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B75972729C3325F00A8E1B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -355,6 +359,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		4B6A6D5829CC1A9000CF44EC /* SkillLevel */ = {
+			isa = PBXGroup;
+			children = (
+				4B6A6D5929CC1AAA00CF44EC /* View */,
+			);
+			path = SkillLevel;
+			sourceTree = "<group>";
+		};
+		4B6A6D5929CC1AAA00CF44EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B6A6D5429CC1A8500CF44EC /* SkillLevelViewController.swift */,
+				4B6A6D5529CC1A8500CF44EC /* SkillLevelViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4B75971929C3325F00A8E1B6 = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +416,7 @@
 		4B75973D29C3340500A8E1B6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				4B6A6D5829CC1A9000CF44EC /* SkillLevel */,
 				4B76005E29CB1B4300D1FE70 /* ProfilePicture */,
 				4B18995A29CB057300FD3999 /* Location */,
 				4B8C272F29CAD6D4008D1880 /* SignUp */,
@@ -816,6 +838,7 @@
 				4B68F32529C3463800D80A85 /* Poppins-Regular.ttf in Resources */,
 				4B75984129C3352700A8E1B6 /* Lato-LightItalic.ttf in Resources */,
 				4B8C272D29CAC49A008D1880 /* ForgotPasswordViewController.xib in Resources */,
+				4B6A6D5729CC1A8500CF44EC /* SkillLevelViewController.xib in Resources */,
 				4B18995E29CB059200FD3999 /* LocationViewController.xib in Resources */,
 				4B68F32129C3463800D80A85 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 			);
@@ -902,6 +925,7 @@
 				4B76005629CB169100D1FE70 /* Protocol.swift in Sources */,
 				4B75985A29C3352700A8E1B6 /* MimeType.swift in Sources */,
 				4B68F32F29C34AE400D80A85 /* TutorialViewController.swift in Sources */,
+				4B6A6D5629CC1A8500CF44EC /* SkillLevelViewController.swift in Sources */,
 				4B75983C29C3352700A8E1B6 /* IJReachability.swift in Sources */,
 				4B75987629C3352800A8E1B6 /* UITextField+Custom.swift in Sources */,
 				4B75986929C3352800A8E1B6 /* String+Custom.swift in Sources */,
@@ -1099,6 +1123,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5448ZQBK98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1130,6 +1155,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5448ZQBK98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

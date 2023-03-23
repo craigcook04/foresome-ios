@@ -27,3 +27,4 @@ class Tutorial{
         TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis.")
     ]
 }
+

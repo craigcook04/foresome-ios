@@ -6,7 +6,6 @@ target 'Foresome' do
   use_frameworks!
 
   # Pods for Foresome
-
   pod 'IQKeyboardManagerSwift'
   pod 'DGActivityIndicatorView'
   pod 'ObjectMapper'

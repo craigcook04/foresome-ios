@@ -9,15 +9,17 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
     
+    @IBOutlet weak var forgotLabel: UILabel!
     @IBOutlet weak var submitBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
+        self.forgotLabel.text = AppStrings.titleLbl
     }
     
     @IBAction func backAction(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.popVC()
     }
     func setKeyboard(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification , object:nil)
@@ -37,4 +39,6 @@ class ForgotPasswordViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
+    @IBAction func submitAction(_ sender: Any) {
+    }
 }

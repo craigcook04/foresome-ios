@@ -43,6 +43,8 @@ struct AppStrings {
     static let termsOfService = "Terms of services"
     static let privacyPolicy = "Privacy policy"
     static let titleLabel = "Where are you \nfrom?"
+    static let titleLbl = "Forgot Your \nPassword?"
+    static let addPictureLbl = "Would you like to add \na profile picture?"
 }
 
 struct Messages {

@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController {
     }
     @IBAction func loginAction(_ sender: Any) {
         let vc = LoginViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.popVC()
     }
     
     func setLabelColor(){

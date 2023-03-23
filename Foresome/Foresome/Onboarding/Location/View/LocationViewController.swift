@@ -10,6 +10,7 @@ import MapKit
 
 class LocationViewController: UIViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var whereAreYouLabel: UILabel!
     override func viewDidLoad() {
@@ -20,21 +21,31 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func backAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.popVC()
     }
     @IBAction func nextAction(_ sender: Any) {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    @IBAction func skipForNowAction(_ sender: Any) {
+        let vc = ProfilePictureViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func locationAction(_ sender: Any) {
+        self.locationGet()
+    }
+    func locationGet() -> Bool {
         let controller = AutoCompletePlaces()
         controller.presentPlacePicker(controller: self) { placeData in
             print("address is ****** \(placeData)")
             DispatchQueue.main.async {
-                textField.text = placeData.fullAddress
+                self.locationField.text = placeData.fullAddress
             }
         }
-        return true
+        return false
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.locationGet()
     }
 }

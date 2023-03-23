@@ -9,13 +9,15 @@ import UIKit
 
 class ProfilePictureViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var uploadProfilePicButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.titleLabel.text = AppStrings.addPictureLbl
     }
     @IBAction func backAction(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.popVC()
     }
     @IBAction func uploadProfilePictureAction(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
@@ -26,8 +28,12 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
         
     }
     @IBAction func nextAction(_ sender: UIButton) {
+        let vc = SkillLevelViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func skipForNowAction(_ sender: UIButton) {
+        let vc = SkillLevelViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
