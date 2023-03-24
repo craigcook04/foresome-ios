@@ -119,6 +119,13 @@
 		4B8C273329CAD6F0008D1880 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B93905129C9A01600D60450 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93904F29C9A01600D60450 /* LoginViewController.swift */; };
 		4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B93905029C9A01600D60450 /* LoginViewController.xib */; };
+		4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */; };
+		4BC9BA1129CD7441007A4074 /* TournamentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */; };
+		4BE10C7829CDB496005481DB /* TournamentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE10C7729CDB496005481DB /* TournamentHeader.xib */; };
+		4BE10C8029CDB607005481DB /* TournamentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE10C7F29CDB607005481DB /* TournamentHeader.swift */; };
+		4BF0B94829CD7EE3007BD368 /* Tournament Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF0B94729CD7EE3007BD368 /* Tournament Model.swift */; };
+		4BF4C01829CD942100AD5B50 /* TournamentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4C01629CD942100AD5B50 /* TournamentTableCell.swift */; };
+		4BF4C01929CD942100AD5B50 /* TournamentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4C01729CD942100AD5B50 /* TournamentTableCell.xib */; };
 		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
 		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
 /* End PBXBuildFile section */
@@ -239,6 +246,13 @@
 		4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		4B93904F29C9A01600D60450 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4B93905029C9A01600D60450 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewController.swift; sourceTree = "<group>"; };
+		4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentViewController.xib; sourceTree = "<group>"; };
+		4BE10C7729CDB496005481DB /* TournamentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentHeader.xib; sourceTree = "<group>"; };
+		4BE10C7F29CDB607005481DB /* TournamentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeader.swift; sourceTree = "<group>"; };
+		4BF0B94729CD7EE3007BD368 /* Tournament Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tournament Model.swift"; sourceTree = "<group>"; };
+		4BF4C01629CD942100AD5B50 /* TournamentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentTableCell.swift; sourceTree = "<group>"; };
+		4BF4C01729CD942100AD5B50 /* TournamentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentTableCell.xib; sourceTree = "<group>"; };
 		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
 		4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionCell.xib; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -416,6 +430,7 @@
 		4B75973D29C3340500A8E1B6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				4BC9BA0D29CD7419007A4074 /* Tournament */,
 				4B6A6D5829CC1A9000CF44EC /* SkillLevel */,
 				4B76005E29CB1B4300D1FE70 /* ProfilePicture */,
 				4B18995A29CB057300FD3999 /* Location */,
@@ -733,6 +748,52 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4BC9BA0D29CD7419007A4074 /* Tournament */ = {
+			isa = PBXGroup;
+			children = (
+				4BE10C8129CDB8F0005481DB /* TournamentHeader */,
+				4BF0B94429CD7C63007BD368 /* Model */,
+				4BC9BA1329CD7471007A4074 /* View */,
+				4BC9BA1229CD744B007A4074 /* Cell */,
+			);
+			path = Tournament;
+			sourceTree = "<group>";
+		};
+		4BC9BA1229CD744B007A4074 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4BF4C01629CD942100AD5B50 /* TournamentTableCell.swift */,
+				4BF4C01729CD942100AD5B50 /* TournamentTableCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4BC9BA1329CD7471007A4074 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */,
+				4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4BE10C8129CDB8F0005481DB /* TournamentHeader */ = {
+			isa = PBXGroup;
+			children = (
+				4BE10C7729CDB496005481DB /* TournamentHeader.xib */,
+				4BE10C7F29CDB607005481DB /* TournamentHeader.swift */,
+			);
+			path = TournamentHeader;
+			sourceTree = "<group>";
+		};
+		4BF0B94429CD7C63007BD368 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4BF0B94729CD7EE3007BD368 /* Tournament Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -809,6 +870,7 @@
 				4B75984E29C3352700A8E1B6 /* successSign.json in Resources */,
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
+				4BE10C7829CDB496005481DB /* TournamentHeader.xib in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
 				4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
@@ -819,6 +881,7 @@
 				4B68F32629C3463800D80A85 /* Poppins-LightItalic.ttf in Resources */,
 				4B75986529C3352800A8E1B6 /* CustomPickerController.xib in Resources */,
 				4B68F32029C3463800D80A85 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				4BC9BA1129CD7441007A4074 /* TournamentViewController.xib in Resources */,
 				4B75984329C3352700A8E1B6 /* Lato-Bold.ttf in Resources */,
 				4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */,
 				4B75984429C3352700A8E1B6 /* Lato-Black.ttf in Resources */,
@@ -827,6 +890,7 @@
 				4B68F32429C3463800D80A85 /* OFL.txt in Resources */,
 				4B75985C29C3352700A8E1B6 /* CustomNavigationBar.xib in Resources */,
 				4B68F31D29C3463800D80A85 /* Poppins-BoldItalic.ttf in Resources */,
+				4BF4C01929CD942100AD5B50 /* TournamentTableCell.xib in Resources */,
 				4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */,
 				4B75984F29C3352700A8E1B6 /* CountryCodes.json in Resources */,
 				4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */,
@@ -952,6 +1016,7 @@
 				4B75985729C3352700A8E1B6 /* AppNavigation.swift in Sources */,
 				4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */,
 				4B75984C29C3352700A8E1B6 /* Constants.swift in Sources */,
+				4BF0B94829CD7EE3007BD368 /* Tournament Model.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,
 				4B75987029C3352800A8E1B6 /* CustomTextField.swift in Sources */,
 				4B75986C29C3352800A8E1B6 /* NSLayoutContraint+Custom.swift in Sources */,
@@ -965,8 +1030,10 @@
 				4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */,
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
+				4BF4C01829CD942100AD5B50 /* TournamentTableCell.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
+				4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */,
 				4B75987229C3352800A8E1B6 /* FloatingTextField.swift in Sources */,
 				4B75983D29C3352700A8E1B6 /* API.swift in Sources */,
 				4B75986329C3352800A8E1B6 /* IAPHelper.swift in Sources */,
@@ -974,6 +1041,7 @@
 				4B8C272C29CAC49A008D1880 /* ForgotPasswordViewController.swift in Sources */,
 				4B75985529C3352700A8E1B6 /* AutoResizeTableView.swift in Sources */,
 				4B76005A29CB169100D1FE70 /* LocationCell.swift in Sources */,
+				4BE10C8029CDB607005481DB /* TournamentHeader.swift in Sources */,
 				4B75985B29C3352700A8E1B6 /* Values.swift in Sources */,
 				4B75985029C3352700A8E1B6 /* PhoneContacts.swift in Sources */,
 			);
@@ -1130,13 +1198,13 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome.Foresome;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1162,13 +1230,13 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome.Foresome;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

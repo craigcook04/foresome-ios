@@ -8,12 +8,12 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-
+    
     @IBAction func signInAction(_ sender: UIButton) {
         let vc = LocationViewController()
         self.navigationController?.pushViewController(vc, animated: true)

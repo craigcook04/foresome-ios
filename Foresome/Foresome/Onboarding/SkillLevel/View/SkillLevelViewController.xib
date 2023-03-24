@@ -43,7 +43,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="41"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSG-Aq-bB2">
-                            <rect key="frame" x="24" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="15" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="7wl-hh-bWd"/>
                                 <constraint firstAttribute="width" constant="40" id="nS1-Wv-M5d"/>
@@ -67,7 +67,7 @@
                         <constraint firstItem="OSG-Aq-bB2" firstAttribute="top" secondItem="1Uc-Qi-79E" secondAttribute="top" id="C4Q-pi-POp"/>
                         <constraint firstAttribute="bottom" secondItem="Wgb-2l-HD6" secondAttribute="bottom" id="PCk-o0-ZGF"/>
                         <constraint firstItem="Wgb-2l-HD6" firstAttribute="leading" secondItem="1Uc-Qi-79E" secondAttribute="leading" id="YTd-RK-nBG"/>
-                        <constraint firstItem="OSG-Aq-bB2" firstAttribute="leading" secondItem="1Uc-Qi-79E" secondAttribute="leading" constant="24" id="Zs9-1X-Lhx"/>
+                        <constraint firstItem="OSG-Aq-bB2" firstAttribute="leading" secondItem="1Uc-Qi-79E" secondAttribute="leading" constant="15" id="Zs9-1X-Lhx"/>
                         <constraint firstAttribute="trailing" secondItem="Wgb-2l-HD6" secondAttribute="trailing" id="sSS-87-lPC"/>
                         <constraint firstItem="Wgb-2l-HD6" firstAttribute="top" secondItem="OSG-Aq-bB2" secondAttribute="bottom" id="vzv-jq-DVO"/>
                     </constraints>
@@ -145,7 +145,6 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="0.70980392156862748" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="HA6-gZ-UPu" firstAttribute="top" secondItem="TIN-Ep-e5L" secondAttribute="top" constant="8" id="0Uh-A4-QfD"/>
                                 <constraint firstItem="lHf-MT-In1" firstAttribute="top" secondItem="TIN-Ep-e5L" secondAttribute="top" constant="8" id="3Au-oe-Hgu"/>

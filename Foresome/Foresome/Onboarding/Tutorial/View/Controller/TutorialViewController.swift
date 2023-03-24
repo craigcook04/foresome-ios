@@ -40,13 +40,13 @@ class TutorialViewController: UIViewController {
 extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
         return tutorialData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorialCollectionCell", for: indexPath) as! TutorialCollectionCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorialCollectionCell", for: indexPath) as? TutorialCollectionCell else{return UICollectionViewCell()}
         self.pageControl.numberOfPages =  tutorialData.count
         self.pageControl.currentPage = indexPath.item
         return cell
@@ -65,7 +65,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         
         guard let indexPath = tutorialCollectionView.indexPathForItem(at: visiblePoint) else { return }
-        let cell = tutorialCollectionView.cellForItem(at: indexPath) as? TutorialCollectionCell
         self.pageControl.currentPage = indexPath.item
         
     }
@@ -83,7 +82,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
             counter = 1
             self.pageControl.currentPage = counter
         }
-        let cell = tutorialCollectionView.cellForItem(at: IndexPath(item: counter, section: 0)) as? TutorialCollectionCell
-        //self.pageControl.currentPage = counter
+      
     }
 }

@@ -13,6 +13,7 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var whereAreYouLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.whereAreYouLabel.text = AppStrings.titleLabel
@@ -35,6 +36,7 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
     @IBAction func locationAction(_ sender: Any) {
         self.locationGet()
     }
+    
     func locationGet() -> Bool {
         let controller = AutoCompletePlaces()
         controller.presentPlacePicker(controller: self) { placeData in
