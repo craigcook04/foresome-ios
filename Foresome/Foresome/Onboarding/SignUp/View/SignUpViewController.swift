@@ -21,8 +21,8 @@ class SignUpViewController: UIViewController {
     }
     
     func setLabelColor(){
-        termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy,color1: UIColor.appColor(.blackMain) , font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main") , font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService,AppStrings.privacyPolicy],alignment: .left)
+        termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain) , font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main") , font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService,AppStrings.privacyPolicy],alignment: .left, isUnderLine: true)
         
+           }
     }
-}
 

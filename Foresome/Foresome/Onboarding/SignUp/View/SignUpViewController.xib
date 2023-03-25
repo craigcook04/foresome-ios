@@ -47,17 +47,17 @@
                                     <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-cI-bUQ">
-                                    <rect key="frame" x="0.0" y="44.666666666666657" width="179" height="33"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-cI-bUQ">
+                                    <rect key="frame" x="0.0" y="44.666666666666657" width="181.66666666666666" height="33"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMn-fy-Gc0">
-                                            <rect key="frame" x="0.0" y="0.0" width="138" height="33"/>
-                                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="33"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yih-pP-YHG">
-                                            <rect key="frame" x="138" y="0.0" width="41" height="33"/>
+                                            <rect key="frame" x="140.66666666666666" y="0.0" width="41" height="33"/>
                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                             <color key="tintColor" name="Signup color"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -80,16 +80,19 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AdR-t1-nZT">
                                             <rect key="frame" x="16" y="0.0" width="329" height="56"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="E2a-Zh-LcD"/>
                                             </constraints>
-                                            <color key="textColor" name="show Color"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                    <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
@@ -119,16 +122,19 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rqa-OW-y0N">
                                             <rect key="frame" x="16" y="0.0" width="329" height="56"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="7bM-3h-oJd"/>
                                             </constraints>
-                                            <color key="textColor" name="show Color"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                    <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
@@ -157,20 +163,27 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-kh-yj5">
                                             <rect key="frame" x="16" y="0.0" width="238" height="56"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="GIF-yE-nEJ"/>
                                             </constraints>
-                                            <color key="textColor" name="show Color"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                    <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dim-di-vXZ">
                                             <rect key="frame" x="259" y="10.666666666666629" width="70" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="0YD-Z9-5dW"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <color key="tintColor" name="show Color"/>
-                                            <state key="normal" title="Button"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Show"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Show">
                                                 <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             </buttonConfiguration>
@@ -200,15 +213,6 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbV-XD-7ZI">
                                     <rect key="frame" x="0.0" y="216.00000000000003" width="345" height="55.999999999999972"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knl-oC-olD">
-                                            <rect key="frame" x="16" y="0.0" width="238" height="56"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="56" id="6lm-fs-ocZ"/>
-                                            </constraints>
-                                            <color key="textColor" name="show Color"/>
-                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGY-YK-IV0">
                                             <rect key="frame" x="259" y="10.666666666666629" width="70" height="35"/>
                                             <constraints>
@@ -220,6 +224,20 @@
                                                 <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             </buttonConfiguration>
                                         </button>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knl-oC-olD">
+                                            <rect key="frame" x="16" y="0.0" width="238" height="56"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="6lm-fs-ocZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                    <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Knl-oC-olD" firstAttribute="leading" secondItem="RbV-XD-7ZI" secondAttribute="leading" constant="16" id="3xY-yk-G4j"/>
@@ -261,7 +279,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Submit"/>
+                            <state key="normal" title="Next"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

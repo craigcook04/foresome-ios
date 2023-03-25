@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class LocationViewController: UIViewController,UITextFieldDelegate {
+class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationField: UITextField!
@@ -18,6 +18,13 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.whereAreYouLabel.text = AppStrings.titleLabel
         locationField.delegate = self
+        if LocationManager.shared.isAuthorized(){
+            LocationManager.geocode(location: LocationManager.shared.currentLocation ?? CLLocation(), completion: { places, error in
+                self.locationField.text = places?.address
+            })
+        }else{
+            LocationManager.shared.alertForChangeLocationSetting(controller: self)
+        }
         
     }
     
@@ -33,10 +40,13 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    @IBAction func locationAction(_ sender: Any) {
-        self.locationGet()
-    }
     
+    @IBAction func locationAction(_ sender: Any) {
+     
+        
+    }
+  
+
     func locationGet() -> Bool {
         let controller = AutoCompletePlaces()
         controller.presentPlacePicker(controller: self) { placeData in

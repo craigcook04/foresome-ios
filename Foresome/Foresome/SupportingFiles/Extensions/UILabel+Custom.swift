@@ -204,7 +204,7 @@ extension UILabel {
             self.attributedText = attributedString
         }
     
-    func attributedTextWithMultipleRange(str:String,color1:UIColor? = .white, font1:UIFont? = .systemFont(ofSize: 13),color2:UIColor? = .white, font2:UIFont? = .systemFont(ofSize: 13) , highlightedWords: [String],alignment:NSTextAlignment = .center){
+    func attributedTextWithMultipleRange(str:String,color1:UIColor? = .white, font1:UIFont? = .systemFont(ofSize: 13),color2:UIColor? = .white, font2:UIFont? = .systemFont(ofSize: 13) , highlightedWords: [String],alignment:NSTextAlignment = .center, isUnderLine:Bool = false){
             let attributedString = NSMutableAttributedString(string: str)
             attributedString.addAttribute(NSAttributedString.Key.font, value: font1 ?? .systemFont(ofSize: 13), range: NSRange(location:0, length: str.count))
             attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color1 ?? .white, range: NSRange(location:0, length: str.count))
@@ -214,6 +214,11 @@ extension UILabel {
 
                 attributedString.addAttribute(NSAttributedString.Key.font, value: font2 ?? .systemFont(ofSize: 13), range: textRange)
                 attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color2 ?? .white, range: textRange)
+                if isUnderLine{
+                    attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                                                     value: NSUnderlineStyle.single.rawValue,
+                                                     range: textRange)
+                }
             }
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 5

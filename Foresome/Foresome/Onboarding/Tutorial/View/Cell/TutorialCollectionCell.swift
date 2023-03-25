@@ -17,8 +17,7 @@ class TutorialCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
+        tutorialHeadingLbl.setLineSpacing(lineSpacing: 1.0, textAlignment: .left)
     }
 
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		161747277C886A4B54615363 /* Pods_Foresome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */; };
+		4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0436F029CF27BA0029CC79 /* LocationManager.swift */; };
 		4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B18995B29CB059200FD3999 /* LocationViewController.swift */; };
 		4B18995E29CB059200FD3999 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B18995C29CB059200FD3999 /* LocationViewController.xib */; };
 		4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B221A9D29C4730E00690026 /* Tutorial Model.swift */; };
@@ -133,6 +134,7 @@
 /* Begin PBXFileReference section */
 		0F7E287788C2CCE7946F71F7 /* Pods-Foresome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.debug.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.debug.xcconfig"; sourceTree = "<group>"; };
 		40DA7F11957B87E0C433D616 /* Pods-Foresome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.release.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.release.xcconfig"; sourceTree = "<group>"; };
+		4B0436F029CF27BA0029CC79 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4B18995B29CB059200FD3999 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4B18995C29CB059200FD3999 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		4B221A9D29C4730E00690026 /* Tutorial Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tutorial Model.swift"; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				4B76004C29CB169100D1FE70 /* LocationController.swift */,
+				4B0436F029CF27BA0029CC79 /* LocationManager.swift */,
 				4B76004D29CB169100D1FE70 /* AutoCompletePlaces.swift */,
 				4B76004E29CB169100D1FE70 /* Protocol.swift */,
 				4B76004F29CB169100D1FE70 /* Helpers.swift */,
@@ -1031,6 +1034,7 @@
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
 				4BF4C01829CD942100AD5B50 /* TournamentTableCell.swift in Sources */,
+				4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
 				4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */,
