@@ -20,30 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Gm-sR-iMX">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="96t-FX-7Rn">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </tableView>
-                    </subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="96t-FX-7Rn">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="802"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="96t-FX-7Rn" firstAttribute="top" secondItem="4Gm-sR-iMX" secondAttribute="top" id="CSP-yc-WYQ"/>
-                        <constraint firstAttribute="bottom" secondItem="96t-FX-7Rn" secondAttribute="bottom" id="Myw-Px-v7S"/>
-                        <constraint firstItem="96t-FX-7Rn" firstAttribute="leading" secondItem="4Gm-sR-iMX" secondAttribute="leading" id="OZG-l7-W1p"/>
-                        <constraint firstAttribute="trailing" secondItem="96t-FX-7Rn" secondAttribute="trailing" id="uj8-op-UQm"/>
-                    </constraints>
-                </view>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="4Gm-sR-iMX" secondAttribute="bottom" id="Nbv-Tk-k0B"/>
-                <constraint firstItem="4Gm-sR-iMX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bpq-cR-eYw"/>
-                <constraint firstAttribute="trailing" secondItem="4Gm-sR-iMX" secondAttribute="trailing" id="kyK-YV-vfC"/>
-                <constraint firstItem="4Gm-sR-iMX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rOf-dN-G8D"/>
+                <constraint firstAttribute="bottom" secondItem="96t-FX-7Rn" secondAttribute="bottom" constant="50" id="MZN-Po-Rjc"/>
+                <constraint firstItem="96t-FX-7Rn" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="X30-dp-a3g"/>
+                <constraint firstItem="96t-FX-7Rn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="d3q-Zg-yLq"/>
+                <constraint firstItem="96t-FX-7Rn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="e4N-N7-YbG"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="20.422535211267608"/>
         </view>

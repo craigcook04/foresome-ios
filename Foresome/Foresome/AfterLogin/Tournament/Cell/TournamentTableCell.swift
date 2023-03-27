@@ -6,6 +6,9 @@
 //
 
 import UIKit
+protocol TournamentTableCellDelegate{
+    func rightButtonAction()
+}
 
 class TournamentTableCell: UITableViewCell {
 
@@ -14,17 +17,20 @@ class TournamentTableCell: UITableViewCell {
     @IBOutlet weak var imageItem: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    var delegate: TournamentTableCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     @IBAction func rightAction(_ sender: Any) {
+        self.delegate?.rightButtonAction()
     }
 }

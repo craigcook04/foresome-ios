@@ -42,8 +42,7 @@ class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationMan
     }
     
     @IBAction func locationAction(_ sender: Any) {
-     
-        
+          self.locationGet()
     }
   
 
