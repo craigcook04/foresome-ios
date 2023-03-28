@@ -10,6 +10,6 @@ target 'Foresome' do
   pod 'DGActivityIndicatorView'
   pod 'ObjectMapper'
   pod 'Kingfisher'
-pod 'GooglePlacePicker'
+  pod 'GooglePlacePicker'
 
 end

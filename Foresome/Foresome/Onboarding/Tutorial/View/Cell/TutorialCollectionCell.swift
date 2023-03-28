@@ -6,18 +6,15 @@
 //
 
 import UIKit
-//protocol tutorialCollectionCellDelegate{
-//
-//}
 
 class TutorialCollectionCell: UICollectionViewCell {
-
-    @IBOutlet weak var tutorialHeadingLbl: UILabel!
     
+    @IBOutlet weak var tutorialHeadingLbl: UILabel!
+    @IBOutlet weak var tutorialDescriptionLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         tutorialHeadingLbl.setLineSpacing(lineSpacing: 1.0, textAlignment: .left)
     }
-
+    
 }

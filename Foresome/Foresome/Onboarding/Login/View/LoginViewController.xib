@@ -23,6 +23,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="loginEmailField" destination="yF2-2g-Yi0" id="rQd-Hq-PYw"/>
+                <outlet property="loginPasswordField" destination="LXY-u4-XnQ" id="zcl-rm-t7u"/>
                 <outlet property="view" destination="DIL-UO-0nM" id="76K-qV-ZHf"/>
             </connections>
         </placeholder>
@@ -150,6 +152,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Show">
                                                         <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="passwordShowAction:" destination="-1" eventType="touchUpInside" id="ufA-PC-LnU"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -231,6 +236,9 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="googleAction:" destination="-1" eventType="touchUpInside" id="q2e-2W-X9i"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tu9-xs-IOD">
                                             <rect key="frame" x="0.0" y="215.99999999999994" width="345" height="56"/>
@@ -255,6 +263,9 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="facebookAction:" destination="-1" eventType="touchUpInside" id="mmr-eF-l9Z"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2Z-od-1aS">
                                             <rect key="frame" x="0.0" y="287.99999999999994" width="345" height="56"/>
@@ -279,6 +290,9 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="appleAction:" destination="-1" eventType="touchUpInside" id="a7H-Hh-xh7"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>

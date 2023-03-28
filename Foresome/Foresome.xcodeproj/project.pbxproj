@@ -114,6 +114,10 @@
 		4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005129CB169100D1FE70 /* BottomResultView.swift */; };
 		4B76005A29CB169100D1FE70 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005229CB169100D1FE70 /* LocationCell.swift */; };
 		4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005329CB169100D1FE70 /* LocationItem.swift */; };
+		4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */; };
+		4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */; };
+		4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */; };
+		4B86BA5E29D2CD4E00800A37 /* OrderSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B86BA5C29D2CD4E00800A37 /* OrderSummaryViewController.xib */; };
 		4B8C272C29CAC49A008D1880 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C272A29CAC49A008D1880 /* ForgotPasswordViewController.swift */; };
 		4B8C272D29CAC49A008D1880 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C272B29CAC49A008D1880 /* ForgotPasswordViewController.xib */; };
 		4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C273029CAD6F0008D1880 /* SignUpViewController.swift */; };
@@ -244,6 +248,10 @@
 		4B76005129CB169100D1FE70 /* BottomResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomResultView.swift; sourceTree = "<group>"; };
 		4B76005229CB169100D1FE70 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		4B76005329CB169100D1FE70 /* LocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationItem.swift; sourceTree = "<group>"; };
+		4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariationViewController.swift; sourceTree = "<group>"; };
+		4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariationViewController.xib; sourceTree = "<group>"; };
+		4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
+		4B86BA5C29D2CD4E00800A37 /* OrderSummaryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderSummaryViewController.xib; sourceTree = "<group>"; };
 		4B8C272A29CAC49A008D1880 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		4B8C272B29CAC49A008D1880 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		4B8C273029CAD6F0008D1880 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +304,8 @@
 		4B096A3C29D1844A00C05F53 /* AfterLogin */ = {
 			isa = PBXGroup;
 			children = (
+				4B86BA5929D2CCFB00800A37 /* OrderSummaryView */,
+				4B86BA5729D2AF7700800A37 /* VariationViewController */,
 				4B096A3D29D1847B00C05F53 /* TournamentDetailView */,
 				4BC9BA0D29CD7419007A4074 /* Tournament */,
 			);
@@ -739,6 +749,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4B86BA5729D2AF7700800A37 /* VariationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */,
+				4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */,
+				4B86BA5829D2AF8D00800A37 /* View */,
+			);
+			path = VariationViewController;
+			sourceTree = "<group>";
+		};
+		4B86BA5829D2AF8D00800A37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4B86BA5929D2CCFB00800A37 /* OrderSummaryView */ = {
+			isa = PBXGroup;
+			children = (
+				4B86BA5A29D2CD2100800A37 /* View */,
+			);
+			path = OrderSummaryView;
+			sourceTree = "<group>";
+		};
+		4B86BA5A29D2CD2100800A37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */,
+				4B86BA5C29D2CD4E00800A37 /* OrderSummaryViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4B8C272929CAC45E008D1880 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,7 +944,9 @@
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
 				4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */,
 				4B75985F29C3352800A8E1B6 /* cancel_notes@3x.png in Resources */,
+				4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */,
 				4B75973229C3326100A8E1B6 /* Assets.xcassets in Resources */,
+				4B86BA5E29D2CD4E00800A37 /* OrderSummaryViewController.xib in Resources */,
 				4B75984E29C3352700A8E1B6 /* successSign.json in Resources */,
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
@@ -1027,6 +1073,7 @@
 				4B75983C29C3352700A8E1B6 /* IJReachability.swift in Sources */,
 				4B75987629C3352800A8E1B6 /* UITextField+Custom.swift in Sources */,
 				4B75986929C3352800A8E1B6 /* String+Custom.swift in Sources */,
+				4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */,
 				4B75987829C3352800A8E1B6 /* Double+Custom.swift in Sources */,
 				4B75985129C3352700A8E1B6 /* Validator.swift in Sources */,
 				4B75985929C3352700A8E1B6 /* Swime.swift in Sources */,
@@ -1069,6 +1116,7 @@
 				4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
+				4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */,
 				4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */,
 				4B75987229C3352800A8E1B6 /* FloatingTextField.swift in Sources */,
 				4B75983D29C3352700A8E1B6 /* API.swift in Sources */,
@@ -1228,13 +1276,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1260,13 +1309,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

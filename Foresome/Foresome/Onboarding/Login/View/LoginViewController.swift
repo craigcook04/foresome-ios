@@ -9,6 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var loginEmailField: UITextField!
+    @IBOutlet weak var loginPasswordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,22 +22,27 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    
-    @IBAction func signUpAction(_ sender: Any) {
+    @IBAction func signUpAction(_ sender: UIButton) {
         let vc = SignUpViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    @IBAction func forgotPasswordAction(_ sender: Any) {
+    @IBAction func forgotPasswordAction(_ sender: UIButton) {
         let vc = ForgotPasswordViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func passwordShowAction(_ sender: UIButton) {
+    }
     
+    @IBAction func googleAction(_ sender: UIButton) {
+    }
     
+    @IBAction func facebookAction(_ sender: UIButton) {
+    }
     
+    @IBAction func appleAction(_ sender: UIButton) {
+    }
     
     
 }

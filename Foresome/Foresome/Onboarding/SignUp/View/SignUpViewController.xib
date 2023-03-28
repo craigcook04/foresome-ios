@@ -23,6 +23,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="confirmPasswordField" destination="Knl-oC-olD" id="7Ls-G7-bBd"/>
+                <outlet property="emailField" destination="Rqa-OW-y0N" id="UAf-Jj-oSu"/>
+                <outlet property="nameField" destination="AdR-t1-nZT" id="1vl-MP-Cqe"/>
+                <outlet property="passwordField" destination="dCr-kh-yj5" id="x50-nb-w0Z"/>
                 <outlet property="termsAndPrivacyPolicy" destination="czC-ft-Yu4" id="le6-P0-i87"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -187,6 +191,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Show">
                                                 <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="passwordShowAction:" destination="-1" eventType="touchUpInside" id="QlK-Dc-Rj2"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -223,6 +230,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Show">
                                                 <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="confirmShowAction:" destination="-1" eventType="touchUpInside" id="DtC-ow-uEx"/>
+                                            </connections>
                                         </button>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knl-oC-olD">
                                             <rect key="frame" x="16" y="0.0" width="238" height="56"/>
@@ -286,6 +296,9 @@
                                     <real key="value" value="16"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="ZPi-X3-kRW"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -317,7 +330,7 @@
                 <constraint firstItem="xyZ-gF-Cfy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LoM-SO-6UD"/>
                 <constraint firstItem="xyZ-gF-Cfy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dEh-f5-CgU"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="329"/>
+            <point key="canvasLocation" x="139.69465648854961" y="328.87323943661971"/>
         </view>
     </objects>
     <resources>

@@ -80,6 +80,7 @@
             </constraints>
             <size key="customSize" width="310" height="613"/>
             <connections>
+                <outlet property="tutorialDescriptionLbl" destination="AT9-8c-x7c" id="JU5-f8-yXr"/>
                 <outlet property="tutorialHeadingLbl" destination="Pgn-ia-YrX" id="zZH-Ia-esq"/>
             </connections>
             <point key="canvasLocation" x="238.1679389312977" y="127.11267605633803"/>

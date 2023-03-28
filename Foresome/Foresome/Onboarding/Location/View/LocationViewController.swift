@@ -28,24 +28,24 @@ class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationMan
         
     }
     
-    @IBAction func backAction(_ sender: Any) {
+    @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
     }
-    @IBAction func nextAction(_ sender: Any) {
+    
+    @IBAction func nextAction(_ sender: UIButton) {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func skipForNowAction(_ sender: Any) {
+    @IBAction func skipForNowAction(_ sender: UIButton) {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func locationAction(_ sender: Any) {
-          self.locationGet()
+        self.locationGet()
     }
-  
-
+    
     func locationGet() -> Bool {
         let controller = AutoCompletePlaces()
         controller.presentPlacePicker(controller: self) { placeData in
@@ -56,6 +56,7 @@ class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationMan
         }
         return false
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         self.locationGet()
     }

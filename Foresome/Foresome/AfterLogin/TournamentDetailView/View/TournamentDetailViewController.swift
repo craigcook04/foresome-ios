@@ -7,17 +7,48 @@
 
 import UIKit
 
-class TournamentDetailViewController: UIViewController {
 
+class TournamentDetailViewController: UIViewController {
+    
+    @IBOutlet weak var participantNumberLabel: UILabel!
+    @IBOutlet weak var selectLabel: UILabel!
+    @IBOutlet weak var viewOnMapBtn: UIButton!
+    @IBOutlet weak var plusBtn: UIButton!
+    @IBOutlet weak var minusBtn: UIButton!
+    
+    
+    //var presenter: TournamentDetailPresenterProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        
     }
-
-
+    
     @IBAction func backAction(_ sender: Any) {
         self.popVC()
     }
     
+    @IBAction func variationAction(_ sender: Any) {
+        let vc = VariationViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(vc, true)
+    }
+    
+    @IBAction func attendAction(_ sender: UIButton) {
+        let vc = OrderSummaryViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func minusAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func plusAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func viewOnMapAction(_ sender: Any) {
+        
+    }
 }
