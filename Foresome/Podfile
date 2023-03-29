@@ -12,8 +12,8 @@ target 'Foresome' do
   pod 'Kingfisher'
   pod 'GooglePlacePicker'
 
-pod 'StrechableHeader'
+#pod 'StrechableHeader'
 
-pod 'GSKStretchyHeaderView'
+#pod 'GSKStretchyHeaderView'
 
 end

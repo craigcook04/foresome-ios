@@ -25,13 +25,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TournamentDetailViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
-                <outlet property="headerImage" destination="fwE-3F-adD" id="5PV-FT-gSd"/>
                 <outlet property="minusBtn" destination="qf1-zp-rys" id="DNq-wj-ADb"/>
                 <outlet property="participantNumberLabel" destination="FoR-8q-TCk" id="SvR-gC-7bd"/>
                 <outlet property="plusBtn" destination="rG6-9w-sZC" id="aCH-HM-OdX"/>
-                <outlet property="scroll" destination="WBu-Qd-UVD" id="kjd-RO-Bag"/>
                 <outlet property="selectLabel" destination="vu6-5g-1nb" id="T3f-34-AIX"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Btg-aX-liM"/>
                 <outlet property="viewOnMapBtn" destination="lSa-HN-YjJ" id="so9-29-lfg"/>
             </connections>
         </placeholder>
@@ -279,7 +277,7 @@
                                                 <action selector="minusAction:" destination="-1" eventType="touchUpInside" id="HiE-Fp-eet"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-8q-TCk">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-8q-TCk">
                                             <rect key="frame" x="40" y="0.0" width="40" height="40"/>
                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                             <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
