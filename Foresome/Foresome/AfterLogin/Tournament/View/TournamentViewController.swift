@@ -58,9 +58,9 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
         return sectionHeader
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 136.0
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 136.0
+//    }
   
 }
 
