@@ -140,6 +140,14 @@
 		7EA8221929D41DD800755016 /* Tournament Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8221129D41DD800755016 /* Tournament Model.swift */; };
 		7EA8221A29D41DD800755016 /* TournamentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8221329D41DD800755016 /* TournamentViewController.xib */; };
 		7EA8221B29D41DD800755016 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8221429D41DD800755016 /* TournamentViewController.swift */; };
+		7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222029D42BC900755016 /* NewsViewController.swift */; };
+		7EA8222329D42BC900755016 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222129D42BC900755016 /* NewsViewController.xib */; };
+		7EA8222629D42BDE00755016 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222429D42BDE00755016 /* FriendsViewController.swift */; };
+		7EA8222729D42BDE00755016 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222529D42BDE00755016 /* FriendsViewController.xib */; };
+		7EA8222B29D42BFB00755016 /* LeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222929D42BFB00755016 /* LeadersViewController.swift */; };
+		7EA8222C29D42BFB00755016 /* LeadersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222A29D42BFB00755016 /* LeadersViewController.xib */; };
+		7EA8222F29D42C1100755016 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222D29D42C1100755016 /* ProfileViewController.swift */; };
+		7EA8223029D42C1100755016 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222E29D42C1100755016 /* ProfileViewController.xib */; };
 		7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */; };
 		7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */; };
 		7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */; };
@@ -283,6 +291,14 @@
 		7EA8221129D41DD800755016 /* Tournament Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tournament Model.swift"; sourceTree = "<group>"; };
 		7EA8221329D41DD800755016 /* TournamentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentViewController.xib; sourceTree = "<group>"; };
 		7EA8221429D41DD800755016 /* TournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewController.swift; sourceTree = "<group>"; };
+		7EA8222029D42BC900755016 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		7EA8222129D42BC900755016 /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
+		7EA8222429D42BDE00755016 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		7EA8222529D42BDE00755016 /* FriendsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		7EA8222929D42BFB00755016 /* LeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewController.swift; sourceTree = "<group>"; };
+		7EA8222A29D42BFB00755016 /* LeadersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadersViewController.xib; sourceTree = "<group>"; };
+		7EA8222D29D42C1100755016 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7EA8222E29D42C1100755016 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
 		7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
@@ -469,6 +485,10 @@
 		4B75972429C3325F00A8E1B6 /* Foresome */ = {
 			isa = PBXGroup;
 			children = (
+				7EA8221C29D42B6500755016 /* News */,
+				7EA8221D29D42B7700755016 /* Friends */,
+				7EA8221F29D42B8E00755016 /* Leaders */,
+				7EA8221E29D42B7F00755016 /* Profile */,
 				7ED6CE8F29CDE2770094E690 /* Tabbar */,
 				4B75973C29C333EB00A8E1B6 /* AppGlobals */,
 				4B096A3C29D1844A00C05F53 /* AfterLogin */,
@@ -889,6 +909,42 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7EA8221C29D42B6500755016 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				7EA8222029D42BC900755016 /* NewsViewController.swift */,
+				7EA8222129D42BC900755016 /* NewsViewController.xib */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		7EA8221D29D42B7700755016 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				7EA8222429D42BDE00755016 /* FriendsViewController.swift */,
+				7EA8222529D42BDE00755016 /* FriendsViewController.xib */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		7EA8221E29D42B7F00755016 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7EA8222D29D42C1100755016 /* ProfileViewController.swift */,
+				7EA8222E29D42C1100755016 /* ProfileViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		7EA8221F29D42B8E00755016 /* Leaders */ = {
+			isa = PBXGroup;
+			children = (
+				7EA8222929D42BFB00755016 /* LeadersViewController.swift */,
+				7EA8222A29D42BFB00755016 /* LeadersViewController.xib */,
+			);
+			path = Leaders;
+			sourceTree = "<group>";
+		};
 		7ED6CE8F29CDE2770094E690 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,7 +1023,10 @@
 			files = (
 				4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				4B68F31E29C3463800D80A85 /* Poppins-Light.ttf in Resources */,
+				7EA8222329D42BC900755016 /* NewsViewController.xib in Resources */,
 				4B68F32729C3463800D80A85 /* Poppins-Bold.ttf in Resources */,
+				7EA8222729D42BDE00755016 /* FriendsViewController.xib in Resources */,
+				7EA8222C29D42BFB00755016 /* LeadersViewController.xib in Resources */,
 				4B75984929C3352700A8E1B6 /* Lato-Light.ttf in Resources */,
 				4BE7C0A029D1856C00F47F4A /* TournamentDetailViewController.xib in Resources */,
 				7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */,
@@ -990,6 +1049,7 @@
 				4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
+				7EA8223029D42C1100755016 /* ProfileViewController.xib in Resources */,
 				4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */,
 				4B75984629C3352700A8E1B6 /* Lato-Regular.ttf in Resources */,
 				7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */,
@@ -1095,12 +1155,15 @@
 				4B75986629C3352800A8E1B6 /* UILabel+Custom.swift in Sources */,
 				4B75985329C3352700A8E1B6 /* ActivityIndicator.swift in Sources */,
 				4B75985429C3352700A8E1B6 /* UserData.swift in Sources */,
+				7EA8222F29D42C1100755016 /* ProfileViewController.swift in Sources */,
 				7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */,
 				4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */,
 				7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */,
+				7EA8222629D42BDE00755016 /* FriendsViewController.swift in Sources */,
 				4B75973029C3325F00A8E1B6 /* Foresome.xcdatamodeld in Sources */,
 				7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */,
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
+				7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
 				4B75986B29C3352800A8E1B6 /* AppDelegate+custom.swift in Sources */,
 				4B76005629CB169100D1FE70 /* Protocol.swift in Sources */,
@@ -1155,6 +1218,7 @@
 				7EA8221929D41DD800755016 /* Tournament Model.swift in Sources */,
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
+				7EA8222B29D42BFB00755016 /* LeadersViewController.swift in Sources */,
 				4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,

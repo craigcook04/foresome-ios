@@ -29,8 +29,10 @@ class SkillLevelViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        let vc = TournamentViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = TournamentViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        //MARK: code added for tabbar ----
+        Singleton.shared.setHomeScreenView()
     }
     
     @IBAction func skipForNowAction(_ sender: UIButton) {

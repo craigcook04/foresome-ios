@@ -9,8 +9,8 @@ import UIKit
 
 class TabbarViewController: UITabBarController {
     
-    var selectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_logout"), #imageLiteral(resourceName: "ic_remove_feed_image"), #imageLiteral(resourceName: "ic_current_location"), #imageLiteral(resourceName: "ic_radio_button_inactive"), #imageLiteral(resourceName: "ic_apple")]
-    var unselectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_add_poll_options"), #imageLiteral(resourceName: "ic_close_white"), #imageLiteral(resourceName: "ic_leaders"), #imageLiteral(resourceName: "ic_radio_button_active"), #imageLiteral(resourceName: "ic_notification")]
+    var selectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_news"), #imageLiteral(resourceName: "ic_friends"), #imageLiteral(resourceName: "ic_tour"), #imageLiteral(resourceName: "ic_leaders"), #imageLiteral(resourceName: "ic_profile")]
+    var unselectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_news_inactive"), #imageLiteral(resourceName: "ic_friends_inactive"), #imageLiteral(resourceName: "ic_tour_inactive"), #imageLiteral(resourceName: "ic_leaders_inactive"), #imageLiteral(resourceName: "ic_profile_inactive")]
     let itemArray:[String] = ["News", "Friends", "Tour", "Leaders", "Profile"]
     
     let HEIGHT_TAB_BAR:CGFloat = 68
@@ -22,19 +22,18 @@ class TabbarViewController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        var tabFrame = self.tabBar.frame
-        tabFrame.size.height += 8
-        tabFrame.origin.y = self.view.frame.size.height - tabFrame.size.height //self.view.frame.size.height - HEIGHT_TAB_BAR
-        self.tabBar.frame = tabFrame
+//        var tabFrame = self.tabBar.frame
+//        tabFrame.size.height += 8
+//        tabFrame.origin.y = self.view.frame.size.height - tabFrame.size.height //self.view.frame.size.height - HEIGHT_TAB_BAR
+//        self.tabBar.frame = tabFrame
     }
     
     private func setViewControllers() {
-    
-        let newsVC = SignUpViewController()
-        let friendsVC  = SignUpViewController()
-        let tourVC  = SignUpViewController()
-        let leadersVC  = SignUpViewController()
-        let profileVC  = SignUpViewController()
+        let newsVC = NewsViewController()
+        let friendsVC  = FriendsViewController()
+        let tourVC  = TournamentViewController()
+        let leadersVC  = LeadersViewController()
+        let profileVC  = ProfileViewController()
         
         let controllers: [UIViewController] = [newsVC, friendsVC, tourVC, leadersVC, profileVC]
         self.viewControllers = controllers.map({AppNavigation(root: $0)})
@@ -44,8 +43,9 @@ class TabbarViewController: UITabBarController {
             item.image = self.unselectedStateImages[index]
             item.title = self.itemArray[index]
             item.tag = index
-            item.imageInsets.top = 4
-            item.imageInsets.bottom = 4
+//            item.imageInsets.top = 4
+//            item.imageInsets.bottom = 4
+            self.tabBar.tintColor = UIColor.greenishTeal
         })
     }
     
