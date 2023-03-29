@@ -23,6 +23,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="loginEmailField" destination="yF2-2g-Yi0" id="rQd-Hq-PYw"/>
+                <outlet property="loginPasswordField" destination="LXY-u4-XnQ" id="zcl-rm-t7u"/>
                 <outlet property="view" destination="DIL-UO-0nM" id="76K-qV-ZHf"/>
             </connections>
         </placeholder>
@@ -35,16 +37,16 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abH-5b-PYA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759.66666666666663"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="784.66666666666663"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_logo" translatesAutoresizingMaskIntoConstraints="NO" id="e4D-Nc-NDp">
-                                    <rect key="frame" x="24" y="16" width="345" height="40"/>
+                                    <rect key="frame" x="24" y="14" width="345" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="APN-O1-sS5"/>
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w84-ot-sOg">
-                                    <rect key="frame" x="24" y="80" width="345" height="77.666666666666686"/>
+                                    <rect key="frame" x="24" y="78" width="345" height="77.666666666666686"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrc-JO-4d5">
                                             <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="36.666666666666664"/>
@@ -52,8 +54,8 @@
                                             <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZg-PQ-inZ">
-                                            <rect key="frame" x="0.0" y="44.666666666666657" width="136" height="33"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="KZg-PQ-inZ">
+                                            <rect key="frame" x="0.0" y="44.666666666666657" width="140" height="33"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New here?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vl2-Bu-5LD">
                                                     <rect key="frame" x="0.0" y="0.0" width="78" height="33"/>
@@ -62,12 +64,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EX-Nh-uYg">
-                                                    <rect key="frame" x="78" y="0.0" width="58" height="33"/>
+                                                    <rect key="frame" x="82" y="0.0" width="58" height="33"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                     <color key="tintColor" name="Signup color"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="Sign up">
-                                                        <color key="titleColor" red="0.2196078431372549" green="0.50980392156862742" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" red="0.21960780024528503" green="0.50980395078659058" blue="0.97254902124404907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="E7k-AA-Tk6"/>
@@ -78,7 +80,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ELi-8u-MKZ">
-                                    <rect key="frame" x="24" y="181.66666666666666" width="345" height="127.99999999999997"/>
+                                    <rect key="frame" x="24" y="179.66666666666666" width="345" height="127.99999999999997"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKh-xx-eUg">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
@@ -96,6 +98,9 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                            <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
@@ -131,17 +136,25 @@
                                                     <color key="textColor" name="show Color"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
+                                                            <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqd-H4-2O0">
                                                     <rect key="frame" x="259" y="10.666666666666629" width="70" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="2wD-mr-Nr0"/>
                                                     </constraints>
-                                                    <color key="tintColor" name="show Color"/>
+                                                    <color key="tintColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Show">
                                                         <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="passwordShowAction:" destination="-1" eventType="touchUpInside" id="ufA-PC-LnU"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -168,15 +181,15 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gHY-KC-xOL">
-                                    <rect key="frame" x="24" y="379.66666666666674" width="345" height="344"/>
+                                    <rect key="frame" x="24" y="404.66666666666674" width="345" height="344"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-15-gPh">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
-                                            <color key="backgroundColor" red="0.25098039220000001" green="0.80392156859999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.28857937455177307" green="0.82876062393188477" blue="0.64302355051040649" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Gf3-MY-UU7"/>
                                             </constraints>
-                                            <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Sign In">
                                                 <fontDescription key="titleFontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
@@ -192,7 +205,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or continue with social account." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D1-BZ-8s2">
-                                            <rect key="frame" x="0.0" y="72" width="345" height="56"/>
+                                            <rect key="frame" x="0.0" y="71.999999999999943" width="345" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="4Ey-cd-hQE"/>
                                             </constraints>
@@ -223,6 +236,9 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="googleAction:" destination="-1" eventType="touchUpInside" id="q2e-2W-X9i"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tu9-xs-IOD">
                                             <rect key="frame" x="0.0" y="215.99999999999994" width="345" height="56"/>
@@ -247,6 +263,9 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="facebookAction:" destination="-1" eventType="touchUpInside" id="mmr-eF-l9Z"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2Z-od-1aS">
                                             <rect key="frame" x="0.0" y="287.99999999999994" width="345" height="56"/>
@@ -271,15 +290,18 @@
                                                     <color key="value" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="appleAction:" destination="-1" eventType="touchUpInside" id="a7H-Hh-xh7"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-R2-rwU">
-                                    <rect key="frame" x="219.33333333333337" y="317" width="149.66666666666663" height="35"/>
+                                    <rect key="frame" x="227.66666666666663" y="315" width="141.33333333333337" height="33.666666666666686"/>
                                     <color key="tintColor" red="0.18823529411764706" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Forgot password">
-                                        <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                        <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="forgotPasswordAction:" destination="-1" eventType="touchUpInside" id="OiD-BX-mj7"/>
@@ -294,8 +316,8 @@
                                 <constraint firstItem="gHY-KC-xOL" firstAttribute="trailing" secondItem="YAv-R2-rwU" secondAttribute="trailing" id="EM5-0l-Rrk"/>
                                 <constraint firstAttribute="bottom" secondItem="gHY-KC-xOL" secondAttribute="bottom" constant="36" id="Efl-4w-1YF"/>
                                 <constraint firstItem="ELi-8u-MKZ" firstAttribute="trailing" secondItem="w84-ot-sOg" secondAttribute="trailing" id="Hcu-wP-5HU"/>
-                                <constraint firstItem="e4D-Nc-NDp" firstAttribute="top" secondItem="abH-5b-PYA" secondAttribute="top" constant="16" id="Jxw-jH-S5W"/>
-                                <constraint firstItem="gHY-KC-xOL" firstAttribute="top" secondItem="YAv-R2-rwU" secondAttribute="bottom" constant="27.666666666666686" id="REu-zE-K28"/>
+                                <constraint firstItem="e4D-Nc-NDp" firstAttribute="top" secondItem="abH-5b-PYA" secondAttribute="top" constant="14" id="Jxw-jH-S5W"/>
+                                <constraint firstItem="gHY-KC-xOL" firstAttribute="top" secondItem="YAv-R2-rwU" secondAttribute="bottom" constant="56" id="REu-zE-K28"/>
                                 <constraint firstItem="YAv-R2-rwU" firstAttribute="trailing" secondItem="ELi-8u-MKZ" secondAttribute="trailing" id="aiZ-NG-Tf5"/>
                                 <constraint firstItem="gHY-KC-xOL" firstAttribute="leading" secondItem="ELi-8u-MKZ" secondAttribute="leading" id="oN4-3j-rXd"/>
                                 <constraint firstItem="w84-ot-sOg" firstAttribute="top" secondItem="e4D-Nc-NDp" secondAttribute="bottom" constant="24" id="q9E-rZ-n6a"/>

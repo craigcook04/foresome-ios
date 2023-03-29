@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class LocationViewController: UIViewController,UITextFieldDelegate {
+class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var locationField: UITextField!
@@ -18,21 +18,30 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.whereAreYouLabel.text = AppStrings.titleLabel
         locationField.delegate = self
+        if LocationManager.shared.isAuthorized(){
+            LocationManager.geocode(location: LocationManager.shared.currentLocation ?? CLLocation(), completion: { places, error in
+                self.locationField.text = places?.address
+            })
+        }else{
+            LocationManager.shared.alertForChangeLocationSetting(controller: self)
+        }
         
     }
     
-    @IBAction func backAction(_ sender: Any) {
+    @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
     }
-    @IBAction func nextAction(_ sender: Any) {
+    
+    @IBAction func nextAction(_ sender: UIButton) {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func skipForNowAction(_ sender: Any) {
+    @IBAction func skipForNowAction(_ sender: UIButton) {
         let vc = ProfilePictureViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func locationAction(_ sender: Any) {
         self.locationGet()
     }
@@ -47,6 +56,7 @@ class LocationViewController: UIViewController,UITextFieldDelegate {
         }
         return false
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         self.locationGet()
     }

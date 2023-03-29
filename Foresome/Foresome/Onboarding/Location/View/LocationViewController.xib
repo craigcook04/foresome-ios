@@ -99,7 +99,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DXN-19-gja">
-                                    <rect key="frame" x="5" y="0.0" width="295" height="56"/>
+                                    <rect key="frame" x="16" y="0.0" width="284" height="56"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -110,7 +110,7 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="DXN-19-gja" secondAttribute="bottom" id="4hG-jc-FJA"/>
                                 <constraint firstAttribute="bottom" secondItem="EYm-rE-J0G" secondAttribute="bottom" constant="16" id="b8y-BH-VJo"/>
-                                <constraint firstItem="DXN-19-gja" firstAttribute="leading" secondItem="v2H-UW-uQS" secondAttribute="leading" constant="5" id="dav-8f-hd6"/>
+                                <constraint firstItem="DXN-19-gja" firstAttribute="leading" secondItem="v2H-UW-uQS" secondAttribute="leading" constant="16" id="dav-8f-hd6"/>
                                 <constraint firstAttribute="trailing" secondItem="EYm-rE-J0G" secondAttribute="trailing" constant="16" id="jN3-B5-OJM"/>
                                 <constraint firstItem="DXN-19-gja" firstAttribute="top" secondItem="v2H-UW-uQS" secondAttribute="top" id="srt-gc-7Tr"/>
                                 <constraint firstItem="EYm-rE-J0G" firstAttribute="top" secondItem="v2H-UW-uQS" secondAttribute="top" constant="16" id="svf-1t-SeJ"/>

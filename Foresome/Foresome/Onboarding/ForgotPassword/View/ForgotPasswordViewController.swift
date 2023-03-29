@@ -12,6 +12,8 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var forgotLabel: UILabel!
     @IBOutlet weak var submitBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var forgotEmailField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
@@ -21,6 +23,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
     }
+    
     func setKeyboard(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification , object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification , object:nil)
@@ -34,11 +37,13 @@ class ForgotPasswordViewController: UIViewController {
             view.layoutIfNeeded()
         }
     }
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         submitBottomConstraint.constant = 40
         view.layoutIfNeeded()
     }
     
-    @IBAction func submitAction(_ sender: Any) {
+    @IBAction func submitAction(_ sender: UIButton) {
     }
+    
 }

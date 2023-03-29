@@ -19,7 +19,7 @@ class SkillLevelViewController: UIViewController {
     @IBOutlet weak var lowSkilledView: UIView!
     @IBOutlet weak var lowerSkilledLbl: UILabel!
     @IBOutlet weak var handicapThreeLbl: UILabel!
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,11 +29,11 @@ class SkillLevelViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        let vc = SignUpViewController()
+        let vc = TournamentViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func skipForNowAction(_ sender: Any) {
+    @IBAction func skipForNowAction(_ sender: UIButton) {
         
     }
     
