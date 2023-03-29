@@ -24,7 +24,7 @@
 import UIKit
 
 @available(iOSApplicationExtension, unavailable)
-@objc open class IQTitleBarButtonItem: IQBarButtonItem {
+open class IQTitleBarButtonItem: IQBarButtonItem {
 
     @objc open var titleFont: UIFont? {
 
@@ -163,5 +163,8 @@ import UIKit
 
     deinit {
         customView = nil
+        titleButton?.removeTarget(nil, action: nil, for: .touchUpInside)
+        _titleView = nil
+        titleButton = nil
     }
 }

@@ -128,6 +128,14 @@
 		4BF4C01929CD942100AD5B50 /* TournamentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4C01729CD942100AD5B50 /* TournamentTableCell.xib */; };
 		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
 		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
+		7E12C6C629CE206500D8A768 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */; };
+		7E12C6C729CE206500D8A768 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */; };
+		7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C329CE206100D8A768 /* FTDelegate.swift */; };
+		7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */; };
+		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
+		7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */; };
+		7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */; };
+		7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +264,14 @@
 		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
 		4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionCell.xib; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		7E12C6C329CE206100D8A768 /* FTDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDelegate.swift; sourceTree = "<group>"; };
+		7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeader.swift; sourceTree = "<group>"; };
+		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
+		7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
+		7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
+		7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +427,7 @@
 		4B75972429C3325F00A8E1B6 /* Foresome */ = {
 			isa = PBXGroup;
 			children = (
+				7ED6CE8F29CDE2770094E690 /* Tabbar */,
 				4B75973C29C333EB00A8E1B6 /* AppGlobals */,
 				4B75973D29C3340500A8E1B6 /* Onboarding */,
 				4B7597DE29C3352700A8E1B6 /* SupportingFiles */,
@@ -794,6 +811,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7ED6CE8F29CDE2770094E690 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				7E12C6C329CE206100D8A768 /* FTDelegate.swift */,
+				7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */,
+				7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */,
+				7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */,
+				7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */,
+				7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */,
+				7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */,
+				7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -862,6 +894,7 @@
 				4B75973529C3326100A8E1B6 /* LaunchScreen.storyboard in Resources */,
 				4B68F32A29C3463800D80A85 /* Poppins-SemiBold.ttf in Resources */,
 				4B75984229C3352700A8E1B6 /* Lato-Thin.ttf in Resources */,
+				7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */,
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
 				4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */,
@@ -981,7 +1014,9 @@
 				4B75986629C3352800A8E1B6 /* UILabel+Custom.swift in Sources */,
 				4B75985329C3352700A8E1B6 /* ActivityIndicator.swift in Sources */,
 				4B75985429C3352700A8E1B6 /* UserData.swift in Sources */,
+				7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */,
 				4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */,
+				7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */,
 				4B75973029C3325F00A8E1B6 /* Foresome.xcdatamodeld in Sources */,
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
@@ -989,6 +1024,7 @@
 				4B76005629CB169100D1FE70 /* Protocol.swift in Sources */,
 				4B75985A29C3352700A8E1B6 /* MimeType.swift in Sources */,
 				4B68F32F29C34AE400D80A85 /* TutorialViewController.swift in Sources */,
+				7E12C6C629CE206500D8A768 /* UIView+Extension.swift in Sources */,
 				4B6A6D5629CC1A8500CF44EC /* SkillLevelViewController.swift in Sources */,
 				4B75983C29C3352700A8E1B6 /* IJReachability.swift in Sources */,
 				4B75987629C3352800A8E1B6 /* UITextField+Custom.swift in Sources */,
@@ -1006,6 +1042,7 @@
 				4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */,
 				4B75986F29C3352800A8E1B6 /* UIViewController+Custom.swift in Sources */,
 				4B75986229C3352800A8E1B6 /* CustomProgressBar.swift in Sources */,
+				7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */,
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,
 				4B75986A29C3352800A8E1B6 /* Array+Custom.swift in Sources */,
@@ -1017,11 +1054,14 @@
 				4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */,
 				4B75984C29C3352700A8E1B6 /* Constants.swift in Sources */,
 				4BF0B94829CD7EE3007BD368 /* Tournament Model.swift in Sources */,
+				7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,
 				4B75987029C3352800A8E1B6 /* CustomTextField.swift in Sources */,
+				7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */,
 				4B75986C29C3352800A8E1B6 /* NSLayoutContraint+Custom.swift in Sources */,
 				4B75985629C3352700A8E1B6 /* UserDefaultsCustom.swift in Sources */,
 				4B75986E29C3352800A8E1B6 /* UICollectionView+Custom.swift in Sources */,
+				7E12C6C729CE206500D8A768 /* UITableView+Extension.swift in Sources */,
 				4B76005729CB169100D1FE70 /* Helpers.swift in Sources */,
 				4B75986729C3352800A8E1B6 /* UIView+Custom.swift in Sources */,
 				4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */,

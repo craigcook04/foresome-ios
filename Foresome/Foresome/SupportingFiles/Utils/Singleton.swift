@@ -16,6 +16,8 @@ class Singleton: NSObject {
     var errorMessageView: ErrorView!
     var callBackFromError: ((Bool?) -> Void)?
 
+    static var tabController:TabbarViewController!
+    
     override init() {
         super.init()
     }
@@ -70,15 +72,43 @@ class Singleton: NSObject {
     
     func gotoHome() {
         DispatchQueue.main.async {
-//            let view = HomePresenter.createHomeModule()
-//            let navController = UINavigationController(rootViewController: view)
-//            navController.navigationBar.isHidden = true
-////            if let window = UIWindow.key{
-//            self.window?.rootViewController = navController
-////                Singleton.shared.window = window
-//            self.window?.makeKeyAndVisible()
-////            }
+            let view = TabbarViewController()
+            let navController = UINavigationController(rootViewController: view)
+            navController.navigationBar.isHidden = true
+//            if let window = UIWindow.key{
+            self.window?.rootViewController = navController
+//                Singleton.shared.window = window
+            self.window?.makeKeyAndVisible()
+//            }
         }
+    }
+    
+    
+    func setHomeScreenView() {
+        var window: UIWindow?
+        if #available(iOS 13, *) {
+            if SceneDelegate.shared?.window != nil {
+                window = SceneDelegate.shared?.window
+            } else {
+                window = UIWindow(frame: UIScreen.main.bounds)
+            }
+        } else {
+//            if let wind = (UIApplication.shared.delegate as! AppDelegate!).window {
+//                window = wind
+//            } else {
+//                window = UIWindow(frame: UIScreen.main.bounds)
+//            }
+        }
+        self.setHomeView(window: window)
+    }
+    
+    
+    func setHomeView(window: UIWindow? = Singleton.shared.window) {
+        Singleton.tabController = TabbarViewController()
+        window?.rootViewController = Singleton.tabController
+        window?.makeKeyAndVisible()
+        Singleton.tabController.tabBarItem.badgeColor = .green
+        Singleton.shared.window = window
     }
 }
 

@@ -31,7 +31,6 @@ class SkillLevelViewController: UIViewController {
     @IBAction func nextAction(_ sender: UIButton) {
         let vc = TournamentViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     @IBAction func skipForNowAction(_ sender: Any) {
