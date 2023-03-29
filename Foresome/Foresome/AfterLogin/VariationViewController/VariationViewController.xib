@@ -19,6 +19,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VariationViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="foresomeBtn" destination="DQ0-A9-8QI" id="xFd-0Y-kA1"/>
+                <outlet property="singlePlayerBtn" destination="8Sa-mJ-gIl" id="SkH-Yb-dNu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -70,13 +72,6 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bq1-dh-Zer">
                                     <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="128"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uP2-U2-dQu">
-                                            <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="128"/>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <connections>
-                                                <action selector="singlePlayerAction:" destination="-1" eventType="touchUpInside" id="bVw-qJ-awa"/>
-                                            </connections>
-                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Oqt-04-YTn">
                                             <rect key="frame" x="16" y="24" width="128.66666666666666" height="80"/>
                                             <subviews>
@@ -95,16 +90,23 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-mJ-gIl">
+                                            <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="128"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="singlePlayerAction:" destination="-1" eventType="touchUpInside" id="PEe-jt-Gax"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Oqt-04-YTn" secondAttribute="trailing" constant="16" id="8pY-BX-xNr"/>
-                                        <constraint firstItem="uP2-U2-dQu" firstAttribute="top" secondItem="bq1-dh-Zer" secondAttribute="top" id="9hM-sh-wTW"/>
                                         <constraint firstAttribute="bottom" secondItem="Oqt-04-YTn" secondAttribute="bottom" constant="24" id="IOW-V9-XWT"/>
-                                        <constraint firstItem="uP2-U2-dQu" firstAttribute="leading" secondItem="bq1-dh-Zer" secondAttribute="leading" id="M8a-as-BxC"/>
+                                        <constraint firstItem="8Sa-mJ-gIl" firstAttribute="top" secondItem="bq1-dh-Zer" secondAttribute="top" id="YpB-C5-UIv"/>
                                         <constraint firstItem="Oqt-04-YTn" firstAttribute="leading" secondItem="bq1-dh-Zer" secondAttribute="leading" constant="16" id="ZhO-3a-IFe"/>
-                                        <constraint firstAttribute="bottom" secondItem="uP2-U2-dQu" secondAttribute="bottom" id="bCH-nt-SVo"/>
-                                        <constraint firstAttribute="trailing" secondItem="uP2-U2-dQu" secondAttribute="trailing" id="beP-sk-sm3"/>
+                                        <constraint firstItem="8Sa-mJ-gIl" firstAttribute="leading" secondItem="bq1-dh-Zer" secondAttribute="leading" id="fBt-6C-jvi"/>
+                                        <constraint firstAttribute="bottom" secondItem="8Sa-mJ-gIl" secondAttribute="bottom" id="mNt-AL-FL5"/>
+                                        <constraint firstAttribute="trailing" secondItem="8Sa-mJ-gIl" secondAttribute="trailing" id="nW9-6d-5qH"/>
                                         <constraint firstItem="Oqt-04-YTn" firstAttribute="top" secondItem="bq1-dh-Zer" secondAttribute="top" constant="24" id="vd7-Db-eOt"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -123,13 +125,6 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9g-4J-ncS">
                                     <rect key="frame" x="184.66666666666663" y="0.0" width="160.33333333333337" height="128"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="End-Bd-Jxy">
-                                            <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="128"/>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <connections>
-                                                <action selector="foursomeAction:" destination="-1" eventType="touchUpInside" id="JrM-PT-Who"/>
-                                            </connections>
-                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vMq-SP-blD">
                                             <rect key="frame" x="16" y="24" width="128.33333333333334" height="80"/>
                                             <subviews>
@@ -148,18 +143,25 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQ0-A9-8QI">
+                                            <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="128"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="foursomeAction:" destination="-1" eventType="touchUpInside" id="zCY-qC-aSr"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="vMq-SP-blD" secondAttribute="trailing" constant="16" id="1kR-bH-g81"/>
+                                        <constraint firstItem="DQ0-A9-8QI" firstAttribute="leading" secondItem="g9g-4J-ncS" secondAttribute="leading" id="BLZ-y9-Z4b"/>
                                         <constraint firstAttribute="height" constant="128" id="Fjt-Do-S1G"/>
                                         <constraint firstItem="vMq-SP-blD" firstAttribute="top" secondItem="g9g-4J-ncS" secondAttribute="top" constant="24" id="Kgy-YD-ztd"/>
                                         <constraint firstAttribute="bottom" secondItem="vMq-SP-blD" secondAttribute="bottom" constant="24" id="PfU-zh-wC7"/>
-                                        <constraint firstAttribute="trailing" secondItem="End-Bd-Jxy" secondAttribute="trailing" id="XQQ-BS-CSo"/>
-                                        <constraint firstItem="End-Bd-Jxy" firstAttribute="leading" secondItem="g9g-4J-ncS" secondAttribute="leading" id="bpM-p0-6ql"/>
-                                        <constraint firstItem="End-Bd-Jxy" firstAttribute="top" secondItem="g9g-4J-ncS" secondAttribute="top" id="qzM-FC-TTu"/>
+                                        <constraint firstItem="DQ0-A9-8QI" firstAttribute="top" secondItem="g9g-4J-ncS" secondAttribute="top" id="qmI-6J-dLG"/>
+                                        <constraint firstAttribute="trailing" secondItem="DQ0-A9-8QI" secondAttribute="trailing" id="sAd-D8-vtZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="DQ0-A9-8QI" secondAttribute="bottom" id="vCQ-oU-zAl"/>
                                         <constraint firstItem="vMq-SP-blD" firstAttribute="leading" secondItem="g9g-4J-ncS" secondAttribute="leading" constant="16" id="w6O-zr-wis"/>
-                                        <constraint firstAttribute="bottom" secondItem="End-Bd-Jxy" secondAttribute="bottom" id="ws8-RW-0ex"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
