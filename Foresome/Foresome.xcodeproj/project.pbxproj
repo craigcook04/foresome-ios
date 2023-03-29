@@ -119,8 +119,6 @@
 		4B8C273329CAD6F0008D1880 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B93905129C9A01600D60450 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93904F29C9A01600D60450 /* LoginViewController.swift */; };
 		4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B93905029C9A01600D60450 /* LoginViewController.xib */; };
-		4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */; };
-		4BC9BA1129CD7441007A4074 /* TournamentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */; };
 		4BE10C7829CDB496005481DB /* TournamentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE10C7729CDB496005481DB /* TournamentHeader.xib */; };
 		4BE10C8029CDB607005481DB /* TournamentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE10C7F29CDB607005481DB /* TournamentHeader.swift */; };
 		4BF0B94829CD7EE3007BD368 /* Tournament Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF0B94729CD7EE3007BD368 /* Tournament Model.swift */; };
@@ -254,8 +252,6 @@
 		4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		4B93904F29C9A01600D60450 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4B93905029C9A01600D60450 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewController.swift; sourceTree = "<group>"; };
-		4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentViewController.xib; sourceTree = "<group>"; };
 		4BE10C7729CDB496005481DB /* TournamentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentHeader.xib; sourceTree = "<group>"; };
 		4BE10C7F29CDB607005481DB /* TournamentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeader.swift; sourceTree = "<group>"; };
 		4BF0B94729CD7EE3007BD368 /* Tournament Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tournament Model.swift"; sourceTree = "<group>"; };
@@ -788,8 +784,6 @@
 		4BC9BA1329CD7471007A4074 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4BC9BA0E29CD7441007A4074 /* TournamentViewController.swift */,
-				4BC9BA0F29CD7441007A4074 /* TournamentViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -914,7 +908,6 @@
 				4B68F32629C3463800D80A85 /* Poppins-LightItalic.ttf in Resources */,
 				4B75986529C3352800A8E1B6 /* CustomPickerController.xib in Resources */,
 				4B68F32029C3463800D80A85 /* Poppins-SemiBoldItalic.ttf in Resources */,
-				4BC9BA1129CD7441007A4074 /* TournamentViewController.xib in Resources */,
 				4B75984329C3352700A8E1B6 /* Lato-Bold.ttf in Resources */,
 				4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */,
 				4B75984429C3352700A8E1B6 /* Lato-Black.ttf in Resources */,
@@ -1073,7 +1066,6 @@
 				4BF4C01829CD942100AD5B50 /* TournamentTableCell.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
-				4BC9BA1029CD7441007A4074 /* TournamentViewController.swift in Sources */,
 				4B75987229C3352800A8E1B6 /* FloatingTextField.swift in Sources */,
 				4B75983D29C3352700A8E1B6 /* API.swift in Sources */,
 				4B75986329C3352800A8E1B6 /* IAPHelper.swift in Sources */,

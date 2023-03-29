@@ -30,11 +30,11 @@ class TabbarViewController: UITabBarController {
     
     private func setViewControllers() {
     
-        let newsVC = TournamentViewController()
-        let friendsVC  = TournamentViewController()
-        let tourVC  = TournamentViewController()
-        let leadersVC  = TournamentViewController()
-        let profileVC  = TournamentViewController()
+        let newsVC = SignUpViewController()
+        let friendsVC  = SignUpViewController()
+        let tourVC  = SignUpViewController()
+        let leadersVC  = SignUpViewController()
+        let profileVC  = SignUpViewController()
         
         let controllers: [UIViewController] = [newsVC, friendsVC, tourVC, leadersVC, profileVC]
         self.viewControllers = controllers.map({AppNavigation(root: $0)})
@@ -50,7 +50,7 @@ class TabbarViewController: UITabBarController {
     }
     
     private func presentViewController() {
-        let controller = TournamentViewController()
+        let controller = SignUpViewController()
         controller.modalPresentationStyle = .overFullScreen
         self.present(controller, false)
     }

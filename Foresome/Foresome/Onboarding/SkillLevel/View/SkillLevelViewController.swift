@@ -29,7 +29,7 @@ class SkillLevelViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        let vc = TournamentViewController()
+        let vc = SignUpViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
