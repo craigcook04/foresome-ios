@@ -48,7 +48,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = TournamentDetailViewController()
-        self.tabBarController?.tabBar.isHidden = true
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

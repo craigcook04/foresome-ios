@@ -54,5 +54,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIStatusBarStyle</key>
+	<string>No</string>
 </dict>
 </plist>
