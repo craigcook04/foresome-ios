@@ -128,6 +128,8 @@
 		4BE7C0A029D1856C00F47F4A /* TournamentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE7C09E29D1856C00F47F4A /* TournamentDetailViewController.xib */; };
 		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
 		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
+		4BFE9E8629D458B200CCBCE2 /* TournamentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */; };
+		4BFE9E8929D4591100CCBCE2 /* TournamentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */; };
 		7E12C6C629CE206500D8A768 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */; };
 		7E12C6C729CE206500D8A768 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */; };
 		7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C329CE206100D8A768 /* FTDelegate.swift */; };
@@ -278,6 +280,8 @@
 		4BE7C09E29D1856C00F47F4A /* TournamentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TournamentDetailViewController.xib; path = ../TournamentDetailViewController.xib; sourceTree = "<group>"; };
 		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
 		4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionCell.xib; sourceTree = "<group>"; };
+		4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentPresenter.swift; sourceTree = "<group>"; };
+		4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentProtocol.swift; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 		4B096A3D29D1847B00C05F53 /* TournamentDetailView */ = {
 			isa = PBXGroup;
 			children = (
+				4BFE9E8729D458CC00CCBCE2 /* TournamentProtocol */,
+				4BFE9E8429D4586600CCBCE2 /* TournamentPresenter */,
 				4B096A4229D184C500C05F53 /* View */,
 			);
 			path = TournamentDetailView;
@@ -862,6 +868,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4BFE9E8429D4586600CCBCE2 /* TournamentPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */,
+			);
+			path = TournamentPresenter;
+			sourceTree = "<group>";
+		};
+		4BFE9E8729D458CC00CCBCE2 /* TournamentProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */,
+			);
+			path = TournamentProtocol;
+			sourceTree = "<group>";
+		};
 		7EA8220929D41DD800755016 /* Tournament */ = {
 			isa = PBXGroup;
 			children = (
@@ -1193,12 +1215,14 @@
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,
 				4B75986A29C3352800A8E1B6 /* Array+Custom.swift in Sources */,
+				4BFE9E8629D458B200CCBCE2 /* TournamentPresenter.swift in Sources */,
 				4B75987729C3352800A8E1B6 /* UIImageView+Custom.swift in Sources */,
 				4B76005829CB169100D1FE70 /* StyleKit.swift in Sources */,
 				4B75987329C3352800A8E1B6 /* Data+Custom.swift in Sources */,
 				4B93905129C9A01600D60450 /* LoginViewController.swift in Sources */,
 				4B75985729C3352700A8E1B6 /* AppNavigation.swift in Sources */,
 				4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */,
+				4BFE9E8929D4591100CCBCE2 /* TournamentProtocol.swift in Sources */,
 				4B75984C29C3352700A8E1B6 /* Constants.swift in Sources */,
 				7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,

@@ -48,6 +48,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = TournamentDetailViewController()
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -67,6 +68,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
 extension TournamentViewController: TournamentTableCellDelegate{
     func rightButtonAction() {
         let vc = TournamentDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
     

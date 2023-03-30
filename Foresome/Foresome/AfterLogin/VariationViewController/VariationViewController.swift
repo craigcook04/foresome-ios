@@ -6,11 +6,19 @@
 //
 
 import UIKit
+protocol VariationViewControllerDelegate {
+    func playerCount(text: String)
+}
 
 class VariationViewController: UIViewController {
     
+    @IBOutlet weak var foresomeBtn: UIButton!
+    @IBOutlet weak var singlePlayerBtn: UIButton!
+    var delegate: VariationViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
     
@@ -19,9 +27,14 @@ class VariationViewController: UIViewController {
     }
     
     @IBAction func singlePlayerAction(_ sender: Any) {
+        self.delegate?.playerCount(text: "Single Player")
+        self.dismiss(animated: false)
+        
     }
     
     @IBAction func foursomeAction(_ sender: Any) {
+        self.delegate?.playerCount(text: "Foresome")
+        self.dismiss(animated: false)
     }
     
 }

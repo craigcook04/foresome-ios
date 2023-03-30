@@ -17,5 +17,7 @@ class OrderSummaryViewController: UIViewController {
 
     @IBAction func cancelAction(_ sender: UIButton) {
         self.popVC()
+        self.tabBarController?.tabBar.isHidden = true
     }
 }
+

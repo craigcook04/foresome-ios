@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
-       let vc = SignUpViewController()
+        let vc = TournamentPresenter.createTournamentModule()
+        
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = true
         return true
