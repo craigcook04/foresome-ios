@@ -114,6 +114,8 @@
 		4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005129CB169100D1FE70 /* BottomResultView.swift */; };
 		4B76005A29CB169100D1FE70 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005229CB169100D1FE70 /* LocationCell.swift */; };
 		4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005329CB169100D1FE70 /* LocationItem.swift */; };
+		4B7F435929D5A2020067C7B5 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F435829D5A2020067C7B5 /* SignUpModel.swift */; };
+		4B7F435B29D5A21E0067C7B5 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */; };
 		4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */; };
 		4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */; };
 		4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */; };
@@ -266,6 +268,8 @@
 		4B76005129CB169100D1FE70 /* BottomResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomResultView.swift; sourceTree = "<group>"; };
 		4B76005229CB169100D1FE70 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		4B76005329CB169100D1FE70 /* LocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationItem.swift; sourceTree = "<group>"; };
+		4B7F435829D5A2020067C7B5 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariationViewController.swift; sourceTree = "<group>"; };
 		4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariationViewController.xib; sourceTree = "<group>"; };
 		4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
@@ -792,6 +796,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4B7F435C29D5A2250067C7B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B7F435829D5A2020067C7B5 /* SignUpModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B7F435D29D5A2330067C7B5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		4B86BA5729D2AF7700800A37 /* VariationViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +866,8 @@
 		4B8C272F29CAD6D4008D1880 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				4B7F435D29D5A2330067C7B5 /* Presenter */,
+				4B7F435C29D5A2250067C7B5 /* Model */,
 				4B18995929CB055600FD3999 /* View */,
 			);
 			path = SignUp;
@@ -1176,6 +1198,7 @@
 				4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */,
 				4B75986629C3352800A8E1B6 /* UILabel+Custom.swift in Sources */,
 				4B75985329C3352700A8E1B6 /* ActivityIndicator.swift in Sources */,
+				4B7F435929D5A2020067C7B5 /* SignUpModel.swift in Sources */,
 				4B75985429C3352700A8E1B6 /* UserData.swift in Sources */,
 				7EA8222F29D42C1100755016 /* ProfileViewController.swift in Sources */,
 				7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */,
@@ -1187,6 +1210,7 @@
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
 				7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
+				4B7F435B29D5A21E0067C7B5 /* SignUpPresenter.swift in Sources */,
 				4B75986B29C3352800A8E1B6 /* AppDelegate+custom.swift in Sources */,
 				4B76005629CB169100D1FE70 /* Protocol.swift in Sources */,
 				4B75985A29C3352700A8E1B6 /* MimeType.swift in Sources */,
