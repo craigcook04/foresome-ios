@@ -49,11 +49,11 @@ class TabbarViewController: UITabBarController {
         })
     }
     
-    private func presentViewController() {
-        let controller = SignUpViewController()
-        controller.modalPresentationStyle = .overFullScreen
-        self.present(controller, false)
-    }
+//    private func presentViewController() {
+//        let controller = SignUpViewController()
+//        controller.modalPresentationStyle = .overFullScreen
+//        self.present(controller, false)
+//    }
 }
 
 extension UITabBar {

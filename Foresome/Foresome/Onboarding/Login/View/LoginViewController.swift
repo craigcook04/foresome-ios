@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpAction(_ sender: UIButton) {
         let vc = SignUpViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {

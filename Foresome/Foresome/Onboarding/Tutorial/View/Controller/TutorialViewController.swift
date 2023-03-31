@@ -33,7 +33,6 @@ class TutorialViewController: UIViewController {
     @IBAction func nextAction(_ sender: UIButton) {
         let vc = LoginViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
