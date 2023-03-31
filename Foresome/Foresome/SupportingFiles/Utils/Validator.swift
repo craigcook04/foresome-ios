@@ -59,7 +59,6 @@ class Validator {
         }
         return (true, "")
     }
-    
 }
 
 

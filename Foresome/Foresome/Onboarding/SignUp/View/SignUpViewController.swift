@@ -15,6 +15,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+ //   var presenter: SignUpViewPresenter?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelColor()
@@ -39,4 +42,6 @@ class SignUpViewController: UIViewController {
         
     }
 }
-
+//extension SignUpViewController: SignUpViewProtocol {
+//
+//}

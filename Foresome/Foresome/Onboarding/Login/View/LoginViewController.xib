@@ -91,7 +91,6 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="RiO-Lf-hsO"/>
                                                     </constraints>
-                                                    <color key="textColor" name="show Color"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <userDefinedRuntimeAttributes>
@@ -133,7 +132,6 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="Qxt-ju-VUw"/>
                                                     </constraints>
-                                                    <color key="textColor" name="show Color"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
@@ -185,7 +183,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-15-gPh">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
-                                            <color key="backgroundColor" red="0.28857937455177307" green="0.82876062393188477" blue="0.64302355051040649" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="backgroundColor" red="0.25098039215686274" green="0.80392156862745101" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Gf3-MY-UU7"/>
                                             </constraints>
@@ -356,9 +354,6 @@
         <image name="ic_google" width="24" height="24"/>
         <namedColor name="Signup color">
             <color red="0.2196078431372549" green="0.50980392156862742" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="show Color">
-            <color red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

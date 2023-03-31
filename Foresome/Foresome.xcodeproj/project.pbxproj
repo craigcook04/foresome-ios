@@ -115,7 +115,6 @@
 		4B76005A29CB169100D1FE70 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005229CB169100D1FE70 /* LocationCell.swift */; };
 		4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76005329CB169100D1FE70 /* LocationItem.swift */; };
 		4B7F435929D5A2020067C7B5 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F435829D5A2020067C7B5 /* SignUpModel.swift */; };
-		4B7F435B29D5A21E0067C7B5 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */; };
 		4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */; };
 		4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */; };
 		4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */; };
@@ -123,7 +122,6 @@
 		4B8C272C29CAC49A008D1880 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C272A29CAC49A008D1880 /* ForgotPasswordViewController.swift */; };
 		4B8C272D29CAC49A008D1880 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C272B29CAC49A008D1880 /* ForgotPasswordViewController.xib */; };
 		4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C273029CAD6F0008D1880 /* SignUpViewController.swift */; };
-		4B8C273329CAD6F0008D1880 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B93905129C9A01600D60450 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93904F29C9A01600D60450 /* LoginViewController.swift */; };
 		4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B93905029C9A01600D60450 /* LoginViewController.xib */; };
 		4BE7C09F29D1856C00F47F4A /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7C09D29D1856C00F47F4A /* TournamentDetailViewController.swift */; };
@@ -269,7 +267,6 @@
 		4B76005229CB169100D1FE70 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		4B76005329CB169100D1FE70 /* LocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationItem.swift; sourceTree = "<group>"; };
 		4B7F435829D5A2020067C7B5 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
-		4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		4B86BA5329D2AF6D00800A37 /* VariationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariationViewController.swift; sourceTree = "<group>"; };
 		4B86BA5429D2AF6D00800A37 /* VariationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariationViewController.xib; sourceTree = "<group>"; };
 		4B86BA5B29D2CD4E00800A37 /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
@@ -804,14 +801,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4B7F435D29D5A2330067C7B5 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				4B7F435A29D5A21E0067C7B5 /* SignUpPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		4B86BA5729D2AF7700800A37 /* VariationViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,7 +855,6 @@
 		4B8C272F29CAD6D4008D1880 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				4B7F435D29D5A2330067C7B5 /* Presenter */,
 				4B7F435C29D5A2250067C7B5 /* Model */,
 				4B18995929CB055600FD3999 /* View */,
 			);
@@ -1115,7 +1103,6 @@
 				4B68F32929C3463800D80A85 /* Poppins-Thin.ttf in Resources */,
 				4B68F32B29C3463800D80A85 /* Poppins-Italic.ttf in Resources */,
 				4B75984529C3352700A8E1B6 /* LatoSemibold.ttf in Resources */,
-				4B8C273329CAD6F0008D1880 /* SignUpViewController.xib in Resources */,
 				4B68F32329C3463800D80A85 /* Poppins-BlackItalic.ttf in Resources */,
 				4B68F32529C3463800D80A85 /* Poppins-Regular.ttf in Resources */,
 				4B75984129C3352700A8E1B6 /* Lato-LightItalic.ttf in Resources */,
@@ -1210,7 +1197,6 @@
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
 				7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
-				4B7F435B29D5A21E0067C7B5 /* SignUpPresenter.swift in Sources */,
 				4B75986B29C3352800A8E1B6 /* AppDelegate+custom.swift in Sources */,
 				4B76005629CB169100D1FE70 /* Protocol.swift in Sources */,
 				4B75985A29C3352700A8E1B6 /* MimeType.swift in Sources */,
@@ -1340,6 +1326,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1400,6 +1387,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1429,7 +1417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1462,7 +1450,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

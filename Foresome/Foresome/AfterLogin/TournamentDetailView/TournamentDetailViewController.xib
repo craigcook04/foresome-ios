@@ -333,7 +333,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9U3-Z1-bwQ">
-                                    <rect key="frame" x="24" y="75" width="24" height="24"/>
+                                    <rect key="frame" x="24" y="74" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="Xhy-pT-uiP"/>
                                         <constraint firstAttribute="height" constant="24" id="lo3-Y7-nhs"/>
@@ -345,7 +345,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FORESOME GOLF INC." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1o-oG-Nhl">
-                                    <rect key="frame" x="113.66666666666669" y="75" width="166" height="22.666666666666671"/>
+                                    <rect key="frame" x="113.66666666666669" y="74" width="166" height="22.666666666666671"/>
                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                     <color key="textColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -381,8 +381,8 @@
                 <constraint firstAttribute="bottom" secondItem="aak-ct-b09" secondAttribute="bottom" id="3hB-iu-ycE"/>
                 <constraint firstItem="DUr-SN-BZA" firstAttribute="top" secondItem="gdT-Vf-lFq" secondAttribute="top" id="5WT-I5-Jba"/>
                 <constraint firstItem="aak-ct-b09" firstAttribute="top" secondItem="gdT-Vf-lFq" secondAttribute="top" id="Ck0-BM-B8z"/>
-                <constraint firstItem="L1o-oG-Nhl" firstAttribute="top" secondItem="Xf2-dz-Q37" secondAttribute="top" constant="16" id="HZ8-SQ-QDJ"/>
-                <constraint firstItem="9U3-Z1-bwQ" firstAttribute="top" secondItem="Xf2-dz-Q37" secondAttribute="top" constant="16" id="I1z-Wg-epG"/>
+                <constraint firstItem="L1o-oG-Nhl" firstAttribute="top" secondItem="Xf2-dz-Q37" secondAttribute="top" constant="15" id="HZ8-SQ-QDJ"/>
+                <constraint firstItem="9U3-Z1-bwQ" firstAttribute="top" secondItem="Xf2-dz-Q37" secondAttribute="top" constant="15" id="I1z-Wg-epG"/>
                 <constraint firstItem="aak-ct-b09" firstAttribute="leading" secondItem="gdT-Vf-lFq" secondAttribute="leading" id="yLu-v0-zuy"/>
             </constraints>
             <point key="canvasLocation" x="559.5419847328244" y="10.563380281690142"/>
