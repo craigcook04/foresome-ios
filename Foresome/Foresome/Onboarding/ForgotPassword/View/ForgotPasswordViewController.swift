@@ -46,6 +46,7 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
+        self.presenter?.validateField(email: self.forgotEmailField.text ?? "")
     }
     
 }

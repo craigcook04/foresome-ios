@@ -25,7 +25,6 @@ class LoginPresenter: LoginViewPresenter {
     }
     
     func validateField (email: String, password: String) -> Bool {
-        
         guard email != "" else {
             Singleton.shared.showErrorMessage(error: "Please Enter a Email", isError: .error)
             return false
