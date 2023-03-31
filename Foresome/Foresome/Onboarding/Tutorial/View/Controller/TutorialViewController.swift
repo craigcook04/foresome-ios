@@ -82,6 +82,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
             counter = 1
             self.pageControl.currentPage = counter
         }
-      
+
     }
 }

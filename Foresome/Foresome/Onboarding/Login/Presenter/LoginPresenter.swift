@@ -9,7 +9,7 @@ import Foundation
 
 class LoginPresenter: LoginViewPresenter {
     var view: LoginViewProtocol?
-    
+
     static func createSignUpModule()->SignUpViewController{
         let view = SignUpViewController()
         var presenter: SignUpViewPresenter = SignUpPresenter()
@@ -23,7 +23,7 @@ class LoginPresenter: LoginViewPresenter {
         json["password"] = password
         return json
     }
-    
+
     func validateField (email: String, password: String) -> Bool {
         guard email != "" else {
             Singleton.shared.showErrorMessage(error: "Please Enter a Email", isError: .error)
@@ -40,6 +40,6 @@ class LoginPresenter: LoginViewPresenter {
             Singleton.shared.showErrorMessage(error: "Please Enter Valid Email", isError: .error)
             return false
         }
-        
+
     }
 }

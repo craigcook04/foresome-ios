@@ -20,16 +20,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
-        self.presenter?.validateField(email: self.loginEmailField.text ?? "", password: self.loginPasswordField.text ?? "")
-//        let vc = LocationViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
+        Singleton.shared.setHomeScreenView()
     }
     
     @IBAction func signUpAction(_ sender: UIButton) {
-//        let vc = SignUpViewController()
-//        self.pushViewController(vc, true)
-//        let vc = SignUpPresenter.createSignUpModule()
-//        self.pushViewController(vc, true)
+
         let vc = SignUpPresenter.createSignUpModule()
         self.pushViewController(vc, true)
         

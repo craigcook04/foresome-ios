@@ -12,6 +12,7 @@
 		4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B18995B29CB059200FD3999 /* LocationViewController.swift */; };
 		4B18995E29CB059200FD3999 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B18995C29CB059200FD3999 /* LocationViewController.xib */; };
 		4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B221A9D29C4730E00690026 /* Tutorial Model.swift */; };
+		4B4918C829D7860C00528487 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B077F29CB278300881790 /* ProfilePictureViewController.xib */; };
 		4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B078029CB278300881790 /* ProfilePictureViewController.swift */; };
 		4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */; };
@@ -1161,6 +1162,7 @@
 				7EA8222C29D42BFB00755016 /* LeadersViewController.xib in Resources */,
 				4B75984929C3352700A8E1B6 /* Lato-Light.ttf in Resources */,
 				4BE7C0A029D1856C00F47F4A /* TournamentDetailViewController.xib in Resources */,
+				4B4918C829D7860C00528487 /* SignUpViewController.xib in Resources */,
 				7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */,
 				4B75973529C3326100A8E1B6 /* LaunchScreen.storyboard in Resources */,
 				4B68F32A29C3463800D80A85 /* Poppins-SemiBold.ttf in Resources */,

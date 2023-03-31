@@ -8,9 +8,9 @@
 import Foundation
 
 class SignUpPresenter: SignUpViewPresenter {
-    
+
     var view: SignUpViewProtocol?
-    
+
     static func createSignUpModule()->SignUpViewController{
         let view = SignUpViewController()
         var presenter: SignUpViewPresenter = SignUpPresenter()
@@ -18,7 +18,7 @@ class SignUpPresenter: SignUpViewPresenter {
         view.presenter = presenter
         return view
     }
-    
+
     func jsonToVerifyProfile (fullName: String, email: String, password: String, confirmPassword: String)-> JSON {
         var json = JSON()
         json["fullName"] = fullName
@@ -28,7 +28,7 @@ class SignUpPresenter: SignUpViewPresenter {
         return json
     }
     func validateFields(fullName: String, email: String, password: String, confirmPassword: String) -> Bool {
-        
+
        guard fullName != "" else {
             Singleton.shared.showErrorMessage(error: "Please Enter FullName", isError: .error)
             return false
@@ -42,7 +42,7 @@ class SignUpPresenter: SignUpViewPresenter {
               Singleton.shared.showErrorMessage(error: Validator.validatePassword(password: password).1, isError: .error)
               return false
           }
-        
+
         let isValidEmail = Validator.validateEmail(candidate: email)
         if isValidEmail == true {
             return isValidEmail
@@ -50,18 +50,6 @@ class SignUpPresenter: SignUpViewPresenter {
             Singleton.shared.showErrorMessage(error: "Please Enter Valid Email", isError: .error)
             return false
         }
-        
-//        guard Validator.validatePassword(password: confirmPassword).0  else {
-//              Singleton.shared.showErrorMessage(error: Validator.validatePassword(password: password).1, isError: .error)
-//              return false
-//          }
-//                guard password != "" else {
-//                    Singleton.shared.showErrorMessage(error: "Please Enter Password", isError: .error)
-//                    return false
-//                }
-//                guard confirmPassword != "" else {
-//                    Singleton.shared.showErrorMessage(error: "Please Enter Confirm Password", isError: .error)
-//                    return false
-//                }
+  
     }
 }

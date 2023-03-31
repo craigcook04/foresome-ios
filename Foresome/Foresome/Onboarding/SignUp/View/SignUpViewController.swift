@@ -30,6 +30,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
+        let vc = LocationViewController()
+        self.pushViewController(vc, true)
         self.presenter?.validateFields(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "" , password: self.passwordField.text ?? "", confirmPassword: self.confirmPasswordField.text ?? "")
         guard let password = passwordField.text,
                         password == confirmPasswordField.text else {
