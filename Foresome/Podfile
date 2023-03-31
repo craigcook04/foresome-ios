@@ -5,15 +5,25 @@ target 'Foresome' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Foresome
+  # Pods for Foresom
   pod 'IQKeyboardManagerSwift'
   pod 'DGActivityIndicatorView'
   pod 'ObjectMapper'
   pod 'Kingfisher'
   pod 'GooglePlacePicker'
-
-#pod 'StrechableHeader'
-
-#pod 'GSKStretchyHeaderView'
-
+  pod 'FirebaseCore'
+  pod 'FirebaseFirestore'
+  pod 'Firebase/Database'
+  pod 'Firebase'
+  
+end
+# Disable signing for pods
+post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+         end
+    end
+  end
 end

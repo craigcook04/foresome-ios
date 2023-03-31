@@ -135,6 +135,7 @@
 		7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C329CE206100D8A768 /* FTDelegate.swift */; };
 		7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */; };
 		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
+		7E73F15029D6D59800B653AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */; };
 		7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8220B29D41DD800755016 /* TournamentTableCell.swift */; };
 		7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220C29D41DD800755016 /* TournamentTableCell.xib */; };
 		7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220E29D41DD800755016 /* TournamentHeader.xib */; };
@@ -289,6 +290,7 @@
 		7E12C6C329CE206100D8A768 /* FTDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDelegate.swift; sourceTree = "<group>"; };
 		7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeader.swift; sourceTree = "<group>"; };
 		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
+		7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7EA8220B29D41DD800755016 /* TournamentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentTableCell.swift; sourceTree = "<group>"; };
 		7EA8220C29D41DD800755016 /* TournamentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentTableCell.xib; sourceTree = "<group>"; };
 		7EA8220E29D41DD800755016 /* TournamentHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentHeader.xib; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				4B75981F29C3352700A8E1B6 /* Extensions */,
 				4B75973129C3326100A8E1B6 /* Assets.xcassets */,
 				4B75973629C3326100A8E1B6 /* Info.plist */,
+				7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */,
 				4B75972E29C3325F00A8E1B6 /* Foresome.xcdatamodeld */,
 			);
 			path = SupportingFiles;
@@ -1077,6 +1080,7 @@
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
 				7EA8221A29D41DD800755016 /* TournamentViewController.xib in Resources */,
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
+				7E73F15029D6D59800B653AB /* GoogleService-Info.plist in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
 				4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
@@ -1414,6 +1418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
@@ -1432,6 +1437,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1447,6 +1453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
@@ -1465,6 +1472,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stackgeeks.Forsome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
