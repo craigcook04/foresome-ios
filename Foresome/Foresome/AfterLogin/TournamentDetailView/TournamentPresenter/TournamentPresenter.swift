@@ -9,7 +9,6 @@ import Foundation
 
 class TournamentPresenter: TournamentDetailPresenter {
    
-    
     var view: TournamentDetailViewProtocol?
     
     static func createTournamentModule()->TournamentDetailViewController{
@@ -19,5 +18,4 @@ class TournamentPresenter: TournamentDetailPresenter {
         view.presenter = presenter
         return view
     }
-    
 }

@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
@@ -33,16 +32,19 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func googleAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func facebookAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func appleAction(_ sender: UIButton) {
+        
     }
-    
     
 }

@@ -29,7 +29,6 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate {
         self.popVC()
     }
     
-    
     @IBAction func variationAction(_ sender: Any) {
         let vc = VariationViewController()
         vc.delegate = self
