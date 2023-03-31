@@ -10,17 +10,19 @@ import MapKit
 
 class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
     
+    @IBOutlet weak var locationTextView: UITextView!
     @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var whereAreYouLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.whereAreYouLabel.text = AppStrings.titleLabel
-        locationField.delegate = self
+        locationTextView.delegate = self
+
         if LocationManager.shared.isAuthorized(){
             LocationManager.geocode(location: LocationManager.shared.currentLocation ?? CLLocation(), completion: { places, error in
-                self.locationField.text = places?.address
+                self.locationTextView.text = places?.address
+            
             })
         }else{
             LocationManager.shared.alertForChangeLocationSetting(controller: self)
@@ -51,13 +53,16 @@ class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationMan
         controller.presentPlacePicker(controller: self) { placeData in
             print("address is ****** \(placeData)")
             DispatchQueue.main.async {
-                self.locationField.text = placeData.fullAddress
+            
+                self.locationTextView.text = placeData.fullAddress
             }
         }
         return false
     }
+}
+extension LocationViewController: UITextViewDelegate {
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         self.locationGet()
     }
 }

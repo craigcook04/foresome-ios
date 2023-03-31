@@ -13,6 +13,8 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var uploadProfilePicButton: UIButton!
     
+    var presenter: ProfilePicturePresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = AppStrings.addPictureLbl
@@ -50,4 +52,7 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+extension ProfilePictureViewController: ProfilePictureViewProtocol {
+    
 }

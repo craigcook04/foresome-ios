@@ -25,6 +25,7 @@
             <connections>
                 <outlet property="loginEmailField" destination="yF2-2g-Yi0" id="rQd-Hq-PYw"/>
                 <outlet property="loginPasswordField" destination="LXY-u4-XnQ" id="zcl-rm-t7u"/>
+                <outlet property="passwordShowBtn" destination="mqd-H4-2O0" id="Hkc-iC-jf6"/>
                 <outlet property="view" destination="DIL-UO-0nM" id="76K-qV-ZHf"/>
             </connections>
         </placeholder>
@@ -37,7 +38,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abH-5b-PYA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="784.66666666666663"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="793.33333333333337"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_logo" translatesAutoresizingMaskIntoConstraints="NO" id="e4D-Nc-NDp">
                                     <rect key="frame" x="24" y="14" width="345" height="40"/>
@@ -72,7 +73,7 @@
                                                         <color key="titleColor" red="0.21960780024528503" green="0.50980395078659058" blue="0.97254902124404907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="E7k-AA-Tk6"/>
+                                                        <action selector="signUpAction:" destination="-1" eventType="touchUpInside" id="kpp-HE-OOV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -179,7 +180,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gHY-KC-xOL">
-                                    <rect key="frame" x="24" y="404.66666666666674" width="345" height="344"/>
+                                    <rect key="frame" x="24" y="413.33333333333326" width="345" height="344"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-15-gPh">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
@@ -203,7 +204,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or continue with social account." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D1-BZ-8s2">
-                                            <rect key="frame" x="0.0" y="71.999999999999943" width="345" height="56"/>
+                                            <rect key="frame" x="0.0" y="72.000000000000057" width="345" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="4Ey-cd-hQE"/>
                                             </constraints>
@@ -212,7 +213,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3Q-Z2-Vvg">
-                                            <rect key="frame" x="0.0" y="143.99999999999994" width="345" height="56"/>
+                                            <rect key="frame" x="0.0" y="144.00000000000006" width="345" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="OLa-LG-oku"/>
                                             </constraints>
@@ -239,7 +240,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tu9-xs-IOD">
-                                            <rect key="frame" x="0.0" y="215.99999999999994" width="345" height="56"/>
+                                            <rect key="frame" x="0.0" y="216.00000000000006" width="345" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="rtw-jq-VZE"/>
                                             </constraints>
@@ -266,7 +267,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2Z-od-1aS">
-                                            <rect key="frame" x="0.0" y="287.99999999999994" width="345" height="56"/>
+                                            <rect key="frame" x="0.0" y="288.00000000000006" width="345" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="D6J-LE-eDX"/>
                                             </constraints>
@@ -295,7 +296,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-R2-rwU">
-                                    <rect key="frame" x="227.66666666666663" y="315" width="141.33333333333337" height="33.666666666666686"/>
+                                    <rect key="frame" x="227.66666666666663" y="323.66666666666669" width="141.33333333333337" height="33.666666666666686"/>
                                     <color key="tintColor" red="0.18823529411764706" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Forgot password">
@@ -309,7 +310,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="w84-ot-sOg" firstAttribute="trailing" secondItem="e4D-Nc-NDp" secondAttribute="trailing" id="7FF-uC-ByH"/>
-                                <constraint firstItem="YAv-R2-rwU" firstAttribute="top" secondItem="ELi-8u-MKZ" secondAttribute="bottom" constant="7.3333333333333712" id="8wa-dp-amb"/>
+                                <constraint firstItem="YAv-R2-rwU" firstAttribute="top" secondItem="ELi-8u-MKZ" secondAttribute="bottom" constant="16" id="8wa-dp-amb"/>
                                 <constraint firstItem="ELi-8u-MKZ" firstAttribute="leading" secondItem="w84-ot-sOg" secondAttribute="leading" id="9ZU-cm-wQd"/>
                                 <constraint firstItem="gHY-KC-xOL" firstAttribute="trailing" secondItem="YAv-R2-rwU" secondAttribute="trailing" id="EM5-0l-Rrk"/>
                                 <constraint firstAttribute="bottom" secondItem="gHY-KC-xOL" secondAttribute="bottom" constant="36" id="Efl-4w-1YF"/>

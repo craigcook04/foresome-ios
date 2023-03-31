@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="6dg-rH-qsf">
-                        <rect key="frame" x="20" y="0.0" width="668" height="176"/>
+                        <rect key="frame" x="30" y="0.0" width="648" height="176"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="176" id="BGh-B1-3eN"/>
@@ -39,7 +39,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="138-XF-50g">
-                        <rect key="frame" x="36" y="110.66666666666667" width="181.33333333333334" height="49.333333333333329"/>
+                        <rect key="frame" x="46.000000000000014" y="110.66666666666667" width="181.33333333333337" height="49.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MLSE Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCs-qR-S5a">
                                 <rect key="frame" x="0.0" y="0.0" width="181.33333333333334" height="22.666666666666668"/>
@@ -56,7 +56,7 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRN-Ui-Mx0">
-                        <rect key="frame" x="648" y="123.33333333333331" width="24" height="24"/>
+                        <rect key="frame" x="638" y="138.33333333333334" width="24" height="24"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="ic_right_arrow"/>
                         <connections>
@@ -66,20 +66,19 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="6dg-rH-qsf" secondAttribute="bottom" constant="16" id="3Qx-Yi-0ve"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="6dg-rH-qsf" secondAttribute="trailing" id="ALH-N2-pr9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6dg-rH-qsf" secondAttribute="trailing" constant="10" id="ALH-N2-pr9"/>
                     <constraint firstItem="138-XF-50g" firstAttribute="bottom" secondItem="6dg-rH-qsf" secondAttribute="bottom" constant="-16" id="DCO-cd-a3O"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="FRN-Ui-Mx0" secondAttribute="trailing" constant="16" id="Hu0-Dh-aF6"/>
-                    <constraint firstItem="FRN-Ui-Mx0" firstAttribute="centerY" secondItem="138-XF-50g" secondAttribute="centerY" id="MHU-Rk-d2p"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="FRN-Ui-Mx0" secondAttribute="trailing" constant="26" id="Hu0-Dh-aF6"/>
+                    <constraint firstItem="FRN-Ui-Mx0" firstAttribute="centerY" secondItem="ofg-ft-vso" secondAttribute="centerY" id="O0x-cO-ed1"/>
                     <constraint firstItem="138-XF-50g" firstAttribute="leading" secondItem="6dg-rH-qsf" secondAttribute="leading" constant="16" id="VzI-qt-njP"/>
                     <constraint firstItem="6dg-rH-qsf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="i8S-d2-gVD"/>
-                    <constraint firstItem="6dg-rH-qsf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="rlH-A3-egM"/>
+                    <constraint firstItem="6dg-rH-qsf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="rlH-A3-egM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="ofg-ft-vso" id="ffF-Xl-wff"/>
                 <outlet property="imageItem" destination="6dg-rH-qsf" id="IYo-fw-8a0"/>
-                <outlet property="rightBtn" destination="MHU-Rk-d2p" id="ZOS-xp-DwA"/>
                 <outlet property="titleLabel" destination="jCs-qR-S5a" id="uv6-9g-L2z"/>
             </connections>
             <point key="canvasLocation" x="519.08396946564881" y="20.070422535211268"/>

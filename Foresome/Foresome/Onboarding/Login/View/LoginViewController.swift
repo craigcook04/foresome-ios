@@ -12,18 +12,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginEmailField: UITextField!
     @IBOutlet weak var loginPasswordField: UITextField!
     
+    @IBOutlet weak var passwordShowBtn: UIButton!
+    var presenter: LoginViewPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
-        let vc = LocationViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.presenter?.validateField(email: self.loginEmailField.text ?? "", password: self.loginPasswordField.text ?? "")
+//        let vc = LocationViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func signUpAction(_ sender: UIButton) {
-        let vc = SignUpViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = SignUpViewController()
+//        self.pushViewController(vc, true)
+//        let vc = SignUpPresenter.createSignUpModule()
+//        self.pushViewController(vc, true)
+        let vc = SignUpPresenter.createSignUpModule()
+        self.pushViewController(vc, true)
+        
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
@@ -32,6 +41,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
+        self.passwordShowBtn.isSelected = !sender.isSelected
+        self.loginPasswordField.isSecureTextEntry = self.passwordShowBtn.isSelected
         
     }
     
@@ -46,5 +57,9 @@ class LoginViewController: UIViewController {
     @IBAction func appleAction(_ sender: UIButton) {
         
     }
+    
+}
+
+extension LoginViewController: LoginViewProtocol {
     
 }

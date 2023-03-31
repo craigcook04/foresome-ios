@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,10 +23,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
                 <outlet property="confirmPasswordField" destination="Knl-oC-olD" id="7Ls-G7-bBd"/>
+                <outlet property="confirmPasswordShowBtn" destination="sGY-YK-IV0" id="61k-ie-Dpl"/>
                 <outlet property="emailField" destination="Rqa-OW-y0N" id="UAf-Jj-oSu"/>
                 <outlet property="nameField" destination="AdR-t1-nZT" id="1vl-MP-Cqe"/>
                 <outlet property="passwordField" destination="dCr-kh-yj5" id="x50-nb-w0Z"/>
-                <outlet property="termsAndPrivacyPolicy" destination="czC-ft-Yu4" id="le6-P0-i87"/>
+                <outlet property="passwordShowBtn" destination="Dim-di-vXZ" id="XzO-Fd-hDA"/>
+                <outlet property="termsAndPrivacyPolicy" destination="czC-ft-Yu4" id="lGx-fa-jSD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -231,7 +232,7 @@
                                                 <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="confirmShowAction:" destination="-1" eventType="touchUpInside" id="DtC-ow-uEx"/>
+                                                <action selector="confirmShowAction:" destination="-1" eventType="touchUpInside" id="pZQ-Pz-ipP"/>
                                             </connections>
                                         </button>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knl-oC-olD">
@@ -273,10 +274,7 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By using this app you agree to the FORESOME Terms of services and Privacy policy." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czC-ft-Yu4">
-                            <rect key="frame" x="24" y="501.66666666666674" width="345" height="56"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="56" id="LZ9-tl-c88"/>
-                            </constraints>
+                            <rect key="frame" x="24" y="501.66666666666669" width="345" height="36.666666666666686"/>
                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -330,7 +328,7 @@
                 <constraint firstItem="xyZ-gF-Cfy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LoM-SO-6UD"/>
                 <constraint firstItem="xyZ-gF-Cfy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dEh-f5-CgU"/>
             </constraints>
-            <point key="canvasLocation" x="139.69465648854961" y="328.87323943661971"/>
+            <point key="canvasLocation" x="139.69465648854961" y="328.16901408450707"/>
         </view>
     </objects>
     <resources>
