@@ -15,6 +15,12 @@
 		4B4918C829D7860C00528487 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B077F29CB278300881790 /* ProfilePictureViewController.xib */; };
 		4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B078029CB278300881790 /* ProfilePictureViewController.swift */; };
+		4B594EA729DAA89F0078794A /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B594EA529DAA89F0078794A /* NewsFeedViewController.swift */; };
+		4B594EA829DAA89F0078794A /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EA629DAA89F0078794A /* NewsFeedViewController.xib */; };
+		4B594EAC29DAA9C00078794A /* NewsFeedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B594EAA29DAA9C00078794A /* NewsFeedTableCell.swift */; };
+		4B594EAD29DAA9C00078794A /* NewsFeedTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EAB29DAA9C00078794A /* NewsFeedTableCell.xib */; };
+		4B594EB129DAABB70078794A /* TalkAboutTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B594EAF29DAABB70078794A /* TalkAboutTableCell.swift */; };
+		4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */; };
 		4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */; };
 		4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */; };
 		4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */; };
@@ -137,6 +143,8 @@
 		4BCEC4C229D6FAF4003A7BB6 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4C129D6FAF4003A7BB6 /* ProfileModel.swift */; };
 		4BCEC4C429D6FB08003A7BB6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4C329D6FB08003A7BB6 /* ProfilePresenter.swift */; };
 		4BCEC4C629D6FB1F003A7BB6 /* ProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4C529D6FB1F003A7BB6 /* ProfileProtocol.swift */; };
+		4BD4F36129DAEC170085B515 /* NewsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4F36029DAEC170085B515 /* NewsHeader.swift */; };
+		4BD4F36329DAEC490085B515 /* NewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BD4F36229DAEC490085B515 /* NewsHeader.xib */; };
 		4BE7C09F29D1856C00F47F4A /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE7C09D29D1856C00F47F4A /* TournamentDetailViewController.swift */; };
 		4BE7C0A029D1856C00F47F4A /* TournamentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE7C09E29D1856C00F47F4A /* TournamentDetailViewController.xib */; };
 		4BF6C52B29C4535E00ECA881 /* TutorialCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */; };
@@ -177,6 +185,12 @@
 		4B221A9D29C4730E00690026 /* Tutorial Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tutorial Model.swift"; sourceTree = "<group>"; };
 		4B4B077F29CB278300881790 /* ProfilePictureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePictureViewController.xib; sourceTree = "<group>"; };
 		4B4B078029CB278300881790 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewController.swift; sourceTree = "<group>"; };
+		4B594EA529DAA89F0078794A /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
+		4B594EA629DAA89F0078794A /* NewsFeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedViewController.xib; sourceTree = "<group>"; };
+		4B594EAA29DAA9C00078794A /* NewsFeedTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableCell.swift; sourceTree = "<group>"; };
+		4B594EAB29DAA9C00078794A /* NewsFeedTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTableCell.xib; sourceTree = "<group>"; };
+		4B594EAF29DAABB70078794A /* TalkAboutTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkAboutTableCell.swift; sourceTree = "<group>"; };
+		4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkAboutTableCell.xib; sourceTree = "<group>"; };
 		4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -302,6 +316,8 @@
 		4BCEC4C129D6FAF4003A7BB6 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		4BCEC4C329D6FB08003A7BB6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		4BCEC4C529D6FB1F003A7BB6 /* ProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocol.swift; sourceTree = "<group>"; };
+		4BD4F36029DAEC170085B515 /* NewsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeader.swift; sourceTree = "<group>"; };
+		4BD4F36229DAEC490085B515 /* NewsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsHeader.xib; sourceTree = "<group>"; };
 		4BE7C09D29D1856C00F47F4A /* TournamentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDetailViewController.swift; sourceTree = "<group>"; };
 		4BE7C09E29D1856C00F47F4A /* TournamentDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TournamentDetailViewController.xib; path = ../TournamentDetailViewController.xib; sourceTree = "<group>"; };
 		4BF6C52929C4535E00ECA881 /* TutorialCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionCell.swift; sourceTree = "<group>"; };
@@ -366,6 +382,7 @@
 		4B096A3C29D1844A00C05F53 /* AfterLogin */ = {
 			isa = PBXGroup;
 			children = (
+				4B594EA429DA9E900078794A /* NewsFeed */,
 				4B86BA5929D2CCFB00800A37 /* OrderSummaryView */,
 				4B86BA5729D2AF7700800A37 /* VariationViewController */,
 				4B096A3D29D1847B00C05F53 /* TournamentDetailView */,
@@ -416,6 +433,36 @@
 				4B221A9D29C4730E00690026 /* Tutorial Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4B594EA429DA9E900078794A /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				4BD4F36429DAEC5D0085B515 /* Header */,
+				4B594EAE29DAA9E90078794A /* Cell */,
+				4B594EA929DAA9890078794A /* View */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		4B594EA929DAA9890078794A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B594EA529DAA89F0078794A /* NewsFeedViewController.swift */,
+				4B594EA629DAA89F0078794A /* NewsFeedViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4B594EAE29DAA9E90078794A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4B594EAA29DAA9C00078794A /* NewsFeedTableCell.swift */,
+				4B594EAB29DAA9C00078794A /* NewsFeedTableCell.xib */,
+				4B594EAF29DAABB70078794A /* TalkAboutTableCell.swift */,
+				4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4B68F30629C3463700D80A85 /* Poppins */ = {
@@ -979,6 +1026,15 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		4BD4F36429DAEC5D0085B515 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				4BD4F36029DAEC170085B515 /* NewsHeader.swift */,
+				4BD4F36229DAEC490085B515 /* NewsHeader.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		4BFE9E8429D4586600CCBCE2 /* TournamentPresenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,11 +1221,13 @@
 				4B4918C829D7860C00528487 /* SignUpViewController.xib in Resources */,
 				7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */,
 				4B75973529C3326100A8E1B6 /* LaunchScreen.storyboard in Resources */,
+				4BD4F36329DAEC490085B515 /* NewsHeader.xib in Resources */,
 				4B68F32A29C3463800D80A85 /* Poppins-SemiBold.ttf in Resources */,
 				4B75984229C3352700A8E1B6 /* Lato-Thin.ttf in Resources */,
 				7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */,
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
+				4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */,
 				4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */,
 				4B75985F29C3352800A8E1B6 /* cancel_notes@3x.png in Resources */,
 				4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */,
@@ -1189,6 +1247,7 @@
 				7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */,
 				4B68F32229C3463800D80A85 /* Poppins-ExtraBold.ttf in Resources */,
 				4B68F32629C3463800D80A85 /* Poppins-LightItalic.ttf in Resources */,
+				4B594EA829DAA89F0078794A /* NewsFeedViewController.xib in Resources */,
 				4B75986529C3352800A8E1B6 /* CustomPickerController.xib in Resources */,
 				4B68F32029C3463800D80A85 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				4B75984329C3352700A8E1B6 /* Lato-Bold.ttf in Resources */,
@@ -1200,6 +1259,7 @@
 				4B75985C29C3352700A8E1B6 /* CustomNavigationBar.xib in Resources */,
 				4B68F31D29C3463800D80A85 /* Poppins-BoldItalic.ttf in Resources */,
 				4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */,
+				4B594EAD29DAA9C00078794A /* NewsFeedTableCell.xib in Resources */,
 				4B75984F29C3352700A8E1B6 /* CountryCodes.json in Resources */,
 				4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */,
 				4B68F32929C3463800D80A85 /* Poppins-Thin.ttf in Resources */,
@@ -1282,6 +1342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B75986429C3352800A8E1B6 /* CustomPickerController.swift in Sources */,
+				4B594EB129DAABB70078794A /* TalkAboutTableCell.swift in Sources */,
 				4B75987A29C3352800A8E1B6 /* RadicalView.swift in Sources */,
 				4B75986129C3352800A8E1B6 /* ErrorView.swift in Sources */,
 				4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */,
@@ -1329,6 +1390,7 @@
 				4B75986229C3352800A8E1B6 /* CustomProgressBar.swift in Sources */,
 				7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */,
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
+				4BD4F36129DAEC170085B515 /* NewsHeader.swift in Sources */,
 				4BCEC4B229D6F978003A7BB6 /* ForgotPresenter.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,
 				4B75986A29C3352800A8E1B6 /* Array+Custom.swift in Sources */,
@@ -1340,6 +1402,7 @@
 				4B75985729C3352700A8E1B6 /* AppNavigation.swift in Sources */,
 				4B76005929CB169100D1FE70 /* BottomResultView.swift in Sources */,
 				4BFE9E8929D4591100CCBCE2 /* TournamentProtocol.swift in Sources */,
+				4B594EAC29DAA9C00078794A /* NewsFeedTableCell.swift in Sources */,
 				4B75984C29C3352700A8E1B6 /* Constants.swift in Sources */,
 				7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,
@@ -1360,6 +1423,7 @@
 				4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */,
 				4BCEC4C429D6FB08003A7BB6 /* ProfilePresenter.swift in Sources */,
 				4BE7C09F29D1856C00F47F4A /* TournamentDetailViewController.swift in Sources */,
+				4B594EA729DAA89F0078794A /* NewsFeedViewController.swift in Sources */,
 				7EA8221929D41DD800755016 /* Tournament Model.swift in Sources */,
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
@@ -1531,7 +1595,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1564,7 +1628,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5448ZQBK98;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foresome/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

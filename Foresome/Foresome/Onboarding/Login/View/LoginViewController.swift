@@ -20,17 +20,19 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
+        let vc = LoginPresenter.createSignInModule()
+        self.pushViewController(vc, true)
         Singleton.shared.setHomeScreenView()
     }
     
     @IBAction func signUpAction(_ sender: UIButton) {
-
-        let vc = SignUpPresenter.createSignUpModule()
+      let vc = SignUpPresenter.createSignUpModule()
         self.pushViewController(vc, true)
         
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
+        
         let vc = ForgotPasswordViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

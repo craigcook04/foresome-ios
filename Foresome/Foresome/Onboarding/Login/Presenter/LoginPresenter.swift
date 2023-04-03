@@ -10,9 +10,9 @@ import Foundation
 class LoginPresenter: LoginViewPresenter {
     var view: LoginViewProtocol?
 
-    static func createSignUpModule()->SignUpViewController{
-        let view = SignUpViewController()
-        var presenter: SignUpViewPresenter = SignUpPresenter()
+    static func createSignInModule()->LoginViewController{
+        let view = LoginViewController()
+        var presenter: LoginViewPresenter = LoginPresenter()
         presenter.view = view
         view.presenter = presenter
         return view

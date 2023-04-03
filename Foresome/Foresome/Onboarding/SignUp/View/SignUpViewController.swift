@@ -34,11 +34,11 @@ class SignUpViewController: UIViewController {
         self.pushViewController(vc, true)
         self.presenter?.validateFields(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "" , password: self.passwordField.text ?? "", confirmPassword: self.confirmPasswordField.text ?? "")
         guard let password = passwordField.text,
-                        password == confirmPasswordField.text else {
-                    Singleton.shared.showErrorMessage(error: ErrorMessage.enterPasswordConfirmPasswordSame, isError: .error)
-                    return
-                }
-       }
+              password == confirmPasswordField.text else {
+            Singleton.shared.showErrorMessage(error: ErrorMessage.enterPasswordConfirmPasswordSame, isError: .error)
+            return
+        }
+    }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
         self.passwordShowBtn.isSelected = !sender.isSelected
@@ -55,5 +55,5 @@ class SignUpViewController: UIViewController {
     }
 }
 extension SignUpViewController: SignUpViewProtocol {
-
+    
 }
