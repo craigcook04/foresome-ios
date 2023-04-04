@@ -20,12 +20,14 @@ class NewsFeedTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+         setLabelColor()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-    
+    func setLabelColor(){
+        postDescriptionLbl.attributedTextWithMultipleRange(str: AppStrings.description, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsRegular, 14),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsRegular, 14), highlightedWords: [AppStrings.readMore],alignment: .left)
+    }
 }

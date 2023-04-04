@@ -45,6 +45,8 @@ struct AppStrings {
     static let titleLabel = "Where are you \nfrom?"
     static let titleLbl = "Forgot Your \nPassword?"
     static let addPictureLbl = "Would you like to add \na profile picture?"
+    static let readMore = "Read More"
+    static let description = "Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More"
 }
 
 struct Messages {

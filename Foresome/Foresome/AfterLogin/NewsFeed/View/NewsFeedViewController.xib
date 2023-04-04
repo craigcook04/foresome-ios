@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsFeedViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
-                <outlet property="newsFeedTableView" destination="fb4-al-jPP" id="zPy-xY-t6i"/>
+                <outlet property="newsFeedTableView" destination="sqT-xK-bzP" id="1Nh-cW-rbL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,20 +20,19 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fb4-al-jPP">
-                    <rect key="frame" x="0.0" y="235" width="393" height="583"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-xK-bzP">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fb4-al-jPP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Gb-rW-vyv"/>
-                <constraint firstItem="fb4-al-jPP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="176" id="SWU-Zi-ib4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fb4-al-jPP" secondAttribute="trailing" id="sJG-Tv-nZC"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fb4-al-jPP" secondAttribute="bottom" id="vdC-45-H5w"/>
+                <constraint firstItem="sqT-xK-bzP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HJ5-Ly-UNf"/>
+                <constraint firstItem="sqT-xK-bzP" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PUh-6u-gHt"/>
+                <constraint firstAttribute="bottom" secondItem="sqT-xK-bzP" secondAttribute="bottom" id="RWM-Kq-kGq"/>
+                <constraint firstItem="sqT-xK-bzP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ciE-cq-PfD"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="21"/>
+            <point key="canvasLocation" x="139.69465648854961" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>

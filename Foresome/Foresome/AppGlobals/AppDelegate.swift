@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Thread.sleep(forTimeInterval: 3.0)
+        //MARK: comments for testing purose---
+        //Thread.sleep(forTimeInterval: 3.0)
        
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
