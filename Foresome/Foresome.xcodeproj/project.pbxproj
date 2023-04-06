@@ -25,6 +25,8 @@
 		4B594EAD29DAA9C00078794A /* NewsFeedTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EAB29DAA9C00078794A /* NewsFeedTableCell.xib */; };
 		4B594EB129DAABB70078794A /* TalkAboutTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B594EAF29DAABB70078794A /* TalkAboutTableCell.swift */; };
 		4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */; };
+		4B5D861929DEB71200F0853F /* AdditionalOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5D861829DEB71200F0853F /* AdditionalOption.xib */; };
+		4B5D861B29DEB94D00F0853F /* AdditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D861A29DEB94D00F0853F /* AdditionalOption.swift */; };
 		4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */; };
 		4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */; };
 		4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */; };
@@ -206,6 +208,8 @@
 		4B594EAB29DAA9C00078794A /* NewsFeedTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTableCell.xib; sourceTree = "<group>"; };
 		4B594EAF29DAABB70078794A /* TalkAboutTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkAboutTableCell.swift; sourceTree = "<group>"; };
 		4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkAboutTableCell.xib; sourceTree = "<group>"; };
+		4B5D861829DEB71200F0853F /* AdditionalOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalOption.xib; sourceTree = "<group>"; };
+		4B5D861A29DEB94D00F0853F /* AdditionalOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalOption.swift; sourceTree = "<group>"; };
 		4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -429,8 +433,9 @@
 		4B086B4229DD58E000972959 /* CreatePoll */ = {
 			isa = PBXGroup;
 			children = (
-				4B086B3E29DD583D00972959 /* CreatePollViewController.swift */,
-				4B086B3F29DD583D00972959 /* CreatePollViewController.xib */,
+				4B5D861829DEB71200F0853F /* AdditionalOption.xib */,
+				4B5D861A29DEB94D00F0853F /* AdditionalOption.swift */,
+				4B5D861329DEB66800F0853F /* View */,
 			);
 			path = CreatePoll;
 			sourceTree = "<group>";
@@ -525,6 +530,15 @@
 				4B7E5C1F29DC437E000F576A /* PollResultTableCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4B5D861329DEB66800F0853F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B086B3E29DD583D00972959 /* CreatePollViewController.swift */,
+				4B086B3F29DD583D00972959 /* CreatePollViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4B68F30629C3463700D80A85 /* Poppins */ = {
@@ -1326,6 +1340,7 @@
 				4B75984E29C3352700A8E1B6 /* successSign.json in Resources */,
 				4B75984829C3352700A8E1B6 /* Lato-BoldItalic.ttf in Resources */,
 				4B7E5C2129DC437E000F576A /* PollResultTableCell.xib in Resources */,
+				4B5D861929DEB71200F0853F /* AdditionalOption.xib in Resources */,
 				7EA8221A29D41DD800755016 /* TournamentViewController.xib in Resources */,
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
@@ -1504,6 +1519,7 @@
 				7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */,
 				4B75984D29C3352700A8E1B6 /* Singleton.swift in Sources */,
 				4BF75CA429DC5948009DDE42 /* NewsFeedModel.swift in Sources */,
+				4B5D861B29DEB94D00F0853F /* AdditionalOption.swift in Sources */,
 				4B75987029C3352800A8E1B6 /* CustomTextField.swift in Sources */,
 				7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */,
 				4B75986C29C3352800A8E1B6 /* NSLayoutContraint+Custom.swift in Sources */,

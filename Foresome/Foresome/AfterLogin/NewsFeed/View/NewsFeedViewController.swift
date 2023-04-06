@@ -62,7 +62,8 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
     func createPost() {
-        let vc = CreatePostViewController()
+        let vc = CreatePostPresenter.createPostModule()
+        self.tabBarController?.tabBar.isHidden = true
         self.pushViewController(vc, true)
     }
     func cameraBtnAction() {

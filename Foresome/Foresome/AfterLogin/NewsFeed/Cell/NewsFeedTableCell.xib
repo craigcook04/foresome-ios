@@ -29,7 +29,7 @@
                         <rect key="frame" x="24" y="16" width="341" height="430"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MUD-db-Nya">
-                                <rect key="frame" x="16" y="8" width="148" height="40"/>
+                                <rect key="frame" x="16" y="16" width="148" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-97-CMz">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -64,12 +64,12 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAJ-qP-ws7">
-                                <rect key="frame" x="301" y="7.3333333333333321" width="24" height="24"/>
+                                <rect key="frame" x="301" y="15.333333333333332" width="24" height="23.999999999999996"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="ic_more"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1sz-Os-gIb">
-                                <rect key="frame" x="16" y="64" width="309" height="313"/>
+                                <rect key="frame" x="16" y="72" width="309" height="313"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pex" translatesAutoresizingMaskIntoConstraints="NO" id="AZA-Ua-oLZ">
                                         <rect key="frame" x="0.0" y="0.0" width="309" height="184"/>
@@ -143,7 +143,7 @@
                             <constraint firstItem="1sz-Os-gIb" firstAttribute="top" secondItem="MUD-db-Nya" secondAttribute="bottom" constant="16" id="GoJ-5H-86G"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1sz-Os-gIb" secondAttribute="bottom" constant="20" id="K83-qi-ofc"/>
                             <constraint firstAttribute="trailing" secondItem="sAJ-qP-ws7" secondAttribute="trailing" constant="16" id="M3j-QD-BVl"/>
-                            <constraint firstItem="MUD-db-Nya" firstAttribute="top" secondItem="vss-Dr-Uw8" secondAttribute="top" constant="8" id="VCO-To-srO"/>
+                            <constraint firstItem="MUD-db-Nya" firstAttribute="top" secondItem="vss-Dr-Uw8" secondAttribute="top" constant="16" id="VCO-To-srO"/>
                             <constraint firstItem="1sz-Os-gIb" firstAttribute="trailing" secondItem="sAJ-qP-ws7" secondAttribute="trailing" id="aZ5-8F-giK"/>
                             <constraint firstItem="1sz-Os-gIb" firstAttribute="leading" secondItem="MUD-db-Nya" secondAttribute="leading" id="sui-go-b82"/>
                             <constraint firstItem="sAJ-qP-ws7" firstAttribute="centerY" secondItem="igW-7w-fnr" secondAttribute="centerY" id="unA-7S-oPJ"/>

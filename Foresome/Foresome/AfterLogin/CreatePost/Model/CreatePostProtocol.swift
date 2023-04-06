@@ -10,8 +10,10 @@ import Foundation
 protocol CreatePostViewProtocol {
     var presenter: CreatePostPresenterProtocol? {get set}
     func receiveResult()
+    func cameraReceiveResult()
 }
 protocol CreatePostPresenterProtocol {
     var view: CreatePostViewProtocol? {get set}
     func photoButtonAction()
+    func cameraButtonAction()
 }

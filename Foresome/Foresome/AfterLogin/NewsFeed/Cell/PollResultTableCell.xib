@@ -29,7 +29,7 @@
                         <rect key="frame" x="24" y="16" width="342" height="458"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7o5-kR-b56">
-                                <rect key="frame" x="16" y="8" width="170" height="40"/>
+                                <rect key="frame" x="16" y="16" width="170" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-2u-QTU">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKL-Tr-BwP">
-                                <rect key="frame" x="302" y="7.3333333333333321" width="24" height="24"/>
+                                <rect key="frame" x="302" y="15.333333333333332" width="24" height="23.999999999999996"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="ic_more"/>
                                 <connections>
@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vDL-Ux-uVU">
-                                <rect key="frame" x="16" y="64" width="310" height="340.66666666666669"/>
+                                <rect key="frame" x="16" y="72" width="310" height="340.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The most important question of all: At the turn, you’re gabbing a…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3q-lx-LUp">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="39.333333333333336"/>
@@ -301,7 +301,7 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vDL-Ux-uVU" secondAttribute="bottom" constant="20" id="4sx-yR-NSi"/>
                             <constraint firstItem="vDL-Ux-uVU" firstAttribute="leading" secondItem="7o5-kR-b56" secondAttribute="leading" id="7XH-Tl-bjj"/>
                             <constraint firstItem="7o5-kR-b56" firstAttribute="leading" secondItem="gQ4-2C-Rhs" secondAttribute="leading" constant="16" id="BtR-eG-n7d"/>
-                            <constraint firstItem="7o5-kR-b56" firstAttribute="top" secondItem="gQ4-2C-Rhs" secondAttribute="top" constant="8" id="DXM-Ez-5vC"/>
+                            <constraint firstItem="7o5-kR-b56" firstAttribute="top" secondItem="gQ4-2C-Rhs" secondAttribute="top" constant="16" id="DXM-Ez-5vC"/>
                             <constraint firstItem="vDL-Ux-uVU" firstAttribute="top" secondItem="7o5-kR-b56" secondAttribute="bottom" constant="16" id="DfU-rM-Ldl"/>
                             <constraint firstItem="cKL-Tr-BwP" firstAttribute="centerY" secondItem="Bsa-cA-i0A" secondAttribute="centerY" id="baR-X3-LUA"/>
                             <constraint firstAttribute="trailing" secondItem="cKL-Tr-BwP" secondAttribute="trailing" constant="16" id="olR-WS-wed"/>

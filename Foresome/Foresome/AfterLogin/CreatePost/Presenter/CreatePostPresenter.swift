@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class CreatePostPresenter: CreatePostPresenterProtocol {
-  
+ 
+
   var view: CreatePostViewProtocol?
     
-    
-    static func createPostModule()->CreatePostViewController{
+    static func createPostModule() -> UIViewController {
         let view = CreatePostViewController()
         var presenter: CreatePostPresenterProtocol = CreatePostPresenter()
         presenter.view = view
@@ -24,9 +24,8 @@ class CreatePostPresenter: CreatePostPresenterProtocol {
     func photoButtonAction() {
         self.view?.receiveResult()
     }
-    
-    
-    
-    
-    
+    func cameraButtonAction() {
+        self.view?.cameraReceiveResult()
+    }
+  
 }

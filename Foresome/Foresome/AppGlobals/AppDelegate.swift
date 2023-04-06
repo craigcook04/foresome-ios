@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
         let vc = TournamentPresenter.createTournamentModule()
-        
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = true
         return true
