@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsFeedViewController: UIViewController {
+class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var newsFeedTableView: UITableView!
     
@@ -38,6 +38,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TalkAboutTableCell", for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+            cell.delegate = self
             return cell
         }else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PollResultTableCell", for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
@@ -57,6 +58,44 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 200
     }
+    
+}
+extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
+    func createPost() {
+        let vc = CreatePostViewController()
+        self.pushViewController(vc, true)
+    }
+    func cameraBtnAction() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = false //If you want edit option set "true"
+        imagePickerController.sourceType = .camera
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func photoBtnAction() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = false //If you want edit option set "true"
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    func pollBtnAction() {
+        let vc = CreatePollViewController()
+        self.pushViewController(vc, true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
 }
 extension NewsFeedViewController: NewsFeedViewProtocol {

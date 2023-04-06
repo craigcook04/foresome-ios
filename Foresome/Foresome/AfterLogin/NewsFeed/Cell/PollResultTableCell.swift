@@ -11,7 +11,6 @@ class PollResultTableCell: UITableViewCell {
     
     
     @IBOutlet weak var voteCount: UILabel!
-    
     @IBOutlet weak var postDescriptionLbl: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
@@ -31,7 +30,6 @@ class PollResultTableCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         
     }
     

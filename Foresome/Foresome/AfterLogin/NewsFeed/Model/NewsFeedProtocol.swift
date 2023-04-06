@@ -9,6 +9,7 @@ import Foundation
 
 protocol NewsFeedViewProtocol {
     var presenter: NewsFeedPresenterProtocol? {get set}
+    
 }
 protocol NewsFeedPresenterProtocol {
     var view: NewsFeedViewProtocol? {get set}

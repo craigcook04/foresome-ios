@@ -43,7 +43,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What do you want to talk about?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqf-rS-QSp">
-                                <rect key="frame" x="80" y="25.333333333333336" width="356" height="21.333333333333336"/>
+                                <rect key="frame" x="80" y="27" width="356" height="18"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -72,6 +72,9 @@
                                         <state key="normal" title="Camera" image="ic_feed_camera">
                                             <color key="titleColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cameraAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gVd-pH-MOy"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-kX-c9u">
                                         <rect key="frame" x="132" y="0.0" width="1" height="24"/>
@@ -88,6 +91,9 @@
                                         <state key="normal" title="Photo" image="ic_feed_gallery">
                                             <color key="titleColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="photoAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TDd-pi-sfS"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78u-ZJ-J8P">
                                         <rect key="frame" x="273" y="0.0" width="1" height="24"/>
@@ -104,6 +110,9 @@
                                         <state key="normal" title="Poll" image="ic_feed_poll">
                                             <color key="titleColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pollAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cvH-ML-OvJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
