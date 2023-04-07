@@ -20,6 +20,10 @@ extension UIImage {
     var renderOriginalMode: UIImage {
         return self.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
+    //MARK: added by deep get base 64 string fro uiimage -----
+    func convertImageToBase64String() -> String {
+        return self.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
+    }
     
     func maskWithColor(color: UIColor) -> UIImage {
         
@@ -447,5 +451,7 @@ extension UIImage {
         return animation
     }
 }
+
+
 
 

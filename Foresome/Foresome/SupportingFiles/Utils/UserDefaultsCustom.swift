@@ -15,10 +15,6 @@ struct UserDefaultsCustom {
     static let accessToken = "accessToken"
     static let userData = "userData"
     
-    
-  
-   
-    
     static func getDeviceToken() -> String {
 //        let token = Messaging.messaging().fcmToken
 //        print("FCM token: \(token ?? "")")

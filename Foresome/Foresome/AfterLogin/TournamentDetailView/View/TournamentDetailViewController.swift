@@ -8,7 +8,7 @@
 import UIKit
 
 
-class TournamentDetailViewController: UIViewController, UIScrollViewDelegate {
+class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, TournamentDetailViewProtocol {
     
     @IBOutlet weak var tournamentScrollView: UIScrollView!
     @IBOutlet weak var participantNumberLabel: UILabel!
@@ -16,15 +16,31 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var viewOnMapBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var minusBtn: UIButton!
-    
-    
     @IBOutlet weak var headerImageView: UIImageView!
-    var presenter: TournamentDetailPresenter?
+    
+    var tournamentData: TournamentModel?
+    var presenter: TournamentDetailPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.passedTounamentsData()
     }
-
+    
+    func passedTounamentsData() {
+        print("passes data -----")
+        print("a--\(tournamentData?.title)")
+        print("b--\(tournamentData?.date)")
+        print("c--\(tournamentData?.address)")
+        print("d--\(tournamentData?.location)")
+        print("e--\(tournamentData?.descriptions)")
+        print("f--\(tournamentData?.availability)")
+        print("g--\(tournamentData?.time?.count)")
+        print("h--\(tournamentData?.time)")
+        print("i--\(tournamentData?.price)")
+        print("j---\(tournamentData?.sale_price)")
+        print("passed all data........")
+    }
+    
     @IBAction func backAction(_ sender: Any) {
         self.popVC()
     }
@@ -55,7 +71,6 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func plusAction(_ sender: UIButton) {
-        
         guard let presentValue = Int(participantNumberLabel.text ?? "") else { return }
         let newValue = presentValue + 1
         participantNumberLabel.text = String(newValue)
@@ -70,8 +85,6 @@ extension TournamentDetailViewController: VariationViewControllerDelegate {
     func playerCount(text: String) {
         self.selectLabel.text = text
     }
-}
-extension TournamentDetailViewController: TournamentDetailViewProtocol {
 }
 
 

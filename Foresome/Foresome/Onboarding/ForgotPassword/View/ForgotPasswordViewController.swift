@@ -14,6 +14,8 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var forgotEmailField: UITextField!
     
+    var presenter: ForgotPasswordPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
@@ -44,6 +46,10 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
+        
     }
+    
+}
+extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
     
 }

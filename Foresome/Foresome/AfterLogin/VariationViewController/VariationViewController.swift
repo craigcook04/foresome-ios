@@ -18,8 +18,6 @@ class VariationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     @IBAction func dismissAction(_ sender: Any) {

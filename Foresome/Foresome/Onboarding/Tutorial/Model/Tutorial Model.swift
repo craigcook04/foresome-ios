@@ -19,7 +19,8 @@ class TutorialDataModel: NSObject {
         self.tutorialDescription = tutorialDescription
     }
 }
-class Tutorial{
+
+class Tutorial {
     static var array: [TutorialDataModel] = [
         TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."),
         TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."),

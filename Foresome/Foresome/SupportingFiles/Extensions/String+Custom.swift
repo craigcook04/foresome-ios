@@ -89,13 +89,23 @@ extension String {
            let hours = Int(decimalHr)
             let mins = Int(decimalHr * 60) % 60
             let secs = Int(decimalHr * 3600) % 60
-        if hours > 0{
+        if hours > 0 {
             let hrStr = String(format: "%02d : %02d", hours,mins)
             return "\(hrStr) hrs"
-        }else{
+        } else {
             let minStr = String(format: "%02d : %02d", mins,secs)
             return "\(minStr) mins"
         }
+    }
+    
+    //MARK: code added by deep base 64 string to image----
+    func base64ToImage() -> UIImage? {
+        let components = self.components(separatedBy: ",")
+        let base64Str = components.last ?? ""
+        if let data: Data = Data(base64Encoded: base64Str){
+            return UIImage(data: data)
+        }
+        return nil
     }
     
     func query_params(params: JSON) -> String? {

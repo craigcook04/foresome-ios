@@ -6,6 +6,15 @@
 //
 
 import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class SignUpViewController: UIViewController {
     
@@ -14,36 +23,51 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
-    
- //   var presenter: SignUpViewPresenter?
+    @IBOutlet var confirmPasswordShowBtn: UIButton!
+    @IBOutlet var passwordShowBtn: UIButton!
+
+    var presenter: SignUpViewPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setLabelColor()
-    }
-    
-    func setLabelColor(){
-        self.termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain) , font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main") , font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService,AppStrings.privacyPolicy],alignment: .left, isUnderLine: true)
+        self.setLabelColor()
     }
     
     @IBAction func loginAction(_ sender: UIButton) {
         let vc = LoginViewController()
-        self.popVC()
+        self.pushViewController(vc, true)
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        
+        if self.presenter?.validateFields(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "" , password: self.passwordField.text ?? "", confirmPassword: self.confirmPasswordField.text ?? "") == true  {
+            guard let password = passwordField.text,
+                  password == confirmPasswordField.text else {
+                Singleton.shared.showMessage(message: ErrorMessage.enterPasswordConfirmPasswordSame, isError:
+                        .error)
+                return
+            }
+            self.presenter?.createNewUser(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "", password: self.passwordField.text ?? "", confirmPassword: self.passwordField.text ?? "")
+        } else {
+            return
+        }
     }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
-        
+        self.passwordShowBtn.isSelected = !sender.isSelected
+        self.passwordField.isSecureTextEntry = !self.passwordShowBtn.isSelected
     }
     
     @IBAction func confirmShowAction(_ sender: UIButton) {
-        
+        self.confirmPasswordShowBtn.isSelected = !sender.isSelected
+        self.confirmPasswordField.isSecureTextEntry = !self.confirmPasswordShowBtn.isSelected
+    }
+    
+    func setLabelColor() {
+        termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService,AppStrings.privacyPolicy],alignment: .left, isUnderLine: true)
     }
 }
 
-//extension SignUpViewController: SignUpViewProtocol {
-//
-//}
+extension SignUpViewController: SignUpViewProtocol {
+
+}
+

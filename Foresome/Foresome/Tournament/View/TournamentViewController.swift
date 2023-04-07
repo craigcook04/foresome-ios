@@ -6,22 +6,29 @@
 //
 
 import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class TournamentViewController: UIViewController {
     
     @IBOutlet weak var tournamentTableView: UITableView!
     
-    var imageData:[UIImage] = [UIImage(named: "cccc")!,UIImage(named: "pex")!,UIImage(named: "cccc")!,UIImage(named: "pex")!,UIImage(named: "cccc")!]
-    var titelName = ["MLSE Open","Foresome Scramble","RowanOak Match-Play","Foresome Scramble","Foresome Scramble","Foresome Scramble"]
-    var dateData = ["Sat, Apr 29 • 10:00 a.m. EST", "Sat, May 20 • 12:00 p.m. EST", "Sat, Jun 24 • 12:00 p.m. EST", "Sat, Jun 24 • 12:00 p.m. EST", "Sat, Jun 24 • 12:00 p.m. EST"]
+    var listTournamentsData =  [TournamentModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getTournmentsData()
         setTableData()
         let headerView = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
              headerView.imageView.image = UIImage(named: "minimalism")
                self.tournamentTableView.tableHeaderView = headerView
-        
     }
     
     func setTableData() {
@@ -30,27 +37,37 @@ class TournamentViewController: UIViewController {
         tournamentTableView.register(cellClass: TournamentTableCell.self)
     }
     
+    //MARK: code for get tournamnets dtaa from firebase----------
+    func getTournmentsData() {
+        let db = Firestore.firestore()
+        db.collection("tournaments").getDocuments { (querySnapshot, err) in
+            querySnapshot?.documents.enumerated().forEach({ (index,document) in
+                let tournament =  document.data()
+                let tournamentsModel = TournamentModel(json: tournament)
+                self.listTournamentsData.append(tournamentsModel)
+            })
+            self.tournamentTableView.reloadData()
+        }
+        self.tournamentTableView.reloadData()
+    }
 }
 
 extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return listTournamentsData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
         cell.delegate = self
-//        cell.imageItem.image = imageData[indexPath.row]
-//        cell.titleLabel.text = titelName[indexPath.row]
-//        cell.dateLabel.text = dateData[indexPath.row]
+        cell.setTournamentsCellData(data: listTournamentsData[indexPath.row], index: indexPath.row)
         return cell
-        
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TournamentDetailViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        //MARK: data pass to tournamnets screen----
+        let vc = TournamentPresenter.createTournamentsDetailsModule(data: listTournamentsData[indexPath.row])
+        self.pushViewController(vc, true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -58,11 +75,6 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
         sectionHeader.layoutIfNeeded()
         return sectionHeader
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 136.0
-//    }
-  
 }
 
 extension TournamentViewController: TournamentTableCellDelegate{
@@ -71,8 +83,6 @@ extension TournamentViewController: TournamentTableCellDelegate{
         vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
-    
-    
 }
 
 extension TournamentViewController: UIScrollViewDelegate {

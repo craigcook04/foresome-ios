@@ -7,13 +7,14 @@
 
 import Foundation
 
-class TournamentPresenter: TournamentDetailPresenter {
+class TournamentPresenter: TournamentDetailPresenterProtocol {
    
     var view: TournamentDetailViewProtocol?
     
-    static func createTournamentModule()->TournamentDetailViewController{
+    static func createTournamentsDetailsModule(data:TournamentModel)-> TournamentDetailViewController {
         let view = TournamentDetailViewController()
-        var presenter: TournamentDetailPresenter = TournamentPresenter()
+        view.tournamentData = data
+        var presenter: TournamentDetailPresenterProtocol = TournamentPresenter()
         presenter.view = view
         view.presenter = presenter
         return view

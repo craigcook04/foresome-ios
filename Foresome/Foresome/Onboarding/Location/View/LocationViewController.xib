@@ -24,7 +24,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
                 <outlet property="locationButton" destination="EYm-rE-J0G" id="3Pn-as-tIl"/>
-                <outlet property="locationField" destination="DXN-19-gja" id="dnj-P0-U0F"/>
+                <outlet property="locationTextView" destination="7bo-zo-4Jv" id="sL9-Xt-vB4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="whereAreYouLabel" destination="n3p-Lk-6mT" id="nNF-DJ-Lb4"/>
             </connections>
@@ -85,6 +85,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2H-UW-uQS">
                             <rect key="frame" x="24" y="136" width="345" height="56"/>
                             <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7bo-zo-4Jv" customClass="GrowingTextView" customModule="Foresome" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="0.0" width="273" height="56"/>
+                                    <color key="textColor" systemColor="labelColor"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYm-rE-J0G">
                                     <rect key="frame" x="305" y="16" width="24" height="24"/>
                                     <constraints>
@@ -98,28 +104,15 @@
                                         <action selector="locationAction:" destination="-1" eventType="touchUpInside" id="MVI-XS-OPw"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DXN-19-gja">
-                                    <rect key="frame" x="16" y="0.0" width="284" height="56"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="placeHolderTextColor">
-                                            <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="DXN-19-gja" secondAttribute="bottom" id="4hG-jc-FJA"/>
+                                <constraint firstAttribute="bottom" secondItem="7bo-zo-4Jv" secondAttribute="bottom" id="FlK-d2-gOY"/>
+                                <constraint firstItem="EYm-rE-J0G" firstAttribute="leading" secondItem="7bo-zo-4Jv" secondAttribute="trailing" constant="16" id="aDw-10-cCD"/>
                                 <constraint firstAttribute="bottom" secondItem="EYm-rE-J0G" secondAttribute="bottom" constant="16" id="b8y-BH-VJo"/>
-                                <constraint firstItem="DXN-19-gja" firstAttribute="leading" secondItem="v2H-UW-uQS" secondAttribute="leading" constant="16" id="dav-8f-hd6"/>
                                 <constraint firstAttribute="trailing" secondItem="EYm-rE-J0G" secondAttribute="trailing" constant="16" id="jN3-B5-OJM"/>
-                                <constraint firstItem="DXN-19-gja" firstAttribute="top" secondItem="v2H-UW-uQS" secondAttribute="top" id="srt-gc-7Tr"/>
                                 <constraint firstItem="EYm-rE-J0G" firstAttribute="top" secondItem="v2H-UW-uQS" secondAttribute="top" constant="16" id="svf-1t-SeJ"/>
-                                <constraint firstItem="EYm-rE-J0G" firstAttribute="leading" secondItem="DXN-19-gja" secondAttribute="trailing" constant="5" id="ydX-8z-fIX"/>
+                                <constraint firstItem="7bo-zo-4Jv" firstAttribute="leading" secondItem="v2H-UW-uQS" secondAttribute="leading" constant="16" id="tKY-O1-Cxi"/>
+                                <constraint firstItem="7bo-zo-4Jv" firstAttribute="top" secondItem="v2H-UW-uQS" secondAttribute="top" id="tzZ-vc-Ts0"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -185,7 +178,6 @@
                         <constraint firstItem="nhw-nX-V15" firstAttribute="trailing" secondItem="n3p-Lk-6mT" secondAttribute="trailing" id="W6i-bE-pVu"/>
                         <constraint firstItem="v2H-UW-uQS" firstAttribute="top" secondItem="nhw-nX-V15" secondAttribute="bottom" constant="30" id="dMg-Qj-gIk"/>
                         <constraint firstAttribute="bottom" secondItem="BKR-je-kFz" secondAttribute="bottom" constant="30" id="l1b-vQ-xAN"/>
-                        <constraint firstItem="Coh-hN-tOQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v2H-UW-uQS" secondAttribute="bottom" constant="20" id="mqU-iq-lcR"/>
                         <constraint firstItem="nhw-nX-V15" firstAttribute="leading" secondItem="n3p-Lk-6mT" secondAttribute="leading" id="pu4-cK-dMm"/>
                         <constraint firstItem="nhw-nX-V15" firstAttribute="top" secondItem="n3p-Lk-6mT" secondAttribute="bottom" constant="8" id="r9F-KK-S7k"/>
                         <constraint firstItem="BKR-je-kFz" firstAttribute="leading" secondItem="Coh-hN-tOQ" secondAttribute="leading" id="wQR-cI-5m1"/>
@@ -206,12 +198,20 @@
             <point key="canvasLocation" x="103.05343511450381" y="20.422535211267608"/>
         </view>
     </objects>
+    <designables>
+        <designable name="7bo-zo-4Jv">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic_back_black" width="24" height="24"/>
         <image name="ic_current_location" width="24" height="24"/>
         <namedColor name="show Color">
             <color red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

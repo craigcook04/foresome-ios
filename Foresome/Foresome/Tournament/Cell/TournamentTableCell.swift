@@ -17,21 +17,20 @@ class TournamentTableCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    var imageData:[UIImage] = [UIImage(named: "fs-hidden-lake")!,UIImage(named: "fs-pipers")!,UIImage(named: "fs-woodbine")!]
     var delegate: TournamentTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+    func setTournamentsCellData(data:TournamentModel, index: Int) {
+        self.imageItem.image  = self.imageData[index % 3]
+        self.titleLabel.text = data.title
+        self.dateLabel.text =  data.date
     }
     
     @IBAction func rightAction(_ sender: Any) {
         self.delegate?.rightButtonAction()
     }
-    
 }

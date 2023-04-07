@@ -117,7 +117,6 @@ struct NIB_NAME {
     static let fileDocumentSectionHeader = "FileDocumentSectionHeader"
     static let challengeDaySummaryTableHeader =
     "ChallengeDaySummaryTableHeader"
-   
     
 }
 

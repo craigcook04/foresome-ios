@@ -31,8 +31,8 @@ class TutorialViewController: UIViewController {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        let vc = LoginViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = LoginPresenter.createLoginModule()
+        self.pushViewController(vc, true)
     }
 }
 
@@ -81,6 +81,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
             counter = 1
             self.pageControl.currentPage = counter
         }
-      
+
     }
 }

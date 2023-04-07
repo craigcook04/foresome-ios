@@ -30,8 +30,8 @@ class PlaceData: Codable {
         self.lng = locationItem.coordinate?.longitude
         self.fullAddress = locationItem.formattedAddressString
         self.cityAddress = locationItem.cityAddressString
-        
     }
+    
     
     init(lat: Double?, lng: Double?, address: String?) {
         self.lat = lat

@@ -8,26 +8,30 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import FirebaseAuth
+import FirebaseCore
+import SquareInAppPaymentsSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Thread.sleep(forTimeInterval: 3.0)
-       
+        // Thread.sleep(forTimeInterval: 3.0)
+        
         // Override point for customization after application launch.
+        //MARK: firebase configuration in main thread-----
+        DispatchQueue.main.async {
+            FirebaseApp.configure()
+        }
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
-        let vc = TournamentPresenter.createTournamentModule()
         
-        let navController = UINavigationController(rootViewController: vc)
-        navController.navigationBar.isHidden = true
+        //         Set your Square Application ID
+        //        App id is for Square Application ID----
+        //MARK: dummy app id ---
+        SQIPInAppPaymentsSDK.squareApplicationID = "sandbox-sq0idb-QQBqQxHpscxTIVWu-8fVrg"
         return true
     }
     
-
     // MARK: UISceneSession Lifecycle
 
     @available(iOS 13.0, *)

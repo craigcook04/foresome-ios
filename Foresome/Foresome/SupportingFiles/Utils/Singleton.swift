@@ -35,14 +35,14 @@ class Singleton: NSObject {
     //MARK: ERROR MESSAGE
     func showErrorMessage(error:String, isError: ERROR_TYPE) {
         DispatchQueue.main.async {
-//            guard let window = UIWindow.key else {return}
+            guard let window = UIWindow.key else {return}
             if self.errorMessageView == nil {
                 self.errorMessageView = UINib(nibName: NIB_NAME.errorView, bundle: nil).instantiate(withOwner: self, options: nil)[0] as? ErrorView
                 self.errorMessageView.delegate = self
                 self.errorMessageView.statusIconBgView.isHidden = true
                 self.errorMessageView.frame = CGRect(x: 10, y: 43 , width: SCREEN_SIZE.width-20, height: HEIGHT.errorMessageHeight)
-//    visibleController?.view.addSubview(errorMessageView)
-                self.window?.addSubview(self.errorMessageView)
+               // visibleController?.view.addSubview(errorMessageView)
+               window.addSubview(self.errorMessageView)
             }
             self.errorMessageView.setErrorMessage(message: error, isError: isError)
         }
@@ -108,6 +108,7 @@ class Singleton: NSObject {
         window?.rootViewController = Singleton.tabController
         window?.makeKeyAndVisible()
         Singleton.tabController.tabBarItem.badgeColor = .green
+        Singleton.tabController.selectedIndex = 2
         Singleton.shared.window = window
     }
 }
