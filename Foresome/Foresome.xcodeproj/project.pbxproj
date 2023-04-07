@@ -16,6 +16,8 @@
 		4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B18995B29CB059200FD3999 /* LocationViewController.swift */; };
 		4B18995E29CB059200FD3999 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B18995C29CB059200FD3999 /* LocationViewController.xib */; };
 		4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B221A9D29C4730E00690026 /* Tutorial Model.swift */; };
+		4B3499E229E0314600D4B11C /* SelectImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3499E029E0314600D4B11C /* SelectImageCollectionCell.swift */; };
+		4B3499E329E0314600D4B11C /* SelectImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3499E129E0314600D4B11C /* SelectImageCollectionCell.xib */; };
 		4B4918C829D7860C00528487 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B077F29CB278300881790 /* ProfilePictureViewController.xib */; };
 		4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B078029CB278300881790 /* ProfilePictureViewController.swift */; };
@@ -140,6 +142,7 @@
 		4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C273029CAD6F0008D1880 /* SignUpViewController.swift */; };
 		4B93905129C9A01600D60450 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93904F29C9A01600D60450 /* LoginViewController.swift */; };
 		4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B93905029C9A01600D60450 /* LoginViewController.xib */; };
+		4BBBD8CD29E03C1A00716E55 /* GetImageFromPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBBD8CC29E03C1A00716E55 /* GetImageFromPicker.swift */; };
 		4BCEC4AD29D6EFE0003A7BB6 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4AC29D6EFE0003A7BB6 /* SignUpPresenter.swift */; };
 		4BCEC4AF29D6F1F4003A7BB6 /* SignUpProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4AE29D6F1F4003A7BB6 /* SignUpProtocol.swift */; };
 		4BCEC4B229D6F978003A7BB6 /* ForgotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEC4B129D6F978003A7BB6 /* ForgotPresenter.swift */; };
@@ -200,6 +203,8 @@
 		4B18995B29CB059200FD3999 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4B18995C29CB059200FD3999 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		4B221A9D29C4730E00690026 /* Tutorial Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tutorial Model.swift"; sourceTree = "<group>"; };
+		4B3499E029E0314600D4B11C /* SelectImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCollectionCell.swift; sourceTree = "<group>"; };
+		4B3499E129E0314600D4B11C /* SelectImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCollectionCell.xib; sourceTree = "<group>"; };
 		4B4B077F29CB278300881790 /* ProfilePictureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePictureViewController.xib; sourceTree = "<group>"; };
 		4B4B078029CB278300881790 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewController.swift; sourceTree = "<group>"; };
 		4B594EA529DAA89F0078794A /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +331,7 @@
 		4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		4B93904F29C9A01600D60450 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4B93905029C9A01600D60450 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4BBBD8CC29E03C1A00716E55 /* GetImageFromPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetImageFromPicker.swift; sourceTree = "<group>"; };
 		4BCEC4AC29D6EFE0003A7BB6 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		4BCEC4AE29D6F1F4003A7BB6 /* SignUpProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpProtocol.swift; sourceTree = "<group>"; };
 		4BCEC4B129D6F978003A7BB6 /* ForgotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPresenter.swift; sourceTree = "<group>"; };
@@ -496,6 +502,16 @@
 				4B221A9D29C4730E00690026 /* Tutorial Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4B3499E429E0361B00D4B11C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4B3499E029E0314600D4B11C /* SelectImageCollectionCell.swift */,
+				4B3499E129E0314600D4B11C /* SelectImageCollectionCell.xib */,
+			);
+			name = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
 		4B594EA429DA9E900078794A /* NewsFeed */ = {
@@ -778,6 +794,7 @@
 				4B75980529C3352700A8E1B6 /* UserData.swift */,
 				4B75980629C3352700A8E1B6 /* AutoResizeTableView */,
 				4B75980829C3352700A8E1B6 /* UserDefaultsCustom.swift */,
+				4BBBD8CC29E03C1A00716E55 /* GetImageFromPicker.swift */,
 				4B75980929C3352700A8E1B6 /* AppNavigation.swift */,
 				4B75980A29C3352700A8E1B6 /* OTPTextField.swift */,
 				4B75980B29C3352700A8E1B6 /* Mime */,
@@ -1132,8 +1149,9 @@
 			isa = PBXGroup;
 			children = (
 				4B086B3D29DD581100972959 /* Model */,
-				4B086B3C29DD580400972959 /* Presenter */,
 				4B086B3729DD579B00972959 /* View */,
+				4B086B3C29DD580400972959 /* Presenter */,
+				4B3499E429E0361B00D4B11C /* Cell */,
 			);
 			path = CreatePost;
 			sourceTree = "<group>";
@@ -1328,6 +1346,7 @@
 				4BD4F36329DAEC490085B515 /* NewsHeader.xib in Resources */,
 				4B68F32A29C3463800D80A85 /* Poppins-SemiBold.ttf in Resources */,
 				4B75984229C3352700A8E1B6 /* Lato-Thin.ttf in Resources */,
+				4B3499E329E0314600D4B11C /* SelectImageCollectionCell.xib in Resources */,
 				7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */,
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
@@ -1452,6 +1471,7 @@
 				4B594EB129DAABB70078794A /* TalkAboutTableCell.swift in Sources */,
 				4B75987A29C3352800A8E1B6 /* RadicalView.swift in Sources */,
 				4B75986129C3352800A8E1B6 /* ErrorView.swift in Sources */,
+				4BBBD8CD29E03C1A00716E55 /* GetImageFromPicker.swift in Sources */,
 				4B75987B29C3352800A8E1B6 /* UITableView+Custom.swift in Sources */,
 				4BF75C9E29DC58FF009DDE42 /* NewsFeedPresenter.swift in Sources */,
 				4BCEC4BA29D6FA3A003A7BB6 /* LoginPresenter.swift in Sources */,
@@ -1547,6 +1567,7 @@
 				4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
+				4B3499E229E0314600D4B11C /* SelectImageCollectionCell.swift in Sources */,
 				4BCEC4C229D6FAF4003A7BB6 /* ProfileModel.swift in Sources */,
 				4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */,
 				4BCEC4BC29D6FA4A003A7BB6 /* LoginModel.swift in Sources */,

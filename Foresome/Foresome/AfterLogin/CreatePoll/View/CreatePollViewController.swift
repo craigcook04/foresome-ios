@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreatePollViewController: UIViewController {
+class CreatePollViewController: UIViewController, UITextViewDelegate{
     
     @IBOutlet weak var optionsStackView: UIStackView!
     @IBOutlet weak var postBtn: UIButton!
@@ -16,10 +16,29 @@ class CreatePollViewController: UIViewController {
     @IBOutlet weak var secondOption: GrowingTextView!
     @IBOutlet weak var firstOption: GrowingTextView!
     
-    var previousOptionValue: Int = 2
+    var previousOptionValue: Int = 0
+    var optionsFieldArray = [AdditionalOption]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupFirstTwoOptions()
+    }
+    
+    func setupFirstTwoOptions(){
+        for i in 0...1 {
+            self.addNewField(tag: i)
+        }
+    }
+    
+    func addNewField(tag:Int) {
+        let view = UIView.getFromNib(className: AdditionalOption.self)
+        view.optionAdd.delegate = self
+        view.tag = tag
+        previousOptionValue += 1
+        view.optionAdd.placeholder = "option\(previousOptionValue)"
+        view.optionAdd.textColor = .black
+        self.optionsStackView.addArrangedSubview(view)
+        self.optionsFieldArray.append(view)
     }
     
     @IBAction func backAction(_ sender: UIButton) {
@@ -28,17 +47,13 @@ class CreatePollViewController: UIViewController {
     
     @IBAction func addOptionAction(_ sender: UIButton) {
         
-        if (firstOption.text.count > 0) && (secondOption.text.count > 0) {
-            let view = UIView.getFromNib(className: AdditionalOption.self)
-            previousOptionValue += 1
-           view.optionAdd.placeholder = "option\(previousOptionValue)"
-            self.optionsStackView.addArrangedSubview(view)
-        } else {
-            self.addOptionBtn.isEnabled = false
+        for optionField in optionsFieldArray {
+            if optionField.optionAdd.text.count == 0 {
+                return
+            }
         }
-        self.addOptionBtn.isEnabled = true
+        
+        self.addNewField(tag: optionsFieldArray.count)
     }
 }
 
-    
-   

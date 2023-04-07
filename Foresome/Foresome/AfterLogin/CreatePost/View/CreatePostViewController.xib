@@ -22,7 +22,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="imageSelectButton" destination="9gG-Pc-7iy" id="6FH-h6-5va"/>
                 <outlet property="publishBottomConstraint" destination="GYE-5P-YIc" id="PQJ-h3-fme"/>
+                <outlet property="selectImageCollection" destination="QF7-ct-zwc" id="ne3-xn-4Za"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -113,6 +115,19 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="QF7-ct-zwc">
+                    <rect key="frame" x="24" y="263" width="349" height="120"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="ycf-c5-At3"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pNI-8Q-iAp">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fn-EM-Q9s">
                     <rect key="frame" x="0.0" y="730" width="393" height="68"/>
                     <subviews>
@@ -190,7 +205,6 @@
                         <constraint firstItem="WaU-8d-k4Q" firstAttribute="leading" secondItem="2fn-EM-Q9s" secondAttribute="leading" id="JW2-SL-wWz"/>
                         <constraint firstAttribute="bottom" secondItem="5Oh-nw-6GG" secondAttribute="bottom" constant="21" id="LJg-hp-qCt"/>
                         <constraint firstItem="5Oh-nw-6GG" firstAttribute="top" secondItem="WaU-8d-k4Q" secondAttribute="bottom" constant="20" id="Lni-rG-8XT"/>
-                        <constraint firstItem="vcD-rj-7hm" firstAttribute="leading" secondItem="5Oh-nw-6GG" secondAttribute="trailing" constant="165" id="Rlg-cs-Yb7"/>
                         <constraint firstItem="vcD-rj-7hm" firstAttribute="top" secondItem="WaU-8d-k4Q" secondAttribute="bottom" constant="16" id="Ygh-j9-TVg"/>
                         <constraint firstAttribute="trailing" secondItem="WaU-8d-k4Q" secondAttribute="trailing" id="g0W-YU-BbR"/>
                     </constraints>
@@ -207,12 +221,15 @@
                 <constraint firstItem="2fn-EM-Q9s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GmE-Jx-Swa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nC3-fx-UhK" secondAttribute="trailing" constant="20" id="HI6-DH-CRT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2fn-EM-Q9s" secondAttribute="trailing" id="Jg7-XW-bcU"/>
+                <constraint firstItem="QF7-ct-zwc" firstAttribute="leading" secondItem="RJb-jO-Sa7" secondAttribute="leading" id="SWD-mq-5CV"/>
                 <constraint firstItem="MZh-td-7Fe" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="WIz-Cm-1RC"/>
+                <constraint firstItem="QF7-ct-zwc" firstAttribute="trailing" secondItem="RJb-jO-Sa7" secondAttribute="trailing" id="YvM-zm-MiI"/>
                 <constraint firstItem="MZh-td-7Fe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cZG-ME-mIG"/>
                 <constraint firstItem="RJb-jO-Sa7" firstAttribute="trailing" secondItem="nC3-fx-UhK" secondAttribute="trailing" id="eUJ-eA-zoc"/>
+                <constraint firstItem="2fn-EM-Q9s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QF7-ct-zwc" secondAttribute="bottom" constant="27" id="gBB-Ri-yBm"/>
                 <constraint firstItem="nC3-fx-UhK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="gmc-v8-F1I"/>
                 <constraint firstItem="RJb-jO-Sa7" firstAttribute="top" secondItem="nC3-fx-UhK" secondAttribute="bottom" constant="24" id="iRP-L1-bYC"/>
-                <constraint firstItem="2fn-EM-Q9s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RJb-jO-Sa7" secondAttribute="bottom" constant="24" id="uzg-oa-76Z"/>
+                <constraint firstItem="QF7-ct-zwc" firstAttribute="top" secondItem="RJb-jO-Sa7" secondAttribute="bottom" constant="40" id="rrx-gw-hzt"/>
                 <constraint firstItem="2fn-EM-Q9s" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vDu-RF-SkL"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="20.422535211267608"/>

@@ -8,14 +8,13 @@
 import Foundation
 import UIKit
 
+
 class AdditionalOption: UIView {
     
     @IBOutlet weak var optionAdd: GrowingTextView!
-    
     override class func awakeFromNib() {
-
+        super.awakeFromNib()
+        
     }
-    
-    
-    
 }
+

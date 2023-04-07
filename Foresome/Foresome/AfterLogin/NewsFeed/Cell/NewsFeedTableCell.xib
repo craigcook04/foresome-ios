@@ -106,9 +106,13 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="1,657" image="ic_liked">
+                                                <state key="normal" title="0" image="ic_like">
                                                     <color key="titleColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <state key="selected" image="ic_liked"/>
+                                                <connections>
+                                                    <action selector="likeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="arP-Y5-Y9i"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7H-1t-4Fv">
                                                 <rect key="frame" x="108.33333333333334" y="0.0" width="92.333333333333343" height="24"/>
@@ -181,6 +185,7 @@
     <resources>
         <image name="cccc" width="1920" height="1195"/>
         <image name="ic_comment" width="24" height="24"/>
+        <image name="ic_like" width="24" height="24"/>
         <image name="ic_liked" width="24" height="24"/>
         <image name="ic_more" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>

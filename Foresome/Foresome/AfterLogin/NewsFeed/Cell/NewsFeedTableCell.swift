@@ -30,4 +30,10 @@ class NewsFeedTableCell: UITableViewCell {
     func setLabelColor(){
         postDescriptionLbl.attributedTextWithMultipleRange(str: AppStrings.description, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsRegular, 14),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsRegular, 14), highlightedWords: [AppStrings.readMore],alignment: .left)
     }
+    
+    
+    @IBAction func likeAction(_ sender: UIButton) {
+        sender.isSelected = !(sender.isSelected)
+        likeBtn.setTitle("1", for: .selected)
+    }
 }

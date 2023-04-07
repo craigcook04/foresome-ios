@@ -9,12 +9,22 @@ import UIKit
 
 class CreatePostViewController: UIViewController, UINavigationControllerDelegate {
     
+    @IBOutlet weak var imageSelectButton: UIButton!
+    @IBOutlet weak var selectImageCollection: UICollectionView!
     @IBOutlet weak var publishBottomConstraint: NSLayoutConstraint!
-    var presenter: CreatePostPresenterProtocol?
     
+    var presenter: CreatePostPresenterProtocol?
+    var imageSelect: [UIImage?] = []
+    var imagePicker = GetImageFromPicker()
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
+        self.setCellData()
+    }
+    func setCellData() {
+        self.selectImageCollection.delegate = self
+        self.selectImageCollection.dataSource = self
+        self.selectImageCollection.register(cellClass: SelectImageCollectionCell.self)
     }
     
     func setKeyboard(){
@@ -43,30 +53,51 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
 }
 extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControllerDelegate {
+    func receiveResult() {
+        self.imagePicker.setImagePicker(imagePickerType: .both, controller: self)
+        self.imagePicker.imageCallBack = {
+           
+            [weak self] (result) in
+            print("search bar text ******** \(self?.imagePicker.imageCallBack )")
+            DispatchQueue.main.async {
+                switch result{
+                case .success(let imageData):
+                    let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
+                    let image = imageData?.image ?? UIImage()
+                    self?.imageSelect.append(image)
+                    self?.selectImageCollection.reloadData()
+                    
+                case .error(let message):
+                    print(message)
+                }
+            }
+        }
+    }
+    
     func cameraReceiveResult() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false //If you want edit option set "true"
-        imagePickerController.sourceType = .camera
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+//        let imagePickerController = UIImagePickerController()
+//        imagePickerController.allowsEditing = false //If you want edit option set "true"
+//        imagePickerController.sourceType = .camera
+//        imagePickerController.delegate = self
+//        present(imagePickerController, animated: true, completion: nil)
     }
  
-    func receiveResult() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false //If you want edit option set "true"
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
+//    func receiveResult() {
+//        let imagePickerController = UIImagePickerController()
+//        imagePickerController.allowsEditing = false //If you want edit option set "true"
+//        imagePickerController.sourceType = .photoLibrary
+//        imagePickerController.delegate = self
+//        present(imagePickerController, animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
     
 }
 
@@ -111,4 +142,32 @@ extension CreatePostViewController{
             }
         })
     }
+}
+extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.imageSelect.count
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeue(cellClass: SelectImageCollectionCell.self, forIndexPath: indexPath)
+        cell.selectedRow = indexPath.row
+        cell.selectImage.image = self.imageSelect[indexPath.row]
+        cell.delegate = self
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/3, height: collectionView.frame.height)
+    }
+}
+extension CreatePostViewController: SelectImageCollectionCellDelegate {
+    func removeImage(index: Int) {
+        self.imageSelect.remove(at: index)
+        self.selectImageCollection.reloadData()
+    }
+    
+
+    
+    
 }

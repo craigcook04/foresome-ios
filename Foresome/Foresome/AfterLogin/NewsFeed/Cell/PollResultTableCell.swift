@@ -37,6 +37,9 @@ class PollResultTableCell: UITableViewCell {
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
+        sender.isSelected = !(sender.isSelected)
+        likeBtn.setTitle("1", for: .selected)
+        
     }
     
     
