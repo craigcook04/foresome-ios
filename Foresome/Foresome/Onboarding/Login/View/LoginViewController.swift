@@ -25,6 +25,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginPasswordField.isSecureTextEntry = true
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
@@ -48,7 +49,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
         self.passwordShowBtn.isSelected = !sender.isSelected
-        self.loginPasswordField.isSecureTextEntry = self.passwordShowBtn.isSelected
+        self.loginPasswordField.isSecureTextEntry = !sender.isSelected
     }
     
     @IBAction func googleAction(_ sender: UIButton) {

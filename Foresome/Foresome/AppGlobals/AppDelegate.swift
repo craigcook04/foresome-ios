@@ -15,13 +15,10 @@ import SquareInAppPaymentsSDK
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Thread.sleep(forTimeInterval: 3.0)
+         Thread.sleep(forTimeInterval: 3.0)
         
         // Override point for customization after application launch.
         //MARK: firebase configuration in main thread-----
-        DispatchQueue.main.async {
-            FirebaseApp.configure()
-        }
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
         

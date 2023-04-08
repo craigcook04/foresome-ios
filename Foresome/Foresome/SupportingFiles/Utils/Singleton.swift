@@ -48,7 +48,6 @@ class Singleton: NSObject {
         }
     }
     
-    
     func translateErrorMessage(toBottom:Bool) {
         if errorMessageView != nil {
             if toBottom == true {
@@ -61,13 +60,12 @@ class Singleton: NSObject {
     
     func gotoLogin() {
         DispatchQueue.main.async {
-//            let view = LoginPresenter.createLoginModule()
-//            let navController = UINavigationController(rootViewController: view)
-//            navController.navigationBar.isHidden = true
-//            self.window?.rootViewController = navController
-//            self.window?.makeKeyAndVisible()
+            let view = LoginPresenter.createLoginModule()
+            let navController = UINavigationController(rootViewController: view)
+            navController.navigationBar.isHidden = true
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
         }
-        
     }
     
     func gotoHome() {
@@ -87,13 +85,9 @@ class Singleton: NSObject {
     func setHomeScreenView() {
         var window: UIWindow?
         if #available(iOS 13, *) {
-            if SceneDelegate.shared?.window != nil {
-                window = SceneDelegate.shared?.window
-            } else {
-                window = UIWindow(frame: UIScreen.main.bounds)
-            }
+                window = self.window
         } else {
-//            if let wind = (UIApplication.shared.delegate as! AppDelegate!).window {
+//            if let wind = (UIApplication.shared.delegate as? AppDelegate).window {
 //                window = wind
 //            } else {
 //                window = UIWindow(frame: UIScreen.main.bounds)

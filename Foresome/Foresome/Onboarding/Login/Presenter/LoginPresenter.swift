@@ -54,7 +54,9 @@ class LoginPresenter: LoginPresenterProtocol {
     
     //MARK: function for passcontroller data in presenter and make logical part here-----
     func userLogin(email: String, password: String) {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         Auth.auth().signIn(withEmail: "\(email)", password: "\(password)") { [weak self] authResult, error in
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
             guard let strongSelf = self else { return }
             print("login successfully")
             print("\(authResult)")

@@ -24,11 +24,17 @@ class TournamentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = false
         getTournmentsData()
         setTableData()
         let headerView = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
              headerView.imageView.image = UIImage(named: "minimalism")
                self.tournamentTableView.tableHeaderView = headerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func setTableData() {
@@ -39,8 +45,10 @@ class TournamentViewController: UIViewController {
     
     //MARK: code for get tournamnets dtaa from firebase----------
     func getTournmentsData() {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         db.collection("tournaments").getDocuments { (querySnapshot, err) in
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let tournament =  document.data()
                 let tournamentsModel = TournamentModel(json: tournament)
@@ -67,6 +75,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //MARK: data pass to tournamnets screen----
         let vc = TournamentPresenter.createTournamentsDetailsModule(data: listTournamentsData[indexPath.row])
+        vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
     

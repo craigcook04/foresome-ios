@@ -31,7 +31,7 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
     //MARK: code for square payments configuration-------
     func configureSquarePayments() {
         let theme = SQIPTheme()
-        theme.tintColor = .green
+        theme.tintColor =  UIColor(hexString: "#40CD93", alpha: 1.0)
         let cardEntry = SQIPCardEntryViewController(theme: theme)
         cardEntry.collectPostalCode = false
         cardEntry.delegate = self
@@ -63,8 +63,11 @@ extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
         json["amount_money"] = amountJson
         json["source_id"] = "cnon:card-nonce-ok"
         ChargeApi.processPayment(param: json) { (transactionData, errorDescription) in
-            print("return transection id ---\(transactionData?.id)")
-            Singleton.shared.setHomeScreenView()
+            if (transactionData?.id?.count ?? 0) > 0 {
+                Singleton.shared.showMessage(message: "Payments successfull.", isError: .success)
+                Singleton.shared.setHomeScreenView()
+            } else {
+            }
             guard let errorDescription = errorDescription else {
                 return
             }

@@ -47,7 +47,6 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profileImage.image  = tempImage
         print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
-        SignUpUserData(user_profile_pic:"\(tempImage.convertImageToBase64String())")
         self.presenter?.updateUserProfileData(porfilePicName: "\(tempImage.convertImageToBase64String())")
         self.dismiss(animated: true, completion: nil)
     }

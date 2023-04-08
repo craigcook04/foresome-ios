@@ -85,7 +85,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibw-Jn-Axe">
-                                            <rect key="frame" x="16" y="0.0" width="329" height="56"/>
+                                            <rect key="frame" x="16" y="0.0" width="313" height="56"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="g3I-JJ-ncP"/>
@@ -105,7 +105,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="2wa-Gb-TfF"/>
-                                        <constraint firstAttribute="trailing" secondItem="ibw-Jn-Axe" secondAttribute="trailing" id="G1P-He-kTi"/>
+                                        <constraint firstAttribute="trailing" secondItem="ibw-Jn-Axe" secondAttribute="trailing" constant="16" id="G1P-He-kTi"/>
                                         <constraint firstItem="ibw-Jn-Axe" firstAttribute="top" secondItem="g4e-9p-tEv" secondAttribute="top" id="IJ3-6f-5fD"/>
                                         <constraint firstAttribute="bottom" secondItem="ibw-Jn-Axe" secondAttribute="bottom" id="JN2-oJ-tky"/>
                                         <constraint firstItem="ibw-Jn-Axe" firstAttribute="leading" secondItem="g4e-9p-tEv" secondAttribute="leading" constant="16" id="f59-eK-rZO"/>
@@ -127,7 +127,7 @@
                                     <rect key="frame" x="0.0" y="72.000000000000028" width="345" height="56"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdI-uI-EEc">
-                                            <rect key="frame" x="16" y="0.0" width="329" height="56"/>
+                                            <rect key="frame" x="16" y="0.0" width="313" height="56"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="KZR-31-dSW"/>
@@ -146,7 +146,7 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="rdI-uI-EEc" secondAttribute="trailing" id="79q-qy-GWd"/>
+                                        <constraint firstAttribute="trailing" secondItem="rdI-uI-EEc" secondAttribute="trailing" constant="16" id="79q-qy-GWd"/>
                                         <constraint firstItem="rdI-uI-EEc" firstAttribute="top" secondItem="blI-BP-FOa" secondAttribute="top" id="Nig-7d-7DY"/>
                                         <constraint firstItem="rdI-uI-EEc" firstAttribute="leading" secondItem="blI-BP-FOa" secondAttribute="leading" constant="16" id="P82-91-rhZ"/>
                                         <constraint firstAttribute="bottom" secondItem="rdI-uI-EEc" secondAttribute="bottom" id="fAI-NR-P6u"/>
@@ -182,17 +182,18 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6RN-N8-wiF">
-                                            <rect key="frame" x="259" y="10.666666666666629" width="70" height="35"/>
+                                            <rect key="frame" x="259" y="11.666666666666629" width="70" height="33"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="8hg-O9-TWV"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <color key="tintColor" name="show Color"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title="Show"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Show">
-                                                <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                            </buttonConfiguration>
+                                            <state key="normal" title="Show">
+                                                <color key="titleColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected" title="Hide"/>
                                             <connections>
                                                 <action selector="passwordShowAction:" destination="-1" eventType="touchUpInside" id="hS5-rf-b1g"/>
                                             </connections>
@@ -223,15 +224,18 @@
                                     <rect key="frame" x="0.0" y="216.00000000000003" width="345" height="55.999999999999972"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-qp-iRP">
-                                            <rect key="frame" x="259" y="10.666666666666629" width="70" height="35"/>
+                                            <rect key="frame" x="259" y="11.666666666666629" width="70" height="33"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="70" id="MYD-4u-QPn"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <color key="tintColor" name="show Color"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Show">
-                                                <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Show">
+                                                <color key="titleColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected" title="Hide"/>
                                             <connections>
                                                 <action selector="confirmShowAction:" destination="-1" eventType="touchUpInside" id="VHV-eh-nxl"/>
                                             </connections>

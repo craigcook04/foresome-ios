@@ -31,6 +31,9 @@ class ProfileViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             UserDefaults.standard.removeObject(forKey: "user_uid")
+            if Auth.auth().currentUser?.uid == nil {
+                Singleton.shared.gotoLogin()
+            }
             print("logout successfullyy")
         } catch {
             print("Error while signing out!")

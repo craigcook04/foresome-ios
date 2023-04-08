@@ -25,14 +25,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         Self.shared = self
-//        guard let windowScene = (scene as? UIWindowScene) else { return }
-//        self.window = UIWindow(windowScene: windowScene)
-        //Singleton.shared.window = self.window
-//        if Auth.auth().currentUser != nil {
-//            Singleton.shared.setHomeScreenView()
-//        } else {
-//            print("not user is currently logged in.")
-//        }
+        FirebaseApp.configure()
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        self.window = UIWindow(windowScene: windowScene)
+        Singleton.shared.window = self.window
+        if ((UserDefaults.standard.value(forKey: "user_uid") as? String)?.count ?? 0) > 0 {
+            Singleton.shared.setHomeScreenView()
+        } else {
+            Singleton.shared.gotoLogin()
+        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

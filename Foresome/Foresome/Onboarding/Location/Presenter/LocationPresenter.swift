@@ -30,21 +30,26 @@ class LocationPresenter : LocationPresenterProtocol {
     func updateUserLocation(countryName: String) {
        print("country name for update user location---\(countryName)")
         let db = Firestore.firestore()
-        db.collection("users").addDocument(data:["user_location":"\(countryName)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
-            if Error != nil {
-                print("Cannot saving user data-\(Error as Any)")
-            } else {
-                print("user data saved successfully.")
-                if let signupVc = self.view as? LocationViewController {
-                    let locationVc = ProfilePresenter.createProfileModule()
-                    signupVc.pushViewController(locationVc, true)
-                }
+        do {
+            let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+            db.collection("users").document(documentsId).setData(["user_location" : "\(countryName)"], merge: true)
+            if let signupVc = self.view as? LocationViewController {
+                let locationVc = ProfilePresenter.createProfileModule()
+                signupVc.pushViewController(locationVc, true)
             }
+        } catch let error {
+            Singleton.shared.showMessage(message: "\(error.localizedDescription)", isError: .error)
         }
-        
-//        let documentsId = (UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String
-//
-//        db.collection("users").document(documentsId ?? "").setData(["user_location" : "\(countryName)"])
-        
+//        db.collection("users").addDocument(data:["user_location":"\(countryName)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
+//            if Error != nil {
+//                print("Cannot saving user data-\(Error as Any)")
+//            } else {
+//                print("user data saved successfully.")
+//                if let signupVc = self.view as? LocationViewController {
+//                    let locationVc = ProfilePresenter.createProfileModule()
+//                    signupVc.pushViewController(locationVc, true)
+//                }
+//            }
+//        }
     }
 }

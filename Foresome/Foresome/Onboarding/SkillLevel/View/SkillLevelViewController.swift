@@ -57,7 +57,6 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
         lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
-        SignUpUserData(skill_level: "\(userSkillsData[0])")
         self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[0])")
     }
     
@@ -72,7 +71,6 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
         lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
-        SignUpUserData(skill_level: "\(userSkillsData[1])")
         self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[1])")
     }
     
@@ -87,7 +85,6 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
         mediumSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
-        SignUpUserData(skill_level: "\(userSkillsData[2])")
         self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[2])")
     }
 }
