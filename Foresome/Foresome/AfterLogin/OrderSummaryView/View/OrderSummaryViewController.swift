@@ -19,10 +19,44 @@ import SquareInAppPaymentsSDK
 
 class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
     
+    @IBOutlet weak var tournamentsName: UILabel!
+    @IBOutlet weak var tournamentsDate: UILabel!
+    @IBOutlet weak var variationType: UILabel!
+    @IBOutlet weak var tournamentsLocations: UILabel!
+    @IBOutlet weak var tournamentsAddress: UILabel!
+    @IBOutlet weak var tournamentsPriceWithQuantity: UILabel!
+    @IBOutlet weak var subtotalValue: UILabel!
+    @IBOutlet weak var taxesValue: UILabel!
+    @IBOutlet weak var totalPriceValue: UILabel!
+    
     var presenter: OrderSummryPresenterProtocol?
+    var tournamenDetailstData: TournamentModel?
+    var variations: String?
+    var quantity: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showOrderDetails()
+    }
+    
+    func showOrderDetails() {
+        print("tournaments title---\(tournamenDetailstData?.title)")
+        print("tournaments date---\(tournamenDetailstData?.date)")
+        print("tournaments variations---\(variations)")
+        print("tournaments locations---\(tournamenDetailstData?.location)")
+        print("tournaments address---\(tournamenDetailstData?.address)")
+        print("tournaments quantity---\(quantity)")
+        
+        tournamentsName.text = tournamenDetailstData?.title ?? ""
+        tournamentsDate.text = tournamenDetailstData?.date ?? ""
+        variationType.text = "Variation: \(variations ?? "")"
+        tournamentsLocations.text = tournamenDetailstData?.location ?? ""
+        tournamentsAddress.text = tournamenDetailstData?.address ?? ""
+        tournamentsPriceWithQuantity.text = "\(quantity ?? 0)x CAD\(tournamenDetailstData?.price ?? "")"
+        let myString = tournamenDetailstData?.price ?? ""
+        subtotalValue.text = "CAD$\((quantity ?? 0) * (myString.numbers.toInt ?? 0))"
+        taxesValue.text = "CAD$0.00"
+        totalPriceValue.text = "CAD$\((quantity ?? 0) * (myString.numbers.toInt ?? 0))"
     }
     
     func getPaymentDetailsFromFireStore() {
@@ -54,9 +88,10 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
 
 extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
     func cardEntryViewController(_ cardEntryViewController: SQIPCardEntryViewController, didObtain cardDetails: SQIPCardDetails) async throws {
+        let myString = tournamenDetailstData?.price ?? ""
         print("delegate b called")
         var amountJson = [String:Any]()
-        amountJson["amount"] = 251
+        amountJson["amount"] = (quantity ?? 0) * (myString.numbers.toInt ?? 0)
         amountJson["currency"] = "CAD"
         var json = [String:Any]()
         json["idempotency_key"] = UUID().uuidString

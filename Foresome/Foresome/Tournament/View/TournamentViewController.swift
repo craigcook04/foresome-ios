@@ -16,11 +16,12 @@ import FirebaseCore
 import FirebaseFirestore
 import Firebase
 
-class TournamentViewController: UIViewController {
+class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
     
     @IBOutlet weak var tournamentTableView: UITableView!
     
     var listTournamentsData =  [TournamentModel]()
+    var presenter: TournamentsListPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,8 @@ class TournamentViewController: UIViewController {
         getTournmentsData()
         setTableData()
         let headerView = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
-             headerView.imageView.image = UIImage(named: "minimalism")
-               self.tournamentTableView.tableHeaderView = headerView
+        headerView.imageView.image = UIImage(named: "minimalism")
+        self.tournamentTableView.tableHeaderView = headerView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,30 +68,22 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
-        cell.delegate = self
         cell.setTournamentsCellData(data: listTournamentsData[indexPath.row], index: indexPath.row)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //MARK: data pass to tournamnets screen----
-        let vc = TournamentPresenter.createTournamentsDetailsModule(data: listTournamentsData[indexPath.row])
-        vc.hidesBottomBarWhenPushed = true
-        self.pushViewController(vc, true)
+        //MARK: code for pass data from tournamnets list to tournamnets details page ---
+        let cell = tableView.cellForRow(at: indexPath) as? TournamentTableCell
+        if let image = cell?.imageItem.image {
+            self.presenter?.passlistDatatoDetails(data: self.listTournamentsData[indexPath.row], tournamentsImage: image)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = UINib(nibName: "TournamentHeader",bundle: nil).instantiateView as! TournamentHeader
         sectionHeader.layoutIfNeeded()
         return sectionHeader
-    }
-}
-
-extension TournamentViewController: TournamentTableCellDelegate{
-    func rightButtonAction() {
-        let vc = TournamentDetailViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.pushViewController(vc, true)
     }
 }
 

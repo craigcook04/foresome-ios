@@ -9,7 +9,6 @@ import Foundation
 
 protocol TournamentDetailViewProtocol{
     var presenter:TournamentDetailPresenterProtocol? {get set}
-   
 }
 
 protocol TournamentDetailPresenterProtocol {

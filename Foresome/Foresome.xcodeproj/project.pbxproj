@@ -141,21 +141,23 @@
 		4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6C52A29C4535E00ECA881 /* TutorialCollectionCell.xib */; };
 		4BFE9E8629D458B200CCBCE2 /* TournamentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */; };
 		4BFE9E8929D4591100CCBCE2 /* TournamentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */; };
-		7E0EA36229D775A700E8ED9C /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0EA36029D775A600E8ED9C /* LocationViewController.xib */; };
-		7E0EA36329D775A700E8ED9C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0EA36129D775A700E8ED9C /* LocationViewController.swift */; };
 		7E12C6C629CE206500D8A768 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */; };
 		7E12C6C729CE206500D8A768 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */; };
 		7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C329CE206100D8A768 /* FTDelegate.swift */; };
 		7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */; };
 		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
-		7E1BBE3129DF141B00B38D4D /* SquarePaymentsApiFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BBE3029DF141A00B38D4D /* SquarePaymentsApiFile.swift */; };
+		7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */; };
+		7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */; };
+		7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */; };
+		7E5338E129E438C7001E3D9E /* OrderSummryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338E029E438C6001E3D9E /* OrderSummryPresenter.swift */; };
+		7E5338E729E43A09001E3D9E /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338E629E43A08001E3D9E /* LocationViewController.swift */; };
+		7E5338E929E43A22001E3D9E /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5338E829E43A21001E3D9E /* LocationViewController.xib */; };
 		7E73F15029D6D59800B653AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */; };
 		7E7E95F729DC263F00095CC0 /* LocationProtocole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E95F629DC263E00095CC0 /* LocationProtocole.swift */; };
 		7E7E95F929DC267100095CC0 /* LocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E95F829DC267100095CC0 /* LocationPresenter.swift */; };
 		7E7E95FD29DC3BB300095CC0 /* UserSkillProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E95FC29DC3BB300095CC0 /* UserSkillProtocol.swift */; };
 		7E7E95FF29DC3BEB00095CC0 /* UserSkillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E95FE29DC3BEB00095CC0 /* UserSkillPresenter.swift */; };
 		7E7E960129DC543000095CC0 /* TournamentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960029DC543000095CC0 /* TournamentsModel.swift */; };
-		7E7E960929DD4E0A00095CC0 /* OrderSummryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960829DD4E0A00095CC0 /* OrderSummryPresenter.swift */; };
 		7E7E960B29DD4E2500095CC0 /* OrderSummryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */; };
 		7E7FE24C29D782620010114C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
 		7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8220B29D41DD800755016 /* TournamentTableCell.swift */; };
@@ -316,21 +318,23 @@
 		4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentPresenter.swift; sourceTree = "<group>"; };
 		4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentProtocol.swift; sourceTree = "<group>"; };
 		76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foresome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E0EA36029D775A600E8ED9C /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationViewController.xib; path = ../../../../../../../../Downloads/LocationViewController.xib; sourceTree = "<group>"; };
-		7E0EA36129D775A700E8ED9C /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationViewController.swift; path = ../../../../../../../../Downloads/LocationViewController.swift; sourceTree = "<group>"; };
 		7E12C6C129CE205E00D8A768 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7E12C6C229CE206000D8A768 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		7E12C6C329CE206100D8A768 /* FTDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDelegate.swift; sourceTree = "<group>"; };
 		7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeader.swift; sourceTree = "<group>"; };
 		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
-		7E1BBE3029DF141A00B38D4D /* SquarePaymentsApiFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SquarePaymentsApiFile.swift; path = ../../../../../../Demos/Demos/ForeSomeDummy/SquarePaymentsApiFile.swift; sourceTree = "<group>"; };
+		7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListProtocol.swift; sourceTree = "<group>"; };
+		7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListPresenter.swift; sourceTree = "<group>"; };
+		7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquarePaymentsApiFile.swift; sourceTree = "<group>"; };
+		7E5338E029E438C6001E3D9E /* OrderSummryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummryPresenter.swift; sourceTree = "<group>"; };
+		7E5338E629E43A08001E3D9E /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		7E5338E829E43A21001E3D9E /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E7E95F629DC263E00095CC0 /* LocationProtocole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationProtocole.swift; path = Foresome/Onboarding/Location/LocationProtocole.swift; sourceTree = SOURCE_ROOT; };
 		7E7E95F829DC267100095CC0 /* LocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPresenter.swift; sourceTree = "<group>"; };
 		7E7E95FC29DC3BB300095CC0 /* UserSkillProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSkillProtocol.swift; sourceTree = "<group>"; };
 		7E7E95FE29DC3BEB00095CC0 /* UserSkillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSkillPresenter.swift; sourceTree = "<group>"; };
 		7E7E960029DC543000095CC0 /* TournamentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsModel.swift; sourceTree = "<group>"; };
-		7E7E960829DD4E0A00095CC0 /* OrderSummryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummryPresenter.swift; sourceTree = "<group>"; };
 		7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummryProtocol.swift; sourceTree = "<group>"; };
 		7EA8220B29D41DD800755016 /* TournamentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentTableCell.swift; sourceTree = "<group>"; };
 		7EA8220C29D41DD800755016 /* TournamentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentTableCell.xib; sourceTree = "<group>"; };
@@ -826,8 +830,8 @@
 		4B76005C29CB18C300D1FE70 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E0EA36129D775A700E8ED9C /* LocationViewController.swift */,
-				7E0EA36029D775A600E8ED9C /* LocationViewController.xib */,
+				7E5338E629E43A08001E3D9E /* LocationViewController.swift */,
+				7E5338E829E43A21001E3D9E /* LocationViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -881,7 +885,7 @@
 			isa = PBXGroup;
 			children = (
 				7E1BBE2F29DF13FC00B38D4D /* Model */,
-				7E7E960729DD4D8100095CC0 /* Presenter  */,
+				7E5338DF29E438C6001E3D9E /* Presenter */,
 				7E7E960629DD4D7800095CC0 /* Protocol */,
 				4B86BA5A29D2CD2100800A37 /* View */,
 			);
@@ -1008,6 +1012,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFE9E8529D458B200CCBCE2 /* TournamentPresenter.swift */,
+				7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */,
 			);
 			path = TournamentPresenter;
 			sourceTree = "<group>";
@@ -1016,6 +1021,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFE9E8829D4591100CCBCE2 /* TournamentProtocol.swift */,
+				7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */,
 			);
 			path = TournamentProtocol;
 			sourceTree = "<group>";
@@ -1023,9 +1029,17 @@
 		7E1BBE2F29DF13FC00B38D4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E1BBE3029DF141A00B38D4D /* SquarePaymentsApiFile.swift */,
+				7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7E5338DF29E438C6001E3D9E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7E5338E029E438C6001E3D9E /* OrderSummryPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		7E7E95F429DC25D300095CC0 /* Presenter */ = {
@@ -1068,15 +1082,6 @@
 				7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		7E7E960729DD4D8100095CC0 /* Presenter  */ = {
-			isa = PBXGroup;
-			children = (
-				7E7E960829DD4E0A00095CC0 /* OrderSummryPresenter.swift */,
-			);
-			name = "Presenter ";
-			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		7EA8220929D41DD800755016 /* Tournament */ = {
@@ -1282,6 +1287,7 @@
 				4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */,
 				4B75984429C3352700A8E1B6 /* Lato-Black.ttf in Resources */,
 				4B75985E29C3352700A8E1B6 /* cancel_notes@2x.png in Resources */,
+				7E5338E929E43A22001E3D9E /* LocationViewController.xib in Resources */,
 				4B68F32829C3463800D80A85 /* Poppins-Black.ttf in Resources */,
 				4B68F32429C3463800D80A85 /* OFL.txt in Resources */,
 				4B75985C29C3352700A8E1B6 /* CustomNavigationBar.xib in Resources */,
@@ -1298,7 +1304,6 @@
 				4B8C272D29CAC49A008D1880 /* ForgotPasswordViewController.xib in Resources */,
 				4B6A6D5729CC1A8500CF44EC /* SkillLevelViewController.xib in Resources */,
 				4B68F32129C3463800D80A85 /* Poppins-ExtraBoldItalic.ttf in Resources */,
-				7E0EA36229D775A700E8ED9C /* LocationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,10 +1404,10 @@
 				7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */,
 				7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */,
 				7EA8222629D42BDE00755016 /* FriendsViewController.swift in Sources */,
+				7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */,
 				4B75973029C3325F00A8E1B6 /* Foresome.xcdatamodeld in Sources */,
 				7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */,
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
-				7E7E960929DD4E0A00095CC0 /* OrderSummryPresenter.swift in Sources */,
 				7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
 				4BCEC4AD29D6EFE0003A7BB6 /* SignUpPresenter.swift in Sources */,
@@ -1426,6 +1431,7 @@
 				4B75987129C3352800A8E1B6 /* UIDevice.swift in Sources */,
 				7E7E95F729DC263F00095CC0 /* LocationProtocole.swift in Sources */,
 				4B76005429CB169100D1FE70 /* LocationController.swift in Sources */,
+				7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */,
 				7E7E95F929DC267100095CC0 /* LocationPresenter.swift in Sources */,
 				4BCEC4BE29D6FA5F003A7BB6 /* LoginProtocol.swift in Sources */,
 				4B75985229C3352700A8E1B6 /* AlignedCollectionViewFlowLayout.swift in Sources */,
@@ -1463,19 +1469,19 @@
 				4B75986729C3352800A8E1B6 /* UIView+Custom.swift in Sources */,
 				7E7E95FF29DC3BEB00095CC0 /* UserSkillPresenter.swift in Sources */,
 				4BCEC4AF29D6F1F4003A7BB6 /* SignUpProtocol.swift in Sources */,
+				7E5338E129E438C7001E3D9E /* OrderSummryPresenter.swift in Sources */,
 				4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */,
 				4B75983B29C3352700A8E1B6 /* ErrorResponseModel.swift in Sources */,
+				7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */,
 				4B75987429C3352800A8E1B6 /* UIFont+Custom.swift in Sources */,
 				4BCEC4B429D6F98A003A7BB6 /* ForgotProtocol.swift in Sources */,
 				4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */,
 				4BCEC4C429D6FB08003A7BB6 /* ProfilePresenter.swift in Sources */,
 				4BE7C09F29D1856C00F47F4A /* TournamentDetailViewController.swift in Sources */,
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
-				7E0EA36329D775A700E8ED9C /* LocationViewController.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,
 				7EA8222B29D42BFB00755016 /* LeadersViewController.swift in Sources */,
 				4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */,
-				7E1BBE3129DF141B00B38D4D /* SquarePaymentsApiFile.swift in Sources */,
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
 				4BCEC4C229D6FAF4003A7BB6 /* ProfileModel.swift in Sources */,
@@ -1483,6 +1489,7 @@
 				4BCEC4BC29D6FA4A003A7BB6 /* LoginModel.swift in Sources */,
 				7EA8221829D41DD800755016 /* TournamentHeader.swift in Sources */,
 				4B75987229C3352800A8E1B6 /* FloatingTextField.swift in Sources */,
+				7E5338E729E43A09001E3D9E /* LocationViewController.swift in Sources */,
 				4B75983D29C3352700A8E1B6 /* API.swift in Sources */,
 				4B75986329C3352800A8E1B6 /* IAPHelper.swift in Sources */,
 				4B75983E29C3352700A8E1B6 /* HttpManager.swift in Sources */,

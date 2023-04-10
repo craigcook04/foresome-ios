@@ -76,7 +76,6 @@ class SignUpPresenter: SignUpViewPresenter {
                     let locationVc = LocationPresenter.createLocationModule()
                     signupVc.pushViewController(locationVc, true)
                 }
-                
                // db.collection("users").document(result!.user.uid).setData(<#T##documentData: [String : Any]##[String : Any]#>)
                 
 //                db.collection("users").addDocument(data:["name":"\(fullName)", "email":"\(email)", "createdDate:":"\(String(describing: Date().localToUtc))", "uid": result!.user.uid, "user_location":"", "user_profile_pic":"", "user_skill_level":""])
@@ -95,6 +94,8 @@ class SignUpPresenter: SignUpViewPresenter {
 //                    }
 //                }
             } else {
+                Singleton.shared.showMessage(message:error?.localizedDescription ?? "", isError: .error)
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
                 print("error in case of create new user\(error  as Any)")
             }
         })

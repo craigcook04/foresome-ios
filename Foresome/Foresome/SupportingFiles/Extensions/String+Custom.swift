@@ -41,7 +41,7 @@ extension String {
         case ddMMM = "dd MMM"
         case MMddhmma = "[MM/dd, h:mm a]"
     }
-   
+    
     var toDouble: Double? {
         return Double(self)
     }
@@ -67,6 +67,10 @@ extension String {
         }
     }
     
+    var numbers : String {
+        return filter { "0"..."9" ~= $0 }
+    }
+    
     var numerals: String {
         let pattern = UnicodeScalar("0")..."9"
         let string = String(unicodeScalars.compactMap { pattern ~= $0 ? Character($0) : nil })
@@ -86,9 +90,9 @@ extension String {
     // MARK: - DECIMAL TO HR, MIN, SEC CONVERTION (e.g 22.82 = 22 hr 49 min)
     func decimalHourToString()->String{
         guard let decimalHr = self.toDouble?.roundTo(places: 2) else{return "00:00"}
-           let hours = Int(decimalHr)
-            let mins = Int(decimalHr * 60) % 60
-            let secs = Int(decimalHr * 3600) % 60
+        let hours = Int(decimalHr)
+        let mins = Int(decimalHr * 60) % 60
+        let secs = Int(decimalHr * 3600) % 60
         if hours > 0 {
             let hrStr = String(format: "%02d : %02d", hours,mins)
             return "\(hrStr) hrs"
@@ -109,11 +113,11 @@ extension String {
     }
     
     func query_params(params: JSON) -> String? {
-            var components = URLComponents(string: self)
-            components?.queryItems = params.map { element in URLQueryItem(name: element.key, value: "\(element.value)") }
-
-            return components?.url?.absoluteString
-        }
+        var components = URLComponents(string: self)
+        components?.queryItems = params.map { element in URLQueryItem(name: element.key, value: "\(element.value)") }
+        
+        return components?.url?.absoluteString
+    }
     ///Added
     var isPhoneNumber: Bool {
         do {
@@ -156,7 +160,7 @@ extension String {
     
     func generateQRCode(scale: CGFloat) -> UIImage? {
         let data = self.data(using: String.Encoding.ascii)
-//        let data = self.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        //        let data = self.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
         
         let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setValue(data, forKey: "inputMessage")
@@ -215,7 +219,7 @@ extension String {
         let size = self.size(withAttributes: fontAttributes)
         return size.width
     }
-
+    
     
     var html2String: String? {
         guard let data = data(using: .utf8) else { return nil }
@@ -237,12 +241,12 @@ extension String {
         
         dateFormatter.timeZone = TimeZone.ReferenceType.local
         dateFormatter.dateFormat = "MMM dd, YYYY"
-//        let dateSelected = dateFormatter.string(from: date1)
+        //        let dateSelected = dateFormatter.string(from: date1)
         
         dateFormatter.timeZone = TimeZone.ReferenceType.local
         dateFormatter.dateFormat = "hh:mm a"
         let timeSelected = dateFormatter.string(from: date1)
-       // let updatedDate = "\(dateSelected) at \(timeSelected)"
+        // let updatedDate = "\(dateSelected) at \(timeSelected)"
         
         return timeSelected
     }
@@ -443,7 +447,7 @@ extension String {
     
     func stringToTime(_ format:String) -> Date? {
         let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        //        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = format//"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" //Your date format
         guard let date1 = dateFormatter.date(from: self) else { return Date() } //according to date format your date
         return date1
@@ -551,10 +555,10 @@ extension String {
         attString.addAttribute(NSAttributedString.Key.foregroundColor, value: subStringColor, range: range)
         attString.addAttribute(NSAttributedString.Key.font, value: UIFont.setCustom(subStringFont,subStringFontSize), range: range)
         attString.addAttribute(NSAttributedString.Key.paragraphStyle, value:style, range: NSRange(location: 0, length: text.count))
-      
+        
         return attString
     }
- 
+    
     
     func timeInNumber(_ format:String) -> Int? {
         let hrs = self.stringToTime("HH", format) ?? ""

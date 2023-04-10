@@ -14,6 +14,7 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     @IBOutlet weak var uploadProfilePicButton: UIButton!
     
     var presenter: ProfilePicturePresenter?
+    var pickedProfileImage: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profileImage.image  = tempImage
         print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
+        pickedProfileImage = tempImage.convertImageToBase64String()
         self.presenter?.updateUserProfileData(porfilePicName: "\(tempImage.convertImageToBase64String())")
         self.dismiss(animated: true, completion: nil)
     }

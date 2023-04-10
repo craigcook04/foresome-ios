@@ -38,6 +38,8 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         if isAnySkillSelected == false {
             Singleton.shared.showMessage(message: "Please select any one skill Or skip.", isError: .error)
             return
+        } else {
+            print("need to implemets ")
         }
     }
     

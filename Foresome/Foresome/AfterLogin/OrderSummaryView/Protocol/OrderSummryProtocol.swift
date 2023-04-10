@@ -14,5 +14,6 @@ protocol OrderSummryViewProtocol {
 protocol OrderSummryPresenterProtocol {
     var view:OrderSummryViewProtocol? {get set}
     func getPaymenstDetails()
+    func paymentsDetails(tournamenDetailstData:TournamentModel, variations: String?, quantity: Int?)
 }
 

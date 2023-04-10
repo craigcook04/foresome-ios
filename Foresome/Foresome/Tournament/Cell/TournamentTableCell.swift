@@ -11,14 +11,11 @@ protocol TournamentTableCellDelegate{
 }
 
 class TournamentTableCell: UITableViewCell {
-    
-    @IBOutlet weak var rightBtn: NSLayoutConstraint!
     @IBOutlet weak var imageItem: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
     var imageData:[UIImage] = [UIImage(named: "fs-hidden-lake")!,UIImage(named: "fs-pipers")!,UIImage(named: "fs-woodbine")!]
-    var delegate: TournamentTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +27,5 @@ class TournamentTableCell: UITableViewCell {
         self.dateLabel.text =  data.date
     }
     
-    @IBAction func rightAction(_ sender: Any) {
-        self.delegate?.rightButtonAction()
-    }
+    @IBAction func rightAction(_ sender: Any) {}
 }
