@@ -40,9 +40,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
         cell.delegate = self
-//        cell.imageItem.image = imageData[indexPath.row]
-//        cell.titleLabel.text = titelName[indexPath.row]
-//        cell.dateLabel.text = dateData[indexPath.row]
+
         return cell
         
     }
@@ -54,15 +52,10 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = UINib(nibName: "TournamentHeader",bundle: nil).instantiateView as! TournamentHeader
-        sectionHeader.layoutIfNeeded()
+        let sectionHeader = UIView.getFromNib(className: TournamentHeader.self)
         return sectionHeader
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 136.0
-//    }
-  
+
 }
 
 extension TournamentViewController: TournamentTableCellDelegate{

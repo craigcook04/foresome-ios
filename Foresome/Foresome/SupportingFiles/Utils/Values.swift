@@ -47,6 +47,13 @@ struct AppStrings {
     static let addPictureLbl = "Would you like to add \na profile picture?"
     static let readMore = "Read More"
     static let description = "Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More"
+    static let skillLevel = "Manage skill level"
+    static let notificationSetting = "Notification settings"
+    static let termsOfServices = "Terms of Services"
+    static let aboutApp = "About App"
+    static let logout = "Logout"
+    static let changeProfilePicture = "Change Profile Picture"
+    static let rightArrow = ""
 }
 
 struct Messages {

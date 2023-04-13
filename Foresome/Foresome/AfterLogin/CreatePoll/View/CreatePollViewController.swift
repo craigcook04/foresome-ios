@@ -13,11 +13,13 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var addOptionBtn: UIButton!
     @IBOutlet weak var yourQuestion: GrowingTextView!
+    
     @IBOutlet weak var secondOption: GrowingTextView!
     @IBOutlet weak var firstOption: GrowingTextView!
-    
+   
     var previousOptionValue: Int = 0
     var optionsFieldArray = [AdditionalOption]()
+    var presenter: CreatePollPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         view.optionAdd.delegate = self
         view.tag = tag
         previousOptionValue += 1
-        view.optionAdd.placeholder = "option\(previousOptionValue)"
+        view.optionAdd.placeholder = "Option \(previousOptionValue)"
         view.optionAdd.textColor = .black
         self.optionsStackView.addArrangedSubview(view)
         self.optionsFieldArray.append(view)
@@ -57,3 +59,6 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     }
 }
 
+extension CreatePollViewController: CreatePollViewProtocol {
+   
+}

@@ -22,9 +22,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="cameraBtn" destination="RNt-lT-Nyy" id="ZNn-Wb-ddX"/>
                 <outlet property="imageSelectButton" destination="9gG-Pc-7iy" id="6FH-h6-5va"/>
+                <outlet property="pollBtn" destination="HLO-rh-cqq" id="Gw0-fh-Yxa"/>
+                <outlet property="profileImage" destination="zSq-L8-ffN" id="C1K-bs-tKW"/>
                 <outlet property="publishBottomConstraint" destination="GYE-5P-YIc" id="PQJ-h3-fme"/>
                 <outlet property="selectImageCollection" destination="QF7-ct-zwc" id="ne3-xn-4Za"/>
+                <outlet property="userNameLbl" destination="tOr-6Q-13e" id="ZiP-0g-AE1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -100,7 +104,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RJb-jO-Sa7" customClass="GrowingTextView" customModule="Foresome" customModuleProvider="target">
-                    <rect key="frame" x="24" y="180" width="349" height="43"/>
+                    <rect key="frame" x="24" y="180" width="349" height="30"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
@@ -116,7 +120,7 @@
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="QF7-ct-zwc">
-                    <rect key="frame" x="24" y="263" width="349" height="120"/>
+                    <rect key="frame" x="24" y="250" width="349" height="120"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="ycf-c5-At3"/>

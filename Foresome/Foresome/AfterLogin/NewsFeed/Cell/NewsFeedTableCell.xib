@@ -67,9 +67,12 @@
                                 <rect key="frame" x="301" y="15.333333333333332" width="24" height="23.999999999999996"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="ic_more"/>
+                                <connections>
+                                    <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bsy-Oo-1Gf"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1sz-Os-gIb">
-                                <rect key="frame" x="16" y="72" width="309" height="313"/>
+                                <rect key="frame" x="16" y="72" width="309" height="338"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pex" translatesAutoresizingMaskIntoConstraints="NO" id="AZA-Ua-oLZ">
                                         <rect key="frame" x="0.0" y="0.0" width="309" height="184"/>
@@ -83,21 +86,22 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAQ-RH-KcM">
-                                        <rect key="frame" x="0.0" y="199" width="309" height="59"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAQ-RH-KcM">
+                                        <rect key="frame" x="0.0" y="199" width="309" height="84"/>
+                                        <string key="text">Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More</string>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5r-OC-T1L">
-                                        <rect key="frame" x="0.0" y="273" width="309" height="1"/>
+                                        <rect key="frame" x="0.0" y="298" width="309" height="1"/>
                                         <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="bhN-Ky-HNx"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-pQ-kPE">
-                                        <rect key="frame" x="0.0" y="289" width="309" height="24"/>
+                                        <rect key="frame" x="0.0" y="314" width="309" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7t-MT-upl">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="24"/>
@@ -122,6 +126,9 @@
                                                 <state key="normal" title="2,998" image="ic_comment">
                                                     <color key="titleColor" red="0.59215686274509804" green="0.61176470588235299" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="commentAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CCL-hQ-ycQ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-Fr-QJL">
                                                 <rect key="frame" x="216.66666666666671" y="0.0" width="92.333333333333343" height="24"/>
@@ -131,6 +138,9 @@
                                                 <state key="normal" title="Share" image="ic_share">
                                                     <color key="titleColor" red="0.59215686274509804" green="0.61176470588235299" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="shareAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WrQ-oa-w0I"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -169,6 +179,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="commentBtn" destination="J7H-1t-4Fv" id="6bt-YK-gCh"/>
                 <outlet property="likeBtn" destination="J7t-MT-upl" id="AHc-UC-e0D"/>

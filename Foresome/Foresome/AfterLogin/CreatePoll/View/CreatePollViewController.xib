@@ -12,6 +12,9 @@
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
         <array key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
         </array>
@@ -20,9 +23,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePollViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
                 <outlet property="addOptionBtn" destination="jY7-wP-uSL" id="Vin-qn-S2K"/>
-                <outlet property="firstOption" destination="FoE-BR-AGK" id="l12-LL-gIm"/>
+                <outlet property="firstOption" destination="FoE-BR-AGK" id="oQj-4z-HeS"/>
                 <outlet property="optionsStackView" destination="pjH-Kf-X1g" id="Zwh-Zx-XY5"/>
-                <outlet property="secondOption" destination="fdY-oC-qAW" id="HzI-qy-Ppm"/>
+                <outlet property="secondOption" destination="fdY-oC-qAW" id="1VR-L4-unP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -54,7 +57,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Poll" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfT-sc-3ky">
-                            <rect key="frame" x="75" y="10" width="243" height="21"/>
+                            <rect key="frame" x="145" y="10" width="103" height="21"/>
                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                             <color key="textColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -64,7 +67,6 @@
                     <constraints>
                         <constraint firstItem="TfT-sc-3ky" firstAttribute="centerX" secondItem="z7b-Sk-NQ3" secondAttribute="centerX" id="DNN-8X-lVn"/>
                         <constraint firstAttribute="trailing" secondItem="yRg-ZS-Ssa" secondAttribute="trailing" id="LRM-nO-aee"/>
-                        <constraint firstItem="TfT-sc-3ky" firstAttribute="leading" secondItem="gFQ-Ga-1yI" secondAttribute="trailing" constant="20" id="NaX-Yc-Doe"/>
                         <constraint firstItem="gFQ-Ga-1yI" firstAttribute="top" secondItem="z7b-Sk-NQ3" secondAttribute="top" id="RIe-0r-hcn"/>
                         <constraint firstItem="gFQ-Ga-1yI" firstAttribute="leading" secondItem="z7b-Sk-NQ3" secondAttribute="leading" constant="15" id="XJC-9A-myJ"/>
                         <constraint firstAttribute="bottom" secondItem="yRg-ZS-Ssa" secondAttribute="bottom" id="dmH-zB-3gI"/>
@@ -75,20 +77,21 @@
                         <constraint firstItem="TfT-sc-3ky" firstAttribute="top" secondItem="z7b-Sk-NQ3" secondAttribute="top" constant="10" id="s0S-uY-kVj"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xd-ED-zqi">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xd-ED-zqi">
                     <rect key="frame" x="0.0" y="100" width="393" height="718"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdH-0L-q1N">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="718"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-7q-cTg">
-                                    <rect key="frame" x="24" y="24" width="345" height="30"/>
+                                    <rect key="frame" x="24" y="24" width="345" height="160"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5G-Yf-SLz" customClass="GrowingTextView" customModule="Foresome">
-                                            <rect key="frame" x="16" y="0.0" width="329" height="30"/>
+                                            <rect key="frame" x="16" y="0.0" width="329" height="160"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" systemColor="labelColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
@@ -99,6 +102,9 @@
                                                     <integer key="value" value="150"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your question"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                    <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textView>
                                     </subviews>
@@ -122,25 +128,29 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pjH-Kf-X1g">
-                                    <rect key="frame" x="24" y="70" width="345" height="0.0"/>
+                                    <rect key="frame" x="24" y="200" width="345" height="0.0"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI4-Pl-Ndl">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="65"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoE-BR-AGK" customClass="GrowingTextView" customModule="Foresome" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="313" height="0.0"/>
+                                                    <rect key="frame" x="16" y="16" width="313" height="33"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
-                                                            <real key="value" value="48"/>
+                                                            <real key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
                                                             <integer key="value" value="30"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Option1"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Option 1"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                            <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
@@ -164,23 +174,27 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2Z-YJ-dum">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="65"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-oC-qAW" customClass="GrowingTextView" customModule="Foresome">
-                                                    <rect key="frame" x="16" y="16" width="313" height="0.0"/>
+                                                    <rect key="frame" x="16" y="16" width="313" height="33"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
-                                                            <real key="value" value="48"/>
+                                                            <real key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
                                                             <integer key="value" value="30"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Option2"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Option 2"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                            <color key="value" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textView>
                                             </subviews>
@@ -206,7 +220,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gTA-K1-YEo">
-                                    <rect key="frame" x="24" y="90" width="345" height="86.666666666666686"/>
+                                    <rect key="frame" x="24" y="219.99999999999997" width="345" height="86.666666666666657"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY7-wP-uSL">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="34"/>

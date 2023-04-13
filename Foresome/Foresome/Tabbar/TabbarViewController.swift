@@ -33,7 +33,7 @@ class TabbarViewController: UITabBarController {
         let friendsVC  = FriendsViewController()
         let tourVC  = TournamentViewController()
         let leadersVC  = LeadersViewController()
-        let profileVC  = ProfileViewController()
+        let profileVC  = ProfileVC()
         
         let controllers: [UIViewController] = [newsVC, friendsVC, tourVC, leadersVC, profileVC]
         self.viewControllers = controllers.map({AppNavigation(root: $0)})

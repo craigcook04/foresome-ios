@@ -9,10 +9,14 @@ import UIKit
 
 class CreatePostViewController: UIViewController, UINavigationControllerDelegate {
     
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var imageSelectButton: UIButton!
     @IBOutlet weak var selectImageCollection: UICollectionView!
     @IBOutlet weak var publishBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pollBtn: UIButton!
     
+    @IBOutlet weak var cameraBtn: UIButton!
     var presenter: CreatePostPresenterProtocol?
     var imageSelect: [UIImage?] = []
     var imagePicker = GetImageFromPicker()
@@ -56,9 +60,8 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
     func receiveResult() {
         self.imagePicker.setImagePicker(imagePickerType: .both, controller: self)
         self.imagePicker.imageCallBack = {
-           
+            
             [weak self] (result) in
-            print("search bar text ******** \(self?.imagePicker.imageCallBack )")
             DispatchQueue.main.async {
                 switch result{
                 case .success(let imageData):
@@ -75,30 +78,21 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
     }
     
     func cameraReceiveResult() {
-//        let imagePickerController = UIImagePickerController()
-//        imagePickerController.allowsEditing = false //If you want edit option set "true"
-//        imagePickerController.sourceType = .camera
-//        imagePickerController.delegate = self
-//        present(imagePickerController, animated: true, completion: nil)
+        self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
+        self.imagePicker.imageCallBack = {
+            
+            [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(let imageData):
+                    let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
+                    let image = imageData?.image ?? UIImage()
+                case .error(let message):
+                    print(message)
+                }
+            }
+        }
     }
- 
-//    func receiveResult() {
-//        let imagePickerController = UIImagePickerController()
-//        imagePickerController.allowsEditing = false //If you want edit option set "true"
-//        imagePickerController.sourceType = .photoLibrary
-//        imagePickerController.delegate = self
-//        present(imagePickerController, animated: true, completion: nil)
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        dismiss(animated: true, completion: nil)
-//    }
-    
 }
 
 extension CreatePostViewController{
@@ -147,7 +141,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.imageSelect.count
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -166,8 +160,4 @@ extension CreatePostViewController: SelectImageCollectionCellDelegate {
         self.imageSelect.remove(at: index)
         self.selectImageCollection.reloadData()
     }
-    
-
-    
-    
 }

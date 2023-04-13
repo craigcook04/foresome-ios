@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -274,7 +275,7 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By using this app you agree to the FORESOME Terms of services and Privacy policy." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO9-px-Gfz">
-                            <rect key="frame" x="24" y="501.66666666666669" width="345" height="36.666666666666686"/>
+                            <rect key="frame" x="24" y="503.66666666666669" width="345" height="36.666666666666686"/>
                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -311,7 +312,7 @@
                         <constraint firstAttribute="bottom" secondItem="xcG-sb-0q0" secondAttribute="bottom" constant="36" id="ZCm-Zz-Oh2"/>
                         <constraint firstItem="vNl-Df-5Zb" firstAttribute="top" secondItem="hu8-vo-mfS" secondAttribute="top" constant="56" id="b2M-Nv-4oX"/>
                         <constraint firstAttribute="trailing" secondItem="vNl-Df-5Zb" secondAttribute="trailing" constant="24" id="fka-uL-yFz"/>
-                        <constraint firstItem="cO9-px-Gfz" firstAttribute="top" secondItem="VwV-Ak-5IM" secondAttribute="bottom" constant="8" id="jZL-mv-JcF"/>
+                        <constraint firstItem="cO9-px-Gfz" firstAttribute="top" secondItem="VwV-Ak-5IM" secondAttribute="bottom" constant="10" id="jZL-mv-JcF"/>
                         <constraint firstItem="0Xa-34-yq3" firstAttribute="leading" secondItem="vNl-Df-5Zb" secondAttribute="leading" id="msY-Ah-yN9"/>
                         <constraint firstItem="xcG-sb-0q0" firstAttribute="trailing" secondItem="cO9-px-Gfz" secondAttribute="trailing" id="oxZ-cO-b0w"/>
                         <constraint firstItem="xcG-sb-0q0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cO9-px-Gfz" secondAttribute="bottom" constant="20" id="pb5-fv-szd"/>

@@ -6,8 +6,11 @@
 //
 
 import UIKit
+protocol NewsFeedTableCellDelegate {
+    func moreButton()
+}
 
-class NewsFeedTableCell: UITableViewCell {
+class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
@@ -17,6 +20,8 @@ class NewsFeedTableCell: UITableViewCell {
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var likeBtn: UIButton!
+    
+    var delegate: NewsFeedTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +33,18 @@ class NewsFeedTableCell: UITableViewCell {
 
     }
     func setLabelColor(){
-        postDescriptionLbl.attributedTextWithMultipleRange(str: AppStrings.description, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsRegular, 14),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsRegular, 14), highlightedWords: [AppStrings.readMore],alignment: .left)
+        postDescriptionLbl.attributedTextWithMultipleRange(str: AppStrings.description, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsRegular, 14),color2: UIColor.appColor(.blueMain), font2: UIFont(.poppinsRegular, 14), highlightedWords: [AppStrings.readMore],alignment: .left)
+       
+    }
+    @IBAction func moreAction(_ sender: UIButton) {
+        self.delegate?.moreButton()
     }
     
+    @IBAction func commentAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func shareAction(_ sender: UIButton) {
+    }
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
