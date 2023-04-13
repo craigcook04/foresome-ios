@@ -10,6 +10,7 @@ import Foundation
 protocol EditProfileViewProtocol {
     var presenter: EditProfilePresenterProtocol? {get set}
 }
+
 protocol EditProfilePresenterProtocol {
     var view: EditProfileViewProtocol? {get set}
 }

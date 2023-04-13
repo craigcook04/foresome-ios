@@ -32,5 +32,6 @@ class ProfileTableCell: UITableViewCell {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
+        
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="429" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ymr-m8-63V">
-                                <rect key="frame" x="24" y="16" width="195" height="48"/>
+                                <rect key="frame" x="24" y="16" width="213" height="48"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic" translatesAutoresizingMaskIntoConstraints="NO" id="7Gg-mv-J6e">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -43,7 +43,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzd-RX-Ijj">
-                                        <rect key="frame" x="56" y="0.0" width="139" height="48"/>
+                                        <rect key="frame" x="56" y="0.0" width="157" height="48"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Change profile picture">
@@ -99,7 +99,7 @@
             <connections>
                 <outlet property="changeProfileButton" destination="Tzd-RX-Ijj" id="4nL-YM-Ruz"/>
                 <outlet property="nextButton" destination="DHO-Kb-HeD" id="qfK-MK-sZB"/>
-                <outlet property="profilePictureDisplay" destination="7Gg-mv-J6e" id="Cae-3X-ycO"/>
+                <outlet property="userProfilePicImageView" destination="7Gg-mv-J6e" id="XmK-bp-fTg"/>
             </connections>
             <point key="canvasLocation" x="153" y="24"/>
         </tableViewCell>

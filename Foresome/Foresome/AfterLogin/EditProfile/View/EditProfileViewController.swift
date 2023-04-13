@@ -21,11 +21,12 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
     @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
     }
+    
     @IBAction func showOldPasswordAction(_ sender: UIButton) {
     }
     

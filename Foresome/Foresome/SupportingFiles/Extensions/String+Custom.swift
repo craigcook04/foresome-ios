@@ -104,9 +104,9 @@ extension String {
     
     //MARK: code added by deep base 64 string to image----
     func base64ToImage() -> UIImage? {
-        let components = self.components(separatedBy: ",")
-        let base64Str = components.last ?? ""
-        if let data: Data = Data(base64Encoded: base64Str){
+//        let components = self.components(separatedBy: ",")
+//        let base64Str = components.last ?? ""
+        if let data: Data = Data(base64Encoded: self){
             return UIImage(data: data)
         }
         return nil

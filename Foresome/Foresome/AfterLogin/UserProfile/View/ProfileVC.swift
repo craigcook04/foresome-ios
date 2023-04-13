@@ -40,10 +40,10 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(cell: ChangeProfilePictureTableCell.self, for: indexPath)
             cell.changeProfileButton.setTitle(setData[indexPath.row].title, for: .normal)
-            cell.profilePictureDisplay.image = setData[indexPath.row].icon
+            cell.setCellData()
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(cell: ProfileTableCell.self, for: indexPath)
