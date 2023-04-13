@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="708" height="207"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="6dg-rH-qsf">
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="6dg-rH-qsf">
                         <rect key="frame" x="30" y="0.0" width="648" height="176"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

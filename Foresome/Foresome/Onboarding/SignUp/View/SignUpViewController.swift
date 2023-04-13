@@ -61,6 +61,7 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
+
         if self.presenter?.validateFields(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "" , password: self.passwordField.text ?? "", confirmPassword: self.confirmPasswordField.text ?? "") == true  {
             guard let password = passwordField.text,
                   password == confirmPasswordField.text else {
@@ -70,6 +71,7 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
             }
             self.presenter?.createNewUser(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "", password: self.passwordField.text ?? "", confirmPassword: self.passwordField.text ?? "")
         } else {
+
             return
         }
     }
@@ -88,6 +90,7 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
         termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService, AppStrings.privacyPolicy], alignment: .left, isUnderLine: true)
     }
 }
+
 
 extension UITapGestureRecognizer {
     // Stored variables

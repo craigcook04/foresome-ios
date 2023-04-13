@@ -62,5 +62,9 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>No</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>allow Photo</string>
+	<key>NSCameraUsageDescription</key>
+	<string>allow camera</string>
 </dict>
 </plist>

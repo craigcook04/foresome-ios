@@ -11,7 +11,13 @@ class ForgotPresenter: ForgotPasswordPresenter {
     var view: ForgotPasswordViewProtocol?
     
     
-    
+    static func createForgotPasswordModule()->ForgotPasswordViewController{
+        let view = ForgotPasswordViewController()
+        var presenter: ForgotPasswordPresenter = ForgotPresenter()
+        presenter.view = view
+        view.presenter = presenter
+        return view
+    }
     func jsonToForgotPassword(email: String) -> JSON{
         var json = JSON()
         json["email"] = email

@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
+        
         let vc = ForgotPasswordViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

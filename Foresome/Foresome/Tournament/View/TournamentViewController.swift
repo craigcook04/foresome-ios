@@ -83,7 +83,9 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
+
         cell.setTournamentsCellData(data: listTournamentsData[indexPath.row], index: indexPath.row)
+
         return cell
     }
     
@@ -94,6 +96,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
             self.presenter?.passlistDatatoDetails(data: self.listTournamentsData[indexPath.row], tournamentsImage: image)
         }
     }
+
 //
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let sectionHeader = UIView.getFromNib(className: TournamentHeader.self)
@@ -105,6 +108,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return
 //    }
+
 }
 
 extension TournamentViewController: UIScrollViewDelegate {

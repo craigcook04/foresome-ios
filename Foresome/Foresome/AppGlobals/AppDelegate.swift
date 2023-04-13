@@ -14,13 +14,18 @@ import SquareInAppPaymentsSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+var window: UIWindow?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-         Thread.sleep(forTimeInterval: 3.0)
-        
+        //MARK: comments for testing purose---
+        Thread.sleep(forTimeInterval: 3.0)
+       
+
         // Override point for customization after application launch.
         //MARK: firebase configuration in main thread-----
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
+
         
         //         Set your Square Application ID
         //        App id is for Square Application ID----

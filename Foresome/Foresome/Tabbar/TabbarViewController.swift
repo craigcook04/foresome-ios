@@ -29,12 +29,12 @@ class TabbarViewController: UITabBarController {
     }
     
     private func setViewControllers() {
-        let newsVC = NewsViewController()
+        let newsVC = NewsFeedViewController()
         let friendsVC  = FriendsViewController()
         let tourVC  = TournamentsListPresenter.createTournamentsListModules()
         //TournamentViewController()
         let leadersVC  = LeadersViewController()
-        let profileVC  = ProfileViewController()
+        let profileVC  = ProfileVC()
         
         let controllers: [UIViewController] = [newsVC, friendsVC, tourVC, leadersVC, profileVC]
         self.viewControllers = controllers.map({AppNavigation(root: $0)})
