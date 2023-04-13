@@ -91,9 +91,6 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         case .editProfile :
             let vc = EditProfilePresenter.createEditProfileModule()
             self.pushViewController(vc, true)
-        case .notificationSettings :
-            let cell = tableView.dequeueReusableCell(cell: ProfileTableCell.self, for: indexPath)
-            cell.toggleButton.isUserInteractionEnabled = true
         default:
             break
         }

@@ -17,20 +17,24 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var showNewPasswordBtn: UIButton!
     @IBOutlet weak var confirmNewPasswordField: UITextField!
+    
     var presenter: EditProfilePresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
     @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
     }
+    
     @IBAction func showOldPasswordAction(_ sender: UIButton) {
     }
     
     @IBAction func showNewPasswordAction(_ sender: UIButton) {
     }
+    
 }
 extension EditProfileViewController: EditProfileViewProtocol {
     
