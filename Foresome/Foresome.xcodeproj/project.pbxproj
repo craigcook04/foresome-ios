@@ -146,6 +146,7 @@
 		7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C329CE206100D8A768 /* FTDelegate.swift */; };
 		7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */; };
 		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
+		7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */; };
 		7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */; };
 		7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */; };
 		7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */; };
@@ -323,6 +324,7 @@
 		7E12C6C329CE206100D8A768 /* FTDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTDelegate.swift; sourceTree = "<group>"; };
 		7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeader.swift; sourceTree = "<group>"; };
 		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
+		7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableController.swift; sourceTree = "<group>"; };
 		7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListProtocol.swift; sourceTree = "<group>"; };
 		7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListPresenter.swift; sourceTree = "<group>"; };
 		7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquarePaymentsApiFile.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 			children = (
 				4B708B8C29D6E6F200C57A16 /* customViews */,
 				4B7597FC29C3352700A8E1B6 /* Constants.swift */,
+				7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */,
 				4B7597FD29C3352700A8E1B6 /* Singleton.swift */,
 				4B7597FE29C3352700A8E1B6 /* JsonAnimation */,
 				4B75980029C3352700A8E1B6 /* CountryCodes.json */,
@@ -1443,6 +1446,7 @@
 				7EA8221B29D41DD800755016 /* TournamentViewController.swift in Sources */,
 				4B75986229C3352800A8E1B6 /* CustomProgressBar.swift in Sources */,
 				7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */,
+				7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */,
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
 				4BCEC4B229D6F978003A7BB6 /* ForgotPresenter.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,

@@ -52,11 +52,11 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
         print("i--\(tournamentData?.price)")
         print("j---\(tournamentData?.sale_price)")
         print("passed all data........")
-        print("avalibility in int value ----\(tournamentData?.availability?.toInt ?? 0)")
+        print("avalibility in int value ----\(tournamentData?.availability ?? 0)")
     }
     
     func setTournamentsDetailsData() {
-        if (tournamentData?.availability?.toInt ?? 0) < 1 {
+        if (tournamentData?.availability ?? 0) < 1 {
             self.participantNumberLabel.text = "\(0)"
             self.minusBtn.isUserInteractionEnabled = false
             self.plusBtn.isUserInteractionEnabled = false
@@ -78,14 +78,14 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     }
     
     @IBAction func variationAction(_ sender: Any) {
-        let vc = VariationViewController()
+        let vc = VariationViewController(isFromProfileVc: false)
         vc.delegate = self
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, true)
     }
     
     @IBAction func attendAction(_ sender: UIButton) {
-        if (tournamentData?.availability?.toInt ?? 0) > 0 {
+        if (tournamentData?.availability ?? 0) > 0 {
             let variationType = self.selectLabel.text
             let quantity = Int(participantNumberLabel.text ?? "")
             let orderSummryVc = OrderSummryPresenter.createOrderSummryModule(tournamenDetailstData: tournamentData ?? TournamentModel(), variations: variationType, quantity: quantity)
@@ -117,7 +117,7 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     
     @IBAction func plusAction(_ sender: UIButton) {
         guard let presentValue = Int(participantNumberLabel.text ?? "") else { return }
-        if presentValue == tournamentData?.availability?.toInt ?? 0 {
+        if presentValue == tournamentData?.availability ?? 0 {
             return
         }
         let newValue = presentValue + 1

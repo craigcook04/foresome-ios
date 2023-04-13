@@ -22,6 +22,7 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     var userSkillsData = ["Highly skilled", "Medium skilled", "Lower skilled"]
     var presenter: UserSkillPresenterProtocol?
     var isAnySkillSelected: Bool = false
+    var selectedSkill: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +33,16 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        //        let vc = TournamentViewController()
-        //        self.navigationController?.pushViewController(vc, animated: true)
         //MARK: code added for tabbar ----
         if isAnySkillSelected == false {
             Singleton.shared.showMessage(message: "Please select any one skill Or skip.", isError: .error)
             return
         } else {
-            print("need to implemets ")
+            self.presenter?.updateUserSkillToFirestore(skillType: self.selectedSkill ?? "")
         }
     }
     
     @IBAction func skipForNowAction(_ sender: UIButton) {
-       print("skip button action.")
         Singleton.shared.setHomeScreenView()
     }
     
@@ -59,7 +57,7 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
         lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
-        self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[0])")
+        self.selectedSkill = "\(userSkillsData[0])"
     }
     
     @IBAction func mediumSkilledAction(_ sender: UIButton) {
@@ -73,7 +71,7 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
         lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
-        self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[1])")
+        self.selectedSkill = "\(userSkillsData[1])"
     }
     
     @IBAction func lowSkilledActiion(_ sender: UIButton) {
@@ -87,6 +85,6 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
         mediumSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
         handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
-        self.presenter?.updateUserSkillToFirestore(skillType: "\(userSkillsData[2])")
+        self.selectedSkill = "\(userSkillsData[2])"
     }
 }

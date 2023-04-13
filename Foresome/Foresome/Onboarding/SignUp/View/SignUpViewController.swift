@@ -16,7 +16,7 @@ import FirebaseCore
 import FirebaseFirestore
 import Firebase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, SignUpViewProtocol {
     
     @IBOutlet weak var termsAndPrivacyPolicy: UILabel!
     @IBOutlet weak var nameField: UITextField!
@@ -25,17 +25,39 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet var confirmPasswordShowBtn: UIButton!
     @IBOutlet var passwordShowBtn: UIButton!
-
+    
     var presenter: SignUpViewPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTapGuesture()
+        passwordField.isSecureTextEntry = true
+        confirmPasswordField.isSecureTextEntry = true
         self.setLabelColor()
     }
     
+    func setTapGuesture() {
+        let tapgesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel(_ :)))
+        tapgesture.numberOfTapsRequired = 1
+        termsAndPrivacyPolicy.isUserInteractionEnabled = true
+        termsAndPrivacyPolicy.addGestureRecognizer(tapgesture)
+    }
+    
+    @objc func tappedOnLabel(_ gesture: UITapGestureRecognizer) {
+        guard let text = self.termsAndPrivacyPolicy.text else { return }
+        let termOfServices = (text as NSString).range(of: AppStrings.termsOfService)
+        let privacyPolicy = (text as NSString).range(of: AppStrings.privacyPolicy)
+        if gesture.didTapAttributedTextInLabel(label: self.termsAndPrivacyPolicy, inRange: termOfServices) {
+            guard let url = URL(string: "https://www.google.com") else { return }
+            UIApplication.shared.open(url)
+        } else if gesture.didTapAttributedTextInLabel(label: self.termsAndPrivacyPolicy, inRange: privacyPolicy) {
+            guard let url = URL(string: "https://www.google.com") else { return }
+            UIApplication.shared.open(url)
+        }
+    }
+    
     @IBAction func loginAction(_ sender: UIButton) {
-        let vc = LoginViewController()
-        self.pushViewController(vc, true)
+        self.popVC()
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
@@ -63,11 +85,43 @@ class SignUpViewController: UIViewController {
     }
     
     func setLabelColor() {
-        termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService,AppStrings.privacyPolicy],alignment: .left, isUnderLine: true)
+        termsAndPrivacyPolicy.attributedTextWithMultipleRange(str: AppStrings.termAndPrivacy, color1: UIColor.appColor(.blackMain), font1: UIFont(.poppinsMedium, 13),color2: UIColor(named: "Blue_main"), font2: UIFont(.poppinsMedium, 13), highlightedWords: [AppStrings.termsOfService, AppStrings.privacyPolicy], alignment: .left, isUnderLine: true)
     }
 }
 
-extension SignUpViewController: SignUpViewProtocol {
-
+extension UITapGestureRecognizer {
+    // Stored variables
+    typealias MethodHandler = () -> Void
+    static var stringRange: String?
+    static var function: MethodHandler?
+    
+    func didTapAttributedTextInLabel(label: UILabel, inRange targetRange: NSRange) -> Bool {
+        // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer(size: CGSize.zero)
+        let textStorage = NSTextStorage(attributedString: label.attributedText!)
+        
+        // Configure layoutManager and textStorage
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // Configure textContainer
+        textContainer.lineFragmentPadding = 0.0
+        textContainer.lineBreakMode = label.lineBreakMode
+        textContainer.maximumNumberOfLines = label.numberOfLines
+        let labelSize = label.bounds.size
+        textContainer.size = labelSize
+        
+        // Find the tapped character location and compare it to the specified range
+        let locationOfTouchInLabel = self.location(in: label)
+        let textBoundingBox = layoutManager.usedRect(for: textContainer)
+        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
+                                          y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y);
+        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x,
+                                                     y: locationOfTouchInLabel.y - textContainerOffset.y);
+        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return NSLocationInRange(indexOfCharacter, targetRange)
+    }
 }
+
 

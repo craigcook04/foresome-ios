@@ -30,16 +30,51 @@ class SignUpUserData {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+class ReturnUserData : Codable {
+//    var json: JSON!
+    var email: String?
+    var name: String?
+    var user_location: String?
+    var uid: String?
+    var user_skill_level: String?
+    var createdDate: String?
+    var user_profile_pic: String?
+}
+//
+//extension ReturnUserData : Codable {
+//    convenience init(json: [String: Any]) {
+//        self.init()
+//        self.json = json
+//
+//        if let email = json["email"] as? String {
+//            self.email = email
+//        }
+//
+//        if let name = json["name"] as? String {
+//            self.name = name
+//        }
+//
+//        if let user_location = json["user_location"] as? String {
+//            self.user_location = user_location
+//        }
+//
+//        if let uid = json["uid"] as? String {
+//            self.uid = uid
+//        }
+//
+//        if let user_skill_level = json["user_skill_level"] as? String {
+//            self.user_skill_level = user_skill_level
+//        }
+//
+//        if let createdDate = json["createdDate"] as? String {
+//            self.createdDate = createdDate
+//        }
+//
+//        if let user_profile_pic = json["user_profile_pic"] as? String {
+//            self.user_profile_pic = user_profile_pic
+//        }
+//
+//    }
+//}
+//
+//

@@ -15,7 +15,7 @@ class TournamentModel : NSObject {
     var date: String? = ""
     var title: String? = ""
     var json: JSON!
-    var availability: String?  = ""
+    var availability: Int?  = 0
     var address: String? = ""
     var tournament_id: String?
     var time: [String]?
@@ -43,7 +43,7 @@ extension TournamentModel {
         if let title = json["title"] as? String {
             self.title = title
         }
-        if let availability = json["availability"] as? String {
+        if let availability = json["availability"] as? Int {
             self.availability = availability
         }
         if let address = json["address"] as? String {

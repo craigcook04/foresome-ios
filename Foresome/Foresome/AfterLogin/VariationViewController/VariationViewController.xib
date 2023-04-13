@@ -19,7 +19,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VariationViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="firstButtonImageView" destination="wwI-Sd-MkO" id="TLg-EJ-ywa"/>
+                <outlet property="firstButtonTitle" destination="DyD-zM-Z6T" id="UhK-w3-u93"/>
                 <outlet property="foresomeBtn" destination="DQ0-A9-8QI" id="xFd-0Y-kA1"/>
+                <outlet property="secondButtonTitle" destination="0ZO-I5-PZJ" id="Y2t-oj-476"/>
+                <outlet property="secondsButtonImageView" destination="nQd-EG-kl8" id="FvB-Wv-qy1"/>
                 <outlet property="singlePlayerBtn" destination="8Sa-mJ-gIl" id="SkH-Yb-dNu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

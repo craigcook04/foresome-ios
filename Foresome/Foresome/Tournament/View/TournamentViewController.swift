@@ -22,17 +22,31 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
     
     var listTournamentsData =  [TournamentModel]()
     var presenter: TournamentsListPresenterProtocol?
+    var header:TournamentHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // self.tournamentTableView.isScrollEnabled = false
         self.tabBarController?.tabBar.isHidden = false
         getTournmentsData()
+        setTableHeader()
         setTableData()
-        let headerView = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
-        headerView.imageView.image = UIImage(named: "minimalism")
-        self.tournamentTableView.tableHeaderView = headerView
+       // self.header = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
+        //self.header?.imageView.image = UIImage(named: "img_1")
+//        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+
+        //self.header?.setHeaderData()
+        
+        //self.tournamentTableView.tableHeaderView = self.header
     }
     
+    func setTableHeader() {
+        guard let tableHeader = UINib(nibName: "TournamentHeader", bundle: nil).instantiate(withOwner: self, options: nil).first as? TournamentHeader else { return }
+        tableHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: 136)
+        tableHeader.setHeaderData()
+        self.tournamentTableView.tableHeader(with: tableHeader)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
@@ -42,6 +56,7 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         self.tournamentTableView.delegate = self
         self.tournamentTableView.dataSource = self
         tournamentTableView.register(cellClass: TournamentTableCell.self)
+        setTableHeader()
     }
     
     //MARK: code for get tournamnets dtaa from firebase----------
@@ -79,17 +94,24 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
             self.presenter?.passlistDatatoDetails(data: self.listTournamentsData[indexPath.row], tournamentsImage: image)
         }
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = UINib(nibName: "TournamentHeader",bundle: nil).instantiateView as! TournamentHeader
-        sectionHeader.layoutIfNeeded()
-        return sectionHeader
-    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let sectionHeader = UIView.getFromNib(className: TournamentHeader.self)
+//        sectionHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: 136)
+//        sectionHeader.layoutIfNeeded()
+//        return sectionHeader
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return
+//    }
 }
 
 extension TournamentViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.tournamentTableView.tableHeaderView as! TournamentHeader
-        headerView.scrollViewDidScroll(scrollView: scrollView)
+//        let headerView = self.tournamentTableView.tableHeaderView as! TournamentHeader
+        self.header?.scrollViewDidScroll(scrollView: scrollView)
+        
+        
     }
 }

@@ -57,13 +57,19 @@ class LoginPresenter: LoginPresenterProtocol {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         Auth.auth().signIn(withEmail: "\(email)", password: "\(password)") { [weak self] authResult, error in
             ActivityIndicator.sharedInstance.hideActivityIndicator()
-            guard let strongSelf = self else { return }
             print("login successfully")
-            print("\(authResult)")
-            print("\(authResult?.user)")
-            print("\(authResult?.user.uid)")
-            print("\(authResult?.user.displayName)")
+            //MARK: code for get logged in user informations ----
             if error == nil {
+                let db = Firestore.firestore()
+                let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
+                let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
+                db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
+                    print("fetched current user data----\(snapData?.data()?["name"])")
+                    if let data = snapData?.data() {
+                        let userdata = ReturnUserData()
+                        UserDefaults.standard.set(data, forKey: "myUserData")
+                    }
+                }
                 UserDefaultsCustom.setValue(value: (authResult?.user.uid as? NSString) ?? "", forKey: "user_uid")
                 Singleton.shared.setHomeScreenView()
             } else {

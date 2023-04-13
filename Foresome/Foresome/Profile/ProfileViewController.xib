@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,20 +40,68 @@
                         <action selector="logoutAction:" destination="-1" eventType="touchUpInside" id="BYt-ZY-vr6"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-5J-f2G">
+                    <rect key="frame" x="24" y="201" width="342" height="50"/>
+                    <color key="backgroundColor" name="multicolor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ZID-5h-wpf"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Update email"/>
+                    <connections>
+                        <action selector="updateEmailAction:" destination="-1" eventType="touchUpInside" id="psR-8x-0m1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5A-UR-hPH">
+                    <rect key="frame" x="24" y="299" width="342" height="50"/>
+                    <color key="backgroundColor" red="0.32549019610000002" green="0.91764705879999997" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="R69-3q-xVe"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Update password"/>
+                    <connections>
+                        <action selector="updatePasswordAction:" destination="-1" eventType="touchUpInside" id="o0E-ZS-438"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV3-Qj-4F1">
+                    <rect key="frame" x="24" y="610" width="342" height="50"/>
+                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ZCf-5J-1Q5"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Forgot pass"/>
+                    <connections>
+                        <action selector="forgotPassAction:" destination="-1" eventType="touchUpInside" id="JZf-mK-Ste"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="FyC-aK-SXa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="56" id="61W-00-CRd"/>
+                <constraint firstItem="WoL-5J-f2G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="CuJ-ZY-feX"/>
                 <constraint firstItem="9hc-aK-Top" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HUy-84-I2P"/>
+                <constraint firstItem="x5A-UR-hPH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="LEK-Hn-s2T"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EV3-Qj-4F1" secondAttribute="bottom" constant="150" id="QAB-eA-3gh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EV3-Qj-4F1" secondAttribute="trailing" constant="24" id="TP2-yC-Gcg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="x5A-UR-hPH" secondAttribute="trailing" constant="24" id="VX3-of-F2k"/>
+                <constraint firstItem="x5A-UR-hPH" firstAttribute="top" secondItem="WoL-5J-f2G" secondAttribute="bottom" constant="48" id="WVi-RF-bWX"/>
                 <constraint firstItem="9hc-aK-Top" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="au4-kc-kwy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WoL-5J-f2G" secondAttribute="trailing" constant="24" id="eBy-gU-yu0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FyC-aK-SXa" secondAttribute="trailing" constant="24" id="jRY-2J-oTS"/>
+                <constraint firstItem="EV3-Qj-4F1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="kBb-Pj-dM5"/>
+                <constraint firstItem="WoL-5J-f2G" firstAttribute="top" secondItem="FyC-aK-SXa" secondAttribute="bottom" constant="48" id="lEJ-gX-TI5"/>
                 <constraint firstItem="FyC-aK-SXa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="ygn-mF-RG1"/>
             </constraints>
             <point key="canvasLocation" x="-38" y="0.0"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="multicolor">
+            <color red="0.55000001192092896" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

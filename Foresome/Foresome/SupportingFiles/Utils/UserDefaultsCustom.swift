@@ -48,30 +48,27 @@ struct UserDefaultsCustom {
         UserDefaults.standard.setValue(value, forKey: forKey)
     }
     
-//    static func saveUserData(userData:UserData) {
-//        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData), forKey: UserDefaultsCustom.userData)
-//    }
+    static func saveUserData(userData:ReturnUserData) {
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(userData), forKey: UserDefaultsCustom.userData)
+    }
    
-    
-
-//    static func getUserData() -> UserData? {
-//        if let data = UserDefaults.standard.value(forKey:UserDefaultsCustom.userData) as? Data {
-//            let userData = try? PropertyListDecoder().decode(UserData.self, from: data)
-//            return userData
-//        }
-//        if let data = UserDefaults.standard.value(forKey:UserDefaultsCustom.userData) as? Data {
-//            do {
-//                let decoder = JSONDecoder()
-//                let userData = try decoder.decode(UserData.self, from: data)
-//                return userData
-//            } catch let err {
-//                print(err)
-//                return nil
-//            }
-//        }
-//        return nil
-//    }
-  
+    static func getUserData() -> ReturnUserData? {
+        if let data = UserDefaults.standard.value(forKey:UserDefaultsCustom.userData) as? Data {
+            let userData = try? PropertyListDecoder().decode(ReturnUserData.self, from: data)
+            return userData
+        }
+        if let data = UserDefaults.standard.value(forKey:UserDefaultsCustom.userData) as? Data {
+            do {
+                let decoder = JSONDecoder()
+                let userData = try decoder.decode(ReturnUserData.self, from: data)
+                return userData
+            } catch let err {
+                print(err)
+                return nil
+            }
+        }
+        return nil
+    }
 }
    
 extension UserDefaults {
