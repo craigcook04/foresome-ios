@@ -37,6 +37,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func backAction(_ sender: UIButton) {
+    
         self.popVC()
     }
     

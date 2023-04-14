@@ -15,6 +15,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var selectedOption: Int?
     var imagePicker = GetImageFromPicker()
     var imageSelect: [UIImage?] = []
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,16 +69,12 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         let sectionHeader = UIView.getFromNib(className: NewsHeader.self)
         return sectionHeader
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 200
-//    }
 }
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
   
     func createPost() {
         let vc = CreatePostPresenter.createPostModule()
-        self.tabBarController?.tabBar.isHidden = true
+        vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
     func cameraBtnAction() {
@@ -116,6 +113,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
     
     func pollBtnAction() {
         let vc = CreatePollViewController()
+        vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -133,16 +131,13 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         
         let alert = UIAlertController(title: "More", message: "Please Select an Option", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Report post", style: .default , handler:{ (UIAlertAction)in
-            print("User click Approve button")
         }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-            print("User click Delete button")
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
-            print("User click Dismiss button")
         }))
         self.present(alert, animated: true, completion: {
-            print("completion block")
+            
         })
     }
 }
@@ -150,16 +145,13 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
     func PollMoreButton() {
         let alert = UIAlertController(title: "More", message: "Please Select an Option", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Report post", style: .default , handler:{ (UIAlertAction)in
-            print("User click Approve button")
         }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-            print("User click Delete button")
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
-            print("User click Dismiss button")
         }))
         self.present(alert, animated: true, completion: {
-            print("completion block")
+            
         })
     }
 }
