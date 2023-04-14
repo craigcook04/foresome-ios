@@ -23,7 +23,6 @@ class ChangeProfilePictureTableCell: UITableViewCell {
         if let data = strings {
             print("bse 64 string---\(data["user_profile_pic"])")
             print("fetched user profile image ---\(String(describing: (data["user_profile_pic"] as? String ?? "").base64ToImage()))")
-            
             if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
                 userProfilePicImageView.image = image
             }

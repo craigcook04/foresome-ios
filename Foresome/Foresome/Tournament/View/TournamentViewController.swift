@@ -36,7 +36,6 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
 //        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
 
         //self.header?.setHeaderData()
-        
         //self.tournamentTableView.tableHeaderView = self.header
     }
     
@@ -83,9 +82,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
-
         cell.setTournamentsCellData(data: listTournamentsData[indexPath.row], index: indexPath.row)
-
         return cell
     }
     

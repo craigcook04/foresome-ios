@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -22,6 +22,20 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUserProfileData()
+    }
+    
+    func setUserProfileData() {
+        OldPasswordField.isSecureTextEntry = true
+        newPasswordField.isSecureTextEntry = true
+        confirmNewPasswordField.isSecureTextEntry = true
+        nameField.isUserInteractionEnabled = false
+        emailField.isUserInteractionEnabled = false
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        if let data = strings {
+            self.nameField.text = data["name"] as? String ?? ""
+            self.emailField.text = data["email"] as? String ?? ""
+        }
     }
     
     @IBAction func backAction(_ sender: UIButton) {
@@ -29,12 +43,21 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func showOldPasswordAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected == true {
+            OldPasswordField.isSecureTextEntry = false
+        } else {
+            OldPasswordField.isSecureTextEntry = true
+        }
     }
     
     @IBAction func showNewPasswordAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected == true {
+            newPasswordField.isSecureTextEntry = false
+        } else {
+            newPasswordField.isSecureTextEntry = true
+        }
     }
-    
 }
-extension EditProfileViewController: EditProfileViewProtocol {
-    
-}
+

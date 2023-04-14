@@ -25,6 +25,7 @@
                 <outlet property="secondButtonTitle" destination="0ZO-I5-PZJ" id="Y2t-oj-476"/>
                 <outlet property="secondsButtonImageView" destination="nQd-EG-kl8" id="FvB-Wv-qy1"/>
                 <outlet property="singlePlayerBtn" destination="8Sa-mJ-gIl" id="SkH-Yb-dNu"/>
+                <outlet property="variationTitle" destination="IBS-OW-9xG" id="Btr-8Q-RmB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

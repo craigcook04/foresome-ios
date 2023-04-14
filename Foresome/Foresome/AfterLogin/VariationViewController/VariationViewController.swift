@@ -14,14 +14,15 @@ class VariationViewController: PresentableController {
     
     @IBOutlet weak var foresomeBtn: UIButton!
     @IBOutlet weak var singlePlayerBtn: UIButton!
-    
     @IBOutlet weak var firstButtonImageView: UIImageView!
     @IBOutlet weak var firstButtonTitle: UILabel!
     @IBOutlet weak var secondsButtonImageView: UIImageView!
     @IBOutlet weak var secondButtonTitle: UILabel!
+    @IBOutlet weak var variationTitle: UILabel!
     
     var delegate: VariationViewControllerDelegate?
     var isFromProfile: Bool?
+    var isEditProfile: Bool = false
     
     init (isFromProfileVc: Bool) {
         self.isFromProfile = isFromProfileVc
@@ -42,6 +43,11 @@ class VariationViewController: PresentableController {
         isFromProfile == true ? (self.firstButtonTitle.text = "Camera") : (self.firstButtonTitle.text = "Single Player")
         isFromProfile == true ? (self.secondsButtonImageView.image = UIImage(named: "ic_gallery")) : (self.firstButtonImageView.image = UIImage(named: "ic_foursome"))
         isFromProfile == true ? (self.secondButtonTitle.text = "Phone gallery") : (self.secondButtonTitle.text = "Foursome")
+        if isFromProfile == true {
+            isEditProfile == true ? (self.variationTitle.text = "Edit profile picture") : (self.variationTitle.text = "Add profile picture")
+        } else {
+            variationTitle.text = "Variation"
+        }
     }
     
     @IBAction func dismissAction(_ sender: Any) {

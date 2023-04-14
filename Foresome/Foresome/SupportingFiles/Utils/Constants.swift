@@ -15,9 +15,7 @@ struct FreshChatCredential{
     static let app_Id = "98c44002-62bc-4cef-90e8-21aa2d6968e8"
     static let app_key = "1a8f35bf-35c9-40b0-98a6-150e3338d04d"
     static let domain = "msdk.in.freshchat.com"
-    
 }
-
 
 struct STORYBOARD_ID {
     static let loginNavigation = "LoginNavigation"
@@ -83,7 +81,7 @@ struct cellIdentifier {
     static let awardsScoreCardTableViewCell = "AwardsScoreCardTableViewCell"
     static let awardGainedTableViewCell = "AwardGainedTableViewCell"
     static let awardsEarnedEmptyStateTableCell = "AwardsEarnedEmptyStateTableCell"
-
+    
     static let challengeDegtailAwardsColectionCell = "ChallengeDegtailAwardsColectionCell"
     static let challengeDayNameSummaryTableCell = "ChallengeDayNameSummaryTableCell"
     static let verifyAccountStepsTitleCell = "VerifyAccountStepsTitleCell"
@@ -91,17 +89,10 @@ struct cellIdentifier {
     
     static let challengesEmptyViewCell = "ChallengesEmptyViewCell"
     
-    
-    
-
     static let publicProfileInfoTableCell = "PublicProfileInfoTableCell"
     static let publicProfileChallengeOverviewTableCell = "PublicProfileChallengeOverviewTableCell"
     static let publicProfileAwardsTableCell = "PublicProfileAwardsTableCell"
     static let whatsNewTableCell = "WhatsNewTableCell"
-    
-   
-
-    
 }
 
 

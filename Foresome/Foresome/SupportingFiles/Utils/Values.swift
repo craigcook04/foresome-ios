@@ -70,7 +70,6 @@ struct Messages {
     static let enterPhone = "Enter your phone number"
     static let changePasswrodDesc = "Please enter the new password and confirm new password"
     
-    
     static let mediaAddedSuccessfully = "Media added successfully"
     static let documentAddedSuccessfully = "Document added successfully"
     static let areYouSureYouWantToDeleteThisGroup = "Are you sure,\nYou want to delete this group?"
@@ -86,7 +85,6 @@ struct Messages {
     static let eventMissedMesage = "Oops, You missed this Event!"
     static let pleaseAddYourWorkProfileBeforeSharing = "Please add your work profile before share."
     static let noDataFound = "No data found!"
-    
 }
 
 struct ErrorMessage {
