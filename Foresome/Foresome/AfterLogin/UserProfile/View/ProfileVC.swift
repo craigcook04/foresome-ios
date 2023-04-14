@@ -20,7 +20,6 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var profileTableView: UITableView!
     
     var setData: [SettingsRowDataModel] = Profile.array
-    var button: IndexPath?
     var presenter: UserProfilePresenterProtocol?
     var isSelected: Bool = false
     
@@ -76,33 +75,32 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(cell: ProfileTableCell.self, for: indexPath)
             cell.title.text = setData[indexPath.row].title
             cell.titleIcon.image = setData[indexPath.row].icon
-            self.button = indexPath
-            switch indexPath.row {
-            case 1 :
+            switch self.setData[indexPath.row].type {
+            case .editProfile :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = false
                 cell.versionLabel.isHidden = true
-            case 2:
+            case .manageSkillLevel :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = false
                 cell.versionLabel.isHidden = true
-            case 3:
+            case .notificationSettings:
                 cell.toggleButton.isHidden = false
                 cell.nextButton.isHidden = true
                 cell.versionLabel.isHidden = true
-            case 4:
+            case .termsOfServices :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = false
                 cell.versionLabel.isHidden = true
-            case 5:
+            case .privacyPolicy :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = false
                 cell.versionLabel.isHidden = true
-            case 6:
+            case .aboutApp :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = true
                 cell.versionLabel.isHidden = false
-            case 7:
+            case .logout :
                 cell.title.textColor = UIColor.appColor(.redFont)
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = true
