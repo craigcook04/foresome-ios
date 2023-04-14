@@ -64,7 +64,7 @@ class LoginPresenter: LoginPresenterProtocol {
                 let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
                 let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
                 db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
-                    print("fetched current user data----\(snapData?.data()?["name"])")
+                    print("fetched current user data----\(snapData?.data())")
                     if let data = snapData?.data() {
                         let userdata = ReturnUserData()
                         UserDefaults.standard.set(data, forKey: "myUserData")

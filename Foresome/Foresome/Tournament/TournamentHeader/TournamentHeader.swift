@@ -22,6 +22,11 @@ class TournamentHeader: UIView {
     
     var nibname = "TournamentHeader"
     
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         //self.commonInit(frame: frame)
@@ -76,6 +81,7 @@ class TournamentHeader: UIView {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("scroll view scrolling called.")
 //        self.contentViewHeight.constant = scrollView.contentInset.top
 ////        self.superview?.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: scrollView.contentInset.top)
 //        let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)

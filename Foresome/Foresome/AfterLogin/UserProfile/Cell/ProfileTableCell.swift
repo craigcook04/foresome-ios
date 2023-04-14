@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class ProfileTableCell: UITableViewCell {
     
-   
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var toggleButton: UIButton!
@@ -18,20 +26,17 @@ class ProfileTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-     
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-    
     @IBAction func toggleAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-       
+        print("sender is selected--\(sender.isSelected)")
+        let db = Firestore.firestore()
+        let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+        db.collection("users").document(documentsId).setData(["notification_settings" : "\(sender.isSelected)"], merge: true)
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        
+        print("next button called")
     }
 }

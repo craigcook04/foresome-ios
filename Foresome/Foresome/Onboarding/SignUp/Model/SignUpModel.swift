@@ -39,6 +39,7 @@ class ReturnUserData : Codable {
     var user_skill_level: String?
     var createdDate: String?
     var user_profile_pic: String?
+    var bio: String?
 }
 //
 //extension ReturnUserData : Codable {

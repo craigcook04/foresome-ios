@@ -18,18 +18,32 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     @IBOutlet weak var lowSkilledView: UIView!
     @IBOutlet weak var lowerSkilledLbl: UILabel!
     @IBOutlet weak var handicapThreeLbl: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var skipNowButton: UIButton!
     
     var userSkillsData = ["Highly skilled", "Medium skilled", "Lower skilled"]
     var presenter: UserSkillPresenterProtocol?
     var isAnySkillSelected: Bool = false
     var selectedSkill: String?
+    var isFromEditProfile: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBottomButton()
     }
     
     @IBAction func backAction(_ sender: UIButton) {
         self.popVC()
+    }
+    
+    func setBottomButton() {
+        if isFromEditProfile == true {
+            self.skipNowButton.isHidden = true
+            self.nextButton.setTitle("Save", for: .normal)
+        } else {
+            self.skipNowButton.isHidden = false
+            self.nextButton.setTitle("Next", for: .normal)
+        }
     }
     
     @IBAction func nextAction(_ sender: UIButton) {

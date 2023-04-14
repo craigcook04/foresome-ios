@@ -53,6 +53,7 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
         //profileImage.image  = tempImage
         print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
         //pickedProfileImage = tempImage.convertImageToBase64String()
+        presenter?.updateUserProfile(profilePicName: tempImage.convertImageToBase64String())
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -124,10 +125,21 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             self.present(vc, true)
         case .editProfile:
             let vc = EditProfilePresenter.createEditProfileModule()
+            vc.hidesBottomBarWhenPushed = true
             self.pushViewController(vc, true)
         case .manageSkillLevel:
             let skillVc = UserSkillPresenter.createUserSkillModule()
+            skillVc.hidesBottomBarWhenPushed = true
+            skillVc.isFromEditProfile = true
             self.pushViewController(skillVc, true)
+            break
+        case .notificationSettings:
+            let cell = tableView.dequeue(cellClass: ProfileTableCell.self)
+           if  cell?.toggleButton.isSelected == true {
+                print("selected done")
+            } else {
+                print("unselected done")
+            }
             break
         case .termsOfServices:
             guard let url = URL(string: "https://www.google.com") else { return }

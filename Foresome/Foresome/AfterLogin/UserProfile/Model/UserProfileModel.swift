@@ -28,7 +28,6 @@ class SettingsRowDataModel: NSObject {
     var isSelected:Bool = false
     var type:SettingRow?
     
-    
     public init(title:String?,rightIcon:UIImage?,isSelected:Bool = false,unselectedIcon:UIImage? = nil, settingRow:SettingRow?, rightArrow: UIImage?, version: String?) {
         self.title = title
         self.icon = rightIcon
@@ -39,6 +38,7 @@ class SettingsRowDataModel: NSObject {
 }
 
 class Profile {
+    static var appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     static var array: [SettingsRowDataModel] = [
         SettingsRowDataModel.init(title: AppStrings.changeProfilePicture, rightIcon: UIImage(named: "pic"), settingRow: .changeProfilePicture, rightArrow: UIImage(named: "ic_next_arrow"), version: nil),
         SettingsRowDataModel.init(title: AppStrings.editProfile, rightIcon: UIImage(named: "ic_edit_profile"), settingRow: .editProfile, rightArrow: UIImage(named: "ic_next_arrow"), version: nil),
@@ -46,7 +46,7 @@ class Profile {
         SettingsRowDataModel.init(title: AppStrings.notificationSetting, rightIcon: UIImage(named: "ic_notification_settings"), unselectedIcon: UIImage(named: "toggle_off_ic"), settingRow: .notificationSettings, rightArrow: UIImage(named: "switch_on"), version: nil),
         SettingsRowDataModel.init(title: AppStrings.termsOfServices, rightIcon: UIImage(named: "ic_terms_of_services"), settingRow: .termsOfServices, rightArrow: UIImage(named: "ic_next_arrow"), version: nil),
         SettingsRowDataModel.init(title: AppStrings.privacyPolicy, rightIcon: UIImage(named: "ic_privacy_policy"), settingRow: .privacyPolicy, rightArrow: UIImage(named: "ic_next_arrow"), version: nil),
-        SettingsRowDataModel.init(title: AppStrings.aboutApp, rightIcon: UIImage(named: "ic_info"), settingRow: .aboutApp, rightArrow: nil, version: "5.2.1.155"),
+        SettingsRowDataModel.init(title: AppStrings.aboutApp, rightIcon: UIImage(named: "ic_info"), settingRow: .aboutApp, rightArrow: nil, version: "\(appVersion ?? "")"),
         SettingsRowDataModel.init(title: AppStrings.logout, rightIcon: UIImage(named: "ic_logout"), settingRow: .logout, rightArrow: nil, version: nil),
     ]
 }

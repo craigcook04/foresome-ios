@@ -13,4 +13,5 @@ protocol UserProfileViewProtocol {
 
 protocol UserProfilePresenterProtocol {
     var view: UserProfileViewProtocol? {get set}
+    func updateUserProfile(profilePicName: String)
 }

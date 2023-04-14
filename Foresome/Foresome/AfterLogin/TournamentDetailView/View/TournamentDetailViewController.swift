@@ -87,6 +87,10 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     @IBAction func attendAction(_ sender: UIButton) {
         if (tournamentData?.availability ?? 0) > 0 {
             let variationType = self.selectLabel.text
+            if variationType == "Select one" {
+                Singleton.shared.showMessage(message: "Please select atleast one variaton.", isError: .error)
+                return
+            }
             let quantity = Int(participantNumberLabel.text ?? "")
             let orderSummryVc = OrderSummryPresenter.createOrderSummryModule(tournamenDetailstData: tournamentData ?? TournamentModel(), variations: variationType, quantity: quantity)
             orderSummryVc.hidesBottomBarWhenPushed = true
