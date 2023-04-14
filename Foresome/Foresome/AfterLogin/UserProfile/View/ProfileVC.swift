@@ -142,29 +142,9 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             UIApplication.shared.open(url)
             break
         case .logout:
-            let controller = UIAlertController(title: "Are you want to logout?", message: nil, preferredStyle: .alert)
-            let devUrl = UIAlertAction(title: "Yes", style: .default) { action in
-                do {
-                    try Auth.auth().signOut()
-                    UserDefaults.standard.removeObject(forKey: "user_uid")
-                    if Auth.auth().currentUser?.uid == nil {
-                        Singleton.shared.showMessage(message: "logout successfully.", isError: .success)
-                        Singleton.shared.gotoLogin()
-                    }
-                    print("logout successfullyy")
-                } catch {
-                    print("Error while signing out!")
-                    Singleton.shared.showMessage(message: "Unable to logout.", isError: .error)
-                }
-            }
-            let liveUrl = UIAlertAction(title: "No", style: .default) { action in
-                self.dismiss(animated: false)
-            }
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            controller.addAction(devUrl)
-            controller.addAction(liveUrl)
-            controller.addAction(cancel)
-            self.present(controller, true)
+            let vc = LogoutViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, true)
             break
         default:
             break
