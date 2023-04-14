@@ -9,15 +9,13 @@
 /* Begin PBXBuildFile section */
 		161747277C886A4B54615363 /* Pods_Foresome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A12F05AB6EB28AB7EFF51E /* Pods_Foresome.framework */; };
 		4B0436F129CF27BA0029CC79 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0436F029CF27BA0029CC79 /* LocationManager.swift */; };
-
 		4B086B3929DD57CA00972959 /* CreatePostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B086B3829DD57CA00972959 /* CreatePostPresenter.swift */; };
 		4B086B3B29DD57F000972959 /* CreatePostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B086B3A29DD57F000972959 /* CreatePostProtocol.swift */; };
 		4B086B4029DD583D00972959 /* CreatePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B086B3E29DD583D00972959 /* CreatePollViewController.swift */; };
 		4B086B4129DD583D00972959 /* CreatePollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B086B3F29DD583D00972959 /* CreatePollViewController.xib */; };
-		4B18995D29CB059200FD3999 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B18995B29CB059200FD3999 /* LocationViewController.swift */; };
-		4B18995E29CB059200FD3999 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B18995C29CB059200FD3999 /* LocationViewController.xib */; };
-
 		4B221A9E29C4730E00690026 /* Tutorial Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B221A9D29C4730E00690026 /* Tutorial Model.swift */; };
+		4B236FEA29E914EF00E36E6A /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B236FE829E914EF00E36E6A /* LogoutViewController.swift */; };
+		4B236FEB29E914EF00E36E6A /* LogoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B236FE929E914EF00E36E6A /* LogoutViewController.xib */; };
 		4B3499E229E0314600D4B11C /* SelectImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3499E029E0314600D4B11C /* SelectImageCollectionCell.swift */; };
 		4B3499E329E0314600D4B11C /* SelectImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3499E129E0314600D4B11C /* SelectImageCollectionCell.xib */; };
 		4B44E32229E441FD0064D469 /* NewsFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B44E32129E441FD0064D469 /* NewsFooter.xib */; };
@@ -235,15 +233,13 @@
 		0F7E287788C2CCE7946F71F7 /* Pods-Foresome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.debug.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.debug.xcconfig"; sourceTree = "<group>"; };
 		40DA7F11957B87E0C433D616 /* Pods-Foresome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foresome.release.xcconfig"; path = "Target Support Files/Pods-Foresome/Pods-Foresome.release.xcconfig"; sourceTree = "<group>"; };
 		4B0436F029CF27BA0029CC79 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-
 		4B086B3829DD57CA00972959 /* CreatePostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPresenter.swift; sourceTree = "<group>"; };
 		4B086B3A29DD57F000972959 /* CreatePostProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostProtocol.swift; sourceTree = "<group>"; };
 		4B086B3E29DD583D00972959 /* CreatePollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollViewController.swift; sourceTree = "<group>"; };
 		4B086B3F29DD583D00972959 /* CreatePollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePollViewController.xib; sourceTree = "<group>"; };
-		4B18995B29CB059200FD3999 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		4B18995C29CB059200FD3999 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
-
 		4B221A9D29C4730E00690026 /* Tutorial Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tutorial Model.swift"; sourceTree = "<group>"; };
+		4B236FE829E914EF00E36E6A /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		4B236FE929E914EF00E36E6A /* LogoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutViewController.xib; sourceTree = "<group>"; };
 		4B3499E029E0314600D4B11C /* SelectImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCollectionCell.swift; sourceTree = "<group>"; };
 		4B3499E129E0314600D4B11C /* SelectImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCollectionCell.xib; sourceTree = "<group>"; };
 		4B44E32129E441FD0064D469 /* NewsFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFooter.xib; sourceTree = "<group>"; };
@@ -526,6 +522,7 @@
 		4B096A3C29D1844A00C05F53 /* AfterLogin */ = {
 			isa = PBXGroup;
 			children = (
+				4B236FEC29E91BBE00E36E6A /* Logout */,
 				4B9EA4C029E7C971009A5E36 /* EditProfile */,
 				4BC1061C29E68555000C6444 /* UserProfile */,
 				4B086B4229DD58E000972959 /* CreatePoll */,
@@ -583,6 +580,15 @@
 				4B221A9D29C4730E00690026 /* Tutorial Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4B236FEC29E91BBE00E36E6A /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				4B236FE829E914EF00E36E6A /* LogoutViewController.swift */,
+				4B236FE929E914EF00E36E6A /* LogoutViewController.xib */,
+			);
+			path = Logout;
 			sourceTree = "<group>";
 		};
 		4B3499E429E0361B00D4B11C /* Cell */ = {
@@ -1639,6 +1645,7 @@
 				4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
+				4B236FEB29E914EF00E36E6A /* LogoutViewController.xib in Resources */,
 				7EA8223029D42C1100755016 /* ProfileViewController.xib in Resources */,
 				4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */,
 				4B75984629C3352700A8E1B6 /* Lato-Regular.ttf in Resources */,
@@ -1798,12 +1805,9 @@
 				4B7E5C2029DC437E000F576A /* PollResultTableCell.swift in Sources */,
 				4B75987629C3352800A8E1B6 /* UITextField+Custom.swift in Sources */,
 				4B75986929C3352800A8E1B6 /* String+Custom.swift in Sources */,
-
 				7E7E960B29DD4E2500095CC0 /* OrderSummryProtocol.swift in Sources */,
-
 				4B7CC75929E16CC80002545F /* VoteTableCell.swift in Sources */,
 				4B086B4029DD583D00972959 /* CreatePollViewController.swift in Sources */,
-
 				4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */,
 				4B75987829C3352800A8E1B6 /* Double+Custom.swift in Sources */,
 				4B75985129C3352700A8E1B6 /* Validator.swift in Sources */,
@@ -1870,6 +1874,7 @@
 				4B75983B29C3352700A8E1B6 /* ErrorResponseModel.swift in Sources */,
 				7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */,
 				4B75987429C3352800A8E1B6 /* UIFont+Custom.swift in Sources */,
+				4B236FEA29E914EF00E36E6A /* LogoutViewController.swift in Sources */,
 				4BCEC4B429D6F98A003A7BB6 /* ForgotProtocol.swift in Sources */,
 				4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */,
 				4BCEC4C429D6FB08003A7BB6 /* ProfilePresenter.swift in Sources */,
@@ -1877,7 +1882,6 @@
 				4B594EA729DAA89F0078794A /* NewsFeedViewController.swift in Sources */,
 				4BFF0BCC29E6CA8D00BD888A /* UserProfileProtocol.swift in Sources */,
 				4B9EA4CB29E7D11A009A5E36 /* EditProfileModel.swift in Sources */,
-				7EA8221929D41DD800755016 /* Tournament Model.swift in Sources */,
 				4B9EA4C929E7D103009A5E36 /* EditProfileProtocol.swift in Sources */,
 				4B76005529CB169100D1FE70 /* AutoCompletePlaces.swift in Sources */,
 				4B75972829C3325F00A8E1B6 /* SceneDelegate.swift in Sources */,

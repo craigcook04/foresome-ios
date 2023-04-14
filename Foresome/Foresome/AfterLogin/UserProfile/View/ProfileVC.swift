@@ -21,7 +21,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         setCellData()
         let headerView = ProfileHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
-             headerView.imageView.image = UIImage(named: "img_1")
+             //headerView.imageView.image = UIImage(named: "img_1")
                self.profileTableView.tableHeaderView = headerView
     }
     
@@ -91,6 +91,10 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         case .editProfile :
             let vc = EditProfilePresenter.createEditProfileModule()
             self.pushViewController(vc, true)
+        case.logout :
+            let vc = LogoutViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, true)
         default:
             break
         }
