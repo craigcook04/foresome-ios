@@ -18,8 +18,8 @@ public class ExpendableLinkLabel: UILabel {
 
     lazy var readMoreFont: UIFont = UIFont.setCustom(.poppinsRegular, 14)
     lazy var readLessFont: UIFont = UIFont.setCustom(.poppinsRegular, 14)
-    lazy var readMoreString = "  ...Read more"
-    lazy var readLessString = "  ...Read less"
+    lazy var readMoreString = "  ...Read More"
+    lazy var readLessString = "  ...Read Less"
     lazy var characterLimit: Int = 120 {
         didSet {
             setNeedsLayout()
