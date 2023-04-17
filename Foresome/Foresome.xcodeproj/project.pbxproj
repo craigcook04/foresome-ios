@@ -769,7 +769,6 @@
 		4B75972429C3325F00A8E1B6 /* Foresome */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8221C29D42B6500755016 /* News */,
 				7EA8221D29D42B7700755016 /* Friends */,
 				7EA8221F29D42B8E00755016 /* Leaders */,
 				7EA8221E29D42B7F00755016 /* Profile */,
@@ -1504,13 +1503,6 @@
 				7EA8221429D41DD800755016 /* TournamentViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7EA8221C29D42B6500755016 /* News */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = News;
 			sourceTree = "<group>";
 		};
 		7EA8221D29D42B7700755016 /* Friends */ = {
