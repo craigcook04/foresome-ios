@@ -211,14 +211,15 @@
 		7E7E960129DC543000095CC0 /* TournamentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960029DC543000095CC0 /* TournamentsModel.swift */; };
 		7E7E960B29DD4E2500095CC0 /* OrderSummryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */; };
 		7E7FE24C29D782620010114C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
+		7E96B82C29ED1DE7005F8781 /* StrachyHeaderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */; };
+		7E96B83129ED3EE7005F8781 /* TestTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */; };
+		7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */; };
 		7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8220B29D41DD800755016 /* TournamentTableCell.swift */; };
 		7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220C29D41DD800755016 /* TournamentTableCell.xib */; };
 		7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220E29D41DD800755016 /* TournamentHeader.xib */; };
 		7EA8221829D41DD800755016 /* TournamentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8220F29D41DD800755016 /* TournamentHeader.swift */; };
 		7EA8221A29D41DD800755016 /* TournamentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8221329D41DD800755016 /* TournamentViewController.xib */; };
 		7EA8221B29D41DD800755016 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8221429D41DD800755016 /* TournamentViewController.swift */; };
-		7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222029D42BC900755016 /* NewsViewController.swift */; };
-		7EA8222329D42BC900755016 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222129D42BC900755016 /* NewsViewController.xib */; };
 		7EA8222629D42BDE00755016 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222429D42BDE00755016 /* FriendsViewController.swift */; };
 		7EA8222729D42BDE00755016 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222529D42BDE00755016 /* FriendsViewController.xib */; };
 		7EA8222B29D42BFB00755016 /* LeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222929D42BFB00755016 /* LeadersViewController.swift */; };
@@ -438,14 +439,15 @@
 		7E7E95FE29DC3BEB00095CC0 /* UserSkillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSkillPresenter.swift; sourceTree = "<group>"; };
 		7E7E960029DC543000095CC0 /* TournamentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsModel.swift; sourceTree = "<group>"; };
 		7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummryProtocol.swift; sourceTree = "<group>"; };
+		7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrachyHeaderTable.swift; sourceTree = "<group>"; };
+		7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableHeader.swift; sourceTree = "<group>"; };
+		7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableHeader.xib; sourceTree = "<group>"; };
 		7EA8220B29D41DD800755016 /* TournamentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentTableCell.swift; sourceTree = "<group>"; };
 		7EA8220C29D41DD800755016 /* TournamentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentTableCell.xib; sourceTree = "<group>"; };
 		7EA8220E29D41DD800755016 /* TournamentHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentHeader.xib; sourceTree = "<group>"; };
 		7EA8220F29D41DD800755016 /* TournamentHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentHeader.swift; sourceTree = "<group>"; };
 		7EA8221329D41DD800755016 /* TournamentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentViewController.xib; sourceTree = "<group>"; };
 		7EA8221429D41DD800755016 /* TournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewController.swift; sourceTree = "<group>"; };
-		7EA8222029D42BC900755016 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		7EA8222129D42BC900755016 /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
 		7EA8222429D42BDE00755016 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		7EA8222529D42BDE00755016 /* FriendsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		7EA8222929D42BFB00755016 /* LeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewController.swift; sourceTree = "<group>"; };
@@ -1479,6 +1481,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA8220E29D41DD800755016 /* TournamentHeader.xib */,
+				7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */,
 				7EA8220F29D41DD800755016 /* TournamentHeader.swift */,
 			);
 			path = TournamentHeader;
@@ -1495,6 +1498,8 @@
 		7EA8221229D41DD800755016 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */,
+				7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */,
 				7EA8221329D41DD800755016 /* TournamentViewController.xib */,
 				7EA8221429D41DD800755016 /* TournamentViewController.swift */,
 			);
@@ -1504,8 +1509,6 @@
 		7EA8221C29D42B6500755016 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8222029D42BC900755016 /* NewsViewController.swift */,
-				7EA8222129D42BC900755016 /* NewsViewController.xib */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1618,7 +1621,6 @@
 				4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				4B68F31E29C3463800D80A85 /* Poppins-Light.ttf in Resources */,
 				7E7FE24C29D782620010114C /* SignUpViewController.xib in Resources */,
-				7EA8222329D42BC900755016 /* NewsViewController.xib in Resources */,
 				4B68F32729C3463800D80A85 /* Poppins-Bold.ttf in Resources */,
 				4B7CC75A29E16CC80002545F /* VoteTableCell.xib in Resources */,
 				4B9EA4C429E7C98F009A5E36 /* EditProfileViewController.xib in Resources */,
@@ -1639,6 +1641,7 @@
 				4BC1062129E685BE000C6444 /* ProfileHeader.xib in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
 				4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */,
+				7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */,
 				4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */,
 				4B75985F29C3352800A8E1B6 /* cancel_notes@3x.png in Resources */,
 				4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */,
@@ -1778,6 +1781,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B75986429C3352800A8E1B6 /* CustomPickerController.swift in Sources */,
+				7E96B83129ED3EE7005F8781 /* TestTableHeader.swift in Sources */,
 				4B594EB129DAABB70078794A /* TalkAboutTableCell.swift in Sources */,
 				4B75987A29C3352800A8E1B6 /* RadicalView.swift in Sources */,
 				4B75986129C3352800A8E1B6 /* ErrorView.swift in Sources */,
@@ -1802,7 +1806,6 @@
 				4B75973029C3325F00A8E1B6 /* Foresome.xcdatamodeld in Sources */,
 				7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */,
 				4B75972629C3325F00A8E1B6 /* AppDelegate.swift in Sources */,
-				7EA8222229D42BC900755016 /* NewsViewController.swift in Sources */,
 				4B75986829C3352800A8E1B6 /* UIColor+Custom.swift in Sources */,
 				4BCEC4AD29D6EFE0003A7BB6 /* SignUpPresenter.swift in Sources */,
 				4B75986B29C3352800A8E1B6 /* AppDelegate+custom.swift in Sources */,
@@ -1877,6 +1880,7 @@
 				4B44E32429E442150064D469 /* NewsFooter.swift in Sources */,
 				4BF8789429DD485C00BF9E86 /* CreatePostViewController.swift in Sources */,
 				4B708B8E29D6E72F00C57A16 /* GrowingTextView.swift in Sources */,
+				7E96B82C29ED1DE7005F8781 /* StrachyHeaderTable.swift in Sources */,
 				4B76005729CB169100D1FE70 /* Helpers.swift in Sources */,
 				4B75986729C3352800A8E1B6 /* UIView+Custom.swift in Sources */,
 				7E7E95FF29DC3BEB00095CC0 /* UserSkillPresenter.swift in Sources */,

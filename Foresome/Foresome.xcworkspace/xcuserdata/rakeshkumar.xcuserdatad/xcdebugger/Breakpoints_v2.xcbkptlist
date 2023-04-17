@@ -871,22 +871,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "839DADB8-5EA0-42ED-A855-49DD213A0226"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/Tournament/View/TournamentViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "tableView(_:heightForHeaderInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "30FE6AE9-DEE8-43D9-B921-798D95CDC1AB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -999,16 +983,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "25BF49F2-D429-4A49-A76B-6AC62F7AE593"
+            uuid = "11087D2D-0251-4AB9-A373-4DD5B07B3C54"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Foresome/Tournament/TournamentHeader/TournamentHeader.swift"
+            filePath = "Foresome/SupportingFiles/Extensions/UIView+Custom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "scrollViewDidScroll(scrollView:)"
+            startingLineNumber = "651"
+            endingLineNumber = "651"
+            landmarkName = "initView(view:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

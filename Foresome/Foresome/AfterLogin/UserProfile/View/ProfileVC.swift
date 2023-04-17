@@ -17,25 +17,34 @@ import FirebaseAuth
 
 class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @IBOutlet weak var profileTableView: UITableView!
+    @IBOutlet weak var profileTableView: StrachyHeaderTable!
     
     var setData: [SettingsRowDataModel] = Profile.array
     var presenter: UserProfilePresenterProtocol?
     var isSelected: Bool = false
+    weak var headerView: ProfileHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCellData()
-        let headerView = ProfileHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
-        headerView.imageView.image = UIImage(named: "img_1")
-        self.profileTableView.tableHeaderView = headerView
+        setTableView()
     }
     
-    func setCellData() {
+    func setTableView() {
         self.profileTableView.delegate = self
         self.profileTableView.dataSource = self
         profileTableView.register(cellClass: ProfileTableCell.self)
         profileTableView.register(cellClass: ChangeProfilePictureTableCell.self)
+        setTableHeader()
+    }
+    
+    //MARK: set table header-----
+    func setTableHeader() {
+        guard  headerView == nil else { return }
+        let height: CGFloat = 136
+        let view = UIView.initView(view: ProfileHeader.self)
+        view.setHeaderData()
+        self.profileTableView.setStrachyHeader(header: view, height: height)
+//        self.scrollViewDidScroll(self.profileTableView)
     }
     
     //MARK: fucntion for pic image for profile-----
@@ -161,15 +170,8 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = UIView.getFromNib(className: ProfileHeader.self)
-        return sectionHeader
-    }
-}
-extension ProfileVC: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.profileTableView.tableHeaderView as! ProfileHeader
-        headerView.scrollViewDidScroll(scrollView: scrollView)
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
     }
 }
 
@@ -187,5 +189,9 @@ extension ProfileVC: VariationViewControllerDelegate {
     }
 }
 
-
+extension ProfileVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.profileTableView.setStrachyHeader()
+    }
+}
 

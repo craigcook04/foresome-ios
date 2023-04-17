@@ -648,6 +648,12 @@ extension UIView {
         return view
     }
     
+    class func initView<T>(view type: T.Type) -> T where T : UIView {
+        let view = UINib(nibName: String(describing: type.self), bundle: nil
+        ).instantiate(withOwner: nil, options: nil).first as? UIView
+        return view as! T
+    }
+    
     func addLine(position : LINE_POSITION, color: UIColor, width: Double) {
         let lineView = UIView()
         lineView.backgroundColor = color
