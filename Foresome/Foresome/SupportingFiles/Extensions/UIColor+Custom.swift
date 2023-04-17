@@ -323,7 +323,7 @@ extension UIColor {
 extension UIColor {
     
     open class var color171717: UIColor {
-        return UIColor(hexString: "171717")
+        return UIColor(hexString: "222831")
     }
     
     open class var colorA2A2A2: UIColor {

@@ -22,15 +22,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="446" id="KGk-i7-Jjw" customClass="NewsFeedTableCell" customModule="Foresome" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="389" height="446"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="436" id="KGk-i7-Jjw" customClass="NewsFeedTableCell" customModule="Foresome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="389" height="436"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="389" height="446"/>
+                <rect key="frame" x="0.0" y="0.0" width="389" height="436"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vss-Dr-Uw8">
-                        <rect key="frame" x="24" y="16" width="341" height="430"/>
+                        <rect key="frame" x="24" y="16" width="341" height="420"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MUD-db-Nya">
                                 <rect key="frame" x="16" y="16" width="148" height="40"/>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1sz-Os-gIb">
-                                <rect key="frame" x="16" y="72" width="309" height="313"/>
+                                <rect key="frame" x="16" y="72" width="309" height="328"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="I8C-g1-dfJ">
                                         <rect key="frame" x="0.0" y="0.0" width="309" height="184"/>
@@ -139,21 +139,22 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAQ-RH-KcM">
-                                        <rect key="frame" x="0.0" y="199" width="309" height="59"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAQ-RH-KcM" customClass="ExpendableLinkLabel" customModule="Foresome" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="199" width="309" height="74"/>
+                                        <string key="text">Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an </string>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5r-OC-T1L">
-                                        <rect key="frame" x="0.0" y="273" width="309" height="1"/>
+                                        <rect key="frame" x="0.0" y="288" width="309" height="1"/>
                                         <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="bhN-Ky-HNx"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-pQ-kPE">
-                                        <rect key="frame" x="0.0" y="289" width="309" height="24"/>
+                                        <rect key="frame" x="0.0" y="304" width="309" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7t-MT-upl">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="24"/>
@@ -234,6 +235,10 @@
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="commentBtn" destination="J7H-1t-4Fv" id="6bt-YK-gCh"/>
+                <outlet property="imageCountLabel" destination="dWv-uX-F87" id="fyJ-bI-bYL"/>
+                <outlet property="imageOne" destination="Vcv-Ro-R9i" id="t38-MP-mBC"/>
+                <outlet property="imageThree" destination="aGd-Bv-Nfw" id="045-3N-uhU"/>
+                <outlet property="imageTwo" destination="hb3-94-78L" id="npn-gF-6Rg"/>
                 <outlet property="likeBtn" destination="J7t-MT-upl" id="AHc-UC-e0D"/>
                 <outlet property="moreBtn" destination="sAJ-qP-ws7" id="0vm-9S-7Ca"/>
                 <outlet property="postDescriptionLbl" destination="WAQ-RH-KcM" id="mYc-fv-Jhw"/>
@@ -242,7 +247,7 @@
                 <outlet property="shareBtn" destination="Tlm-Fr-QJL" id="6La-ZU-b6c"/>
                 <outlet property="userNameLbl" destination="igW-7w-fnr" id="ifm-kc-Ch1"/>
             </connections>
-            <point key="canvasLocation" x="-413" y="-67"/>
+            <point key="canvasLocation" x="-431.29770992366412" y="-45.070422535211272"/>
         </tableViewCell>
     </objects>
     <resources>

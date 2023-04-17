@@ -46,7 +46,7 @@ struct AppStrings {
     static let titleLbl = "Forgot Your \nPassword?"
     static let addPictureLbl = "Would you like to add \na profile picture?"
     static let readMore = "Read More"
-    static let description = "Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an…Read More"
+    static let description = "Thanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an hanks to everyone at the first ever Foresome Golf Tournament!! Congrats to the winners Adam Goraieb an"
     static let skillLevel = "Manage skill level"
     static let notificationSetting = "Notification settings"
     static let termsOfServices = "Terms of Services"
