@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 protocol TalkAboutTableCellDelegate {
     func pollBtnAction()
     func photoBtnAction()
@@ -30,8 +31,8 @@ class TalkAboutTableCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
+    
     @IBAction func pollAction(_ sender: UIButton) {
         self.delegate?.pollBtnAction()
     }
@@ -43,10 +44,9 @@ class TalkAboutTableCell: UITableViewCell {
     @IBAction func cameraAction(_ sender: UIButton) {
         self.delegate?.cameraBtnAction()
     }
-    
 }
+
 extension TalkAboutTableCell: UITextFieldDelegate {
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         self.delegate?.createPost()
         return false

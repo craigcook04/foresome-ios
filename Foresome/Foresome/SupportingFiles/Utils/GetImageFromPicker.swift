@@ -96,7 +96,7 @@ class GetImageFromPicker: NSObject {
     
     override init() {}
     
-    public func setImagePicker(imagePickerType:PickerType = .both, tag:Int = -1, controller: UIViewController?) {
+    public func setImagePicker(imagePickerType: PickerType = .both, tag:Int = -1, controller: UIViewController?) {
         self.pickerType = imagePickerType
         self.index = tag
         if controller == nil {
@@ -340,7 +340,6 @@ extension GetImageFromPicker : UIImagePickerControllerDelegate, UINavigationCont
             }
         }
     }
-    
     
     func presentCropViewController(image:UIImage) {
         

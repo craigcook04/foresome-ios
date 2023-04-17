@@ -44,8 +44,8 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
     }
     
     func setTableHeader() {
-        guard  headerView == nil else { return }
-        let height: CGFloat = 136
+        guard headerView == nil else { return }
+        let height: CGFloat = 152
         let view = UIView.initView(view: TestTableHeader.self)
         view.setHeaderData()
         self.tournamentTableView.setStrachyHeader(header: view, height: height)
@@ -89,9 +89,8 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
+        return 0.0
     }
-    
 }
 
 extension TournamentViewController: UIScrollViewDelegate {

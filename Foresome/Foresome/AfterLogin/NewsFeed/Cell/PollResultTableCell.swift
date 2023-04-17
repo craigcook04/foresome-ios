@@ -34,8 +34,6 @@ class PollResultTableCell: UITableViewCell {
         postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
-        
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -120,6 +118,4 @@ extension PollResultTableCell: ExpendableLinkLabelDelegate {
         self.tableView?.beginUpdates()
         self.tableView?.endUpdates()
     }
-    
-    
 }

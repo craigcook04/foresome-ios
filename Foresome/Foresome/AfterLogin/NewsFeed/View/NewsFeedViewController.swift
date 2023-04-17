@@ -79,16 +79,15 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
-  
     func createPost() {
         let vc = CreatePostPresenter.createPostModule()
         vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
+    
     func cameraBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
         self.imagePicker.imageCallBack = {
-            
             [weak self] (result) in
             DispatchQueue.main.async {
                 switch result{
@@ -97,22 +96,24 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                     let image = imageData?.image ?? UIImage()
                 case .error(let message):
                     print(message)
+                    Singleton.shared.showMessage(message: message, isError: .error)
                 }
             }
         }
     }
     
     func photoBtnAction() {
-        self.imagePicker.setImagePicker(imagePickerType: .both, controller: self)
+        self.imagePicker.setImagePicker(imagePickerType: .gallery, controller: self)
         self.imagePicker.imageCallBack = {
             [weak self] (result) in
             DispatchQueue.main.async {
-                switch result{
+                switch result {
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
                 case .error(let message):
                     print(message)
+                    Singleton.shared.showMessage(message: message, isError: .error)
                 }
             }
         }
@@ -144,7 +145,6 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
-            
         })
     }
 }
@@ -158,7 +158,6 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
-            
         })
     }
 }
@@ -170,6 +169,5 @@ extension NewsFeedViewController: UIScrollViewDelegate {
 }
 
 extension NewsFeedViewController: NewsFeedViewProtocol {
-    
 }
 
