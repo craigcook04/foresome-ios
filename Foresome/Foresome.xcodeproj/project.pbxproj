@@ -31,6 +31,7 @@
 		4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */; };
 		4B5D861929DEB71200F0853F /* AdditionalOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5D861829DEB71200F0853F /* AdditionalOption.xib */; };
 		4B5D861B29DEB94D00F0853F /* AdditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D861A29DEB94D00F0853F /* AdditionalOption.swift */; };
+		4B5FAE4629ED2D9B00E6C076 /* ExpendableLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FAE4529ED2D9B00E6C076 /* ExpendableLinkLabel.swift */; };
 		4B68F31A29C3463800D80A85 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */; };
 		4B68F31B29C3463800D80A85 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */; };
 		4B68F31C29C3463800D80A85 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */; };
@@ -255,6 +256,7 @@
 		4B594EB029DAABB70078794A /* TalkAboutTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TalkAboutTableCell.xib; sourceTree = "<group>"; };
 		4B5D861829DEB71200F0853F /* AdditionalOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalOption.xib; sourceTree = "<group>"; };
 		4B5D861A29DEB94D00F0853F /* AdditionalOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalOption.swift; sourceTree = "<group>"; };
+		4B5FAE4529ED2D9B00E6C076 /* ExpendableLinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpendableLinkLabel.swift; sourceTree = "<group>"; };
 		4B68F30729C3463700D80A85 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		4B68F30829C3463700D80A85 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		4B68F30929C3463700D80A85 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -650,6 +652,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4B5FAE4429ED2D6200E6C076 /* ExpandableLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4B5FAE4529ED2D9B00E6C076 /* ExpendableLinkLabel.swift */,
+			);
+			path = ExpandableLabel;
+			sourceTree = "<group>";
+		};
 		4B68F30629C3463700D80A85 /* Poppins */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,11 +888,12 @@
 		4B7597FB29C3352700A8E1B6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B7597FE29C3352700A8E1B6 /* JsonAnimation */,
 				4B708B8C29D6E6F200C57A16 /* customViews */,
+				4B5FAE4429ED2D6200E6C076 /* ExpandableLabel */,
 				4B7597FC29C3352700A8E1B6 /* Constants.swift */,
 				7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */,
 				4B7597FD29C3352700A8E1B6 /* Singleton.swift */,
-				4B7597FE29C3352700A8E1B6 /* JsonAnimation */,
 				4B75980029C3352700A8E1B6 /* CountryCodes.json */,
 				4B75980129C3352700A8E1B6 /* PhoneContacts.swift */,
 				4B75980229C3352700A8E1B6 /* Validator.swift */,
@@ -1841,6 +1852,7 @@
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,
 				4BC1062B29E68682000C6444 /* CreatePollModel.swift in Sources */,
 				4B75986A29C3352800A8E1B6 /* Array+Custom.swift in Sources */,
+				4B5FAE4629ED2D9B00E6C076 /* ExpendableLinkLabel.swift in Sources */,
 				4BFE9E8629D458B200CCBCE2 /* TournamentPresenter.swift in Sources */,
 				4B75987729C3352800A8E1B6 /* UIImageView+Custom.swift in Sources */,
 				4BFF0BC829E6CA2C00BD888A /* UserProfileModel.swift in Sources */,

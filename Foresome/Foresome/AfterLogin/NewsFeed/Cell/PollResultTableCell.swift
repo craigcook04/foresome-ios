@@ -13,7 +13,7 @@ class PollResultTableCell: UITableViewCell {
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var pollTableView: UITableView!
-    @IBOutlet weak var postDescriptionLbl: UILabel!
+    @IBOutlet weak var postDescriptionLbl: ExpendableLinkLabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
@@ -31,6 +31,11 @@ class PollResultTableCell: UITableViewCell {
         super.awakeFromNib()
         setCellData()
         setTableHeight()
+        postDescriptionLbl.message = AppStrings.description
+        postDescriptionLbl.delegate = self
+        postDescriptionLbl.numberOfLines = 0
+        
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -106,4 +111,15 @@ extension PollResultTableCell: UITableViewDelegate,UITableViewDataSource {
             tableView.reloadData()
         }
     }
+}
+extension PollResultTableCell: ExpendableLinkLabelDelegate {
+    func tapableLabel(_ label: ExpendableLinkLabel, didTapUrl url: String, atRange range: NSRange) {
+    }
+    
+    func tapableLabel(_ label: ExpendableLinkLabel, didTapString string: String, atRange range: NSRange) {
+        self.tableView?.beginUpdates()
+        self.tableView?.endUpdates()
+    }
+    
+    
 }

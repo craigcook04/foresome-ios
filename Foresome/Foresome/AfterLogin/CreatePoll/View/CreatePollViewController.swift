@@ -13,7 +13,6 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var addOptionBtn: UIButton!
     @IBOutlet weak var yourQuestion: GrowingTextView!
-    
     @IBOutlet weak var secondOption: GrowingTextView!
     @IBOutlet weak var firstOption: GrowingTextView!
    
