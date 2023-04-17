@@ -9,27 +9,18 @@ import UIKit
 
 class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
-    @IBOutlet weak var newsFeedTableView: UITableView!
+    @IBOutlet weak var newsFeedTableView: StrachyHeaderTable!
     
     var presenter: NewsFeedPresenterProtocol?
     var selectedOption: Int?
     var imagePicker = GetImageFromPicker()
     var imageSelect: [UIImage?] = []
-  
+    weak var headerView: NewsHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableData()
         setTableFooter()
-        let headerView = NewsHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 176))
-             headerView.imageView.image = UIImage(named: "irina-iriser-1379640-2")
-               self.newsFeedTableView.tableHeaderView = headerView
-    }
-    
-    func setTableFooter() {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: newsFeedTableView.frame.width, height: 24))
-        customView.backgroundColor = UIColor.appColor(.white_Light)
-        newsFeedTableView.tableFooterView = customView
     }
     
     func setTableData() {
@@ -39,9 +30,26 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         newsFeedTableView.register(cellClass: TalkAboutTableCell.self)
         newsFeedTableView.register(cellClass: PollResultTableCell.self)
         newsFeedTableView.contentInset = UIEdgeInsets(top: -28, left: 0, bottom: 0, right: 0)
-       
+        setTableHeader()
+    }
+    
+    //MARK: set table header-----
+    func setTableHeader() {
+        guard headerView == nil else { return }
+        let height: CGFloat = 176
+        let view = UIView.initView(view: NewsHeader.self)
+        view.setHeaderData()
+        self.newsFeedTableView.setStrachyHeader(header: view, height: height)
+//        self.scrollViewDidScroll(self.newsFeedTableView)
+    }
+     
+    func setTableFooter() {
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: newsFeedTableView.frame.width, height: 24))
+        customView.backgroundColor = UIColor.appColor(.white_Light)
+        newsFeedTableView.tableFooterView = customView
     }
 }
+
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,11 +73,11 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = UIView.getFromNib(className: NewsHeader.self)
-        return sectionHeader
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
     }
 }
+
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
   
     func createPost() {
@@ -97,7 +105,6 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
     func photoBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .both, controller: self)
         self.imagePicker.imageCallBack = {
-            
             [weak self] (result) in
             DispatchQueue.main.async {
                 switch result{
@@ -116,6 +123,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
         vc.hidesBottomBarWhenPushed = true
         self.pushViewController(vc, true)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.dismiss(animated: true, completion: nil)
@@ -124,11 +132,10 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
+
 extension NewsFeedViewController: NewsFeedTableCellDelegate {
     func moreButton() {
-        
         let alert = UIAlertController(title: "More", message: "Please Select an Option", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Report post", style: .default , handler:{ (UIAlertAction)in
         }))
@@ -155,12 +162,13 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         })
     }
 }
+
 extension NewsFeedViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.newsFeedTableView.tableHeaderView as? NewsHeader
-        headerView?.scrollViewDidScroll(scrollView: scrollView)
+        self.newsFeedTableView.setStrachyHeader()
     }
 }
+
 extension NewsFeedViewController: NewsFeedViewProtocol {
     
 }

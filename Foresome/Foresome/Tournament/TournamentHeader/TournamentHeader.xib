@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,65 +21,50 @@
             <rect key="frame" x="0.0" y="0.0" width="574" height="217"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUR-tJ-z2H">
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_1" translatesAutoresizingMaskIntoConstraints="NO" id="oRC-O7-5qb">
                     <rect key="frame" x="0.0" y="0.0" width="574" height="217"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Sl6-CO-vvZ">
+                    <rect key="frame" x="24" y="124.66666666666667" width="206.66666666666666" height="60.333333333333329"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_1" translatesAutoresizingMaskIntoConstraints="NO" id="oRC-O7-5qb">
-                            <rect key="frame" x="0.0" y="0.0" width="574" height="201"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                    <size key="value" width="0.0" height="0.0"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="topRadius">
-                                    <real key="value" value="0.0"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Sl6-CO-vvZ">
-                            <rect key="frame" x="24" y="134.66666666666666" width="174" height="50.333333333333343"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO, GEORGE!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx8-dC-giW">
-                                    <rect key="frame" x="0.0" y="0.0" width="106.66666666666667" height="15.333333333333334"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournaments" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-cr-PwS">
-                                    <rect key="frame" x="0.0" y="15.333333333333343" width="174" height="35"/>
-                                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-u5-M7U">
-                            <rect key="frame" x="518" y="151.66666666666666" width="32" height="32"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="ic_notification_active"/>
-                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO, GEORGE!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx8-dC-giW">
+                            <rect key="frame" x="0.0" y="0.0" width="99" height="18.333333333333332"/>
+                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournaments" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-cr-PwS">
+                            <rect key="frame" x="0.0" y="18.333333333333329" width="206.66666666666666" height="42"/>
+                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="oRC-O7-5qb" firstAttribute="top" secondItem="nUR-tJ-z2H" secondAttribute="top" id="9Z9-pA-tMe"/>
-                        <constraint firstItem="Sl6-CO-vvZ" firstAttribute="leading" secondItem="nUR-tJ-z2H" secondAttribute="leading" constant="24" id="FvA-9z-bjj"/>
-                        <constraint firstItem="oRC-O7-5qb" firstAttribute="leading" secondItem="nUR-tJ-z2H" secondAttribute="leading" id="PbV-He-lXz"/>
-                        <constraint firstAttribute="trailing" secondItem="WWv-u5-M7U" secondAttribute="trailing" constant="24" id="eDr-l2-QaR"/>
-                        <constraint firstAttribute="height" constant="217" id="igN-xL-IVX"/>
-                        <constraint firstAttribute="trailing" secondItem="oRC-O7-5qb" secondAttribute="trailing" id="nB6-1Z-Lc7"/>
-                        <constraint firstAttribute="bottom" secondItem="oRC-O7-5qb" secondAttribute="bottom" constant="16" id="olF-8O-pvf"/>
-                        <constraint firstItem="WWv-u5-M7U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Sl6-CO-vvZ" secondAttribute="trailing" constant="10" id="qFl-Ul-Vlo"/>
-                        <constraint firstItem="oRC-O7-5qb" firstAttribute="bottom" secondItem="Sl6-CO-vvZ" secondAttribute="bottom" constant="16" id="vuO-EJ-nvl"/>
-                        <constraint firstItem="WWv-u5-M7U" firstAttribute="centerY" secondItem="6mC-cr-PwS" secondAttribute="centerY" id="xor-gt-4Wg"/>
-                    </constraints>
-                </view>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-u5-M7U">
+                    <rect key="frame" x="518" y="139" width="32" height="32"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="ic_notification_active"/>
+                </button>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="lfP-NW-Xa7"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="nUR-tJ-z2H" secondAttribute="bottom" id="Ece-sz-RvD"/>
-                <constraint firstAttribute="trailing" secondItem="nUR-tJ-z2H" secondAttribute="trailing" id="azn-0I-3Fv"/>
-                <constraint firstItem="nUR-tJ-z2H" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mhO-4q-pb8"/>
-                <constraint firstItem="nUR-tJ-z2H" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qxa-E2-pU8"/>
+                <constraint firstItem="Sl6-CO-vvZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="3xh-V0-lhE"/>
+                <constraint firstAttribute="bottom" secondItem="oRC-O7-5qb" secondAttribute="bottom" id="LKH-0y-Ky0"/>
+                <constraint firstAttribute="bottom" secondItem="Sl6-CO-vvZ" secondAttribute="bottom" constant="32" id="PRK-Mi-RrI"/>
+                <constraint firstItem="oRC-O7-5qb" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="TPJ-ko-TV3"/>
+                <constraint firstItem="oRC-O7-5qb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XJI-XY-spL"/>
+                <constraint firstItem="WWv-u5-M7U" firstAttribute="centerY" secondItem="Sl6-CO-vvZ" secondAttribute="centerY" id="bKV-du-ge2"/>
+                <constraint firstAttribute="trailing" secondItem="WWv-u5-M7U" secondAttribute="trailing" constant="24" id="be4-e7-055"/>
+                <constraint firstItem="oRC-O7-5qb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dTT-ek-wcC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

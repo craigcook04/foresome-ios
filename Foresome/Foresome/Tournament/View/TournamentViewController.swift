@@ -18,32 +18,17 @@ import Firebase
 
 class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
     
-    @IBOutlet weak var tournamentTableView: UITableView!
+    @IBOutlet weak var tournamentTableView: StrachyHeaderTable!
     
     var listTournamentsData =  [TournamentModel]()
     var presenter: TournamentsListPresenterProtocol?
-    var header:TournamentHeader?
+    weak var headerView: TestTableHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // self.tournamentTableView.isScrollEnabled = false
         self.tabBarController?.tabBar.isHidden = false
         getTournmentsData()
-        setTableHeader()
         setTableData()
-        // self.header = TournamentHeader(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 136))
-        //self.header?.imageView.image = UIImage(named: "img_1")
-        //        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
-        
-        //self.header?.setHeaderData()
-        //self.tournamentTableView.tableHeaderView = self.header
-    }
-    
-    func setTableHeader() {
-        guard let tableHeader = UINib(nibName: "TournamentHeader", bundle: nil).instantiate(withOwner: self, options: nil).first as? TournamentHeader else { return }
-        tableHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: 136)
-        tableHeader.setHeaderData()
-        self.tournamentTableView.tableHeader(with: tableHeader)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +41,15 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         self.tournamentTableView.dataSource = self
         tournamentTableView.register(cellClass: TournamentTableCell.self)
         setTableHeader()
+    }
+    
+    func setTableHeader() {
+        guard  headerView == nil else { return }
+        let height: CGFloat = 136
+        let view = UIView.initView(view: TestTableHeader.self)
+        view.setHeaderData()
+        self.tournamentTableView.setStrachyHeader(header: view, height: height)
+//        self.scrollViewDidScroll(self.tournamentTableView)
     }
     
     //MARK: code for get tournamnets dtaa from firebase----------
@@ -94,23 +88,14 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let sectionHeader = UIView.getFromNib(className: TournamentHeader.self)
-//        sectionHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: 136)
-//        sectionHeader.layoutIfNeeded()
-//        return sectionHeader
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return
-//    }
 }
 
 extension TournamentViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //        let headerView = self.tournamentTableView.tableHeaderView as! TournamentHeader
-        let header = self.tournamentTableView.tableHeaderView as? TournamentHeader
-        
-        header?.scrollViewDidScroll(scrollView: scrollView)
+        self.tournamentTableView.setStrachyHeader()
     }
 }
