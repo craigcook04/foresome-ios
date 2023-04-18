@@ -25,7 +25,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         self.setupFirstTwoOptions()
     }
     
-    func setupFirstTwoOptions(){
+    func setupFirstTwoOptions() {
         for i in 0...1 {
             self.addNewField(tag: i)
         }
@@ -47,17 +47,28 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     }
     
     @IBAction func addOptionAction(_ sender: UIButton) {
-        
         for optionField in optionsFieldArray {
             if optionField.optionAdd.text.count == 0 {
                 return
             }
         }
-        
         self.addNewField(tag: optionsFieldArray.count)
+    }
+    
+    @IBAction func createPostAction(_ sender: UIButton) {
+//        let json = JSON()
+//        json["questionname"] = yourQuestion.text
+//        let optionsJson = [String]
+//        json["options"] = []
+        
+        
+        self.presenter?.createNewPoll()
+        
     }
 }
 
 extension CreatePollViewController: CreatePollViewProtocol {
    
+    
+    
 }

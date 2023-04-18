@@ -19,4 +19,22 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol {
         view.presenter = presenter
         return view
     }
+    
+    func createPost() {
+        print("create post called.")
+//    author: "Craig Cook"
+//    createdAt: 1665423589828
+//    description:
+//    id: "kv06YiHVCkMicgikqofeX"
+//    image: base64
+    }
+    
+    func createPost(json: JSON) {
+         
+    }
+    
+    func creatNewPost(selectedimage: String) {
+        print("selected image from image picker---\(selectedimage.debugDescription)")
+        print("selected image from image picker---\(selectedimage)")
+    }
 }

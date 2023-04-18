@@ -40,9 +40,9 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         let view = UIView.initView(view: NewsHeader.self)
         view.setHeaderData()
         self.newsFeedTableView.setStrachyHeader(header: view, height: height)
-//        self.scrollViewDidScroll(self.newsFeedTableView)
+        //        self.scrollViewDidScroll(self.newsFeedTableView)
     }
-     
+    
     func setTableFooter() {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: newsFeedTableView.frame.width, height: 24))
         customView.backgroundColor = UIColor.appColor(.white_Light)
@@ -52,7 +52,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
 
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
@@ -65,8 +65,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PollResultTableCell", for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             cell.delegate = self
             return cell
-        }
-        else {
+        }else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedTableCell", for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
             cell.delegate = self
             return cell
@@ -79,21 +78,24 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
+    //MARK: code for create new post----
     func createPost() {
-        let vc = CreatePostPresenter.createPostModule()
-        vc.hidesBottomBarWhenPushed = true
-        self.pushViewController(vc, true)
+        let createPostVc = CreatePostPresenter.createPostModule()
+        createPostVc.hidesBottomBarWhenPushed = true
+        self.pushViewController(createPostVc, true)
     }
-    
+    //MARK: code for create post with not description----
     func cameraBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
         self.imagePicker.imageCallBack = {
             [weak self] (result) in
             DispatchQueue.main.async {
-                switch result{
+                switch result {
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
+                    self?.presenter?.createPost(json: JSON())
+                    self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -101,7 +103,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
             }
         }
     }
-    
+    //MARK: create post only using image from gallery---
     func photoBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .gallery, controller: self)
         self.imagePicker.imageCallBack = {
@@ -111,6 +113,8 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
+                    self?.presenter?.createPost(json: JSON())
+                    self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -118,11 +122,11 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
             }
         }
     }
-    
+    //MARK: code for create new poll----
     func pollBtnAction() {
-        let vc = CreatePollViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.pushViewController(vc, true)
+        let pollVc = CreatePollPresenter.createPollModule()
+        pollVc.hidesBottomBarWhenPushed = true
+        self.pushViewController(pollVc, true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

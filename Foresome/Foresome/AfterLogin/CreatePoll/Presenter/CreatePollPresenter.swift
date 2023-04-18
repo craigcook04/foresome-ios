@@ -16,6 +16,9 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
         presenter.view = view
         view.presenter = presenter
         return view
-        
+    }
+    
+    func createNewPoll() {
+        print("create poll action called.")
     }
 }
