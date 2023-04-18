@@ -571,7 +571,7 @@
 		4B18995A29CB057300FD3999 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				7E7E95F529DC25EE00095CC0 /* Protocole */,
+				7E7E95F529DC25EE00095CC0 /* Protocol */,
 				7E7E95F429DC25D300095CC0 /* Presenter */,
 				4B76005C29CB18C300D1FE70 /* View */,
 			);
@@ -1421,12 +1421,12 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		7E7E95F529DC25EE00095CC0 /* Protocole */ = {
+		7E7E95F529DC25EE00095CC0 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				7E7E95F629DC263E00095CC0 /* LocationProtocole.swift */,
 			);
-			name = Protocole;
+			name = Protocol;
 			path = "New Group1";
 			sourceTree = "<group>";
 		};

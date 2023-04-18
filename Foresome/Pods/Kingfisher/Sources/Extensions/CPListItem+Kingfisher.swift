@@ -199,7 +199,12 @@ extension KingfisherWrapper where Base: CPListItem {
                                 if let unwrapped = image {
                                     self.base.setImage(unwrapped)
                                 }
-                                #endif   
+                                #endif
+                                
+                            } else {
+                                #if compiler(>=5.4)
+                                self.base.setImage(nil)
+                                #endif
                             }
                             completionHandler?(result)
                     }
