@@ -61,11 +61,11 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TalkAboutTableCell", for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
             cell.delegate = self
             return cell
-        }else if indexPath.row == 1 {
+        } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PollResultTableCell", for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             cell.delegate = self
             return cell
-        }else {
+        } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedTableCell", for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
             cell.delegate = self
             return cell
@@ -122,6 +122,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
             }
         }
     }
+    
     //MARK: code for create new poll----
     func pollBtnAction() {
         let pollVc = CreatePollPresenter.createPollModule()
@@ -173,5 +174,6 @@ extension NewsFeedViewController: UIScrollViewDelegate {
 }
 
 extension NewsFeedViewController: NewsFeedViewProtocol {
+    
 }
 

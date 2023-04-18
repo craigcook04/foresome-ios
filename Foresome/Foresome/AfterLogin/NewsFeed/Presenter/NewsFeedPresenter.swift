@@ -7,6 +7,15 @@
 
 import Foundation
 import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class NewsFeedPresenter: NewsFeedPresenterProtocol {
     
@@ -22,11 +31,6 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol {
     
     func createPost() {
         print("create post called.")
-//    author: "Craig Cook"
-//    createdAt: 1665423589828
-//    description:
-//    id: "kv06YiHVCkMicgikqofeX"
-//    image: base64
     }
     
     func createPost(json: JSON) {
@@ -36,5 +40,10 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol {
     func creatNewPost(selectedimage: String) {
         print("selected image from image picker---\(selectedimage.debugDescription)")
         print("selected image from image picker---\(selectedimage)")
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        let db = Firestore.firestore()
+        let documentsId =  UUID().uuidString
+        db.collection("posts").document(documentsId).setData(["author":"", "createdAt":"", "description":"", "id":"", "image":"", "photoURL":"", "profile":"", "uid":"", "updatedAt":"", "comments":[""], "image":"", "post_type":""])
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
 }

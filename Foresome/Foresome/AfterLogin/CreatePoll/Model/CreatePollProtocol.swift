@@ -12,5 +12,5 @@ protocol CreatePollViewProtocol {
 }
 protocol CreatePollPresenterProtocol {
     var view: CreatePollViewProtocol? {get set}
-    func createNewPoll()
+    func createNewPoll(questioName: String, optionsArray: [AdditionalOption])
 }

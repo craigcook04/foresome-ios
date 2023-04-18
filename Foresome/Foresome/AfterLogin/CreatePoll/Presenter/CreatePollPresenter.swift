@@ -21,4 +21,12 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
     func createNewPoll() {
         print("create poll action called.")
     }
+    
+    func createNewPoll(questioName: String, optionsArray: [AdditionalOption]) {
+        print("questions name---\(questioName)")
+        print("options count is -==\(optionsArray.count)")
+        
+        
+        
+    }
 }

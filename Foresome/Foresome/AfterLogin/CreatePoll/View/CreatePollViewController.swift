@@ -22,6 +22,12 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        yourQuestion.autocorrectionType = .no
+        secondOption.autocorrectionType = .no
+        firstOption.autocorrectionType = .no
+        yourQuestion.delegate = self
+        secondOption.delegate = self
+        firstOption.delegate = self
         self.setupFirstTwoOptions()
     }
     
@@ -40,6 +46,11 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         view.optionAdd.textColor = .black
         self.optionsStackView.addArrangedSubview(view)
         self.optionsFieldArray.append(view)
+        if optionsFieldArray.count > 3 {
+            self.addOptionBtn.isHidden = true
+        } else {
+            self.addOptionBtn.isHidden = false
+        }
     }
     
     @IBAction func backAction(_ sender: UIButton) {
@@ -52,23 +63,33 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
                 return
             }
         }
+        
         self.addNewField(tag: optionsFieldArray.count)
     }
     
     @IBAction func createPostAction(_ sender: UIButton) {
-//        let json = JSON()
-//        json["questionname"] = yourQuestion.text
-//        let optionsJson = [String]
-//        json["options"] = []
-        
-        
-        self.presenter?.createNewPoll()
-        
+        if ((optionsFieldArray.first?.optionAdd.text.count ?? 0) < 1) && ((optionsFieldArray[1].optionAdd.text.count ) < 1) {
+            Singleton.shared.showMessage(message: "Options not allowed to be empty.", isError: .error)
+        } else {
+            self.presenter?.createNewPoll(questioName: "\(self.yourQuestion.text ?? "")", optionsArray: optionsFieldArray)
+        }
     }
 }
 
 extension CreatePollViewController: CreatePollViewProtocol {
-   
     
-    
+}
+
+extension CreatePollViewController: GrowingTextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        print("updated text is equal to -==\(updatedString)")
+        print("text view tag value is -===\(textView.tag)")
+        if updatedString?.count ?? 0 > 0 {
+            print("enable called.")
+        } else {
+            print("disable called.")
+        }
+        return true
+    }
 }

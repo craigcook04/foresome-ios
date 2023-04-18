@@ -25,6 +25,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        writePost.autocorrectionType = .no
         setKeyboard()
         self.setCellData()
     }
@@ -101,7 +102,7 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
     }
 }
 
-extension CreatePostViewController{
+extension CreatePostViewController {
     //MARK: Keyboard Functions
     @objc func keyboardWillShow(_ notification : Foundation.Notification){
         let value: NSValue = (notification as NSNotification).userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
@@ -170,27 +171,19 @@ extension CreatePostViewController: SelectImageCollectionCellDelegate {
 extension CreatePostViewController : GrowingTextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
-        let update = ((textView.text) as String).trimmingCharacters(in: .whitespaces)
-        textView.text = update
-        if (textView == writePost) {
-            if range.location == 0 && text == " "
-            {
-                return false
+        var updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        print("updated string-========\(updatedString)")
+        if updatedString == " "{
+            return false
+        } else {
+            if updatedString?.count ?? 0 > 0 {
+                self.publishButton.isUserInteractionEnabled = true
+                self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+            }else {
+                self.publishButton.isUserInteractionEnabled = false
+                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
             }
-            else if range.length + range.location > (textView.text.count)
-            {
-                return false
-            }
+            return true
         }
-        if updatedString?.count ?? 0 > 0 {
-            self.publishButton.isUserInteractionEnabled = true
-            self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
-        }else {
-            self.publishButton.isUserInteractionEnabled = false
-            self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
-        }
-        return true
     }
 }
