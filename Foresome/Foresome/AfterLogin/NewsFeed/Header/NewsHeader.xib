@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="640" height="301"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3Bq-EH-BOo">
-                    <rect key="frame" x="24" y="177.66666666666666" width="159" height="60.333333333333343"/>
+                    <rect key="frame" x="24" y="188.66666666666666" width="159" height="60.333333333333343"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO, GEORGE!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Yc-n0-X4e">
                             <rect key="frame" x="0.0" y="0.0" width="99" height="18.333333333333332"/>
@@ -44,13 +44,13 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0HI-Sv-7u5">
-                    <rect key="frame" x="24" y="246" width="592" height="55"/>
+                    <rect key="frame" x="24" y="257" width="592" height="44"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="hMm-yR-bat">
-                            <rect key="frame" x="0.0" y="0.0" width="292" height="55"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hMm-yR-bat">
+                            <rect key="frame" x="0.0" y="0.0" width="292" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcI-8o-e5s">
-                                    <rect key="frame" x="109.66666666666666" y="0.0" width="73" height="33"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="292" height="33"/>
                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Members">
@@ -61,7 +61,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-Nd-XdX">
-                                    <rect key="frame" x="0.0" y="52" width="292" height="3"/>
+                                    <rect key="frame" x="0.0" y="41" width="292" height="3"/>
                                     <color key="backgroundColor" red="0.25098039220000001" green="0.80392156859999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="3" id="kFj-cH-1Qi"/>
@@ -69,15 +69,17 @@
                                 </view>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="OcI-8o-e5s" firstAttribute="leading" secondItem="hMm-yR-bat" secondAttribute="leading" id="3oD-Sa-EBx"/>
+                                <constraint firstAttribute="trailing" secondItem="OcI-8o-e5s" secondAttribute="trailing" id="Dfz-gI-zY5"/>
                                 <constraint firstItem="gyl-Nd-XdX" firstAttribute="leading" secondItem="hMm-yR-bat" secondAttribute="leading" id="FaI-NX-r3k"/>
                                 <constraint firstAttribute="trailing" secondItem="gyl-Nd-XdX" secondAttribute="trailing" id="g96-bH-G15"/>
                             </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="oiS-lL-NEI">
-                            <rect key="frame" x="300" y="0.0" width="292" height="55"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oiS-lL-NEI">
+                            <rect key="frame" x="300" y="0.0" width="292" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXg-Ws-CaQ">
-                                    <rect key="frame" x="118" y="0.0" width="56" height="33"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="292" height="33"/>
                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Friends"/>
@@ -86,21 +88,23 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6G9-l4-qgc">
-                                    <rect key="frame" x="0.0" y="52" width="292" height="3"/>
+                                    <rect key="frame" x="0.0" y="41" width="292" height="3"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="3" id="bUI-hv-CIA"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="VXg-Ws-CaQ" secondAttribute="trailing" id="aUk-pF-6Tp"/>
                                 <constraint firstAttribute="trailing" secondItem="6G9-l4-qgc" secondAttribute="trailing" id="dEi-Wd-RA7"/>
+                                <constraint firstItem="VXg-Ws-CaQ" firstAttribute="leading" secondItem="oiS-lL-NEI" secondAttribute="leading" id="qvS-1o-opH"/>
                                 <constraint firstItem="6G9-l4-qgc" firstAttribute="leading" secondItem="oiS-lL-NEI" secondAttribute="leading" id="xbU-A2-aDL"/>
                             </constraints>
                         </stackView>
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRf-q5-9OT">
-                    <rect key="frame" x="584" y="201" width="32" height="32"/>
+                    <rect key="frame" x="584" y="212" width="32" height="32"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="ic_notification_active"/>
                 </button>
