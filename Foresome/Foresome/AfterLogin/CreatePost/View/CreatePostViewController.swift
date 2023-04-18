@@ -9,23 +9,27 @@ import UIKit
 
 class CreatePostViewController: UIViewController, UINavigationControllerDelegate {
     
+    @IBOutlet weak var writePost: GrowingTextView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var imageSelectButton: UIButton!
     @IBOutlet weak var selectImageCollection: UICollectionView!
     @IBOutlet weak var publishBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var pollBtn: UIButton!
-    
     @IBOutlet weak var cameraBtn: UIButton!
+    @IBOutlet weak var publishButton: UIButton!
+    
     var presenter: CreatePostPresenterProtocol?
     var imageSelect: [UIImage?] = []
     var imagePicker = GetImageFromPicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboard()
         self.setCellData()
     }
     func setCellData() {
+        self.writePost.delegate = self
         self.selectImageCollection.delegate = self
         self.selectImageCollection.dataSource = self
         self.selectImageCollection.register(cellClass: SelectImageCollectionCell.self)
@@ -37,7 +41,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func backAction(_ sender: UIButton) {
-    
+        
         self.popVC()
     }
     
@@ -50,6 +54,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func publishAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func pollAction(_ sender: UIButton) {
@@ -160,5 +165,32 @@ extension CreatePostViewController: SelectImageCollectionCellDelegate {
     func removeImage(index: Int) {
         self.imageSelect.remove(at: index)
         self.selectImageCollection.reloadData()
+    }
+}
+extension CreatePostViewController : GrowingTextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        let update = ((textView.text) as String).trimmingCharacters(in: .whitespaces)
+        textView.text = update
+        if (textView == writePost) {
+            if range.location == 0 && text == " "
+            {
+                return false
+            }
+            else if range.length + range.location > (textView.text.count)
+            {
+                return false
+            }
+        }
+        if updatedString?.count ?? 0 > 0 {
+            self.publishButton.isUserInteractionEnabled = true
+            self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+        }else {
+            self.publishButton.isUserInteractionEnabled = false
+            self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+        }
+        return true
     }
 }
