@@ -19,7 +19,7 @@ var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //MARK: comments for testing purpose---
         Thread.sleep(forTimeInterval: 3.0)
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
 
         // Override point for customization after application launch.
         //MARK: firebase configuration in main thread-----

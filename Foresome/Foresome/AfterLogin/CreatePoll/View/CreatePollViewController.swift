@@ -63,7 +63,6 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
                 return
             }
         }
-        
         self.addNewField(tag: optionsFieldArray.count)
     }
     

@@ -25,6 +25,21 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
     func createNewPoll(questioName: String, optionsArray: [AdditionalOption]) {
         print("questions name---\(questioName)")
         print("options count is -==\(optionsArray.count)")
+        if optionsArray.count == 3 {
+            print("number of options are three.")
+        } else if optionsArray.count == 4 {
+            print("number of options are four.")
+        }
+        //MARK: code for create poll using firebase ---
+        //MARK: json required for create post---
+        //author name
+//        author profile pic
+//        created poll date
+//        questions name
+//        options name 1
+//        options name 2
+//        options name 3
+//        options name 4
         
         
         
