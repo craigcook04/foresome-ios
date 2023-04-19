@@ -25,7 +25,8 @@ class NewsHeader: UIView {
     func setHeaderData() {
         let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
         if let data = strings {
-            self.userNameLbl.text = "HELLO, \(data["name"] as? String ?? "")!"
+            let nameValue = "HELLO, \(data["name"] as? String ?? "")!"
+            self.userNameLbl.text = nameValue.uppercased()
         }
     }
     

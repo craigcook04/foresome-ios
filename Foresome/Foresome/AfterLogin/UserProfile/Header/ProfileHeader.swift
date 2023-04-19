@@ -17,7 +17,8 @@ class ProfileHeader: UIView {
     func setHeaderData() {
         let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
         if let data = strings {
-            self.userNameLabel.text = "HELLO, \(data["name"] as? String ?? "")!"
+            let nameValue = "HELLO, \(data["name"] as? String ?? "")!"
+            self.userNameLabel.text = nameValue.uppercased()
         }
     }
     

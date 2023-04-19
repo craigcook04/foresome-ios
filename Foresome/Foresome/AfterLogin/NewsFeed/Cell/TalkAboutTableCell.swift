@@ -21,6 +21,11 @@ class TalkAboutTableCell: UITableViewCell {
     @IBOutlet weak var photoBtn: UIButton!
     @IBOutlet weak var pollBtn: UIButton!
     @IBOutlet weak var cameraBtn: UIButton!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var imagesCountLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var postingImageView: UIView!
     
     var delegate: TalkAboutTableCellDelegate?
     
@@ -43,6 +48,8 @@ class TalkAboutTableCell: UITableViewCell {
     
     @IBAction func cameraAction(_ sender: UIButton) {
         self.delegate?.cameraBtnAction()
+    }
+    @IBAction func cancelAction(_ sender: UIButton) {
     }
 }
 
