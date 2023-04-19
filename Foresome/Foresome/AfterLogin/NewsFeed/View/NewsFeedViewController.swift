@@ -6,6 +6,15 @@
 //
 
 import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -19,6 +28,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchPostData()
         setTableData()
         setTableFooter()
     }
@@ -31,6 +41,21 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         newsFeedTableView.register(cellClass: PollResultTableCell.self)
         newsFeedTableView.contentInset = UIEdgeInsets(top: -28, left: 0, bottom: 0, right: 0)
         setTableHeader()
+    }
+    
+    //MARK: code for fetch data of posts------
+    func fetchPostData() {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (querySnapshot, err) in
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
+            querySnapshot?.documents.enumerated().forEach({ (index,document) in
+                let tournament =  document.data()
+                
+                print("post id is ---\(document.documentID)")
+                print("post data is ----\(tournament)")
+            })
+        }
     }
     
     //MARK: set table header-----

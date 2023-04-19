@@ -17,6 +17,11 @@ struct FreshChatCredential{
     static let domain = "msdk.in.freshchat.com"
 }
 
+struct SquarePayCredentials {
+    static let accessToken = "EAAAEEL4gDM2dJX1MRIWGAGjs75M0eDCREnl33mh5T6TMK6diaPG2bXvk-zvUaxy"
+    static let applicationId = "sandbox-sq0idb-QQBqQxHpscxTIVWu-8fVrg"
+}
+
 struct STORYBOARD_ID {
     static let loginNavigation = "LoginNavigation"
     static let homeNavigation = "HomeNavigation"

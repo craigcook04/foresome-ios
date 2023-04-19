@@ -6,6 +6,15 @@
 //
 
 import Foundation
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class CreatePollPresenter: CreatePollPresenterProtocol {
     var view: CreatePollViewProtocol?
@@ -31,17 +40,29 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
             print("number of options are four.")
         }
         //MARK: code for create poll using firebase ---
-        //MARK: json required for create post---
-        //author name
-//        author profile pic
-//        created poll date
-//        questions name
-//        options name 1
-//        options name 2
-//        options name 3
-//        options name 4
-        
-        
-        
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        let db = Firestore.firestore()
+        let documentsId =  UUID().uuidString
+        var pollOptinsArray = [String]()
+        for i in 0..<optionsArray.count {
+            pollOptinsArray.append(optionsArray[i].optionAdd.text ?? "")
+        }
+        print("all posible options count ---\(pollOptinsArray.count)")
+        for i in 0..<pollOptinsArray.count {
+            print("all possible questions is --- option \(i)---\(pollOptinsArray[i])")
+        }
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        print("name is from strings is  -==\(strings?["name"])")
+        if let data = strings {
+               print("name is from data is -- -==\(data["name"])")
+        }
+        let createdDate = Date().miliseconds()
+        print("created date---=\(createdDate)")
+        print("user profile picture----\(strings?["user_profile_pic"] ?? "")")
+        print("user name of created poll----= \(strings?["name"] ?? "")")
+        print("user uid is ----\(strings?["uid"] ?? "")")
+        print("documents id is---==\(documentsId)")
+        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"poll", "poll_title":"\(questioName)","poll_options": pollOptinsArray], merge: true)
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
 }

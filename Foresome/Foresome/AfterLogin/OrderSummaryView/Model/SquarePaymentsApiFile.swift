@@ -28,7 +28,7 @@ class ChargeApi {
         let url = URL(string: Constants.Square.squarePaymentHost)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        let accessToken = "Bearer EAAAEEL4gDM2dJX1MRIWGAGjs75M0eDCREnl33mh5T6TMK6diaPG2bXvk-zvUaxy"
+        let accessToken = "Bearer \(SquarePayCredentials.accessToken)"
         request.setValue("\(accessToken)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol UserProfileViewProtocol {
     var presenter: UserProfilePresenterProtocol? {get set}
@@ -14,4 +15,5 @@ protocol UserProfileViewProtocol {
 protocol UserProfilePresenterProtocol {
     var view: UserProfileViewProtocol? {get set}
     func updateUserProfile(profilePicName: String)
+    func updateProfilePic(profileImage: UIImage)
 }

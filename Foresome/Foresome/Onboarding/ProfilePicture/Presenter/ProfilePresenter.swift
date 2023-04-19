@@ -36,7 +36,6 @@ class ProfilePresenter: ProfilePicturePresenter {
             let locationVc = UserSkillPresenter.createUserSkillModule()
             signupVc.pushViewController(locationVc, true)
         }
-        
         //         db.collection("users").addDocument(data:["user_profile_pic":"\(porfilePicName)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
         //             if Error != nil {
         //                 print("user profile updatation issue---\(Error as Any)")

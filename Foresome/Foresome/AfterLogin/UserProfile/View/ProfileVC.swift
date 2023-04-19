@@ -59,10 +59,15 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         //profileImage.image  = tempImage
-        print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
+       // print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
         //pickedProfileImage = tempImage.convertImageToBase64String()
-        presenter?.updateUserProfile(profilePicName: tempImage.convertImageToBase64String())
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            //self.presenter?.updateUserProfile(profilePicName: tempImage.convertImageToBase64String())
+           // self.presenter?.updateProfilePic(profileImage: tempImage)
+            let db = Firestore.firestore()
+            let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+            db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(tempImage.convertImageToBase64String())"], merge: true)
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -175,7 +180,9 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ProfileVC: UserProfileViewProtocol {}
+extension ProfileVC: UserProfileViewProtocol {
+    
+}
 
 extension ProfileVC: VariationViewControllerDelegate {
     func playerCount(text: String) {

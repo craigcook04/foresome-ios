@@ -34,16 +34,24 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol {
     }
     
     func createPost(json: JSON) {
-         
+        
     }
     
     func creatNewPost(selectedimage: String) {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         print("selected image from image picker---\(selectedimage.debugDescription)")
         print("selected image from image picker---\(selectedimage)")
-        ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         let documentsId =  UUID().uuidString
-        db.collection("posts").document(documentsId).setData(["author":"", "createdAt":"", "description":"", "id":"", "image":"", "photoURL":"", "profile":"", "uid":"", "updatedAt":"", "comments":[""], "image":"", "post_type":""])
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        print("name is from strings is  -==\(strings?["name"] ?? "")")
+        let createdDate = Date().miliseconds()
+        print("created date---=\(createdDate)")
+        print("user profile picture----\(strings?["user_profile_pic"] ?? "")")
+        print("user name of created poll----= \(strings?["name"] ?? "")")
+        print("user uid is ----\(strings?["uid"] ?? "")")
+        print("documents id is---==\(documentsId)")
+        //db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"feed"], merge: true)
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
 }

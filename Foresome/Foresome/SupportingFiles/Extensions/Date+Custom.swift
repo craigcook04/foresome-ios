@@ -11,91 +11,74 @@ import UIKit
 extension Date {
     
     func offsetFrom(date: Date) -> String {
-
-            let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
-            let difference = NSCalendar.current.dateComponents(dayHourMinuteSecond, from: date, to: self)
-
-            let seconds = "\(difference.second ?? 0) secs"
-            let minutes = "\(difference.minute ?? 0) mins" + " " + seconds
-            let hours = "\(difference.hour ?? 0) hrs"
-            var  days = "\(difference.day ?? 0)"
+        let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
+        let difference = NSCalendar.current.dateComponents(dayHourMinuteSecond, from: date, to: self)
+        
+        let seconds = "\(difference.second ?? 0) secs"
+        let minutes = "\(difference.minute ?? 0) mins" + " " + seconds
+        let hours = "\(difference.hour ?? 0) hrs"
+        var  days = "\(difference.day ?? 0)"
         
         if (difference.hour ?? 0) > 0 {
-              days = "\(difference.day ?? 0) days" + " " + hours
+            days = "\(difference.day ?? 0) days" + " " + hours
         }else  {
-             days = "\(difference.day ?? 0) days"
+            days = "\(difference.day ?? 0) days"
         }
-         
-            if let day = difference.day, day          > 0 { return days }
-            if let hour = difference.hour, hour       > 0 { return hours }
-            if let minute = difference.minute, minute > 0 { return minutes }
-            if let second = difference.second, second > 0 { return seconds }
-            return ""
-        }
-    
+        
+        if let day = difference.day, day          > 0 { return days }
+        if let hour = difference.hour, hour       > 0 { return hours }
+        if let minute = difference.minute, minute > 0 { return minutes }
+        if let second = difference.second, second > 0 { return seconds }
+        return ""
+    }
     
     func offsetFromDate(date: Date) -> String {
-
-            let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
-            let difference = NSCalendar.current.dateComponents(dayHourMinuteSecond, from: date, to: self)
-
-            var  seconds = "\(difference.second ?? 0) mins"
-         
+        let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
+        let difference = NSCalendar.current.dateComponents(dayHourMinuteSecond, from: date, to: self)
+        var  seconds = "\(difference.second ?? 0) mins"
         if (difference.second ?? 0) < 10 {
             seconds = "0\(difference.second ?? 0) mins"
         } else  {
             seconds = "\(difference.second ?? 0) mins"
         }
-        
-            var minutes = "\(difference.minute ?? 0)"
-        
-            if (difference.minute ?? 0) > 0  {
-                
-                if (difference.minute ?? 0) < 10 {
-                    minutes = "0\(difference.minute ?? 0) :"
-                }else  {
-                    minutes = "\(difference.minute ?? 0) :"
-                }
-                
-            } else {
-                 
+        var minutes = "\(difference.minute ?? 0)"
+        if (difference.minute ?? 0) > 0  {
+            if (difference.minute ?? 0) < 10 {
+                minutes = "0\(difference.minute ?? 0) :"
+            }else  {
                 minutes = "\(difference.minute ?? 0) :"
             }
-        
-            let hours = "\(difference.hour ?? 0) : " + "" + minutes + " hrs"
-            var  days = "\(difference.day ?? 0)"
+        } else {
+            minutes = "\(difference.minute ?? 0) :"
+        }
+        let hours = "\(difference.hour ?? 0) : " + "" + minutes + " hrs"
+        var  days = "\(difference.day ?? 0)"
         
         if (difference.hour ?? 0) > 0 {
-               
-              days = "\(difference.day ?? 0) days" + " " + hours
-            
-        }else  {
-            
-             minutes = "\(difference.minute ?? 0) : " + "" + seconds
-             days = "\(difference.day ?? 0) days"
-            
+            days = "\(difference.day ?? 0) days" + " " + hours
+        }else {
+            minutes = "\(difference.minute ?? 0) : " + "" + seconds
+            days = "\(difference.day ?? 0) days"
         }
-         
-            if let day = difference.day, day          > 0 { return days }
-            if let hour = difference.hour, hour       > 0 { return hours }
-            if let minute = difference.minute, minute > 0 { return minutes }
-            if let second = difference.second, second > 0 { return seconds }
-            return ""
-        }
+        if let day = difference.day, day          > 0 { return days }
+        if let hour = difference.hour, hour       > 0 { return hours }
+        if let minute = difference.minute, minute > 0 { return minutes }
+        if let second = difference.second, second > 0 { return seconds }
+        return ""
+    }
     
     func localDate() -> Date {
         // 1) Get the current TimeZone's seconds from GMT. Since I am in Chicago this will be: 60*60*5 (18000)
         let timezoneOffset =  TimeZone.current.secondsFromGMT()
-         
         // 2) Get the current date (GMT) in seconds since 1970. Epoch datetime.
         let epochDate = self.timeIntervalSince1970
-         
+        
         // 3) Perform a calculation with timezoneOffset + epochDate to get the total seconds for the
         //    local date since 1970.
         //    This may look a bit strange, but since timezoneOffset is given as -18000.0, adding epochDate and timezoneOffset
         //    calculates correctly.
         let timezoneEpochOffset = (epochDate + Double(timezoneOffset))
-         
+        
         // 4) Finally, create a date using the seconds offset since 1970 for the local date.
         let timeZoneOffsetDate = Date(timeIntervalSince1970: timezoneEpochOffset)
         return timeZoneOffsetDate
@@ -104,16 +87,16 @@ extension Date {
     func utcDate() -> Date {
         // 1) Get the current TimeZone's seconds from GMT. Since I am in Chicago this will be: 60*60*5 (18000)
         let timezoneOffset =  TimeZone.current.secondsFromGMT()
-         
+        
         // 2) Get the current date (GMT) in seconds since 1970. Epoch datetime.
         let epochDate = self.timeIntervalSince1970
-         
+        
         // 3) Perform a calculation with timezoneOffset + epochDate to get the total seconds for the
         //    local date since 1970.
         //    This may look a bit strange, but since timezoneOffset is given as -18000.0, adding epochDate and timezoneOffset
         //    calculates correctly.
         let timezoneEpochOffset = (epochDate - Double(timezoneOffset))
-         
+        
         // 4) Finally, create a date using the seconds offset since 1970 for the local date.
         let timeZoneOffsetDate = Date(timeIntervalSince1970: timezoneEpochOffset)
         return timeZoneOffsetDate
@@ -160,7 +143,7 @@ extension Date {
     }
     
     func setTime(hours: Int, minutes: Int, seconds: Int = 0) -> Date {
-         if let date = Calendar.current.date(bySettingHour: hours, minute: minutes, second: seconds, of: self) {
+        if let date = Calendar.current.date(bySettingHour: hours, minute: minutes, second: seconds, of: self) {
             return date
         } else {
             return self
@@ -173,11 +156,11 @@ extension Date {
     }
     
     
-//    mutating func setTime(hours:Int, minutes:Int, seconds: Int = 0) {
-//        if let date = Calendar.current.date(bySettingHour: hours, minute: minutes, second: seconds, of: self) {
-//            self = date
-//        }
-//    }
+    //    mutating func setTime(hours:Int, minutes:Int, seconds: Int = 0) {
+    //        if let date = Calendar.current.date(bySettingHour: hours, minute: minutes, second: seconds, of: self) {
+    //            self = date
+    //        }
+    //    }
     
     
     var isToday:Bool {
@@ -200,7 +183,7 @@ extension Date {
         let dateComponents = DateComponents(year: year, month: month)
         let calendar = Calendar.current
         let date = calendar.date(from: dateComponents)!
-
+        
         let range = calendar.range(of: .day, in: .month, for: date)!
         let numDays = range.count
         print(numDays) // 31
@@ -232,24 +215,24 @@ extension Date {
     }
     
     //date to string
-//    func dateToString(format:String)->String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = format  //Your New Date format as per requirement change it own
-//        dateFormatter.locale = Locale(identifier: "en_US")
-//        let newDate = dateFormatter.string(from: self)
-//        print(newDate)
-//        return newDate
-//    }
+    //    func dateToString(format:String)->String {
+    //        let dateFormatter = DateFormatter()
+    //        dateFormatter.dateFormat = format  //Your New Date format as per requirement change it own
+    //        dateFormatter.locale = Locale(identifier: "en_US")
+    //        let newDate = dateFormatter.string(from: self)
+    //        print(newDate)
+    //        return newDate
+    //    }
     
     
     var localToUtc: Date? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.calendar = Calendar.current
-//        dateFormatter.timeZone = TimeZone.current
-//        let dateStr = dateFormatter.string(from: self)
-//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-//        dateFormatter.dateFormat = String.format.full1.rawValue
-//        return dateFormatter.date(from: dateStr)
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.calendar = Calendar.current
+        //        dateFormatter.timeZone = TimeZone.current
+        //        let dateStr = dateFormatter.string(from: self)
+        //        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        //        dateFormatter.dateFormat = String.format.full1.rawValue
+        //        return dateFormatter.date(from: dateStr)
         
         let date = self.dateToUTCString(format: .full1)
         return date.changeToDateStandard(withFormat: .full1)
@@ -275,12 +258,12 @@ extension Date {
         // Year
         if let interval = Calendar.current.dateComponents([.year], from: fromDate, to: toDate).year, interval > 0  {
             return interval == 1 ? "\(interval)" + " " + "year ago" : "\(interval)" + " " + "years ago"
-           // return interval == 1 ? "\(interval)" + " " + "y" : "\(interval)" + " " + "y"
+            // return interval == 1 ? "\(interval)" + " " + "y" : "\(interval)" + " " + "y"
         }
         // Month
         if let interval = Calendar.current.dateComponents([.month], from: fromDate, to: toDate).month, interval > 0  {
             return interval == 1 ? "\(interval)" + " " + "month ago" : "\(interval)" + " " + "months ago"
-           // return interval == 1 ? "\(interval)" + " " + "m" : "\(interval)" + " " + "m"
+            // return interval == 1 ? "\(interval)" + " " + "m" : "\(interval)" + " " + "m"
         }
         // Day
         if let interval = Calendar.current.dateComponents([.day], from: fromDate, to: toDate).day, interval > 0  {
@@ -290,7 +273,7 @@ extension Date {
         // Hours
         if let interval = Calendar.current.dateComponents([.hour], from: fromDate, to: toDate).hour, interval > 0 {
             return interval == 1 ? "\(interval)" + " " + "hour ago" : "\(interval)" + " " + "hours ago"
-           // return interval == 1 ? "\(interval)" + " " + "h" : "\(interval)" + " " + "h"
+            // return interval == 1 ? "\(interval)" + " " + "h" : "\(interval)" + " " + "h"
         }
         // Minute
         if let interval = Calendar.current.dateComponents([.minute], from: fromDate, to: toDate).minute, interval > 0 {
@@ -299,7 +282,7 @@ extension Date {
         }
         return "just now"
     }
-     
+    
     func timeleftFromDate() -> String {
         // From Time
         let fromDate = self
@@ -309,12 +292,12 @@ extension Date {
         // Year
         if let interval = Calendar.current.dateComponents([.year], from: toDate, to: fromDate).year, interval > 0  {
             return interval == 1 ? "\(interval)" + " " + "year left" : "\(interval)" + " " + "years left"
-           // return interval == 1 ? "\(interval)" + " " + "y" : "\(interval)" + " " + "y"
+            // return interval == 1 ? "\(interval)" + " " + "y" : "\(interval)" + " " + "y"
         }
         // Month
         if let interval = Calendar.current.dateComponents([.month], from: toDate, to: fromDate).month, interval > 0  {
             return interval == 1 ? "\(interval)" + " " + "month left" : "\(interval)" + " " + "months left"
-           // return interval == 1 ? "\(interval)" + " " + "m" : "\(interval)" + " " + "m"
+            // return interval == 1 ? "\(interval)" + " " + "m" : "\(interval)" + " " + "m"
         }
         // Day
         if let interval = Calendar.current.dateComponents([.day], from: toDate, to: fromDate).day, interval > 0  {
@@ -324,7 +307,7 @@ extension Date {
         // Hours
         if let interval = Calendar.current.dateComponents([.hour], from: toDate, to: fromDate).hour, interval > 0 {
             return interval == 1 ? "\(interval)" + " " + "hour left" : "\(interval)" + " " + "hours left"
-           // return interval == 1 ? "\(interval)" + " " + "h" : "\(interval)" + " " + "h"
+            // return interval == 1 ? "\(interval)" + " " + "h" : "\(interval)" + " " + "h"
         }
         // Minute
         if let interval = Calendar.current.dateComponents([.minute], from: toDate, to: fromDate).minute, interval > 0 {

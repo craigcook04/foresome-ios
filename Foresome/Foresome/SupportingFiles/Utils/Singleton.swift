@@ -102,7 +102,7 @@ class Singleton: NSObject {
         window?.rootViewController = Singleton.tabController
         window?.makeKeyAndVisible()
         Singleton.tabController.tabBarItem.badgeColor = .green
-        Singleton.tabController.selectedIndex = 2
+        Singleton.tabController.selectedIndex = 0
         Singleton.shared.window = window
     }
 }

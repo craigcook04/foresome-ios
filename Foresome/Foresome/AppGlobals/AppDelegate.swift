@@ -25,12 +25,11 @@ var window: UIWindow?
         //MARK: firebase configuration in main thread-----
         IQKeyboardManager.shared.enable = true
         LocationManager.shared.getAuthorization()
-
         
         //         Set your Square Application ID
         //        App id is for Square Application ID----
         //MARK: dummy app id ---
-        SQIPInAppPaymentsSDK.squareApplicationID = "sandbox-sq0idb-QQBqQxHpscxTIVWu-8fVrg"
+        SQIPInAppPaymentsSDK.squareApplicationID = SquarePayCredentials.applicationId
         return true
     }
     

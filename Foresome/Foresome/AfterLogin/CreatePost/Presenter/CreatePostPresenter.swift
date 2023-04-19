@@ -24,8 +24,8 @@ class CreatePostPresenter: CreatePostPresenterProtocol {
     func photoButtonAction() {
         self.view?.receiveResult()
     }
+    
     func cameraButtonAction() {
         self.view?.cameraReceiveResult()
     }
-  
 }
