@@ -65,7 +65,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
 }
 extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControllerDelegate {
     func receiveResult() {
-        self.imagePicker.setImagePicker(imagePickerType: .both, controller: self)
+        self.imagePicker.setImagePicker(imagePickerType: .gallery, controller: self)
         self.imagePicker.imageCallBack = {
             
             [weak self] (result) in
@@ -172,7 +172,6 @@ extension CreatePostViewController : GrowingTextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         var updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
-        print("updated string-========\(updatedString)")
         if updatedString == " "{
             return false
         } else {

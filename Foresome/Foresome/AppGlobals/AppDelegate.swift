@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import FirebaseAuth
 import FirebaseCore
 import SquareInAppPaymentsSDK
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,12 @@ var window: UIWindow?
         //MARK: dummy app id ---
         SQIPInAppPaymentsSDK.squareApplicationID = SquarePayCredentials.applicationId
         return true
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
     }
     
     // MARK: UISceneSession Lifecycle

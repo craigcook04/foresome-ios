@@ -26,6 +26,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var showNewPasswordBtn: UIButton!
     @IBOutlet weak var confirmNewPasswordField: UITextField!
+    @IBOutlet weak var showConfirmPasswordBtn: UIButton!
     
     var presenter: EditProfilePresenterProtocol?
     let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
@@ -78,6 +79,15 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
             newPasswordField.isSecureTextEntry = false
         } else {
             newPasswordField.isSecureTextEntry = true
+        }
+    }
+    
+    @IBAction func confirmPasswordShowAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected == true {
+            confirmNewPasswordField.isSecureTextEntry = false
+        } else {
+            confirmNewPasswordField.isSecureTextEntry = true
         }
     }
     
