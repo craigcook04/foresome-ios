@@ -30,7 +30,7 @@ class UserSkillPresenter : UserSkillPresenterProtocol {
     
     func updateUserSkillToFirestore(skillType: String) {
         print("user skill update methods called.")
-        print("selected skill for data base updation is -----\(skillType)")
+        //print("selected skill for data base updation is -----\(skillType)")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
         db.collection("users").document(documentsId ?? "").setData(["user_skill_level" : "\(skillType)"], merge: true)

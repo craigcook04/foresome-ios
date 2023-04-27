@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CreatePollViewController: UIViewController, UITextViewDelegate{
     
     @IBOutlet weak var optionsStackView: UIStackView!
@@ -15,7 +16,10 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     @IBOutlet weak var yourQuestion: GrowingTextView!
     @IBOutlet weak var secondOption: GrowingTextView!
     @IBOutlet weak var firstOption: GrowingTextView!
-   
+    @IBOutlet weak var questionCharLimits: UILabel!
+    @IBOutlet weak var firstOptionCountLimt: UILabel!
+    @IBOutlet weak var secondsOptionLimit: UILabel!
+    
     var previousOptionValue: Int = 0
     var optionsFieldArray = [AdditionalOption]()
     var presenter: CreatePollPresenterProtocol?
@@ -31,6 +35,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         self.setupFirstTwoOptions()
     }
     
+    
     func setupFirstTwoOptions() {
         for i in 0...1 {
             self.addNewField(tag: i)
@@ -41,6 +46,8 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         let view = UIView.getFromNib(className: AdditionalOption.self)
         view.optionAdd.delegate = self
         view.tag = tag
+        view.optionAdd.tag = tag
+        view.characterCountLabel.tag = tag
         previousOptionValue += 1
         view.optionAdd.placeholder = "Option \(previousOptionValue)"
         view.optionAdd.textColor = .black
@@ -70,7 +77,11 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         if ((optionsFieldArray.first?.optionAdd.text.count ?? 0) < 1) && ((optionsFieldArray[1].optionAdd.text.count ) < 1) {
             Singleton.shared.showMessage(message: "Options not allowed to be empty.", isError: .error)
         } else {
-            self.presenter?.createNewPoll(questioName: "\(self.yourQuestion.text ?? "")", optionsArray: optionsFieldArray)
+            if self.yourQuestion.text.count > 0 {
+                self.presenter?.createNewPoll(questioName: "\(self.yourQuestion.text ?? "")", optionsArray: self.optionsFieldArray)
+            } else {
+                Singleton.shared.showMessage(message: "Please ask a question.", isError: .error)
+            }
         }
     }
 }
@@ -82,13 +93,31 @@ extension CreatePollViewController: CreatePollViewProtocol {
 extension CreatePollViewController: GrowingTextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
-        print("updated text is equal to -==\(updatedString)")
-        print("text view tag value is -===\(textView.tag)")
-        if updatedString?.count ?? 0 > 0 {
-            print("enable called.")
+        if updatedString == " "{
+            return false
         } else {
-            print("disable called.")
+            if textView.tag == 0 {
+                if updatedString?.count ?? 0 <= 30 {
+                    optionsFieldArray[0].characterCountLabel.text = "\(updatedString?.count ?? 0)/30"
+                }
+            } else if textView.tag == 1 {
+                if updatedString?.count ?? 0 <= 30 {
+                    optionsFieldArray[1].characterCountLabel.text = "\(updatedString?.count ?? 0)/30"
+                }
+            } else if textView.tag  == 2 {
+                if updatedString?.count ?? 0 <= 30 {
+                    optionsFieldArray[2].characterCountLabel.text = "\(updatedString?.count ?? 0)/30"
+                }
+            } else if textView.tag == 3 {
+                if updatedString?.count ?? 0 <= 30 {
+                    optionsFieldArray[3].characterCountLabel.text = "\(updatedString?.count ?? 0)/30"
+                }
+            } else {
+                if updatedString?.count ?? 0 <= 150 {
+                    self.questionCharLimits.text = "\(updatedString?.count ?? 0)/150"
+                }
+            }
+            return true
         }
-        return true
     }
 }

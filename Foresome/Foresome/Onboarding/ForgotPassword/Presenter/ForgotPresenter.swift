@@ -6,10 +6,20 @@
 //
 
 import Foundation
+import UIKit
+import FirebaseCore
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 class ForgotPresenter: ForgotPasswordPresenter {
-    var view: ForgotPasswordViewProtocol?
     
+    var view: ForgotPasswordViewProtocol?
     
     static func createForgotPasswordModule()->ForgotPasswordViewController{
         let view = ForgotPasswordViewController()
@@ -18,6 +28,7 @@ class ForgotPresenter: ForgotPasswordPresenter {
         view.presenter = presenter
         return view
     }
+    
     func jsonToForgotPassword(email: String) -> JSON{
         var json = JSON()
         json["email"] = email
@@ -31,9 +42,23 @@ class ForgotPresenter: ForgotPasswordPresenter {
         }
         let isValidEmail = Validator.validateEmail(candidate: email)
         if isValidEmail == true {
+            ActivityIndicator.sharedInstance.showActivityIndicator()
+            Auth.auth().sendPasswordReset(withEmail: "\(email)") { err in
+                if err == nil {
+                    Singleton.shared.showMessage(message: "Password reset link send successfully.", isError: .success)
+                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        if let view = self.view as? ForgotPasswordViewController {
+                            view.popVC()
+                        }
+                    })
+                } else {
+                    Singleton.shared.showMessage(message: err?.localizedDescription ?? "", isError: .error)
+                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                }
+            }
             return isValidEmail
-            
-        }else{
+        }else {
             Singleton.shared.showErrorMessage(error: "Please Enter Valid Email", isError: .error)
             return false
         }

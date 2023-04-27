@@ -28,7 +28,7 @@ class ProfilePresenter: ProfilePicturePresenter {
     }
     
     func updateUserProfileData(porfilePicName: String) {
-        print("selected profile imaeg name in base64-----\(porfilePicName)")
+        //print("selected profile imaeg name in base64-----\(porfilePicName)")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
         db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(porfilePicName)"], merge: true)

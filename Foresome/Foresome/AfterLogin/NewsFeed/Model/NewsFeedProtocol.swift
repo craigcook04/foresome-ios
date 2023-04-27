@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NewsFeedViewProtocol {
     var presenter: NewsFeedPresenterProtocol? {get set}
-    
 }
+
 protocol NewsFeedPresenterProtocol {
     var view: NewsFeedViewProtocol? {get set}
     func createPost(json: JSON)
     func creatNewPost(selectedimage:String)
+    func createPost()
+    func saveCreatUserData()
+    func uploadimage(image: UIImage)
 }

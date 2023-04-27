@@ -41,18 +41,18 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     
     func passedTounamentsData() {
         print("passes data -----")
-        print("a--\(tournamentData?.title)")
-        print("b--\(tournamentData?.date)")
-        print("c--\(tournamentData?.address)")
-        print("d--\(tournamentData?.location)")
-        print("e--\(tournamentData?.descriptions)")
-        print("f--\(tournamentData?.availability)")
-        print("g--\(tournamentData?.time?.count)")
-        print("h--\(tournamentData?.time)")
-        print("i--\(tournamentData?.price)")
-        print("j---\(tournamentData?.sale_price)")
-        print("passed all data........")
-        print("avalibility in int value ----\(tournamentData?.availability ?? 0)")
+//        print("a--\(tournamentData?.title)")
+//        print("b--\(tournamentData?.date)")
+//        print("c--\(tournamentData?.address)")
+//        print("d--\(tournamentData?.location)")
+//        print("e--\(tournamentData?.descriptions)")
+//        print("f--\(tournamentData?.availability)")
+//        print("g--\(tournamentData?.time?.count)")
+//        print("h--\(tournamentData?.time)")
+//        print("i--\(tournamentData?.price)")
+//        print("j---\(tournamentData?.sale_price)")
+//        print("passed all data........")
+        //print("avalibility in int value ----\(tournamentData?.availability ?? 0)")
     }
     
     func setTournamentsDetailsData() {

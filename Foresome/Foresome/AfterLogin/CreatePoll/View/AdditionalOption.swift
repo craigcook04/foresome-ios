@@ -8,12 +8,13 @@
 import Foundation
 import UIKit
 
-
 class AdditionalOption: UIView {
-    
     @IBOutlet weak var optionAdd: GrowingTextView!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
 }
+
 

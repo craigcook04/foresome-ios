@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Foresome wants use camera </string>
+	<string>allow camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Foresome wants to use photolibrary</string>
+	<string>allow Photo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen.storyboard</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -20,25 +20,25 @@
 	<string>Always Use</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location Needed</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.770518099190-a646ded4r3ud8u7uteqj2lgvllrqnus8</string>
-            </array>
-        </dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb2190812197728066</string>
-            </array>
-        </dict>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.770518099190-a646ded4r3ud8u7uteqj2lgvllrqnus8</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb2190812197728066</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-ExtraLight.ttf</string>
@@ -81,9 +81,7 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>No</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>allow Photo</string>
-	<key>NSCameraUsageDescription</key>
-	<string>allow camera</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>

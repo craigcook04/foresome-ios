@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -129,7 +129,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textView>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vLh-Cn-QFu">
-                                    <rect key="frame" x="24" y="163" width="345" height="120"/>
+                                    <rect key="frame" x="0.0" y="163" width="393" height="120"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="ZjP-eW-pze"/>
@@ -138,7 +138,7 @@
                                         <size key="itemSize" width="128" height="128"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="sectionInset" minX="24" minY="0.0" maxX="24" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlG-Sc-qtn">
@@ -224,19 +224,20 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="vLh-Cn-QFu" firstAttribute="trailing" secondItem="kR5-k2-Hl9" secondAttribute="trailing" id="4Do-9z-jkI"/>
-                                <constraint firstItem="vLh-Cn-QFu" firstAttribute="leading" secondItem="kR5-k2-Hl9" secondAttribute="leading" id="4Zj-JP-tE0"/>
                                 <constraint firstAttribute="trailing" secondItem="qlG-Sc-qtn" secondAttribute="trailing" id="NUe-hO-tAM"/>
                                 <constraint firstItem="kR5-k2-Hl9" firstAttribute="top" secondItem="DL4-mG-Qac" secondAttribute="bottom" constant="24" id="T0v-sr-gEB"/>
                                 <constraint firstItem="kR5-k2-Hl9" firstAttribute="trailing" secondItem="DL4-mG-Qac" secondAttribute="trailing" id="VIx-Gv-LwC"/>
                                 <constraint firstAttribute="bottom" secondItem="qlG-Sc-qtn" secondAttribute="bottom" constant="20" id="ZeZ-v0-om2"/>
                                 <constraint firstItem="vLh-Cn-QFu" firstAttribute="top" secondItem="kR5-k2-Hl9" secondAttribute="bottom" constant="40" id="a5n-HS-hgX"/>
                                 <constraint firstAttribute="trailing" secondItem="DL4-mG-Qac" secondAttribute="trailing" constant="24" id="aJx-Ox-YzB"/>
+                                <constraint firstItem="vLh-Cn-QFu" firstAttribute="leading" secondItem="eL5-YG-34c" secondAttribute="leading" id="ch8-rU-qN4"/>
                                 <constraint firstItem="DL4-mG-Qac" firstAttribute="top" secondItem="eL5-YG-34c" secondAttribute="top" constant="16" id="e5A-om-FS9"/>
                                 <constraint firstItem="kR5-k2-Hl9" firstAttribute="leading" secondItem="DL4-mG-Qac" secondAttribute="leading" id="fsQ-Ka-i26"/>
+                                <constraint firstAttribute="trailing" secondItem="vLh-Cn-QFu" secondAttribute="trailing" id="qQu-PV-gv1"/>
                                 <constraint firstItem="DL4-mG-Qac" firstAttribute="leading" secondItem="eL5-YG-34c" secondAttribute="leading" constant="24" id="rEp-8z-d4b"/>
                                 <constraint firstItem="qlG-Sc-qtn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vLh-Cn-QFu" secondAttribute="bottom" constant="30" id="ucc-oW-NXa"/>
                                 <constraint firstItem="qlG-Sc-qtn" firstAttribute="leading" secondItem="eL5-YG-34c" secondAttribute="leading" id="uni-DZ-6wI"/>
+                                <constraint firstItem="qlG-Sc-qtn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kR5-k2-Hl9" secondAttribute="bottom" constant="24" id="yg0-6G-IOb"/>
                             </constraints>
                         </view>
                     </subviews>

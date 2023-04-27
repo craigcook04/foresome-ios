@@ -34,6 +34,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             Singleton.shared.gotoLogin()
         }
+        
+       // var handle: AuthStateDidChangeListenerHandle?
+//         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+////             auth.currentUser
+////             auth.app?.name
+////             auth.currentUser?.displayName
+////             auth.currentUser?.uid
+////             auth.currentUser?.displayName
+////             auth.currentUser?.metadata
+//                if((user) != nil) {
+//                    Singleton.shared.setHomeScreenView()
+//                } else if ((user) == nil) {
+//                    Singleton.shared.gotoLogin()
+//                }
+//            }
+//        if Auth.auth().currentUser  == nil {
+//            Singleton.shared.gotoLogin()
+//        } else {
+//            Singleton.shared.setHomeScreenView()
+//        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

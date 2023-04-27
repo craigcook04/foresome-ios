@@ -197,6 +197,9 @@
 		7E12C6C929CE206500D8A768 /* FTStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */; };
 		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
 		7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */; };
+		7E418BF329F12146009DA811 /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E418BF229F12146009DA811 /* CreatePostModel.swift */; };
+		7E418BFA29F2A5ED009DA811 /* DummyTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */; };
+		7E418BFB29F2A5ED009DA811 /* DummyTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */; };
 		7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */; };
 		7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */; };
 		7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */; };
@@ -229,6 +232,7 @@
 		7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */; };
 		7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */; };
 		7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */; };
+		7EDF182329F7F21B006FCB49 /* hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDF182229F7F21A006FCB49 /* hello.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -426,6 +430,9 @@
 		7E12C6C429CE206300D8A768 /* FTStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeader.swift; sourceTree = "<group>"; };
 		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
 		7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableController.swift; sourceTree = "<group>"; };
+		7E418BF229F12146009DA811 /* CreatePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
+		7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTextFieldViewController.swift; sourceTree = "<group>"; };
+		7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DummyTextFieldViewController.xib; sourceTree = "<group>"; };
 		7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListProtocol.swift; sourceTree = "<group>"; };
 		7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListPresenter.swift; sourceTree = "<group>"; };
 		7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquarePaymentsApiFile.swift; sourceTree = "<group>"; };
@@ -457,6 +464,7 @@
 		7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
 		7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		7EDF182229F7F21A006FCB49 /* hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hello.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				4B086B3A29DD57F000972959 /* CreatePostProtocol.swift */,
+				7E418BF229F12146009DA811 /* CreatePostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -812,6 +821,7 @@
 				4B7597E429C3352700A8E1B6 /* Resources */,
 				4B7597FB29C3352700A8E1B6 /* Utils */,
 				4B75981F29C3352700A8E1B6 /* Extensions */,
+				7EDF182229F7F21A006FCB49 /* hello.png */,
 				4B75973129C3326100A8E1B6 /* Assets.xcassets */,
 				4B75973629C3326100A8E1B6 /* Info.plist */,
 				7E73F14F29D6D59800B653AB /* GoogleService-Info.plist */,
@@ -1202,6 +1212,8 @@
 			children = (
 				4B93904F29C9A01600D60450 /* LoginViewController.swift */,
 				4B93905029C9A01600D60450 /* LoginViewController.xib */,
+				7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */,
+				7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1631,6 +1643,7 @@
 				7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */,
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4BC1062129E685BE000C6444 /* ProfileHeader.xib in Resources */,
+				7E418BFB29F2A5ED009DA811 /* DummyTextFieldViewController.xib in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
 				4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */,
 				7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */,
@@ -1669,6 +1682,7 @@
 				4B086B4129DD583D00972959 /* CreatePollViewController.xib in Resources */,
 				4B75985E29C3352700A8E1B6 /* cancel_notes@2x.png in Resources */,
 				7E5338E929E43A22001E3D9E /* LocationViewController.xib in Resources */,
+				7EDF182329F7F21B006FCB49 /* hello.png in Resources */,
 				4B68F32829C3463800D80A85 /* Poppins-Black.ttf in Resources */,
 				4B68F32429C3463800D80A85 /* OFL.txt in Resources */,
 				4B75985C29C3352700A8E1B6 /* CustomNavigationBar.xib in Resources */,
@@ -1792,6 +1806,7 @@
 				4B9EA4C329E7C98F009A5E36 /* EditProfileViewController.swift in Sources */,
 				4B086B3929DD57CA00972959 /* CreatePostPresenter.swift in Sources */,
 				7E12C6C829CE206500D8A768 /* FTDelegate.swift in Sources */,
+				7E418BF329F12146009DA811 /* CreatePostModel.swift in Sources */,
 				7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */,
 				7EA8222629D42BDE00755016 /* FriendsViewController.swift in Sources */,
 				7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */,
@@ -1900,6 +1915,7 @@
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
 				4B3499E229E0314600D4B11C /* SelectImageCollectionCell.swift in Sources */,
+				7E418BFA29F2A5ED009DA811 /* DummyTextFieldViewController.swift in Sources */,
 				4BCEC4C229D6FAF4003A7BB6 /* ProfileModel.swift in Sources */,
 				4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */,
 				4BCEC4BC29D6FA4A003A7BB6 /* LoginModel.swift in Sources */,

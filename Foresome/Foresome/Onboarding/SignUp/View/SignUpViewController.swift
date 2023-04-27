@@ -31,8 +31,8 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTapGuesture()
-        passwordField.isSecureTextEntry = true
-        confirmPasswordField.isSecureTextEntry = true
+        self.passwordField.isSecureTextEntry = true
+        self.confirmPasswordField.isSecureTextEntry = true
         self.setLabelColor()
     }
     
@@ -61,7 +61,7 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-
+        
         if self.presenter?.validateFields(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "" , password: self.passwordField.text ?? "", confirmPassword: self.confirmPasswordField.text ?? "") == true  {
             guard let password = passwordField.text,
                   password == confirmPasswordField.text else {
@@ -71,19 +71,19 @@ class SignUpViewController: UIViewController, SignUpViewProtocol {
             }
             self.presenter?.createNewUser(fullName: self.nameField.text ?? "", email: self.emailField.text ?? "", password: self.passwordField.text ?? "", confirmPassword: self.passwordField.text ?? "")
         } else {
-
+            
             return
         }
     }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
         self.passwordShowBtn.isSelected = !sender.isSelected
-        self.passwordField.isSecureTextEntry = !self.passwordShowBtn.isSelected
+        self.passwordField.isSecureTextEntry = !sender.isSelected
     }
     
     @IBAction func confirmShowAction(_ sender: UIButton) {
         self.confirmPasswordShowBtn.isSelected = !sender.isSelected
-        self.confirmPasswordField.isSecureTextEntry = !self.confirmPasswordShowBtn.isSelected
+        self.confirmPasswordField.isSecureTextEntry = !sender.isSelected
     }
     
     func setLabelColor() {

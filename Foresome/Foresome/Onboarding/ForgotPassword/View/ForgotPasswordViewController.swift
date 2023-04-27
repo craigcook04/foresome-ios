@@ -26,7 +26,7 @@ class ForgotPasswordViewController: UIViewController {
         self.popVC()
     }
     
-    func setKeyboard(){
+    func setKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification , object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification , object:nil)
     }
@@ -46,10 +46,10 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
-        
+        self.presenter?.validateField(email: self.forgotEmailField.text ?? "")
     }
-    
 }
+
 extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
     
 }

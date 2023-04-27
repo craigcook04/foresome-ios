@@ -16,14 +16,39 @@ import FirebaseCore
 import FirebaseFirestore
 import Firebase
 
-class LogoutViewController: UIViewController {
+class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var dismissBtn: UIButton!
     @IBOutlet weak var yesIAmSureBtn: UIButton!
+    @IBOutlet weak var logoutDismissView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tapToDismiss()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.logoutDismissView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    //MARK: code for add atp guesture for dismiss view on tap any part of top view-------
+    func tapToDismiss() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissController))
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tap)
+        tap.delegate = self
+    }
+    
+    //MARK: code for dismiss view on tap any part of top view-------
+    @objc func dismissController() {
+        UIView.animate(withDuration: 0.3) {
+            self.logoutDismissView.transform = CGAffineTransform(translationX: 0, y: self.logoutDismissView.frame.height)
+        } completion: { isSucceed in
+            self.dismiss(animated: false)
+        }
     }
     
     @IBAction func yesIamSureAction(_ sender: UIButton) {

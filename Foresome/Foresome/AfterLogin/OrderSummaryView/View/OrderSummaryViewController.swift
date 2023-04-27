@@ -40,12 +40,12 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
     }
     
     func showOrderDetails() {
-        print("tournaments title---\(tournamenDetailstData?.title)")
-        print("tournaments date---\(tournamenDetailstData?.date)")
-        print("tournaments variations---\(variations)")
-        print("tournaments locations---\(tournamenDetailstData?.location)")
-        print("tournaments address---\(tournamenDetailstData?.address)")
-        print("tournaments quantity---\(quantity)")
+//        print("tournaments title---\(tournamenDetailstData?.title)")
+//        print("tournaments date---\(tournamenDetailstData?.date)")
+//        print("tournaments variations---\(variations)")
+//        print("tournaments locations---\(tournamenDetailstData?.location)")
+//        print("tournaments address---\(tournamenDetailstData?.address)")
+//        print("tournaments quantity---\(quantity)")
         
         tournamentsName.text = tournamenDetailstData?.title ?? ""
         tournamentsDate.text = tournamenDetailstData?.date ?? ""
@@ -99,8 +99,13 @@ extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
         json["source_id"] = "cnon:card-nonce-ok"
         ChargeApi.processPayment(param: json) { (transactionData, errorDescription) in
             if (transactionData?.id?.count ?? 0) > 0 {
+                let db = Firestore.firestore()
+                let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
+                db.collection("payments").document(transactionData?.id ?? "").setData(["user_id":"\(currentUserId)", "createdAt":"\(transactionData?.created_at ?? "")", "id": "\(transactionData?.id ?? "")", "order_id": "\(transactionData?.order_id ?? "")", "payments_status": "\(transactionData?.status ?? "")"], merge: true)
                 Singleton.shared.showMessage(message: "Payments successfull.", isError: .success)
-                Singleton.shared.setHomeScreenView()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                    Singleton.shared.setHomeScreenView()
+                })
             } else {
             }
             guard let errorDescription = errorDescription else {
@@ -135,8 +140,7 @@ extension OrderSummaryViewController :  PKPaymentAuthorizationViewControllerDele
 }
 
 
-
-
+              
 
 
 

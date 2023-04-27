@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
         let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
         let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
         db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
-            print("fetched current user data----\(snapData?.data()?["name"])")
+            //print("fetched current user data----\(snapData?.data()?["name"])")
         }
     }
     
@@ -39,17 +39,17 @@ class ProfileViewController: UIViewController {
         let db  = Firestore.firestore()
         db.collection("users").getDocuments { (abc, err) in
             abc?.documents.forEach({ data in
-                print("fetched data is ---\(data.data()["email"])")
+               // print("fetched data is ---\(data.data()["email"])")
             })
         }
         let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
         let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
         db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
-            print("fetched current user data----\(snapData?.data()?["name"])")
+            //print("fetched current user data----\(snapData?.data()?["name"])")
         }
         
         db.collection("users").document(currentLogedUserId).getDocument(source: .server) { (data, error)  in
-            print("fetched data is-==\(data?.data())")
+            //print("fetched data is-==\(data?.data())")
         }
     }
     
@@ -90,7 +90,7 @@ class ProfileViewController: UIViewController {
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let property = document.get("name")
-                print("Document data: \(property)")
+                //print("Document data: \(property)")
             } else {
                 print("Document does not exist")
             }

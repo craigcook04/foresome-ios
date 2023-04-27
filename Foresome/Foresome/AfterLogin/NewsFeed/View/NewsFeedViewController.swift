@@ -15,6 +15,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Firebase
+import FirebaseStorage
 
 class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -25,10 +26,16 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var imagePicker = GetImageFromPicker()
     var imageSelect: [UIImage?] = []
     weak var headerView: NewsHeader?
+    var data: CreatePostModel?
+    var uploadedImageUrls: [String]? = []
+    var progressCount: Float = 0.0
+    var totalUploadedImage: Int = 0
+    var confirmProgress: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPostData()
+        self.presenter?.saveCreatUserData()
+        // fetchPostData()
         setTableData()
         setTableFooter()
     }
@@ -51,7 +58,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             ActivityIndicator.sharedInstance.hideActivityIndicator()
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let tournament =  document.data()
-                
                 print("post id is ---\(document.documentID)")
                 print("post data is ----\(tournament)")
             })
@@ -73,6 +79,76 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         customView.backgroundColor = UIColor.appColor(.white_Light)
         newsFeedTableView.tableFooterView = customView
     }
+    //MARK: code for upload data for create post------
+    func uploadDataForPost(data:CreatePostModel) {
+        print("image data count is --=\(data.postImages?.count)")
+        print("post description is --=\(data.postDescription)")
+        
+        for i in 0..<(data.postImages?.count ?? 0) {
+            uploadimages(image: data.postImages?[i] ?? UIImage())
+        }
+    }
+    
+    //MARK: code for upload image one by one ---
+    func uploadimages(image: UIImage) {
+        let storageRef = Storage.storage().reference()
+        var data = Data()
+        data = image.pngData() ?? Data()
+        let date = Date()
+        let riversRef = storageRef.child("images/IMG_\(date.miliseconds().toInt).png")
+        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                return
+            }
+            let size = metadata.size
+            riversRef.downloadURL { (url,error) in
+                guard let downloadUrl = url else {
+                    return
+                }
+                self.uploadedImageUrls?.append(downloadUrl.absoluteString)
+                self.newsFeedTableView.beginUpdates()
+                self.totalUploadedImage = self.uploadedImageUrls?.count ?? 0
+                self.progressCount = Float(Double(self.totalUploadedImage) / Double(self.data?.postImages?.count ?? 0))
+                self.newsFeedTableView.reloads(rows: [0])
+                self.newsFeedTableView.endUpdates()
+                let indexpath = IndexPath(row: 0, section: 0)
+                let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? TalkAboutTableCell
+                cell?.setCellDataAndProgress(data: self.data ?? CreatePostModel(), progress: self.progressCount, uploadedCount: self.totalUploadedImage)
+                if self.totalUploadedImage == (self.data?.postImages?.count ?? 0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                        self.newsFeedTableView.beginUpdates()
+                        cell?.postingImageView.isHidden = true
+                        self.newsFeedTableView.endUpdates()
+                    })
+                } else {
+                    cell?.postingImageView.isHidden = false
+                }
+                //self.newsFeedTableView.reloads(rows: [0])
+            }
+        }
+        
+        uploadTask.observe(.progress) { data in
+            if Float(data.progress?.fractionCompleted.roundTo(places: 2) ?? 0.0) == 1.0 {
+                //                self.confirmProgress = self.confirmProgress + 1
+                //                self.totalUploadedImage = self.confirmProgress
+                //                self.progressCount = Float(self.confirmProgress / (self.data?.postImages?.count ?? 0))
+                
+                //                self.tableView?.beginUpdates()
+                //                self.postingImageView.isHidden = true
+                //                self.tableView?.endUpdates()
+            } else {
+                //                self.postingImageView.isHidden = false
+            }
+        }
+        
+        uploadTask.observe(.success) { data in
+            print("success called.")
+        }
+        
+        uploadTask.observe(.failure) { data in
+            print("failure called.")
+        }
+    }
 }
 
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
@@ -84,6 +160,10 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TalkAboutTableCell", for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+            if let data = self.data {
+                //cell.setCellProgressData(data: data)
+                cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
+            }
             cell.delegate = self
             return cell
         } else if indexPath.row == 1 {
@@ -103,12 +183,22 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
+    func cancelAction() {
+        print("cancel action callled")
+        self.data = nil
+        self.uploadedImageUrls = []
+        self.progressCount = 0.0
+        self.totalUploadedImage = 0
+        self.confirmProgress = 0
+    }
+    
     //MARK: code for create new post----
     func createPost() {
-        let createPostVc = CreatePostPresenter.createPostModule()
+        let createPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [])
         createPostVc.hidesBottomBarWhenPushed = true
         self.pushViewController(createPostVc, true)
     }
+    
     //MARK: code for create post with not description----
     func cameraBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
@@ -119,8 +209,10 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
-                    self?.presenter?.createPost(json: JSON())
+                    //self?.presenter?.createPost(json: JSON())
+                    //self?.presenter?.createPost()
                     self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
+                    self?.presenter?.uploadimage(image: image)
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -138,8 +230,8 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
-                    self?.presenter?.createPost(json: JSON())
                     self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
+                    self?.presenter?.uploadimage(image: image)
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -201,4 +293,16 @@ extension NewsFeedViewController: UIScrollViewDelegate {
 extension NewsFeedViewController: NewsFeedViewProtocol {
     
 }
+
+extension NewsFeedViewController: CreatePostUploadDelegate {
+    func uploadProgress(data: CreatePostModel) {
+        print("data after pop a view controller...")
+        print("post data image count--\(data.postImages?.count)")
+        print("post data description is -==\(data.postDescription)")
+        self.data = data
+        self.uploadDataForPost(data: data)
+        self.newsFeedTableView.reload(row: 0)
+    }
+}
+
 

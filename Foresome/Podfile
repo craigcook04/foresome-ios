@@ -17,6 +17,8 @@ target 'Foresome' do
   pod 'Firebase/Auth'
   pod 'SquareInAppPaymentsSDK'
   pod 'GoogleSignIn'
+  pod 'Firebase/Storage'
+  
 end
 # Disable signing for pods
 post_install do |installer|

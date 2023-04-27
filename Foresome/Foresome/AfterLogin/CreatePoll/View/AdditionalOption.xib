@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-Fm-sge" customClass="GrowingTextView" customModule="Foresome">
-                    <rect key="frame" x="16" y="16" width="361" height="45"/>
+                    <rect key="frame" x="16" y="16" width="324.66666666666669" height="45"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="textColor" systemColor="labelColor"/>
@@ -43,11 +43,19 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U2-bw-KLa">
+                    <rect key="frame" x="350.66666666666669" y="30.999999999999996" width="26.333333333333314" height="15.333333333333332"/>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                    <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Xku-Fm-sge" secondAttribute="bottom" constant="16" id="61k-gR-pRT"/>
-                <constraint firstAttribute="trailing" secondItem="Xku-Fm-sge" secondAttribute="trailing" constant="16" id="MYZ-sj-4dr"/>
+                <constraint firstItem="8U2-bw-KLa" firstAttribute="centerY" secondItem="Xku-Fm-sge" secondAttribute="centerY" id="7h5-EP-MOr"/>
+                <constraint firstItem="8U2-bw-KLa" firstAttribute="leading" secondItem="Xku-Fm-sge" secondAttribute="trailing" constant="10" id="ErT-gW-Hmc"/>
+                <constraint firstAttribute="trailing" secondItem="8U2-bw-KLa" secondAttribute="trailing" constant="16" id="O1V-9b-nKT"/>
                 <constraint firstItem="Xku-Fm-sge" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Vfm-sI-vuU"/>
                 <constraint firstItem="Xku-Fm-sge" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="tT9-io-Ajh"/>
             </constraints>
@@ -64,6 +72,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="characterCountLabel" destination="8U2-bw-KLa" id="14r-XM-CKX"/>
                 <outlet property="optionAdd" destination="Xku-Fm-sge" id="jJW-VH-gHg"/>
             </connections>
             <point key="canvasLocation" x="319.84732824427482" y="153.16901408450704"/>

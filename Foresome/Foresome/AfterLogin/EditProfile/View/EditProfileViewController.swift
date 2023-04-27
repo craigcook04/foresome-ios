@@ -15,6 +15,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Firebase
+import FirebaseStorage
 
 class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     
@@ -29,10 +30,13 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     @IBOutlet weak var showConfirmPasswordBtn: UIButton!
     
     var presenter: EditProfilePresenterProtocol?
+    
     let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newPasswordField.delegate = self
+        self.confirmNewPasswordField.delegate = self
         setUserProfileData()
     }
     
@@ -93,39 +97,180 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     
     @IBAction func saveButtonAction(_ sender: UIButton) {
         print("save button action called.")
-        if bioTextView.text.count > 0 {
-            print("helllo")
-            let db = Firestore.firestore()
-            do {
-                let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
-                db.collection("users").document(documentsId).setData(["bio": "\(bioTextView.text ?? "")"], merge: true)
-                Singleton.shared.showMessage(message: "updated successfully.", isError: .success)
-            } catch let error {
-                Singleton.shared.showMessage(message: "\(error.localizedDescription)", isError: .error)
+        self.uploadImageStorageRafrence()
+        return
+        if (bioTextView.text.count > 0) && ((OldPasswordField.text?.count ?? 0) > 0 || (newPasswordField.text?.count ?? 0) > 0 || (confirmNewPasswordField.text?.count ?? 0) > 0) {
+            //MARK: update bio with password ---
+            updateBio()
+            if (OldPasswordField.text?.count ?? 0) > 0 && (newPasswordField.text == confirmNewPasswordField.text) {
+                let user = Auth.auth().currentUser
+                let credential = EmailAuthProvider.credential(withEmail: "\(emailField.text ?? "")", password: "\(OldPasswordField.text ?? "")")
+                user?.reauthenticate(with: credential, completion: { (authResut, error)  in
+                    if error == nil {
+                        if self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "") == nil {
+                            return
+                        } else {
+                            let pass = self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "")
+                            ActivityIndicator.sharedInstance.showActivityIndicator()
+                            Auth.auth().currentUser?.updatePassword(to: pass ?? "", completion: { err in
+                                if err == nil {
+                                    self.updateBio()
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                                        self.popVC()
+                                    })
+                                } else {
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: err?.localizedDescription ?? "", isError: .error)
+                                }
+                            })
+                        }
+                    } else {
+                        ActivityIndicator.sharedInstance.hideActivityIndicator()
+                        Singleton.shared.showMessage(message: "Old password not matched.", isError: .error)
+                    }
+                })
+            } else {
+                print("update only bio")
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                Singleton.shared.showMessage(message: "password details are not matched.", isError: .error)
             }
-        } else {
-            print("on working when bio is filled.")
-        }
-        
-        if (OldPasswordField.text?.count ?? 0) > 0 && (newPasswordField.text == confirmNewPasswordField.text) {
-            let user = Auth.auth().currentUser
-            let credential = EmailAuthProvider.credential(withEmail: "\(emailField.text ?? "")", password: "\(OldPasswordField.text ?? "")")
-            user?.reauthenticate(with: credential, completion: { (authResut, error)  in
-                if error == nil {
-                    if self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "") == nil {
+        } else if (bioTextView.text.count > 0) && ((OldPasswordField.text?.count ?? 0) == 0 && (newPasswordField.text?.count ?? 0) == 0 && (confirmNewPasswordField.text?.count ?? 0) == 0) {
+            //MARK: update bio only------
+            if let data = strings {
+                if data["bio"] != nil {
+                    if self.bioTextView.text ==  data["bio"] as? String ?? "" {
+                        Singleton.shared.showMessage(message: "Please fill all details.", isError: .error)
                         return
                     } else {
-                        let pass = self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "")
-                        Auth.auth().currentUser?.updatePassword(to: pass ?? "")
-                        self.popVC()
+                        ActivityIndicator.sharedInstance.showActivityIndicator()
+                        let db = Firestore.firestore()
+                        do {
+                            let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+                            db.collection("users").document(documentsId).setData(["bio": "\(bioTextView.text ?? "")"], merge: true) { err in
+                                if err == nil {
+                                    self.updateBio()
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    self.popVC()
+                                } else {
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: "\(err?.localizedDescription ?? "")", isError: .error)
+                                }
+                            }
+                        }
                     }
-                } else {
-                    Singleton.shared.showMessage(message: "Old password not matched.", isError: .error)
                 }
-            })
+            }
+        } else if (bioTextView.text.count == 0) && ((OldPasswordField.text?.count ?? 0) > 0 || (newPasswordField.text?.count ?? 0) > 0 || (confirmNewPasswordField.text?.count ?? 0) > 0) {
+            //MARK: update password only---
+            if (OldPasswordField.text?.count ?? 0) > 0 && (newPasswordField.text == confirmNewPasswordField.text) {
+                let user = Auth.auth().currentUser
+                let credential = EmailAuthProvider.credential(withEmail: "\(emailField.text ?? "")", password: "\(OldPasswordField.text ?? "")")
+                user?.reauthenticate(with: credential, completion: { (authResut, error)  in
+                    if error == nil {
+                        if self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "") == nil {
+                            return
+                        } else {
+                            let pass = self.validatePassField(newPass: self.newPasswordField.text ?? "", conformPass: self.confirmNewPasswordField.text ?? "")
+                            ActivityIndicator.sharedInstance.showActivityIndicator()
+                            Auth.auth().currentUser?.updatePassword(to: pass ?? "", completion: { err in
+                                if err == nil {
+                                    self.updateBio()
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                                        self.popVC()
+                                    })
+                                } else {
+                                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                    Singleton.shared.showMessage(message: err?.localizedDescription ?? "", isError: .error)
+                                }
+                            })
+                        }
+                    } else {
+                        ActivityIndicator.sharedInstance.hideActivityIndicator()
+                        Singleton.shared.showMessage(message: "Old password not matched.", isError: .error)
+                    }
+                })
+            } else {
+                print("update only bio")
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                Singleton.shared.showMessage(message: "password details are not matched.", isError: .error)
+            }
         } else {
-            print("update only bio")
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
+            Singleton.shared.showMessage(message: "please fill above details.", isError: .error)
+        }
+    }
+    
+    //MARK: code for create post or upload image using storage refrence -----
+    func uploadImageStorageRafrence() {
+        let storageRef = Storage.storage().reference()
+        let data = Data()
+        let riversRef = storageRef.child("images/hello.png")
+        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                print("failure cases.")
+                print("returned error incase put data is \(error)")
+                return
+            }
+            let size = metadata.size
+            
+            riversRef.downloadURL { (url,error) in
+                guard let downloadUrl = url else  {
+                    print("unable to download")
+                    print("returned error incase download url is --== \(error)")
+                    return
+                }
+                print("downloaded url is -===\(downloadUrl)")
+            }
+        }
+        
+        uploadTask.observe(.progress) { data in
+            print("upload data progress is ---=\(data.progress.debugDescription)")
+            print(data.progress?.fileCompletedCount)
+            print(data.progress?.completedUnitCount)
+            print(data.progress?.fractionCompleted)
+        }
+    }
+    
+    //MARK: function for update bio
+    func updateBio() {
+        let db = Firestore.firestore()
+        do {
+            let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+            db.collection("users").document(documentsId).setData(["bio": "\(bioTextView.text ?? "")"], merge: true) { err in
+                if err == nil {
+                    // Singleton.shared.showMessage(message: "updated successfully.", isError: .success)
+                } else {
+                    // Singleton.shared.showMessage(message: "\(err?.localizedDescription ?? "")", isError: .error)
+                }
+            }
         }
     }
 }
+
+extension EditProfileViewController : UITextFieldDelegate {
+    //    func textFieldDidBeginEditing(_ textField: UITextField) {
+    //        if  textField == newPasswordField || textField == confirmNewPasswordField {
+    //            if (OldPasswordField.text?.count ?? 0) == 0 {
+    //                Singleton.shared.showMessage(message: "Please fill old password.", isError: .error)
+    //                return
+    //            }
+    //        }
+    //    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if  textField == newPasswordField || textField == confirmNewPasswordField {
+            if (OldPasswordField.text?.count ?? 0) == 0 {
+                Singleton.shared.showMessage(message: "Please fill old password.", isError: .error)
+                return false
+            }
+        }
+        return true
+    }
+}
+
 

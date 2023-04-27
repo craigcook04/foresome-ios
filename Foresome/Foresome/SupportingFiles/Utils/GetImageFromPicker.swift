@@ -327,7 +327,6 @@ extension GetImageFromPicker : UIImagePickerControllerDelegate, UINavigationCont
 //        guard let newImage = updatedImage else {return}
         //ActivityIndicator.sharedInstance.showActivityIndicator()
         
-        
         picker.dismiss(animated: false) {
             DispatchQueue.main.async {
                 if self.imageCallBack != nil {

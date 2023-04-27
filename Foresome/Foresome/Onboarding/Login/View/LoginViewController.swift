@@ -43,9 +43,8 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
-        
-        let vc = ForgotPasswordViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let forgotPassVC = ForgotPresenter.createForgotPasswordModule()
+        self.pushViewController(forgotPassVC, false)
     }
     
     @IBAction func passwordShowAction(_ sender: UIButton) {
@@ -57,7 +56,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-        print("config----\(config)")
+       // print("config----\(config)")
         GIDSignIn.sharedInstance.configuration = config
         
         // Start the sign in flow!

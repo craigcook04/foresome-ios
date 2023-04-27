@@ -27,6 +27,7 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
+        saveCreatUserData()
     }
     
     func setTableView() {
@@ -37,6 +38,21 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
         setTableHeader()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        saveCreatUserData()
+    }
+    
+    func saveCreatUserData() {
+        let db = Firestore.firestore()
+        let currentUserId = UserDefaults.standard.value(forKey: "user_uid") as? String ?? ""
+        db.collection("users").document(currentUserId ?? "").getDocument { (snapData, error) in
+            if let data = snapData?.data() {
+                UserDefaults.standard.set(data, forKey: "myUserData")
+            }
+        }
+    }
+    
     //MARK: set table header-----
     func setTableHeader() {
         guard  headerView == nil else { return }
@@ -44,7 +60,6 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
         let view = UIView.initView(view: ProfileHeader.self)
         view.setHeaderData()
         self.profileTableView.setStrachyHeader(header: view, height: height)
-//        self.scrollViewDidScroll(self.profileTableView)
     }
     
     //MARK: fucntion for pic image for profile-----
@@ -59,14 +74,24 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         //profileImage.image  = tempImage
-       // print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
+        // print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
         //pickedProfileImage = tempImage.convertImageToBase64String()
         self.dismiss(animated: true) {
             //self.presenter?.updateUserProfile(profilePicName: tempImage.convertImageToBase64String())
-           // self.presenter?.updateProfilePic(profileImage: tempImage)
+            // self.presenter?.updateProfilePic(profileImage: tempImage)
             let db = Firestore.firestore()
             let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
             db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(tempImage.convertImageToBase64String())"], merge: true)
+            ActivityIndicator.sharedInstance.showActivityIndicator()
+            let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
+            db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
+                if let data = snapData?.data() {
+                    UserDefaults.standard.set(data, forKey: "myUserData")
+                }
+                self.profileTableView.reload(row: 0)
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                Singleton.shared.showMessage(message: "Profile image updated successfully.", isError: .success)
+            }
         }
     }
     

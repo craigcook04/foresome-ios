@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CreatePostViewProtocol {
     var presenter: CreatePostPresenterProtocol? {get set}
@@ -16,4 +17,7 @@ protocol CreatePostPresenterProtocol {
     var view: CreatePostViewProtocol? {get set}
     func photoButtonAction()
     func cameraButtonAction()
+    func createNewPost()
+    func createPost(data:CreatePostModel)
+    func uploadMultileImage(images:UIImage)
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CreatePostUploadDelegate {
+    func uploadProgress(data:CreatePostModel)
+}
+
 class CreatePostViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var writePost: GrowingTextView!
@@ -22,13 +26,21 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     var presenter: CreatePostPresenterProtocol?
     var imageSelect: [UIImage?] = []
     var imagePicker = GetImageFromPicker()
+    let creatPostData = CreatePostModel()
+    var delegate: CreatePostUploadDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.publishButton.isUserInteractionEnabled = false
         writePost.autocorrectionType = .no
         setKeyboard()
         self.setCellData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.managePublicButton()
+    }
+    
     func setCellData() {
         self.writePost.delegate = self
         self.selectImageCollection.delegate = self
@@ -36,13 +48,36 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
         self.selectImageCollection.register(cellClass: SelectImageCollectionCell.self)
     }
     
-    func setKeyboard(){
+    func setKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification , object:nil)
     }
     
+    func publishBtnActive() {
+        if (creatPostData.postDescription?.count ?? 0) > 0 {
+            return
+        } else {
+            if self.imageSelect.count > 0 {
+                self.publishButton.isUserInteractionEnabled = true
+                self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+            } else {
+                self.publishButton.isUserInteractionEnabled = false
+                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+            }
+        }
+    }
+    
+    func managePublicButton() {
+        if self.imageSelect.count > 0 {
+            self.publishButton.isUserInteractionEnabled = true
+            self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+        } else {
+            self.publishButton.isUserInteractionEnabled = false
+            self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+        }
+    }
+    
     @IBAction func backAction(_ sender: UIButton) {
-        
         self.popVC()
     }
     
@@ -55,19 +90,23 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func publishAction(_ sender: UIButton) {
-        
+        print("publish action called.")
+        creatPostData.postImages = self.imageSelect
+//        self.presenter?.createNewPost()
+        self.delegate?.uploadProgress(data: self.creatPostData)
+        self.popVC()
     }
     
     @IBAction func pollAction(_ sender: UIButton) {
-        let vc = CreatePollViewController()
-        self.pushViewController(vc, true)
+        let pollVC = CreatePollPresenter.createPollModule()
+        self.pushViewController(pollVC, true)
     }
 }
+
 extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControllerDelegate {
     func receiveResult() {
         self.imagePicker.setImagePicker(imagePickerType: .gallery, controller: self)
         self.imagePicker.imageCallBack = {
-            
             [weak self] (result) in
             DispatchQueue.main.async {
                 switch result{
@@ -76,7 +115,8 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
                     let image = imageData?.image ?? UIImage()
                     self?.imageSelect.append(image)
                     self?.selectImageCollection.reloadData()
-                    
+                    self?.publishBtnActive()
+                    self?.selectImageCollection.scrollToItem(at: IndexPath(row: ((self?.imageSelect.count ?? 0) - 1), section: 0), at: .left, animated: false)
                 case .error(let message):
                     print(message)
                 }
@@ -87,13 +127,16 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
     func cameraReceiveResult() {
         self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
         self.imagePicker.imageCallBack = {
-            
             [weak self] (result) in
             DispatchQueue.main.async {
-                switch result{
+                switch result {
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
+                    self?.imageSelect.append(image)
+                    self?.selectImageCollection.reloadData()
+                    self?.publishBtnActive()
+                    self?.selectImageCollection.scrollToItem(at: IndexPath(row: ((self?.imageSelect.count ?? 0) - 1), section: 0), at: .left, animated: false)
                 case .error(let message):
                     print(message)
                 }
@@ -111,7 +154,6 @@ extension CreatePostViewController {
         if let value  = (notification as NSNotification).userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             duration = value
         }
-        
         if let value = (notification as NSNotification).userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
             animation = UIView.AnimationOptions(rawValue: value)
         }
@@ -130,7 +172,6 @@ extension CreatePostViewController {
         if let value  = (notification as NSNotification).userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             duration = value
         }
-        
         if let value = (notification as NSNotification).userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
             animation = UIView.AnimationOptions(rawValue: value)
         }
@@ -145,10 +186,8 @@ extension CreatePostViewController {
     }
 }
 extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.imageSelect.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -158,6 +197,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.delegate = self
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width/3, height: collectionView.frame.height)
     }
@@ -166,21 +206,27 @@ extension CreatePostViewController: SelectImageCollectionCellDelegate {
     func removeImage(index: Int) {
         self.imageSelect.remove(at: index)
         self.selectImageCollection.reloadData()
+        self.publishBtnActive()
     }
 }
+
 extension CreatePostViewController : GrowingTextViewDelegate {
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        var updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        creatPostData.postDescription = updatedString
         if updatedString == " "{
             return false
         } else {
-            if updatedString?.count ?? 0 > 0 {
-                self.publishButton.isUserInteractionEnabled = true
-                self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
-            }else {
-                self.publishButton.isUserInteractionEnabled = false
-                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+            if self.imageSelect.count > 0 {
+                return true
+            } else {
+                if updatedString?.count ?? 0 > 0 {
+                    self.publishButton.isUserInteractionEnabled = true
+                    self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+                } else {
+                    self.publishButton.isUserInteractionEnabled = false
+                    self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+                }
             }
             return true
         }

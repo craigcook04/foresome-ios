@@ -12,7 +12,6 @@ class PresentableController: UIViewController {
     
     var transitionHeight: CGFloat = 150
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.transitionHeight = self.view.frame.height/2
