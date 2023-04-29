@@ -31,13 +31,18 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var progressCount: Float = 0.0
     var totalUploadedImage: Int = 0
     var confirmProgress: Int = 0
-    
+    var uploadCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter?.saveCreatUserData()
         // fetchPostData()
         setTableData()
         setTableFooter()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
     
     func setTableData() {
@@ -59,7 +64,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let tournament =  document.data()
                 print("post id is ---\(document.documentID)")
-                print("post data is ----\(tournament)")
             })
         }
     }
@@ -71,7 +75,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         let view = UIView.initView(view: NewsHeader.self)
         view.setHeaderData()
         self.newsFeedTableView.setStrachyHeader(header: view, height: height)
-        //        self.scrollViewDidScroll(self.newsFeedTableView)
     }
     
     func setTableFooter() {
@@ -79,13 +82,15 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         customView.backgroundColor = UIColor.appColor(.white_Light)
         newsFeedTableView.tableFooterView = customView
     }
+    
     //MARK: code for upload data for create post------
     func uploadDataForPost(data:CreatePostModel) {
-        print("image data count is --=\(data.postImages?.count)")
-        print("post description is --=\(data.postDescription)")
-        
-        for i in 0..<(data.postImages?.count ?? 0) {
-            uploadimages(image: data.postImages?[i] ?? UIImage())
+        if (data.postImages?.count ?? 0) > 0 {
+            for i in 0..<(data.postImages?.count ?? 0) {
+                uploadimages(image: data.postImages?[i] ?? UIImage())
+            }
+        } else {
+            self.uploadPostData(data: self.data ?? CreatePostModel())
         }
     }
     
@@ -100,59 +105,78 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             guard let metadata = metadata else {
                 return
             }
-            let size = metadata.size
             riversRef.downloadURL { (url,error) in
                 guard let downloadUrl = url else {
                     return
                 }
-                self.uploadedImageUrls?.append(downloadUrl.absoluteString)
-                self.newsFeedTableView.beginUpdates()
-                self.totalUploadedImage = self.uploadedImageUrls?.count ?? 0
-                self.progressCount = Float(Double(self.totalUploadedImage) / Double(self.data?.postImages?.count ?? 0))
-                self.newsFeedTableView.reloads(rows: [0])
-                self.newsFeedTableView.endUpdates()
+                self.uploadCount += 1
                 let indexpath = IndexPath(row: 0, section: 0)
                 let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? TalkAboutTableCell
-                cell?.setCellDataAndProgress(data: self.data ?? CreatePostModel(), progress: self.progressCount, uploadedCount: self.totalUploadedImage)
-                if self.totalUploadedImage == (self.data?.postImages?.count ?? 0) {
+                self.uploadedImageUrls?.append(downloadUrl.absoluteString)
+                if self.uploadCount == self.data?.postImages?.count ?? 0 {
+                    print("all images uploaded successfully")
+                    self.uploadPostData(data: self.data ?? CreatePostModel())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                         self.newsFeedTableView.beginUpdates()
                         cell?.postingImageView.isHidden = true
                         self.newsFeedTableView.endUpdates()
+                        self.crealOldUploadedData()
                     })
+                    ActivityIndicator.sharedInstance.hideActivityIndicator()
                 } else {
                     cell?.postingImageView.isHidden = false
                 }
-                //self.newsFeedTableView.reloads(rows: [0])
+                self.totalUploadedImage = self.uploadedImageUrls?.count ?? 0
+                self.progressCount = Float(Double(self.totalUploadedImage) / Double(self.data?.postImages?.count ?? 0))
+                cell?.setCellDataAndProgress(data: self.data ?? CreatePostModel(), progress: self.progressCount, uploadedCount: self.totalUploadedImage)
             }
         }
         
         uploadTask.observe(.progress) { data in
             if Float(data.progress?.fractionCompleted.roundTo(places: 2) ?? 0.0) == 1.0 {
-                //                self.confirmProgress = self.confirmProgress + 1
-                //                self.totalUploadedImage = self.confirmProgress
-                //                self.progressCount = Float(self.confirmProgress / (self.data?.postImages?.count ?? 0))
-                
-                //                self.tableView?.beginUpdates()
-                //                self.postingImageView.isHidden = true
-                //                self.tableView?.endUpdates()
             } else {
-                //                self.postingImageView.isHidden = false
             }
         }
         
         uploadTask.observe(.success) { data in
-            print("success called.")
+        
         }
         
         uploadTask.observe(.failure) { data in
-            print("failure called.")
         }
+    }
+    
+    func uploadPostData(data:CreatePostModel) {
+        //MARK: code for create poll using firebase ---
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        let db = Firestore.firestore()
+        let documentsId =  UUID().uuidString
+        var postImages = [String]()
+        //MARK: code for upload multiple image upload-----
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        let createdDate = Date().miliseconds()
+        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"feed"], merge: true) { error in
+            if error == nil {
+                Singleton.shared.showMessage(message: "post created successfully.", isError: .success)
+            } else {
+                Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
+            }
+        }
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
+    }
+    
+    func crealOldUploadedData() {
+        self.data = nil
+        self.uploadCount = 0
+        self.data?.postImages?.removeAll()
+        self.uploadedImageUrls = []
+        self.progressCount = 0.0
+        self.totalUploadedImage = 0
+        self.confirmProgress = 0
     }
 }
 
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -161,7 +185,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TalkAboutTableCell", for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
             if let data = self.data {
-                //cell.setCellProgressData(data: data)
+                cell.setProfileData()
                 cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
             }
             cell.delegate = self
@@ -191,14 +215,12 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
         self.totalUploadedImage = 0
         self.confirmProgress = 0
     }
-    
     //MARK: code for create new post----
     func createPost() {
         let createPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [])
         createPostVc.hidesBottomBarWhenPushed = true
         self.pushViewController(createPostVc, true)
     }
-    
     //MARK: code for create post with not description----
     func cameraBtnAction() {
         self.imagePicker.setImagePicker(imagePickerType: .camera, controller: self)
@@ -209,10 +231,10 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
-                    //self?.presenter?.createPost(json: JSON())
-                    //self?.presenter?.createPost()
-                    self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
-                    self?.presenter?.uploadimage(image: image)
+                    self?.dismiss(animated: false) {
+                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -230,8 +252,10 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
-                    self?.presenter?.creatNewPost(selectedimage: image.convertImageToBase64String())
-                    self?.presenter?.uploadimage(image: image)
+                    self?.dismiss(animated: false) {
+                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 case .error(let message):
                     print(message)
                     Singleton.shared.showMessage(message: message, isError: .error)
@@ -296,13 +320,9 @@ extension NewsFeedViewController: NewsFeedViewProtocol {
 
 extension NewsFeedViewController: CreatePostUploadDelegate {
     func uploadProgress(data: CreatePostModel) {
-        print("data after pop a view controller...")
-        print("post data image count--\(data.postImages?.count)")
-        print("post data description is -==\(data.postDescription)")
         self.data = data
         self.uploadDataForPost(data: data)
         self.newsFeedTableView.reload(row: 0)
     }
 }
-
 

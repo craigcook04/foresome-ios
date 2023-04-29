@@ -76,7 +76,7 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
                     }
                 })
             } else {
-                Singleton.shared.showMessage(message: err?.localizedDescription ?? "", isError: .success)
+                Singleton.shared.showMessage(message: err?.localizedDescription ?? "", isError: .error)
                 return
             }
         }

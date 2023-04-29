@@ -41,11 +41,21 @@ class TalkAboutTableCell: UITableViewCell {
     var delegate: TalkAboutTableCellDelegate?
     var uploadedImageUrls: [String]? = []
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.setProfileData()
         talkAboutField.delegate = self
         self.postingImageView.isHidden = true
+    }
+    
+    func setProfileData() {
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        if let data = strings {
+            if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
+                profileImage.image = image
+                profilePicture.image = image
+            }
+        }
     }
 
     func setCellProgressData(data: CreatePostModel) {
@@ -138,9 +148,8 @@ class TalkAboutTableCell: UITableViewCell {
     }
     
     func uploadImageasRef() {
-        
+        print("image uploaded ref called.")
     }
-    
     
     @IBAction func pollAction(_ sender: UIButton) {
         self.delegate?.pollBtnAction()

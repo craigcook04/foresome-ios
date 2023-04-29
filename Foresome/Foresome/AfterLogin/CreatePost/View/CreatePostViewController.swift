@@ -37,8 +37,23 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
         self.setCellData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setProfileData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.managePublicButton()
+    }
+    
+    func setProfileData() {
+        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        if let data = strings {
+            if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
+                profileImage.image = image
+            }
+            self.userNameLbl.text = data["name"] as? String
+        }
     }
     
     func setCellData() {
@@ -91,10 +106,12 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     
     @IBAction func publishAction(_ sender: UIButton) {
         print("publish action called.")
+         ActivityIndicator.sharedInstance.showActivityIndicator()
         creatPostData.postImages = self.imageSelect
 //        self.presenter?.createNewPost()
-        self.delegate?.uploadProgress(data: self.creatPostData)
-        self.popVC()
+        self.navigationController?.popViewController(animated: false, completion: {
+            self.delegate?.uploadProgress(data: self.creatPostData)
+        })
     }
     
     @IBAction func pollAction(_ sender: UIButton) {

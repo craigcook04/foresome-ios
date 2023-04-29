@@ -79,7 +79,15 @@ class VariationViewController: UIViewController {
     }
     
     @IBAction func dismissAction(_ sender: Any) {
-        self.dismiss(animated: true)
+        self.dismissWithAnimation()
+    }
+    
+    func dismissWithAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.variationView.transform = CGAffineTransform(translationX: 0, y: self.variationView.frame.height)
+        } completion: { isSucceed in
+            self.dismiss(animated: false)
+        }
     }
     
     @IBAction func singlePlayerAction(_ sender: Any) {

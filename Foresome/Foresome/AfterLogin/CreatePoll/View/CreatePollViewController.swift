@@ -67,6 +67,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     @IBAction func addOptionAction(_ sender: UIButton) {
         for optionField in optionsFieldArray {
             if optionField.optionAdd.text.count == 0 {
+                Singleton.shared.showMessage(message: "please fill above option first.", isError: .error)
                 return
             }
         }
@@ -74,15 +75,18 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     }
     
     @IBAction func createPostAction(_ sender: UIButton) {
-        if ((optionsFieldArray.first?.optionAdd.text.count ?? 0) < 1) && ((optionsFieldArray[1].optionAdd.text.count ) < 1) {
-            Singleton.shared.showMessage(message: "Options not allowed to be empty.", isError: .error)
-        } else {
-            if self.yourQuestion.text.count > 0 {
-                self.presenter?.createNewPoll(questioName: "\(self.yourQuestion.text ?? "")", optionsArray: self.optionsFieldArray)
-            } else {
-                Singleton.shared.showMessage(message: "Please ask a question.", isError: .error)
+        if self.yourQuestion.text.count < 1 {
+            Singleton.shared.showMessage(message: "Please ask a question.", isError: .error)
+            return
+        }
+        
+        for i in 0..<optionsFieldArray.count {
+            guard optionsFieldArray[i].optionAdd.text.count > 0 else {
+                Singleton.shared.showMessage(message: "Options not allowed to be empty.", isError: .error)
+                return
             }
         }
+        self.presenter?.createNewPoll(questioName: "\(self.yourQuestion.text ?? "")", optionsArray: self.optionsFieldArray)
     }
 }
 
