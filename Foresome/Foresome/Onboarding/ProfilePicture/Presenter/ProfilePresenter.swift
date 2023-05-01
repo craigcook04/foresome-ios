@@ -19,6 +19,7 @@ import Firebase
 class ProfilePresenter: ProfilePicturePresenter {
     
     var view: ProfilePictureViewProtocol?
+    
     static func createProfileModule() -> ProfilePictureViewController {
         let view = ProfilePictureViewController()
         var presenter: ProfilePicturePresenter = ProfilePresenter()
@@ -28,25 +29,20 @@ class ProfilePresenter: ProfilePicturePresenter {
     }
     
     func updateUserProfileData(porfilePicName: String) {
-        //print("selected profile imaeg name in base64-----\(porfilePicName)")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
-        db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(porfilePicName)"], merge: true)
-        if let signupVc = self.view as? ProfilePictureViewController {
-            let locationVc = UserSkillPresenter.createUserSkillModule()
-            signupVc.pushViewController(locationVc, true)
+        db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(porfilePicName)"], merge: true) { error in
+            if error == nil {
+                if let signupVc = self.view as? ProfilePictureViewController {
+                    let locationVc = UserSkillPresenter.createUserSkillModule()
+                    signupVc.pushViewController(locationVc, true)
+                }
+            } else {
+                if let error = error {
+                    Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+                }
+            }
         }
-        //         db.collection("users").addDocument(data:["user_profile_pic":"\(porfilePicName)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
-        //             if Error != nil {
-        //                 print("user profile updatation issue---\(Error as Any)")
-        //             } else {
-        //                 print("user profile updated successfully.")
-        //                 if let signupVc = self.view as? ProfilePictureViewController {
-        //                     let locationVc = UserSkillPresenter.createUserSkillModule()
-        //                     signupVc.pushViewController(locationVc, true)
-        //                 }
-        //             }
-        //         }
     }
 }
 

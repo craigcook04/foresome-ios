@@ -30,7 +30,6 @@ class ProfileTableCell: UITableViewCell {
 
     @IBAction func toggleAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-      //  print("sender is selected--\(sender.isSelected)")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
         db.collection("users").document(documentsId).setData(["notification_settings" : "\(sender.isSelected)"], merge: true)

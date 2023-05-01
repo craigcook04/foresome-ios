@@ -40,16 +40,12 @@ class CreatePostPresenter: CreatePostPresenterProtocol {
     }
     
     func createNewPost() {
-        print("create new post function called.")
     }
     
     func createPost(data: CreatePostModel) {
-        if let currentView = self.view as? CreatePostViewController {
-        }
     }
     
     func uploadMultileImage(images: UIImage) {
-        
     }
 }
 

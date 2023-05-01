@@ -9,8 +9,8 @@ import UIKit
 protocol PollResultTableCellDelegate {
     func PollMoreButton()
 }
+
 class PollResultTableCell: UITableViewCell {
-    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var pollTableView: UITableView!
     @IBOutlet weak var postDescriptionLbl: ExpendableLinkLabel!
@@ -110,6 +110,7 @@ extension PollResultTableCell: UITableViewDelegate,UITableViewDataSource {
         }
     }
 }
+
 extension PollResultTableCell: ExpendableLinkLabelDelegate {
     func tapableLabel(_ label: ExpendableLinkLabel, didTapUrl url: String, atRange range: NSRange) {
     }

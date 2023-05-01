@@ -41,18 +41,6 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     
     func passedTounamentsData() {
         print("passes data -----")
-//        print("a--\(tournamentData?.title)")
-//        print("b--\(tournamentData?.date)")
-//        print("c--\(tournamentData?.address)")
-//        print("d--\(tournamentData?.location)")
-//        print("e--\(tournamentData?.descriptions)")
-//        print("f--\(tournamentData?.availability)")
-//        print("g--\(tournamentData?.time?.count)")
-//        print("h--\(tournamentData?.time)")
-//        print("i--\(tournamentData?.price)")
-//        print("j---\(tournamentData?.sale_price)")
-//        print("passed all data........")
-        //print("avalibility in int value ----\(tournamentData?.availability ?? 0)")
     }
     
     func setTournamentsDetailsData() {
@@ -69,8 +57,8 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
         self.tournamentsDateAndTIme.text = tournamentData?.date ?? ""
         self.tournamentsLocation.text = tournamentData?.location ?? ""
         self.tournamentsAddress.text = tournamentData?.address ?? ""
-        self.tournamentsPrice.text = "CAD\(tournamentData?.price ?? "")"
-        self.attendedPriceButton.setTitle("Attend CAD\(tournamentData?.price ?? "")", for: .normal)
+        self.tournamentsPrice.text = "\(AppStrings.cad)\(tournamentData?.price ?? "")"
+        self.attendedPriceButton.setTitle("\(AppStrings.attendCad)\(tournamentData?.price ?? "")", for: .normal)
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -87,8 +75,8 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
     @IBAction func attendAction(_ sender: UIButton) {
         if (tournamentData?.availability ?? 0) > 0 {
             let variationType = self.selectLabel.text
-            if variationType == "Select one" {
-                Singleton.shared.showMessage(message: "Please select atleast one variaton.", isError: .error)
+            if variationType == AppStrings.selectOne {
+                Singleton.shared.showMessage(message: AppStrings.variationMessage, isError: .error)
                 return
             }
             let quantity = Int(participantNumberLabel.text ?? "")
@@ -96,7 +84,7 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
             orderSummryVc.hidesBottomBarWhenPushed = true
             self.pushViewController(orderSummryVc, true)
         } else {
-            Singleton.shared.showMessage(message: "No avalibility.", isError: .error)
+            Singleton.shared.showMessage(message: AppStrings.noAvalibility, isError: .error)
          return
         }
     }
@@ -116,7 +104,7 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
         self.minusBtn.isEnabled = true
         //MARK: code for update price acc to to quantity---
         let myString = tournamentData?.price ?? ""
-        self.attendedPriceButton.setTitle("Attend CAD$\(newValue * (myString.numbers.toInt ?? 0))", for: .normal)
+        self.attendedPriceButton.setTitle("\(AppStrings.attendCurrency)\(newValue * (myString.numbers.toInt ?? 0))", for: .normal)
     }
     
     @IBAction func plusAction(_ sender: UIButton) {
@@ -128,7 +116,7 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
         participantNumberLabel.text = String(newValue)
         //MARK: code for update price acc to to quantity---
         let myString = tournamentData?.price ?? ""
-        self.attendedPriceButton.setTitle("Attend CAD$\(newValue * (myString.numbers.toInt ?? 0))", for: .normal)
+        self.attendedPriceButton.setTitle("\(AppStrings.attendCurrency)\(newValue * (myString.numbers.toInt ?? 0))", for: .normal)
     }
     
     @IBAction func viewOnMapAction(_ sender: Any) {}

@@ -40,16 +40,9 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
     }
     
     func showOrderDetails() {
-//        print("tournaments title---\(tournamenDetailstData?.title)")
-//        print("tournaments date---\(tournamenDetailstData?.date)")
-//        print("tournaments variations---\(variations)")
-//        print("tournaments locations---\(tournamenDetailstData?.location)")
-//        print("tournaments address---\(tournamenDetailstData?.address)")
-//        print("tournaments quantity---\(quantity)")
-        
         tournamentsName.text = tournamenDetailstData?.title ?? ""
         tournamentsDate.text = tournamenDetailstData?.date ?? ""
-        variationType.text = "Variation: \(variations ?? "")"
+        variationType.text = "\(AppStrings.variation) \(variations ?? "")"
         tournamentsLocations.text = tournamenDetailstData?.location ?? ""
         tournamentsAddress.text = tournamenDetailstData?.address ?? ""
         tournamentsPriceWithQuantity.text = "\(quantity ?? 0)x CAD\(tournamenDetailstData?.price ?? "")"
@@ -89,7 +82,6 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
 extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
     func cardEntryViewController(_ cardEntryViewController: SQIPCardEntryViewController, didObtain cardDetails: SQIPCardDetails) async throws {
         let myString = tournamenDetailstData?.price ?? ""
-        print("delegate b called")
         var amountJson = [String:Any]()
         amountJson["amount"] = (quantity ?? 0) * (myString.numbers.toInt ?? 0)
         amountJson["currency"] = "CAD"
@@ -102,20 +94,19 @@ extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
                 let db = Firestore.firestore()
                 let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
                 db.collection("payments").document(transactionData?.id ?? "").setData(["user_id":"\(currentUserId)", "createdAt":"\(transactionData?.created_at ?? "")", "id": "\(transactionData?.id ?? "")", "order_id": "\(transactionData?.order_id ?? "")", "payments_status": "\(transactionData?.status ?? "")"], merge: true)
-                Singleton.shared.showMessage(message: "Payments successfull.", isError: .success)
+                Singleton.shared.showMessage(message: AppStrings.paymentSuccess, isError: .success)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                     Singleton.shared.setHomeScreenView()
                 })
             } else {
-            }
-            guard let errorDescription = errorDescription else {
-                return
+                if let error = errorDescription {
+                    Singleton.shared.showMessage(message: error, isError: .error)
+                }
             }
         }
     }
     
     func cardEntryViewController(_ cardEntryViewController: SQIPCardEntryViewController, didCompleteWith status: SQIPCardEntryCompletionStatus) {
-        print("delegate c called")
         dismiss(animated: true) {
             switch status.rawValue {
             case 0:

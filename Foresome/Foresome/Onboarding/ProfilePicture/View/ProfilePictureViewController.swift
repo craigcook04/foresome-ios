@@ -33,7 +33,6 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let tempImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profileImage.image  = tempImage
-      //  print("base 64 string of picked image -----\(tempImage.convertImageToBase64String())")
         pickedProfileImage = tempImage.convertImageToBase64String()
         self.dismiss(animated: true, completion: nil)
     }
@@ -55,7 +54,7 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     
     @IBAction func nextAction(_ sender: UIButton) {
         if pickedProfileImage == nil || (pickedProfileImage?.count ?? 0) == 0 {
-            Singleton.shared.showMessage(message: "please upload image or skip", isError: .error)
+            Singleton.shared.showMessage(message: AppStrings.uploadOrskipImage, isError: .error)
             return
         }
         self.presenter?.updateUserProfileData(porfilePicName: pickedProfileImage ?? "")
@@ -73,8 +72,7 @@ extension ProfilePictureViewController: ProfilePictureViewProtocol {
 
 extension ProfilePictureViewController: VariationViewControllerDelegate {
     func playerCount(text: String) {
-        print("text is-==\(text)")
-        if text == "Camera"{
+        if text == AppStrings.camera{
             self.dismiss(animated: false) {
                 self.picImageForProfile(sourcetpye: .camera)
             }

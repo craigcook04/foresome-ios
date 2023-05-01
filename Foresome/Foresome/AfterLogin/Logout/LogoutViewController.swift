@@ -56,13 +56,13 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
             try Auth.auth().signOut()
             UserDefaults.standard.removeObject(forKey: "user_uid")
             if Auth.auth().currentUser?.uid == nil {
-                Singleton.shared.showMessage(message: "logout successfully.", isError: .success)
+                Singleton.shared.showMessage(message: Messages.logoutSuccess, isError: .success)
                 Singleton.shared.gotoLogin()
             }
             print("logout successfullyy")
         } catch {
             print("Error while signing out!")
-            Singleton.shared.showMessage(message: "Unable to logout.", isError: .error)
+            Singleton.shared.showMessage(message: Messages.logoutError, isError: .error)
         }
     }
     

@@ -39,11 +39,11 @@ class SignUpPresenter: SignUpViewPresenter {
     
     func validateFields(fullName: String, email: String, password: String, confirmPassword: String) -> Bool {
         guard fullName != "" else {
-            Singleton.shared.showErrorMessage(error: "Please Enter FullName", isError: .error)
+            Singleton.shared.showErrorMessage(error: Messages.enterFullName, isError: .error)
             return false
         }
         guard email != "" else {
-            Singleton.shared.showErrorMessage(error: "Please Enter Email", isError: .error)
+            Singleton.shared.showErrorMessage(error: Messages.enterEmailAdd, isError: .error)
             return false
         }
         guard Validator.validatePassword(password: password).0  else {
@@ -54,26 +54,23 @@ class SignUpPresenter: SignUpViewPresenter {
         if isValidEmail == true {
             return isValidEmail
         } else {
-            Singleton.shared.showErrorMessage(error: "Please Enter Valid Email", isError: .error)
+            Singleton.shared.showErrorMessage(error: Messages.enterValidEmailAdd, isError: .error)
             return false
         }
     }
     //MARK: code for create new user on firebase ------
     func createNewUser(fullName: String, email: String, password: String, confirmPassword: String) {
-        print("code for sign up for new user----")
         ActivityIndicator.sharedInstance.showActivityIndicator()
         Auth.auth().createUser(withEmail: "\(email)", password: "\(password)", completion: { (result, error) -> Void in
             if (error == nil) {
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
-                print("created user uid----\(result!.user.uid)")
                 let db = Firestore.firestore()
                 db.collection("users").document(result!.user.uid).setData(["name":"\(fullName)", "email":"\(email)", "createdDate:":"\(String(describing: Date().localToUtc))", "uid": result!.user.uid, "user_location":"", "user_profile_pic":"", "user_skill_level":""])
                 UserDefaultsCustom.setValue(value: result!.user.uid, forKey: "user_uid")
                 db.collection("users").document(result!.user.uid).getDocument { (snapData, error) in
-                    print("fetched current user data----\(snapData?.data()?["name"])")
                     if let data = snapData?.data() {
                         let userdata = ReturnUserData()
-                        UserDefaults.standard.set(data, forKey: "myUserData")
+                        UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
                     }
                 }
                 if let signupVc = self.view as? SignUpViewController {
@@ -83,7 +80,6 @@ class SignUpPresenter: SignUpViewPresenter {
             } else {
                 Singleton.shared.showMessage(message:error?.localizedDescription ?? "", isError: .error)
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
-                print("error in case of create new user\(error  as Any)")
             }
         })
     }

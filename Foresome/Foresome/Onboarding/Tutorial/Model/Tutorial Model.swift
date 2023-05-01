@@ -22,9 +22,9 @@ class TutorialDataModel: NSObject {
 
 class Tutorial {
     static var array: [TutorialDataModel] = [
-        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."),
-        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."),
-        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: "Invite and play together with friends", tutorialDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis.")
+        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: AppStrings.tutorialTitle1, tutorialDescription: AppStrings.tutorialDescription1),
+        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: AppStrings.tutorialTitle2, tutorialDescription: AppStrings.tutorialDescription2),
+        TutorialDataModel.init(tutorialImage: UIImage(named: "tutorial_screen"), tutorialTitle: AppStrings.tutorialTitle3, tutorialDescription: AppStrings.tutorialDescription3)
     ]
 }
 

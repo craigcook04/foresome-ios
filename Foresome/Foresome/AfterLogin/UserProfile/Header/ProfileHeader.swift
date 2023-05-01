@@ -15,9 +15,9 @@ class ProfileHeader: UIView {
     @IBOutlet weak var notificationButton: UIButton!
    
     func setHeaderData() {
-        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         if let data = strings {
-            let nameValue = "HELLO, \(data["name"] as? String ?? "")!"
+            let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.userNameLabel.text = nameValue.uppercased()
         }
     }

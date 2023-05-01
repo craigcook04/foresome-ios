@@ -23,7 +23,7 @@ class TestTableHeader: UIView {
     func setHeaderData() {
         let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
         if let data = strings {
-            let nameValue = "HELLO, \(data["name"] as? String ?? "")!"
+            let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.userName.text = nameValue.uppercased()
         }
     }

@@ -39,17 +39,17 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     func setBottomButton() {
         if isFromEditProfile == true {
             self.skipNowButton.isHidden = true
-            self.nextButton.setTitle("Save", for: .normal)
+            self.nextButton.setTitle(AppStrings.save, for: .normal)
         } else {
             self.skipNowButton.isHidden = false
-            self.nextButton.setTitle("Next", for: .normal)
+            self.nextButton.setTitle(AppStrings.next, for: .normal)
         }
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
         //MARK: code added for tabbar ----
         if isAnySkillSelected == false {
-            Singleton.shared.showMessage(message: "Please select any one skill Or skip.", isError: .error)
+            Singleton.shared.showMessage(message: AppStrings.selectOneSkill, isError: .error)
             return
         } else {
             self.presenter?.updateUserSkillToFirestore(skillType: self.selectedSkill ?? "")

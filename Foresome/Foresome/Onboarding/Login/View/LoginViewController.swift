@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         super.viewDidLoad()
         self.loginPasswordField.isSecureTextEntry = true
     }
+    
     @IBAction func signInAction(_ sender: UIButton) {
         self.isValidData = self.presenter?.validateField(email:"\(self.loginEmailField.text ?? "")", password:"\(self.loginPasswordField.text ?? "")") ?? false
         if self.isValidData == true {
@@ -54,29 +55,23 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     @IBAction func googleAction(_ sender: UIButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-       // print("config----\(config)")
         GIDSignIn.sharedInstance.configuration = config
-        
-        // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            print(self as Any)
             guard error == nil else {
                 return
             }
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString
-           else {
+            else {
                 return
             }
-         let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: user.accessToken.tokenString)
             Auth.auth().signIn(with: credential) { result, error in
-
-              // At this point, our user is signed in
             }
         }
-        
     }
     
     @IBAction func facebookAction(_ sender: UIButton) {

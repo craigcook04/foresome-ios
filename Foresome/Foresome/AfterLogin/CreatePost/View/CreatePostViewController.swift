@@ -47,7 +47,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func setProfileData() {
-        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         if let data = strings {
             if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
                 profileImage.image = image
@@ -105,10 +105,8 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func publishAction(_ sender: UIButton) {
-        print("publish action called.")
          ActivityIndicator.sharedInstance.showActivityIndicator()
         creatPostData.postImages = self.imageSelect
-//        self.presenter?.createNewPost()
         self.navigationController?.popViewController(animated: false, completion: {
             self.delegate?.uploadProgress(data: self.creatPostData)
         })

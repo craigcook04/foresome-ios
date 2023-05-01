@@ -29,14 +29,11 @@ class UserProfilePresenter: UserProfilePresenterProtocol {
     }
     
     func updateUserProfile(profilePicName: String) {
-      //  print("hello upload pic from here")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
         db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(profilePicName)"], merge: true)
-      
     }
     
     func updateProfilePic(profileImage: UIImage) {
-        //print("hello upload pic from here---\(profileImage)")
     }
 }

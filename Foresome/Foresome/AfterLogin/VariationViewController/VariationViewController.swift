@@ -68,13 +68,13 @@ class VariationViewController: UIViewController {
     
     func setProfileAndVariationView() {
         isFromProfile == true ? (self.firstButtonImageView.image = UIImage(named: "ic_camera")) : (self.firstButtonImageView.image = UIImage(named: "ic_single_player"))
-        isFromProfile == true ? (self.firstButtonTitle.text = "Camera") : (self.firstButtonTitle.text = "Single Player")
+        isFromProfile == true ? (self.firstButtonTitle.text = AppStrings.camera) : (self.firstButtonTitle.text = AppStrings.singlePlayer)
         isFromProfile == true ? (self.secondsButtonImageView.image = UIImage(named: "ic_gallery")) : (self.firstButtonImageView.image = UIImage(named: "ic_foursome"))
-        isFromProfile == true ? (self.secondButtonTitle.text = "Phone gallery") : (self.secondButtonTitle.text = "Foursome")
+        isFromProfile == true ? (self.secondButtonTitle.text = AppStrings.phoneGallery) : (self.secondButtonTitle.text = AppStrings.foursome)
         if isFromProfile == true {
-            isEditProfile == true ? (self.variationTitle.text = "Edit profile picture") : (self.variationTitle.text = "Add profile picture")
+            isEditProfile == true ? (self.variationTitle.text = AppStrings.editProfilePic) : (self.variationTitle.text = AppStrings.addProfilePic)
         } else {
-            variationTitle.text = "Variation"
+            variationTitle.text = AppStrings.variation
         }
     }
     
@@ -91,15 +91,16 @@ class VariationViewController: UIViewController {
     }
     
     @IBAction func singlePlayerAction(_ sender: Any) {
-        isFromProfile == true ? self.delegate?.playerCount(text: "Camera") : self.delegate?.playerCount(text: "Single Player")
+        isFromProfile == true ? self.delegate?.playerCount(text: AppStrings.camera) : self.delegate?.playerCount(text: AppStrings.singlePlayer)
         self.dismiss(animated: false)
     }
     
     @IBAction func foursomeAction(_ sender: Any) {
-        isFromProfile == true ? self.delegate?.playerCount(text: "Phone gallery") : self.delegate?.playerCount(text: "Foresome")
+        isFromProfile == true ? self.delegate?.playerCount(text: AppStrings.phoneGallery) : self.delegate?.playerCount(text: AppStrings.foursome)
         self.dismiss(animated: false)
     }
 }
+
 extension VariationViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.view?.isDescendant(of: self.variationView) == true {

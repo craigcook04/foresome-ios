@@ -37,7 +37,7 @@ class ForgotPresenter: ForgotPasswordPresenter {
     
     func validateField(email: String) -> Bool {
         guard email != "" else {
-            Singleton.shared.showErrorMessage(error: "Please enter email", isError: .error)
+            Singleton.shared.showErrorMessage(error: Messages.enterEmailAdd, isError: .error)
             return false
         }
         let isValidEmail = Validator.validateEmail(candidate: email)
@@ -45,7 +45,7 @@ class ForgotPresenter: ForgotPasswordPresenter {
             ActivityIndicator.sharedInstance.showActivityIndicator()
             Auth.auth().sendPasswordReset(withEmail: "\(email)") { err in
                 if err == nil {
-                    Singleton.shared.showMessage(message: "Password reset link send successfully.", isError: .success)
+                    Singleton.shared.showMessage(message: Messages.passwordLinkSent, isError: .success)
                     ActivityIndicator.sharedInstance.hideActivityIndicator()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                         if let view = self.view as? ForgotPasswordViewController {
@@ -58,8 +58,8 @@ class ForgotPresenter: ForgotPasswordPresenter {
                 }
             }
             return isValidEmail
-        }else {
-            Singleton.shared.showErrorMessage(error: "Please Enter Valid Email", isError: .error)
+        } else {
+            Singleton.shared.showErrorMessage(error: Messages.enterValidEmailAdd, isError: .error)
             return false
         }
     }

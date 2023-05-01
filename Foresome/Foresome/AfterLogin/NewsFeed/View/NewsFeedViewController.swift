@@ -63,6 +63,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             ActivityIndicator.sharedInstance.hideActivityIndicator()
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let tournament =  document.data()
+                
                 print("post id is ---\(document.documentID)")
             })
         }
@@ -105,6 +106,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             guard let metadata = metadata else {
                 return
             }
+            print(metadata)
             riversRef.downloadURL { (url,error) in
                 guard let downloadUrl = url else {
                     return
@@ -151,13 +153,12 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         let documentsId =  UUID().uuidString
-        var postImages = [String]()
         //MARK: code for upload multiple image upload-----
-        let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let createdDate = Date().miliseconds()
         db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"feed"], merge: true) { error in
             if error == nil {
-                Singleton.shared.showMessage(message: "post created successfully.", isError: .success)
+                Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
             } else {
                 Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
             }
@@ -183,7 +184,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TalkAboutTableCell", for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
             if let data = self.data {
                 cell.setProfileData()
                 cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
@@ -191,11 +192,11 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         } else if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PollResultTableCell", for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             cell.delegate = self
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedTableCell", for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
             cell.delegate = self
             return cell
         }
@@ -283,12 +284,12 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
 
 extension NewsFeedViewController: NewsFeedTableCellDelegate {
     func moreButton() {
-        let alert = UIAlertController(title: "More", message: "Please Select an Option", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Report post", style: .default , handler:{ (UIAlertAction)in
+        let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
         }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
         }))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
         })
@@ -296,12 +297,12 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
 }
 extension NewsFeedViewController: PollResultTableCellDelegate {
     func PollMoreButton() {
-        let alert = UIAlertController(title: "More", message: "Please Select an Option", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Report post", style: .default , handler:{ (UIAlertAction)in
+        let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
         }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
         }))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
         })

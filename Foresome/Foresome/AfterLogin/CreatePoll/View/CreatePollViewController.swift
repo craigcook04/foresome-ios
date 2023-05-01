@@ -35,7 +35,6 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         self.setupFirstTwoOptions()
     }
     
-    
     func setupFirstTwoOptions() {
         for i in 0...1 {
             self.addNewField(tag: i)
@@ -49,7 +48,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         view.optionAdd.tag = tag
         view.characterCountLabel.tag = tag
         previousOptionValue += 1
-        view.optionAdd.placeholder = "Option \(previousOptionValue)"
+        view.optionAdd.placeholder = "\(AppStrings.option) \(previousOptionValue)"
         view.optionAdd.textColor = .black
         self.optionsStackView.addArrangedSubview(view)
         self.optionsFieldArray.append(view)
@@ -67,7 +66,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     @IBAction func addOptionAction(_ sender: UIButton) {
         for optionField in optionsFieldArray {
             if optionField.optionAdd.text.count == 0 {
-                Singleton.shared.showMessage(message: "please fill above option first.", isError: .error)
+                Singleton.shared.showMessage(message: Messages.pollAddOptionMsg, isError: .error)
                 return
             }
         }
@@ -76,13 +75,13 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     
     @IBAction func createPostAction(_ sender: UIButton) {
         if self.yourQuestion.text.count < 1 {
-            Singleton.shared.showMessage(message: "Please ask a question.", isError: .error)
+            Singleton.shared.showMessage(message: Messages.pollQuestionsMsg, isError: .error)
             return
         }
         
         for i in 0..<optionsFieldArray.count {
             guard optionsFieldArray[i].optionAdd.text.count > 0 else {
-                Singleton.shared.showMessage(message: "Options not allowed to be empty.", isError: .error)
+                Singleton.shared.showMessage(message: Messages.pollOptionRequiredMsg, isError: .error)
                 return
             }
         }

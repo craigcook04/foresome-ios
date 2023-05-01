@@ -31,7 +31,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     
     var presenter: EditProfilePresenterProtocol?
     
-    let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
+    let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
         if newPass == conformPass {
             return conformPass
         } else {
-            Singleton.shared.showMessage(message: "Conform pass not same", isError: .error)
+            Singleton.shared.showMessage(message: Messages.confirmPassMatch, isError: .error)
             return nil
         }
     }
@@ -97,8 +97,6 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
     
     @IBAction func saveButtonAction(_ sender: UIButton) {
         print("save button action called.")
-        self.uploadImageStorageRafrence()
-        return
         if (bioTextView.text.count > 0) && ((OldPasswordField.text?.count ?? 0) > 0 || (newPasswordField.text?.count ?? 0) > 0 || (confirmNewPasswordField.text?.count ?? 0) > 0) {
             //MARK: update bio with password ---
             updateBio()
@@ -116,7 +114,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                                 if err == nil {
                                     self.updateBio()
                                     ActivityIndicator.sharedInstance.hideActivityIndicator()
-                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    Singleton.shared.showMessage(message: AppStrings.profileUpdated, isError: .success)
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                                         self.popVC()
                                     })
@@ -128,20 +126,20 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                         }
                     } else {
                         ActivityIndicator.sharedInstance.hideActivityIndicator()
-                        Singleton.shared.showMessage(message: "Old password not matched.", isError: .error)
+                        Singleton.shared.showMessage(message: Messages.oldPasswordError, isError: .error)
                     }
                 })
             } else {
                 print("update only bio")
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
-                Singleton.shared.showMessage(message: "password details are not matched.", isError: .error)
+                Singleton.shared.showMessage(message: Messages.passWordFieldError, isError: .error)
             }
         } else if (bioTextView.text.count > 0) && ((OldPasswordField.text?.count ?? 0) == 0 && (newPasswordField.text?.count ?? 0) == 0 && (confirmNewPasswordField.text?.count ?? 0) == 0) {
             //MARK: update bio only------
             if let data = strings {
                 if data["bio"] != nil {
                     if self.bioTextView.text ==  data["bio"] as? String ?? "" {
-                        Singleton.shared.showMessage(message: "Please fill all details.", isError: .error)
+                        Singleton.shared.showMessage(message: Messages.fillAllDetails, isError: .error)
                         return
                     } else {
                         ActivityIndicator.sharedInstance.showActivityIndicator()
@@ -152,7 +150,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                                 if err == nil {
                                     self.updateBio()
                                     ActivityIndicator.sharedInstance.hideActivityIndicator()
-                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    Singleton.shared.showMessage(message: AppStrings.profileUpdated, isError: .success)
                                     self.popVC()
                                 } else {
                                     ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -179,7 +177,7 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                                 if err == nil {
                                     self.updateBio()
                                     ActivityIndicator.sharedInstance.hideActivityIndicator()
-                                    Singleton.shared.showMessage(message: "Profile updated successfully.", isError: .success)
+                                    Singleton.shared.showMessage(message: AppStrings.profileUpdated, isError: .success)
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                                         self.popVC()
                                     })
@@ -191,52 +189,22 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                         }
                     } else {
                         ActivityIndicator.sharedInstance.hideActivityIndicator()
-                        Singleton.shared.showMessage(message: "Old password not matched.", isError: .error)
+                        Singleton.shared.showMessage(message: Messages.oldPasswordError, isError: .error)
                     }
                 })
             } else {
                 print("update only bio")
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
-                Singleton.shared.showMessage(message: "password details are not matched.", isError: .error)
+                Singleton.shared.showMessage(message: Messages.passWordFieldError, isError: .error)
             }
         } else {
             ActivityIndicator.sharedInstance.hideActivityIndicator()
-            Singleton.shared.showMessage(message: "please fill above details.", isError: .error)
+            Singleton.shared.showMessage(message: Messages.fillAboveDetails, isError: .error)
         }
     }
     
     //MARK: code for create post or upload image using storage refrence -----
-    func uploadImageStorageRafrence() {
-        let storageRef = Storage.storage().reference()
-        let data = Data()
-        let riversRef = storageRef.child("images/hello.png")
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-            guard let metadata = metadata else {
-                print("failure cases.")
-                print("returned error incase put data is \(error)")
-                return
-            }
-            let size = metadata.size
-            
-            riversRef.downloadURL { (url,error) in
-                guard let downloadUrl = url else  {
-                    print("unable to download")
-                    print("returned error incase download url is --== \(error)")
-                    return
-                }
-                print("downloaded url is -===\(downloadUrl)")
-            }
-        }
-        
-        uploadTask.observe(.progress) { data in
-            print("upload data progress is ---=\(data.progress.debugDescription)")
-            print(data.progress?.fileCompletedCount)
-            print(data.progress?.completedUnitCount)
-            print(data.progress?.fractionCompleted)
-        }
-    }
-    
-    //MARK: function for update bio
+
     func updateBio() {
         let db = Firestore.firestore()
         do {
@@ -253,19 +221,11 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
 }
 
 extension EditProfileViewController : UITextFieldDelegate {
-    //    func textFieldDidBeginEditing(_ textField: UITextField) {
-    //        if  textField == newPasswordField || textField == confirmNewPasswordField {
-    //            if (OldPasswordField.text?.count ?? 0) == 0 {
-    //                Singleton.shared.showMessage(message: "Please fill old password.", isError: .error)
-    //                return
-    //            }
-    //        }
-    //    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if  textField == newPasswordField || textField == confirmNewPasswordField {
             if (OldPasswordField.text?.count ?? 0) == 0 {
-                Singleton.shared.showMessage(message: "Please fill old password.", isError: .error)
+                Singleton.shared.showMessage(message: Messages.oldPassRequired, isError: .error)
                 return false
             }
         }

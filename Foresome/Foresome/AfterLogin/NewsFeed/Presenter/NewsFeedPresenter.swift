@@ -53,9 +53,9 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
     func saveCreatUserData() {
         let db = Firestore.firestore()
         let currentUserId = UserDefaults.standard.value(forKey: "user_uid") as? String ?? ""
-        db.collection("users").document(currentUserId ?? "").getDocument { (snapData, error) in
+        db.collection("users").document(currentUserId).getDocument { (snapData, error) in
             if let data = snapData?.data() {
-                UserDefaults.standard.set(data, forKey: "myUserData")
+                UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
             }
         }
     }

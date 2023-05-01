@@ -54,6 +54,41 @@ struct AppStrings {
     static let logout = "Logout"
     static let changeProfilePicture = "Change Profile Picture"
     static let rightArrow = ""
+    //MARK: keys for foursome-----
+    static let userDatas = "myUserData"
+    static let profileUpdated = "Profile updated successfully."
+    static let camera = "Camera"
+    static let userNameSuffix = "HELLO,"
+    static let option = "Option"
+    static let reportPost = "Report post"
+    static let delete = "Delete"
+    static let dismiss = "Dismiss"
+    static let selectOption = "Please Select an Option"
+    static let posting = "Posting"
+    static let selected = "selected..."
+    static let of = "selected"
+    static let variation = "Variation:"
+    static let paymentSuccess =  "Payments successfull."
+    static let singlePlayer = "Single Player"
+    static let phoneGallery =  "Phone gallery"
+    static let foursome = "Foursome"
+    static let editProfilePic = "Edit profile picture"
+    static let addProfilePic = "Add profile picture"
+    static let cad = "CAD"
+    static let attendCad =  "Attend CAD"
+    static let selectOne = "Select one"
+    static let variationMessage = "Please select atleast one variaton."
+    static let noAvalibility = "No avalibility."
+    static let attendCurrency = "Attend CAD$"
+    static let next = "Next"
+    static let selectOneSkill = "Please select any one skill Or skip."
+    static let uploadOrskipImage = "please upload image or skip"
+    static let tutorialTitle1 = "Invite and play together with friends"
+    static let tutorialTitle2 = "Invite and play together with friends"
+    static let tutorialTitle3 = "Invite and play together with friends"
+    static let tutorialDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
+    static let tutorialDescription2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
+    static let tutorialDescription3 =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
 }
 
 struct Messages {
@@ -85,6 +120,27 @@ struct Messages {
     static let eventMissedMesage = "Oops, You missed this Event!"
     static let pleaseAddYourWorkProfileBeforeSharing = "Please add your work profile before share."
     static let noDataFound = "No data found!"
+    //MARK: error message for foursome------
+    static let logoutSuccess = "logout successfully."
+    static let logoutError = "Unable to logout."
+    static let oldPassRequired = "Please fill old password."
+    static let confirmPassMatch = "Conform pass not same"
+    static let oldPasswordError = "Old password not matched."
+    static let passWordFieldError = "password details are not matched."
+    static let fillAllDetails = "Please fill all details."
+    static let fillAboveDetails =  "please fill above details."
+    static let profileImageUpdated = "Profile image updated successfully"
+    static let pollAddOptionMsg = "please fill above option first."
+    static let pollQuestionsMsg  = "Please ask a question."
+    static let pollOptionRequiredMsg =  "Options not allowed to be empty."
+    static let pollCreatedMsg = "poll created successfully."
+    static let optionsNotSame = "Answer not be same."
+    static let postCreated = "post created successfully."
+    static let enterFullName = "Please Enter FullName"
+    static let enterEmailAdd = "Please Enter an Email"
+    static let enterValidEmailAdd  = "Please Enter Valid Email"
+    static let passwordLinkSent = "Password reset link send successfully."
+    static let invalidEmailPassword = "Invalid email and password"
 }
 
 struct ErrorMessage {
@@ -126,6 +182,9 @@ struct ErrorMessage {
     static let websiteLinkHaveWrongFormat = "Website URL wrong format."
     static let pleaseEnterTaskTitle = "Please enter task title"
     static let userNameShouldContainMimum3Characters = "User name should contain minimum 3 characters"
+    
+    
+     
 }
 
 extension Int {

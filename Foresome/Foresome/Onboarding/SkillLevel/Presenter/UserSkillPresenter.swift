@@ -29,25 +29,17 @@ class UserSkillPresenter : UserSkillPresenterProtocol {
     }
     
     func updateUserSkillToFirestore(skillType: String) {
-        print("user skill update methods called.")
-        //print("selected skill for data base updation is -----\(skillType)")
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
-        db.collection("users").document(documentsId ?? "").setData(["user_skill_level" : "\(skillType)"], merge: true)
-        //db.collection("users").document(documentsId ?? "").setData(["user_skill_level" : "\(skillType)"])
-        Singleton.shared.setHomeScreenView()
-//        db.collection("users").addDocument(data:["user_skill_level":"\(skillType)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
-//            if Error != nil {
-//                print("user profile updatation issue---\(Error as Any)")
-//            } else {
-//                print("user profile updated successfully.")
-////                if let signupVc = self.view as? ProfilePictureViewController {
-////                    let locationVc = UserSkillPresenter.createUserSkillModule()
-////                    signupVc.pushViewController(locationVc, true)
-////                }
-//                Singleton.shared.setHomeScreenView()
-//            }
-//        }
+        db.collection("users").document(documentsId).setData(["user_skill_level" : "\(skillType)"], merge: true) { err in
+            if err == nil {
+                Singleton.shared.setHomeScreenView()
+            } else {
+                if let error = err {
+                    Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+                }
+            }
+        }
     }
 }
 

@@ -98,6 +98,17 @@ struct cellIdentifier {
     static let publicProfileChallengeOverviewTableCell = "PublicProfileChallengeOverviewTableCell"
     static let publicProfileAwardsTableCell = "PublicProfileAwardsTableCell"
     static let whatsNewTableCell = "WhatsNewTableCell"
+    static let createPostTableCell = "TalkAboutTableCell"
+    static let pollResultTableCell =  "PollResultTableCell"
+    static let newsFeedTableCell = "NewsFeedTableCell"
+    static let tournamentTableCell = "TournamentTableCell"
+    
+    
+    
+    
+    
+    
+    
 }
 
 

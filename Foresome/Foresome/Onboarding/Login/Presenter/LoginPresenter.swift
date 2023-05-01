@@ -18,7 +18,7 @@ import FirebaseAuth
 class LoginPresenter: LoginPresenterProtocol {
     
     var view: LoginViewProtocol?
-
+    
     static func createLoginModule() -> LoginViewController {
         let view = LoginViewController()
         var presenter: LoginPresenterProtocol = LoginPresenter()
@@ -33,10 +33,10 @@ class LoginPresenter: LoginPresenterProtocol {
         json["password"] = password
         return json
     }
-
+    
     func validateField(email: String, password: String) -> Bool {
         guard email != "" else {
-            Singleton.shared.showMessage(message: "Please enter an email", isError: .error)
+            Singleton.shared.showMessage(message: Messages.enterEmailAdd, isError: .error)
             return false
         }
         guard Validator.validatePassword(password: password).0 else {
@@ -47,7 +47,7 @@ class LoginPresenter: LoginPresenterProtocol {
         if isValidEmail == true {
             return isValidEmail
         } else {
-            Singleton.shared.showMessage(message: "Please enter valid email", isError: .error)
+            Singleton.shared.showMessage(message:Messages.enterValidEmailAdd , isError: .error)
             return false
         }
     }
@@ -56,24 +56,23 @@ class LoginPresenter: LoginPresenterProtocol {
     func userLogin(email: String, password: String) {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         Auth.auth().signIn(withEmail: "\(email)", password: "\(password)") { [weak self] authResult, error in
+            print(self as Any)
             ActivityIndicator.sharedInstance.hideActivityIndicator()
-            print("login successfully")
             //MARK: code for get logged in user informations ----
             if error == nil {
                 let db = Firestore.firestore()
                 let currentUserId = UserDefaults.standard.value(forKey: "user_uid") ?? ""
                 let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
                 db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
-                   // print("fetched current user data----\(snapData?.data())")
                     if let data = snapData?.data() {
                         let userdata = ReturnUserData()
-                        UserDefaults.standard.set(data, forKey: "myUserData")
+                        UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
                     }
                 }
                 UserDefaultsCustom.setValue(value: (authResult?.user.uid as? NSString) ?? "", forKey: "user_uid")
                 Singleton.shared.setHomeScreenView()
             } else {
-                Singleton.shared.showMessage(message: "Invalid email and password", isError: .error)
+                Singleton.shared.showMessage(message: Messages.invalidEmailPassword, isError: .error)
             }
         }
     }

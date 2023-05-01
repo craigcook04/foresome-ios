@@ -198,8 +198,6 @@
 		7E12C6CA29CE206500D8A768 /* FTStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */; };
 		7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */; };
 		7E418BF329F12146009DA811 /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E418BF229F12146009DA811 /* CreatePostModel.swift */; };
-		7E418BFA29F2A5ED009DA811 /* DummyTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */; };
-		7E418BFB29F2A5ED009DA811 /* DummyTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */; };
 		7E5338DA29E3D4A5001E3D9E /* TournamentsListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */; };
 		7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */; };
 		7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */; };
@@ -227,8 +225,6 @@
 		7EA8222729D42BDE00755016 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222529D42BDE00755016 /* FriendsViewController.xib */; };
 		7EA8222B29D42BFB00755016 /* LeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222929D42BFB00755016 /* LeadersViewController.swift */; };
 		7EA8222C29D42BFB00755016 /* LeadersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222A29D42BFB00755016 /* LeadersViewController.xib */; };
-		7EA8222F29D42C1100755016 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8222D29D42C1100755016 /* ProfileViewController.swift */; };
-		7EA8223029D42C1100755016 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8222E29D42C1100755016 /* ProfileViewController.xib */; };
 		7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */; };
 		7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */; };
 		7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */; };
@@ -431,8 +427,6 @@
 		7E12C6C529CE206500D8A768 /* FTStickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTStickyHeaderView.swift; sourceTree = "<group>"; };
 		7E1A3B9F29E59D8A0036AEDF /* PresentableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableController.swift; sourceTree = "<group>"; };
 		7E418BF229F12146009DA811 /* CreatePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
-		7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTextFieldViewController.swift; sourceTree = "<group>"; };
-		7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DummyTextFieldViewController.xib; sourceTree = "<group>"; };
 		7E5338D929E3D4A4001E3D9E /* TournamentsListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListProtocol.swift; sourceTree = "<group>"; };
 		7E5338DB29E3D4DF001E3D9E /* TournamentsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsListPresenter.swift; sourceTree = "<group>"; };
 		7E5338DD29E4388E001E3D9E /* SquarePaymentsApiFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquarePaymentsApiFile.swift; sourceTree = "<group>"; };
@@ -459,8 +453,6 @@
 		7EA8222529D42BDE00755016 /* FriendsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		7EA8222929D42BFB00755016 /* LeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewController.swift; sourceTree = "<group>"; };
 		7EA8222A29D42BFB00755016 /* LeadersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadersViewController.xib; sourceTree = "<group>"; };
-		7EA8222D29D42C1100755016 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		7EA8222E29D42C1100755016 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		7ED6CE9029CDE29D0094E690 /* TabbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
 		7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
@@ -780,7 +772,6 @@
 			children = (
 				7EA8221D29D42B7700755016 /* Friends */,
 				7EA8221F29D42B8E00755016 /* Leaders */,
-				7EA8221E29D42B7F00755016 /* Profile */,
 				7ED6CE8F29CDE2770094E690 /* Tabbar */,
 				4B75973C29C333EB00A8E1B6 /* AppGlobals */,
 				4B096A3C29D1844A00C05F53 /* AfterLogin */,
@@ -1212,8 +1203,6 @@
 			children = (
 				4B93904F29C9A01600D60450 /* LoginViewController.swift */,
 				4B93905029C9A01600D60450 /* LoginViewController.xib */,
-				7E418BF829F2A5E8009DA811 /* DummyTextFieldViewController.swift */,
-				7E418BF929F2A5E8009DA811 /* DummyTextFieldViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1526,15 +1515,6 @@
 			path = Friends;
 			sourceTree = "<group>";
 		};
-		7EA8221E29D42B7F00755016 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				7EA8222D29D42C1100755016 /* ProfileViewController.swift */,
-				7EA8222E29D42C1100755016 /* ProfileViewController.xib */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		7EA8221F29D42B8E00755016 /* Leaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -1643,7 +1623,6 @@
 				7ED6CE9329CDE2A90094E690 /* TabbarViewController.xib in Resources */,
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4BC1062129E685BE000C6444 /* ProfileHeader.xib in Resources */,
-				7E418BFB29F2A5ED009DA811 /* DummyTextFieldViewController.xib in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
 				4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */,
 				7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */,
@@ -1665,7 +1644,6 @@
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
 				4B236FEB29E914EF00E36E6A /* LogoutViewController.xib in Resources */,
-				7EA8223029D42C1100755016 /* ProfileViewController.xib in Resources */,
 				4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */,
 				4B75984629C3352700A8E1B6 /* Lato-Regular.ttf in Resources */,
 				7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */,
@@ -1801,7 +1779,6 @@
 				4BCEC4B629D6F99F003A7BB6 /* ForgotModel.swift in Sources */,
 				4B7F435929D5A2020067C7B5 /* SignUpModel.swift in Sources */,
 				4B75985429C3352700A8E1B6 /* UserData.swift in Sources */,
-				7EA8222F29D42C1100755016 /* ProfileViewController.swift in Sources */,
 				4BF75CA029DC591C009DDE42 /* NewsFeedProtocol.swift in Sources */,
 				4B9EA4C329E7C98F009A5E36 /* EditProfileViewController.swift in Sources */,
 				4B086B3929DD57CA00972959 /* CreatePostPresenter.swift in Sources */,
@@ -1915,7 +1892,6 @@
 				4B76005B29CB169100D1FE70 /* LocationItem.swift in Sources */,
 				4B75987529C3352800A8E1B6 /* UIButton+Custom.swift in Sources */,
 				4B3499E229E0314600D4B11C /* SelectImageCollectionCell.swift in Sources */,
-				7E418BFA29F2A5ED009DA811 /* DummyTextFieldViewController.swift in Sources */,
 				4BCEC4C229D6FAF4003A7BB6 /* ProfileModel.swift in Sources */,
 				4B86BA5D29D2CD4E00800A37 /* OrderSummaryViewController.swift in Sources */,
 				4BCEC4BC29D6FA4A003A7BB6 /* LoginModel.swift in Sources */,

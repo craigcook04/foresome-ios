@@ -46,9 +46,9 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     func saveCreatUserData() {
         let db = Firestore.firestore()
         let currentUserId = UserDefaults.standard.value(forKey: "user_uid") as? String ?? ""
-        db.collection("users").document(currentUserId ?? "").getDocument { (snapData, error) in
+        db.collection("users").document(currentUserId).getDocument { (snapData, error) in
             if let data = snapData?.data() {
-                UserDefaults.standard.set(data, forKey: "myUserData")
+                UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
             }
         }
     }
@@ -90,7 +90,7 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
                 }
                 self.profileTableView.reload(row: 0)
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
-                Singleton.shared.showMessage(message: "Profile image updated successfully.", isError: .success)
+                Singleton.shared.showMessage(message: Messages.profileImageUpdated, isError: .success)
             }
         }
     }
@@ -211,7 +211,7 @@ extension ProfileVC: UserProfileViewProtocol {
 
 extension ProfileVC: VariationViewControllerDelegate {
     func playerCount(text: String) {
-        if text == "Camera" {
+        if text == AppStrings.camera {
             self.dismiss(animated: false) {
                 self.picImageForProfile(sourcetpye: .camera)
             }

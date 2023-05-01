@@ -51,10 +51,9 @@ class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationMan
     func locationGet() -> Bool {
         let controller = AutoCompletePlaces()
         controller.presentPlacePicker(controller: self) { placeData in
-            print("address is ****** \(placeData)")
             DispatchQueue.main.async {
                 self.locationTextView.text = placeData.fullAddress
-                self.pickedLocation = "\(placeData.cityAddress)"
+                self.pickedLocation = "\(placeData.cityAddress ?? "")"
             }
         }
         return false

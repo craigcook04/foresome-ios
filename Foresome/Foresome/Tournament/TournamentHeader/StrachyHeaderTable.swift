@@ -14,7 +14,6 @@ class StrachyHeaderTable: UITableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.backgroundColor = .green
     }
     
     func setStrachyHeader(header view: UIView, height: CGFloat) {
@@ -68,18 +67,6 @@ class StrachyHeaderCollection: UICollectionView {
     }
 }
 
-
-//            print("first ********** \(self.contentOffset.y)")
-//        print("headerRect ********** \(self.contentOffset.y)")
-//            if self.contentOffset.y < 0, self.contentOffset.y > -headerHeight {
-//                self.contentOffset.y = self.contentOffset.y
-//                print("second ********** \(self.contentOffset.y)")
-//            } else {
-//                print("third ********** \(self.contentOffset.y)")
-//            }
-//            self.contentOffset = CGPoint(x: 0, y: -headerHeight
-
-
 class StrachyHeaderTableView: UIView {
     
     var headerView: UIView!
@@ -114,16 +101,6 @@ class StrachyHeaderTableView: UIView {
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-//        self.view.frame = CGRect(x: 0, y: 0, width: SCREEN_SIZE.width, height: height)
-        
-//        self.view = UIView(height: height)
-//        self.view.backgroundColor = .gray
-        
-//        self.addSubview(self.view!)
-//
-//        self.contentInset = UIEdgeInsets(top: height, left: 0, bottom: 0, right: 0)
-//        self.contentOffset = CGPoint(x: 0, y: -headerHeight)
     }
     
     func setStrachyHeader() {
@@ -131,7 +108,6 @@ class StrachyHeaderTableView: UIView {
         if self.tableView.contentOffset.y < -headerHeight {
             headerRect.origin.y = self.tableView.contentOffset.y
             headerRect.size.height = -self.tableView.contentOffset.y
-        } else {
         }
         self.headerView.frame = headerRect
     }

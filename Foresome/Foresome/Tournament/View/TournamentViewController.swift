@@ -49,7 +49,6 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         let view = UIView.initView(view: TestTableHeader.self)
         view.setHeaderData()
         self.tournamentTableView.setStrachyHeader(header: view, height: height)
-//        self.scrollViewDidScroll(self.tournamentTableView)
     }
     
     //MARK: code for get tournamnets dtaa from firebase----------
@@ -75,7 +74,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentTableCell", for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.tournamentTableCell, for: indexPath) as? TournamentTableCell else{return UITableViewCell()}
         cell.setTournamentsCellData(data: listTournamentsData[indexPath.row], index: indexPath.row)
         return cell
     }

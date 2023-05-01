@@ -28,7 +28,6 @@ class LocationPresenter : LocationPresenterProtocol {
     }
     
     func updateUserLocation(countryName: String) {
-       print("country name for update user location---\(countryName)")
         let db = Firestore.firestore()
         do {
             let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
@@ -40,16 +39,5 @@ class LocationPresenter : LocationPresenterProtocol {
         } catch let error {
             Singleton.shared.showMessage(message: "\(error.localizedDescription)", isError: .error)
         }
-//        db.collection("users").addDocument(data:["user_location":"\(countryName)", "uid": UserDefaults.standard.value(forKey: "user_uid") ?? ""]) { (Error) in
-//            if Error != nil {
-//                print("Cannot saving user data-\(Error as Any)")
-//            } else {
-//                print("user data saved successfully.")
-//                if let signupVc = self.view as? LocationViewController {
-//                    let locationVc = ProfilePresenter.createProfileModule()
-//                    signupVc.pushViewController(locationVc, true)
-//                }
-//            }
-//        }
     }
 }

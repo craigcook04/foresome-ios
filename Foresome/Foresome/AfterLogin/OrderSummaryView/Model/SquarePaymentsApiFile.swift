@@ -32,10 +32,9 @@ class ChargeApi {
         request.setValue("\(accessToken)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let json = param//["nonce": nonce]
+        let json = param
         print("sended json---\(json)")
         let httpBody = try? JSONSerialization.data(withJSONObject: json)
-        //        request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = httpBody
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error as NSError?{
@@ -51,7 +50,6 @@ class ChargeApi {
             } else if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    print("josn after JSONSerialization---\(json)")
                     let launch = try JSONDecoder().decode(PaymentsDataModel.self, from: data)
                     if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                         DispatchQueue.main.async {
@@ -143,58 +141,3 @@ class ApplicationDetails:Codable {
     var square_product: String?
     var application_id: String?
 }
-//
-//{
-//  "payment": {
-//    "id": "P571mEIiCvyzHj6rktIF91B8wfUZY",
-//    "created_at": "2023-04-06T07:37:54.586Z",
-//    "updated_at": "2023-04-06T07:37:54.823Z",
-//    "amount_money": {
-//      "amount": 2000,
-//      "currency": "USD"
-//    },
-//    "status": "COMPLETED",
-//    "delay_duration": "PT168H",
-//    "source_type": "CARD",
-//    "card_details": {
-//      "status": "CAPTURED",
-//      "card": {
-//        "card_brand": "VISA",
-//        "last_4": "5858",
-//        "exp_month": 4,
-//        "exp_year": 2025,
-//        "fingerprint": "sq-1-TSTWntVXl0u-UoUnlB2PG5jWAVzeVLu3djoA31tKG2-ens5Ml_qSe2r9eQ3LjchfjQ",
-//        "card_type": "CREDIT",
-//        "prepaid_type": "NOT_PREPAID",
-//        "bin": "453275"
-//      },
-//      "entry_method": "KEYED",
-//      "cvv_status": "CVV_ACCEPTED",
-//      "avs_status": "AVS_ACCEPTED",
-//      "statement_description": "SQ *DEFAULT TEST ACCOUNT",
-//      "card_payment_timeline": {
-//        "authorized_at": "2023-04-06T07:37:54.700Z",
-//        "captured_at": "2023-04-06T07:37:54.824Z"
-//      }
-//    },
-//    "location_id": "L348N7706W9PA",
-//    "order_id": "71avwsyOByWP1w6iZ1UmCqJIPlTZY",
-//    "total_money": {
-//      "amount": 2000,
-//      "currency": "USD"
-//    },
-//    "approved_money": {
-//      "amount": 2000,
-//      "currency": "USD"
-//    },
-//    "receipt_number": "P571",
-//    "receipt_url": "https://squareupsandbox.com/receipt/preview/P571mEIiCvyzHj6rktIF91B8wfUZY",
-//    "delay_action": "CANCEL",
-//    "delayed_until": "2023-04-13T07:37:54.586Z",
-//    "application_details": {
-//      "square_product": "ECOMMERCE_API",
-//      "application_id": "sandbox-sq0idb-aDYl1a5nsjxaSTLf25MucA"
-//    },
-//    "version_token": "6WnPmePj0ksq2ai9gTmSNLlfA5Fk18pJjUuNiQXmqQt6o"
-//  }
-//}
