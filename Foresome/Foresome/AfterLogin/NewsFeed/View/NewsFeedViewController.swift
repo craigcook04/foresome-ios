@@ -32,16 +32,20 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var totalUploadedImage: Int = 0
     var confirmProgress: Int = 0
     var uploadCount = 0
+    
+    var imageUplaodTask : StorageUploadTask?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter?.saveCreatUserData()
-        // fetchPostData()
+       // fetchPostData()
         setTableData()
         setTableFooter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+       // super.viewWillAppear(animated)
+        setTableData()
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
     
@@ -53,18 +57,25 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         newsFeedTableView.register(cellClass: PollResultTableCell.self)
         newsFeedTableView.contentInset = UIEdgeInsets(top: -28, left: 0, bottom: 0, right: 0)
         setTableHeader()
+        updatetable()
     }
     
     //MARK: code for fetch data of posts------
+    
+    func updatetable() {
+        self.newsFeedTableView.reloadData()
+    }
+    
     func fetchPostData() {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         db.collection("posts").getDocuments { (querySnapshot, err) in
             ActivityIndicator.sharedInstance.hideActivityIndicator()
-            querySnapshot?.documents.enumerated().forEach({ (index,document) in
-                let tournament =  document.data()
-                
-                print("post id is ---\(document.documentID)")
+            querySnapshot?.documents.enumerated().forEach({ (index, posts) in
+                let postsData =  posts.data()
+                print("posts is --===\(postsData)")
+                print("post data is-===\(posts) ")
+                print("post id is ---\(posts.documentID)")
             })
         }
     }
@@ -102,7 +113,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         data = image.pngData() ?? Data()
         let date = Date()
         let riversRef = storageRef.child("images/IMG_\(date.miliseconds().toInt).png")
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+        imageUplaodTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 return
             }
@@ -134,17 +145,18 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
         
-        uploadTask.observe(.progress) { data in
+        imageUplaodTask?.observe(.progress) { data in
             if Float(data.progress?.fractionCompleted.roundTo(places: 2) ?? 0.0) == 1.0 {
             } else {
             }
         }
         
-        uploadTask.observe(.success) { data in
+        imageUplaodTask?.observe(.success) { data in
         
         }
         
-        uploadTask.observe(.failure) { data in
+        imageUplaodTask?.observe(.failure) { data in
+            
         }
     }
     
@@ -185,8 +197,8 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+            cell.setProfileData()
             if let data = self.data {
-                cell.setProfileData()
                 cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
             }
             cell.delegate = self
@@ -208,8 +220,11 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerControllerDelegate {
+    //MARK: code for cancel image uploaded task----
     func cancelAction() {
         print("cancel action callled")
+        imageUplaodTask?.cancel()
+        self.uploadPostData(data: self.data ?? CreatePostModel())
         self.data = nil
         self.uploadedImageUrls = []
         self.progressCount = 0.0
@@ -295,6 +310,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         })
     }
 }
+
 extension NewsFeedViewController: PollResultTableCellDelegate {
     func PollMoreButton() {
         let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)

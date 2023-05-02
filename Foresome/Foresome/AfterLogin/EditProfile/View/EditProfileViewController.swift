@@ -159,6 +159,23 @@ class EditProfileViewController: UIViewController, EditProfileViewProtocol {
                             }
                         }
                     }
+                } else {
+                    ActivityIndicator.sharedInstance.showActivityIndicator()
+                    let db = Firestore.firestore()
+                    do {
+                        let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+                        db.collection("users").document(documentsId).setData(["bio": "\(bioTextView.text ?? "")"], merge: true) { err in
+                            if err == nil {
+                                self.updateBio()
+                                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                Singleton.shared.showMessage(message: AppStrings.profileUpdated, isError: .success)
+                                self.popVC()
+                            } else {
+                                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                                Singleton.shared.showMessage(message: "\(err?.localizedDescription ?? "")", isError: .error)
+                            }
+                        }
+                    }
                 }
             }
         } else if (bioTextView.text.count == 0) && ((OldPasswordField.text?.count ?? 0) > 0 || (newPasswordField.text?.count ?? 0) > 0 || (confirmNewPasswordField.text?.count ?? 0) > 0) {

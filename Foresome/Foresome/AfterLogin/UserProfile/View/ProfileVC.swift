@@ -166,6 +166,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             self.pushViewController(vc, true)
         case .manageSkillLevel:
             let skillVc = UserSkillPresenter.createUserSkillModule()
+            skillVc.isFromEditSkill = true
             skillVc.hidesBottomBarWhenPushed = true
             skillVc.isFromEditProfile = true
             self.pushViewController(skillVc, true)

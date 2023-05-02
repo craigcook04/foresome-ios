@@ -6,6 +6,31 @@
 //
 
 import UIKit
+import Foundation
+import AuthenticationServices
+import CryptoKit
+import GameKit
+import Security
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+
+enum SkillData {
+    case highySkilled
+    case mediumSkilled
+    case lowerSkilled
+    
+    var description: String {
+        switch self {
+        case .highySkilled:
+            return "Highly skilled"
+        case .mediumSkilled:
+            return "Medium skilled"
+        case .lowerSkilled:
+            return "Lower skilled"
+        }
+    }
+}
 
 class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     
@@ -26,10 +51,16 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
     var isAnySkillSelected: Bool = false
     var selectedSkill: String?
     var isFromEditProfile: Bool = false
+    var isFromEditSkill: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSkillData()
         setBottomButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setSkillData()
     }
     
     @IBAction func backAction(_ sender: UIButton) {
@@ -44,6 +75,61 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
             self.skipNowButton.isHidden = false
             self.nextButton.setTitle(AppStrings.next, for: .normal)
         }
+    }
+    
+    func setSkillData() {
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let userSkills = (strings?["user_skill_level"] as? String) ?? ""
+        if userSkills.count > 0 {
+            if userSkills == SkillData.highySkilled.description {
+                self.highelySkillSelectedUi()
+            } else if userSkills == SkillData.mediumSkilled.description {
+                self.midiumSkillSelectedUi()
+            } else {
+                self.lowerSkillSelectedUi()
+            }
+        } else {
+            return
+        }
+    }
+    
+    func lowerSkillSelectedUi() {
+        isAnySkillSelected = true
+        highlySkilledView.backgroundColor = .white
+        mediumSkilledView.backgroundColor =  .white
+        lowSkilledView.backgroundColor = UIColor.appColor(.yellow_dark)
+        lowerSkilledLbl.textColor = .white
+        handicapThreeLbl.textColor = .white
+        highlySkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
+        mediumSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
+    }
+    
+    func midiumSkillSelectedUi() {
+        isAnySkillSelected = true
+        highlySkilledView.backgroundColor = .white
+        mediumSkilledView.backgroundColor = UIColor.appColor(.yellow_dark)
+        mediumSkilledLbl.textColor = .white
+        handicapTwoLbl.textColor = .white
+        lowSkilledView.backgroundColor = .white
+        highlySkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapOneLbl.textColor = UIColor.appColor(.Grey_dark)
+        lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
+    }
+    
+    func highelySkillSelectedUi() {
+        isAnySkillSelected = true
+        highlySkilledView.backgroundColor = UIColor.appColor(.yellow_dark)
+        highlySkilledLbl.textColor = .white
+        handicapOneLbl.textColor = .white
+        mediumSkilledView.backgroundColor =  .white
+        lowSkilledView.backgroundColor = .white
+        mediumSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapTwoLbl.textColor = UIColor.appColor(.Grey_dark)
+        lowerSkilledLbl.textColor = UIColor.appColor(.Grey_dark)
+        handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
     }
     
     @IBAction func nextAction(_ sender: UIButton) {

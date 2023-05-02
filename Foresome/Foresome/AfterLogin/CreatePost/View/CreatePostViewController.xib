@@ -90,7 +90,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DL4-mG-Qac">
                                     <rect key="frame" x="24" y="16" width="345" height="40"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="0yt-ab-yWw">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0yt-ab-yWw">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="0YI-mm-pBQ"/>
@@ -100,6 +100,12 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
@@ -237,7 +243,6 @@
                                 <constraint firstItem="DL4-mG-Qac" firstAttribute="leading" secondItem="eL5-YG-34c" secondAttribute="leading" constant="24" id="rEp-8z-d4b"/>
                                 <constraint firstItem="qlG-Sc-qtn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vLh-Cn-QFu" secondAttribute="bottom" constant="30" id="ucc-oW-NXa"/>
                                 <constraint firstItem="qlG-Sc-qtn" firstAttribute="leading" secondItem="eL5-YG-34c" secondAttribute="leading" id="uni-DZ-6wI"/>
-                                <constraint firstItem="qlG-Sc-qtn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kR5-k2-Hl9" secondAttribute="bottom" constant="24" id="yg0-6G-IOb"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -271,11 +276,11 @@
         </designable>
     </designables>
     <resources>
-        <image name="cccc" width="1920" height="1195"/>
         <image name="ic_back_black" width="24" height="24"/>
         <image name="ic_feed_camera" width="24" height="24"/>
         <image name="ic_feed_gallery" width="24" height="24"/>
         <image name="ic_feed_poll" width="24" height="24"/>
+        <image name="ic_user_placeholder" width="40" height="40"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

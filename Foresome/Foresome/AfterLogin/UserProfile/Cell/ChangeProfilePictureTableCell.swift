@@ -24,6 +24,12 @@ class ChangeProfilePictureTableCell: UITableViewCell {
             if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
                 userProfilePicImageView.image = image
             }
+            let imagefound = (data["user_profile_pic"] as? String ?? "")
+            if imagefound.count > 0 {
+                self.changeProfileButton.setTitle("Change Profile Picture", for: .normal)
+            } else {
+                self.changeProfileButton.setTitle("Add Profile Picture", for: .normal)
+            }
         }
     }
     

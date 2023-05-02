@@ -7,4 +7,23 @@
 
 import Foundation
 
+class PostListDataModel: NSObject {
+    var json: JSON!
+    
+}
+
+extension PostListDataModel {
+    convenience init(json: [String: Any]) {
+        self.init()
+        self.json = json
+//        if let descriptions = json["descriptions"] as? String {
+//            self.descriptions = descriptions
+//        }
+    }
+}
+
+
+
+
+
 

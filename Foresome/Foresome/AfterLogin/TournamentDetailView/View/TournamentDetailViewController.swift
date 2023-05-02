@@ -54,7 +54,8 @@ class TournamentDetailViewController: UIViewController, UIScrollViewDelegate, To
         }
         self.folfDetailsImage.image = tournamentsDetailsImage
         self.tournamentsName.text = tournamentData?.title ?? ""
-        self.tournamentsDateAndTIme.text = tournamentData?.date ?? ""
+        let combineDateAndTime = "\(tournamentData?.date ?? "") • \(tournamentData?.time?.first ?? "")"
+        self.tournamentsDateAndTIme.text = combineDateAndTime
         self.tournamentsLocation.text = tournamentData?.location ?? ""
         self.tournamentsAddress.text = tournamentData?.address ?? ""
         self.tournamentsPrice.text = "\(AppStrings.cad)\(tournamentData?.price ?? "")"

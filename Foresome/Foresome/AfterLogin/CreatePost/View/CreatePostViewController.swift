@@ -23,6 +23,8 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var publishButton: UIButton!
     
+    @IBOutlet weak var textViewBottomConstraints: NSLayoutConstraint!
+    
     var presenter: CreatePostPresenterProtocol?
     var imageSelect: [UIImage?] = []
     var imagePicker = GetImageFromPicker()
@@ -228,6 +230,7 @@ extension CreatePostViewController: SelectImageCollectionCellDelegate {
 extension CreatePostViewController : GrowingTextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let updatedString = (textView.text as NSString?)?.replacingCharacters(in: range, with: text)
+        print("updated post text strings----=\(updatedString ?? "")")
         creatPostData.postDescription = updatedString
         if updatedString == " "{
             return false

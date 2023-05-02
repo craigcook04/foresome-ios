@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabbarViewController: UITabBarController {
+class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     var selectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_news"), #imageLiteral(resourceName: "ic_friends"), #imageLiteral(resourceName: "ic_tour"), #imageLiteral(resourceName: "ic_leaders"), #imageLiteral(resourceName: "ic_profile")]
     var unselectedStateImages:[UIImage] = [#imageLiteral(resourceName: "ic_news_inactive"), #imageLiteral(resourceName: "ic_friends_inactive"), #imageLiteral(resourceName: "ic_tour_inactive"), #imageLiteral(resourceName: "ic_leaders_inactive"), #imageLiteral(resourceName: "ic_profile_inactive")]
@@ -20,12 +20,25 @@ class TabbarViewController: UITabBarController {
         self.setViewControllers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 //        var tabFrame = self.tabBar.frame
 //        tabFrame.size.height += 8
 //        tabFrame.origin.y = self.view.frame.size.height - tabFrame.size.height //self.view.frame.size.height - HEIGHT_TAB_BAR
 //        self.tabBar.frame = tabFrame
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//        self.viewWillAppear(false)
+        //self.viewDidLoad()
     }
     
     private func setViewControllers() {

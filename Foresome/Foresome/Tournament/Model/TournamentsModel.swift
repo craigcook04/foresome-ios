@@ -52,6 +52,10 @@ extension TournamentModel {
         if let tournament_id = json["tournament_id"] as? String {
             self.tournament_id = tournament_id
         }
+        
+        if let tournaments_time = json["time"] as? [String] {
+            self.time = tournaments_time
+        }
     }
 }
 

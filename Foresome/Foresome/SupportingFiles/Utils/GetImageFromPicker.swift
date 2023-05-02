@@ -300,7 +300,18 @@ extension GetImageFromPicker : UIImagePickerControllerDelegate, UINavigationCont
     
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {return}
+        //picker.allowsEditing = true
+        //var imageType: UIImagePickerController.InfoKey
+//        if picker.isEditing == true {
+//            imageType = UIImagePickerController.InfoKey.editedImage
+//            print("camera editing mode is enabled.\(imageType)")
+//        } else {
+//            imageType = UIImagePickerController.InfoKey.originalImage
+//            print("camera editing mode is disabled.\(imageType)")
+//        }
+        print("image picker editing mode ---==\(imagePicker?.isEditing)")
+        
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {return}
         let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL
         
         var fileName:String?

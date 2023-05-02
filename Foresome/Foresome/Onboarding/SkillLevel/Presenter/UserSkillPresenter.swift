@@ -29,11 +29,27 @@ class UserSkillPresenter : UserSkillPresenterProtocol {
     }
     
     func updateUserSkillToFirestore(skillType: String) {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
         db.collection("users").document(documentsId).setData(["user_skill_level" : "\(skillType)"], merge: true) { err in
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
             if err == nil {
-                Singleton.shared.setHomeScreenView()
+                let db = Firestore.firestore()
+                let documentsId = ((UserDefaults.standard.value(forKey: "user_uid") ?? "") as? String) ?? ""
+                let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
+                db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
+                    if let data = snapData?.data() {
+                        UserDefaults.standard.set(data, forKey: "myUserData")
+                    }
+                }
+                if let view = self.view as? SkillLevelViewController {
+                    if view.isFromEditSkill == true  {
+                        view.popVC()
+                    } else {
+                        Singleton.shared.setHomeScreenView()
+                    }
+                }
             } else {
                 if let error = err {
                     Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)

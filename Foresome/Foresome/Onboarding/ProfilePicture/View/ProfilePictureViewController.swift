@@ -62,6 +62,7 @@ class ProfilePictureViewController: UIViewController,UINavigationControllerDeleg
     
     @IBAction func skipForNowAction(_ sender: UIButton) {
         let skillVc = UserSkillPresenter.createUserSkillModule()
+        skillVc.isFromEditSkill = false
         self.pushViewController(skillVc, true)
     }
 }
