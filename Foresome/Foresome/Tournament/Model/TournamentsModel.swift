@@ -18,7 +18,7 @@ class TournamentModel : NSObject {
     var availability: Int?  = 0
     var address: String? = ""
     var tournament_id: String?
-    var time: [String]?
+    var time:[String]?
 }
 
 extension TournamentModel {

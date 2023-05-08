@@ -61,6 +61,7 @@ struct AppStrings {
     static let userNameSuffix = "HELLO,"
     static let option = "Option"
     static let reportPost = "Report post"
+    static let editPost = "Edit post"
     static let delete = "Delete"
     static let dismiss = "Dismiss"
     static let selectOption = "Please Select an Option"

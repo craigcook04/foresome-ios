@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,6 +45,12 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -239,12 +245,14 @@
                 <outlet property="imageOne" destination="Vcv-Ro-R9i" id="t38-MP-mBC"/>
                 <outlet property="imageThree" destination="aGd-Bv-Nfw" id="045-3N-uhU"/>
                 <outlet property="imageTwo" destination="hb3-94-78L" id="npn-gF-6Rg"/>
+                <outlet property="imageWholeStack" destination="I8C-g1-dfJ" id="JOb-7k-BP8"/>
                 <outlet property="likeBtn" destination="J7t-MT-upl" id="AHc-UC-e0D"/>
                 <outlet property="moreBtn" destination="sAJ-qP-ws7" id="0vm-9S-7Ca"/>
                 <outlet property="postDescriptionLbl" destination="WAQ-RH-KcM" id="mYc-fv-Jhw"/>
                 <outlet property="postTime" destination="wx3-8g-xUU" id="Mwb-00-cCr"/>
                 <outlet property="profileImage" destination="VAA-97-CMz" id="Cdn-6V-fFH"/>
                 <outlet property="shareBtn" destination="Tlm-Fr-QJL" id="6La-ZU-b6c"/>
+                <outlet property="thirdImageBgView" destination="zHk-7I-fQ2" id="u4e-BA-3tU"/>
                 <outlet property="userNameLbl" destination="igW-7w-fnr" id="ifm-kc-Ch1"/>
             </connections>
             <point key="canvasLocation" x="-431.29770992366412" y="-45.070422535211272"/>

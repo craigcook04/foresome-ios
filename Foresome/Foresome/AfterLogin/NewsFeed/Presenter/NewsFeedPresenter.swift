@@ -34,14 +34,6 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
         print("create post function called.")
     }
     
-    func createPost(json: JSON) {
-        print("create post json called")
-    }
-    
-    func creatNewPost(selectedimage: String) {
-        //MARK: code for create post single image post from both camera and gallery------
-    }
-    
     func uploadimage(image: UIImage) {
         if let view = view as? NewsFeedViewController {
             let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])

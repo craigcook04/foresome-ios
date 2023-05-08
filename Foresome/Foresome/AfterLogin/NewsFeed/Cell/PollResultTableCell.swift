@@ -46,6 +46,15 @@ class PollResultTableCell: UITableViewCell {
         pollTableView.register(cellClass: VoteTableCell.self)
     }
     
+    func setPollCellData(data: PostListDataModel) {
+        self.userNameLbl.text = "\(data.author ?? "")--\(data.post_type ?? "")"
+        self.profileImage.image = data.profileImage.base64ToImage()
+        self.timeLbl.text = data.createdAt?.toDouble?.toDate.utcToLocal?.toString(format: .full1)
+        self.postDescriptionLbl.text = data.postDescription
+        
+        
+    }
+    
     func  setTableHeight() {
         self.tableViewHeight.constant = 4 *  64
     }
@@ -60,14 +69,15 @@ class PollResultTableCell: UITableViewCell {
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func shareAction(_ sender: Any) {
+        
     }
 }
 
-extension PollResultTableCell: UITableViewDelegate,UITableViewDataSource {
-    
+extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
