@@ -16,6 +16,8 @@ import FirebaseCore
 import FirebaseFirestore
 import Firebase
 import FirebaseStorage
+import Kingfisher
+
 
 class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -38,17 +40,18 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter?.saveCreatUserData()
-        fetchPostData()
+        fetchPostData(isFromRefreh: false)
         setTableData()
         setTableFooter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
        // super.viewWillAppear(animated)
+        self.fetchPostData(isFromRefreh: false)
         setTableData()
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
-    
+                      
     func setTableData() {
         self.newsFeedTableView.delegate = self
         self.newsFeedTableView.dataSource = self
@@ -59,15 +62,19 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         setTableHeader()
         updatetable()
     }
-    
     //MARK: code for fetch data of posts------
     
     func updatetable() {
         self.newsFeedTableView.reloadData()
     }
     
-    func fetchPostData() {
-        ActivityIndicator.sharedInstance.showActivityIndicator()
+    func fetchPostData(isFromRefreh: Bool) {
+        self.listPostData.removeAll()
+        if isFromRefreh == true {
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
+        } else {
+            ActivityIndicator.sharedInstance.showActivityIndicator()
+        }
         let db = Firestore.firestore()
         db.collection("posts").getDocuments { (querySnapshot, err) in
            // ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -80,6 +87,13 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                     self.listPostData.append(allPostData)
                     print("self.listpostdata---\(self.listPostData.count)")
                 })
+                    
+                self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
+                for i in 0..<self.listPostData.count  {
+                    print("printed docs id----\(self.listPostData[i].id)")
+                    print("printed docs uid----\(self.listPostData[i].uid)")
+                }
+                
                 self.newsFeedTableView.reloadData()
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
@@ -115,6 +129,14 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             }
         } else {
             self.uploadPostData(data: self.data ?? CreatePostModel())
+        }
+    }
+    
+    //MARK: code for share poll----
+    func sharePost(items: [Any]) {
+        DispatchQueue.main.async {
+            let vc = UIActivityViewController(activityItems: items, applicationActivities: [])
+            self.present(vc, animated: true)
         }
     }
     
@@ -172,7 +194,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    func uploadPostData(data:CreatePostModel) {
+    func uploadPostData(data: CreatePostModel) {
         //MARK: code for create poll using firebase ---
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
@@ -182,10 +204,10 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         let createdDate = Date().miliseconds()
         print("create post doc id is--=\(documentsId)")
         print("post image description is -====\(data.postDescription ?? "")")
-        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"feed"], merge: true) { error in
+        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"feed", "likedUserList": [String]()], merge: true) { error in
             if error == nil {
                 Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
-                self.fetchPostData()
+                self.fetchPostData(isFromRefreh: false)
             } else {
                 Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
             }
@@ -246,6 +268,8 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 //            return cell
 //        }
         
+         
+        
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
             cell.setProfileData()
@@ -258,6 +282,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             let pollData = self.listPostData.filter{( $0.post_type == "poll")}
             cell.setPollCellData(data: listPostData[indexPath.row - 1])
+            cell.setTableHeight()
             cell.delegate = self
             return cell
         } else {
@@ -288,7 +313,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
     }
     //MARK: code for create new post----
     func createPost() {
-        let createPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [])
+        let createPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [], data: nil, isEditPost: false)
         createPostVc.hidesBottomBarWhenPushed = true
         self.pushViewController(createPostVc, true)
     }
@@ -303,7 +328,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
                     self?.dismiss(animated: false) {
-                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])
+                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image], data: nil, isEditPost: false)
                         self?.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .error(let message):
@@ -324,11 +349,11 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
                     let image = imageData?.image ?? UIImage()
                     self?.dismiss(animated: false) {
-                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])
+                        let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image], data: nil, isEditPost: false)
                         self?.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .error(let message):
-                    print(message)
+                    print("error message\(message)")
                     Singleton.shared.showMessage(message: message, isError: .error)
                 }
             }
@@ -353,6 +378,47 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
 }
 
 extension NewsFeedViewController: NewsFeedTableCellDelegate {
+    func likePostData(data: PostListDataModel, isLiked: Bool) {
+        let db = Firestore.firestore()
+        var userPostLikedData = data.likedUserList
+        if isLiked == true {
+            userPostLikedData.append(data.uid ?? "")
+            let userPostCollection = db.collection("posts").document(data.id ?? "")
+            userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
+                if error == nil {
+                    print("like updated")
+                    self.fetchPostData(isFromRefreh: true)
+                }else{
+                    print("like not updated")
+                }
+            }
+        } else {
+            userPostLikedData.remove(element: data.uid ?? "")
+            let userPostCollection = db.collection("posts").document(data.id ?? "")
+            userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
+                if error == nil {
+                    print("like removed updated")
+                    self.fetchPostData(isFromRefreh: true)
+                } else {
+                    print("like removed not updated")
+                }
+            }
+        }//likeBtn.setTitle("1", for: .selected)
+    }
+    
+    func sharePost(data: PostListDataModel, postImage: UIImage) {
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        var name = strings?["name"] ?? ""
+        var addressText = "\(name) shared poll file:"
+        let postTitle = data.postDescription ?? ""
+        addressText += "\n\n\(postTitle)"
+        let pollOptions =  data.poll_options
+        for i in 0..<(data.poll_options?.count ?? 0) {
+            addressText += "\n\nOption\(i)\(pollOptions?[i] ?? "")"
+        }
+        self.sharePost(items: [postImage])
+    }
+    
     func moreButton(data: PostListDataModel) {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         if strings?["uid"] as? String ?? "" == data.uid {
@@ -360,9 +426,25 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
                 print("edit post called.")
+                let oldImages = [UIImageView]()
+                for i in 0..<(data.image?.count ?? 0) {
+                    //oldImages.append(oldImages[i].kf.setImage(with: data.image[i])
+                    //let imases = UIImageView()
+                    //imases.kf.setImage(with: data.image?.first)
+                }
+                let editPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [], data: data, isEditPost: true)
+                self.pushViewController(editPostVc, false)
             }))
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
                 print("delete post called.")
+                let db = Firestore.firestore()
+                db.collection("posts").document(data.id ?? "").delete() { err in
+                    if let err = err {
+                        Singleton.shared.showMessage(message: err.localizedDescription, isError: .error)
+                    } else {
+                        Singleton.shared.showMessage(message: "Posts deleted successfully.", isError: .error)
+                    }
+                }
             }))
             alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
                 print("dismiss called.")
@@ -374,9 +456,6 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
                 print("report post called.")
             }))
-            alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
-                print("delete post called.")
-            }))
             alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
                 print("dismiss called.")
             }))
@@ -387,19 +466,94 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
 }
 
 extension NewsFeedViewController: PollResultTableCellDelegate {
-    func PollMoreButton() {
-        let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
-            print("report poll called.")
-        }))
-        alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
-            print("delete post called.")
-        }))
-        alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
-            print("dismiss post called.")
-        }))
-        self.present(alert, animated: true, completion: {
-        })
+    func voteInPoll(data: PostListDataModel, isVodeted: Bool, selectedIndex: Int) {
+//        if self.isAnswer == false {
+//            self.isAnswer = true
+//            self.selectedOption = indexPath.row
+//        }
+        data.selectedAnswerCount
+        let db = Firestore.firestore()
+        let userPostCollection = db.collection("posts").document(data.id ?? "")
+        print("selected index is -----\(selectedIndex)")
+        userPostCollection.updateData(["selectedAnswer": data.selectedAnswer[selectedIndex], "selectedAnswerCount": data.selectedAnswerCount[selectedIndex] + 1]) { (error) in
+            if error == nil {
+                Singleton.shared.showMessage(message: "voted", isError: .success)
+            } else {
+                if let error = error {
+                    Singleton.shared.showMessage(message: (error as? String) ?? "", isError: .error)
+                }
+            }
+        }
+    }
+    
+//            } else {
+//                userPostLikedData.remove(element: data.uid ?? "")
+//                let userPostCollection = db.collection("posts").document(data.id ?? "")
+//                userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
+//                    if error == nil {
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    func sharePoll(data: PostListDataModel, pollImage: UIImage) {
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        var name = strings?["name"] ?? ""
+        var addressText = "\(name) shared poll file:"
+        let pollTitle = "Poll title:-\(data.poll_title)"
+        addressText += "\n\n\(pollTitle)"
+        let pollOptions =  data.poll_options
+        for i in 0..<(data.poll_options?.count ?? 0) {
+            addressText += "\n\nOption:-\(i + 1)\(pollOptions?[i] ?? "")"
+        }
+        self.sharePost(items: [pollImage])
+    }
+    
+    func pollMoreButton(data: PostListDataModel) {
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        if strings?["uid"] as? String ?? "" == data.uid {
+            let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
+                print("edit poll called.")
+            }))
+            alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
+                print("delete post called.")
+                let db = Firestore.firestore()
+                print("documnets id for deletion---\(data.id ?? "")")
+                print("doc data------\(data.poll_title)")
+                print("hello poll data is----\(data.poll_options?.count ?? 0)")
+                for i in 0..<(data.poll_options?.count ?? 0) {
+                    print("poll optionsa----\(data.poll_options?[i] ?? "")")
+                }
+                db.collection("posts").document(data.id ?? "").delete() { err in
+                    if err == nil {
+                        Singleton.shared.showMessage(message: "Posts deleted successfully.", isError: .success)
+                    } else {
+                        if let err = err {
+                            Singleton.shared.showMessage(message: err.localizedDescription, isError: .error)
+                        }
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
+                print("dismiss post called.")
+            }))
+            self.present(alert, animated: true, completion: {
+            })
+        } else {
+            let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
+                print("report poll called.")
+                
+            }))
+            alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
+                print("dismiss post called.")
+            }))
+            self.present(alert, animated: true, completion: {
+            })
+        }
     }
 }
 
@@ -409,9 +563,7 @@ extension NewsFeedViewController: UIScrollViewDelegate {
     }
 }
 
-extension NewsFeedViewController: NewsFeedViewProtocol {
-    
-}
+extension NewsFeedViewController: NewsFeedViewProtocol {}
 
 extension NewsFeedViewController: CreatePostUploadDelegate {
     func uploadProgress(data: CreatePostModel) {
@@ -420,4 +572,8 @@ extension NewsFeedViewController: CreatePostUploadDelegate {
         self.newsFeedTableView.reload(row: 0)
     }
 }
+
+
+
+
 

@@ -18,12 +18,10 @@ public enum IJReachabilityType {
 }
 
 open class IJReachability {
-  
   /**
   :see: Original post - http://www.chrisdanielson.com/2009/07/22/iphone-network-connectivity-test-example/
   */
   open class func isConnectedToNetwork() -> Bool {
-      
       var zeroAddress = sockaddr_in()
       zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
       zeroAddress.sin_family = sa_family_t(AF_INET)
@@ -44,7 +42,6 @@ open class IJReachability {
       let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
       let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
       return (isReachable && !needsConnection)
-      
   }
   
 //  public class func isConnectedToNetworkOfType() -> IJReachabilityType {
@@ -77,11 +74,7 @@ open class IJReachability {
 //  }
 }
 
-
-
-
 class Reachability: NSObject {
-    
     static let shared = Reachability()
     static var isChatScreenOpen: Bool = false
     static var last_updated_time: String = ""
@@ -111,7 +104,4 @@ class Reachability: NSObject {
         lastUpdate = isConnectedToInternet
         //NotificationCenter.default.post(name: .networkConnection, object: isConnectedToInternet, userInfo: nil)
     }
-    
-    
-    
 }

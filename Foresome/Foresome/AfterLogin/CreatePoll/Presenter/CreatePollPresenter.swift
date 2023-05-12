@@ -33,19 +33,27 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
         let db = Firestore.firestore()
         let documentsId =  UUID().uuidString
         var pollOptinsArray = [String]()
+        
+        var pollAnswersCountArray = [Int]()
+        var selectedAnserArray = [Int]()
+        
         for i in 0..<optionsArray.count {
             pollOptinsArray.append(optionsArray[i].optionAdd.text ?? "")
+            pollAnswersCountArray.append(0)
+            selectedAnserArray.append(0)
         }
-        for i in 0..<(pollOptinsArray.count - 1)  {
+        
+        for i in 0..<(pollOptinsArray.count - 1) {
             if pollOptinsArray[i] == pollOptinsArray[i + 1] {
                 Singleton.shared.showMessage(message: Messages.optionsNotSame, isError: .error)
                 return
             }
         }
+        
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let createdDate = Date().miliseconds()
-        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"poll", "poll_title":"\(questioName)","poll_options": pollOptinsArray], merge: true) { err in
+        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"poll", "poll_title":"\(questioName)","poll_options": pollOptinsArray, "selectedAnswerCount":pollAnswersCountArray, "selectedAnswer":selectedAnserArray, "ispollEnded": false, "likedUserList": [String]()], merge: true) { err in
             if err == nil {
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
                 Singleton.shared.showMessage(message: Messages.pollCreatedMsg, isError: .success)

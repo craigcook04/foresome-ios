@@ -29,7 +29,6 @@
 import Foundation
 import MapKit
 
-
 func coordinateObject(fromTuple coordinateTuple: (latitude: Double, longitude: Double)) -> CLLocationCoordinate2D {
     return CLLocationCoordinate2D(latitude: coordinateTuple.latitude, longitude: coordinateTuple.longitude)
 }
@@ -37,7 +36,6 @@ func coordinateObject(fromTuple coordinateTuple: (latitude: Double, longitude: D
 func coordinateTuple(fromObject coordinateObject: CLLocationCoordinate2D) -> (latitude: Double, longitude: Double) {
     return (latitude: coordinateObject.latitude, longitude: coordinateObject.longitude)
 }
-
 
 private func isOutsideChina(coordinate: CLLocationCoordinate2D) -> Bool {
     if coordinate.longitude < 72.004 || coordinate.longitude > 137.8347 {
@@ -104,7 +102,6 @@ func gcjToWgs(coordinate: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
     let revisedCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude - deltaLatitude, longitude: coordinate.longitude - deltaLongitude)
     return revisedCoordinate
 }
-
 
 func getLongitudinalDistance(fromMapRect mapRect: MKMapRect) -> Double {
     let westMapPoint = MKMapPoint.init(x: mapRect.maxX, y: mapRect.midY)

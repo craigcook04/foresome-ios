@@ -102,15 +102,8 @@ struct cellIdentifier {
     static let pollResultTableCell =  "PollResultTableCell"
     static let newsFeedTableCell = "NewsFeedTableCell"
     static let tournamentTableCell = "TournamentTableCell"
-    
-    
-    
-    
-    
-    
-    
+    static let voteTableCell = "VoteTableCell"
 }
-
 
 struct NIB_NAME {
     static let errorView = "ErrorView"
@@ -124,12 +117,10 @@ struct NIB_NAME {
     static let fileDocumentSectionHeader = "FileDocumentSectionHeader"
     static let challengeDaySummaryTableHeader =
     "ChallengeDaySummaryTableHeader"
-    
 }
 
 struct DEVICE_TYPE {
     static let appVersion = "1.0"
-    
 }
 
 //struct STORYBOARD {
@@ -174,5 +165,4 @@ extension UINib {
     convenience public init(nibName:String) {
         self.init(nibName: nibName, bundle: nil)
     }
-    
 }

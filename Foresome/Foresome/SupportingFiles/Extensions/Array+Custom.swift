@@ -35,11 +35,9 @@ extension Array {
         self.append(newItem)
         self.append(contentsOf: copy)
     }
-    
 }
 
 extension Array where Element: Equatable {
-    
     public mutating func removeDuplicate() {
         var result = [Element]()
         for value in self {
@@ -131,7 +129,6 @@ extension Dictionary {
     var isNotEmpty: Bool {
         return !isEmpty
     }
-    
 }
 
 

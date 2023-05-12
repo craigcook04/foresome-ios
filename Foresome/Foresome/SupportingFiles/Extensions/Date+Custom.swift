@@ -441,6 +441,14 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func toStringFormat(format: String = "dd/MM/yyyy") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    
+    
     var startOfMonth: Date {
         let calendar = Calendar(identifier: .indian)
         let components = calendar.dateComponents([.year, .month], from: self)

@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
-    
     // MARK: Types
     
     public enum NavigationItemOrientation {
@@ -23,7 +22,6 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         case searchLocation
         case alternativeLocation
     }
-    
     
     // MARK: - Completion closures
     open var selectCompletion: ((LocationItem) -> Void)?
@@ -75,9 +73,7 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
     public let pinShadowView = UIView()
     public let resultView = BottomResultView()
     
-    
     open private(set) var barButtonItems: (doneButtonItem: UIBarButtonItem, cancelButtonItem: UIBarButtonItem)?
-    
     
     // MARK: Attributes
     
@@ -98,7 +94,6 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
     private var pinViewImageHeight: CGFloat {
         return pinView.image!.size.height
     }
-    
     
     // MARK: Customs
     public func addBarButtons(doneButtonItem: UIBarButtonItem? = nil,
@@ -145,14 +140,11 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         return true
     }
     
-    
     // MARK: - View Controller
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
         longitudinalDistance = defaultLongitudinalDistance
-        
         setupLocationManager()
         setupViews()
         layoutViews()
@@ -160,28 +152,22 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        if let index = preselectedIndex, index < 1 + searchResultLocations.count + alternativeLocationCount {
-//            tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
-//            tableView(tableView, didSelectRowAt: IndexPath(row: index, section: 0))
-//        }
-        
+        //        if let index = preselectedIndex, index < 1 + searchResultLocations.count + alternativeLocationCount {
+        //            tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
+        //            tableView(tableView, didSelectRowAt: IndexPath(row: index, section: 0))
+        //        }
         tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         guard barButtonItems?.doneButtonItem == nil else { return }
-        
         if let locationItem = selectedLocationItem {
             locationDidPick(locationItem: locationItem)
         }
     }
     
-    
     // MARK: Initializations
-    
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -195,7 +181,6 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
     
     private func setupViews() {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
         searchBar.delegate = self
         searchBar.placeholder = searchBarPlaceholder
         searchBar.showsCancelButton = true
@@ -235,9 +220,7 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(mapView)
         mapView.addSubview(pinShadowView)
         mapView.addSubview(pinView)
-        
         view.addSubview(resultView)
-        
         resultView.callBacks(didSelect: { (locationItem) in
             self.selectedLocationItem = locationItem
             self.dismiss(animated: true, completion: nil)
@@ -279,7 +262,6 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         NSLayoutConstraint(item: mapView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
         
         NSLayoutConstraint(item: mapView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
-        
         
         NSLayoutConstraint(item: pinView, attribute: .centerX, relatedBy: .equal, toItem: mapView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         pinViewCenterYConstraint = NSLayoutConstraint(item: pinView, attribute: .centerY, relatedBy: .equal, toItem: mapView, attribute: .centerY, multiplier: 1, constant: -pinViewImageHeight / 2)
@@ -325,9 +307,7 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         return true
     }
     
-    
     // MARK: Buttons
-    
     @objc private func doneButtonDidTap(barButtonItem: UIBarButtonItem) {
         if let locationItem = selectedLocationItem {
             dismiss(animated: true, completion: nil)
@@ -339,27 +319,23 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    
     // MARK: UI Mainipulations
-    
     private func showMapView(withCenter coordinate: CLLocationCoordinate2D, distance: Double) {
-//        mapViewHeightConstraint.constant = mapViewHeight
-        
+        //        mapViewHeightConstraint.constant = mapViewHeight
         let coordinateRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 0 , longitudinalMeters: distance)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
     private func closeMapView() {
-//        mapViewHeightConstraint.constant = 0
+        //        mapViewHeightConstraint.constant = 0
         self.mapView(isHidden: true)
     }
-    
     
     // MARK: Location Handlers
     public func selectLocationItem(_ locationItem: LocationItem) {
         print("place mark calls")
         selectedLocationItem = locationItem
-//        searchBar.text = locationItem.name
+        //        searchBar.text = locationItem.name
         resultView.locationItem = locationItem
         if let coordinate = locationItem.coordinate {
             showMapView(withCenter: coordinateObject(fromTuple: coordinate), distance: longitudinalDistance)
@@ -388,24 +364,21 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
                 
                 self.selectLocationItem(LocationItem(mapItem: mapItem))
             }
+            //            let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.03, longitude: 118.14)
             
-//            let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.03, longitude: 118.14)
+            //            self.showMapView(withCenter: placemark.location!.coordinate , distance: 300)
             
-//            self.showMapView(withCenter: placemark.location!.coordinate , distance: 300)
-            
-//            let span = MKCoordinateRegion(center: <#T##CLLocationCoordinate2D#>, span: <#T##MKCoordinateSpan#>)
-//            let region = MKCoordinateRegionMake(coordinate, span)
-//            self.mapView.setRegion(region, animated: true)
+            //            let span = MKCoordinateRegion(center: <#T##CLLocationCoordinate2D#>, span: <#T##MKCoordinateSpan#>)
+            //            let region = MKCoordinateRegionMake(coordinate, span)
+            //            self.mapView.setRegion(region, animated: true)
         })
     }
-    
 }
 
 
 // MARK: - Callbacks
 
 extension LocationPicker {
-    
     @objc open func locationDidSelect(locationItem: LocationItem) {
         selectCompletion?(locationItem)
         delegate?.locationDidSelect?(locationItem: locationItem)
@@ -440,9 +413,7 @@ extension LocationPicker {
             }
         }
     }
-    
 }
-
 
 // MARK: Search Bar Delegate
 
@@ -452,11 +423,9 @@ extension LocationPicker: UISearchBarDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.mapView(isHidden: true)
     }
-    
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
@@ -469,39 +438,34 @@ extension LocationPicker: UISearchBarDelegate {
                 localSearchRequest.region = MKCoordinateRegion(center: defaultSearchCoordinate, latitudinalMeters: searchDistance, longitudinalMeters: searchDistance)
             }
             MKLocalSearch(request: localSearchRequest).start(completionHandler: { (localSearchResponse, error) -> Void in
-                
                 guard searchText == searchBar.text else {
                     // Ensure that the result is valid for the most recent searched text
                     return
                 }
                 guard error == nil,
-                    let localSearchResponse = localSearchResponse, localSearchResponse.mapItems.count > 0 else {
-                        if self.isAllowArbitraryLocation {
-                            let locationItem = LocationItem(locationName: searchText)
-                            self.searchResultLocations = [locationItem]
-                        } else {
-                            self.searchResultLocations = []
-                        }
-                        self.tableView.reloadData()
-                        return
+                      let localSearchResponse = localSearchResponse, localSearchResponse.mapItems.count > 0 else {
+                    if self.isAllowArbitraryLocation {
+                        let locationItem = LocationItem(locationName: searchText)
+                        self.searchResultLocations = [locationItem]
+                    } else {
+                        self.searchResultLocations = []
+                    }
+                    self.tableView.reloadData()
+                    return
                 }
-                
                 print("search bar text ******** \(searchText)")
                 self.searchResultLocations = localSearchResponse.mapItems.filter({ (mapItem) -> Bool in
                     return self.shouldShowSearchResult(for: mapItem)
                 }).map({ LocationItem(mapItem: $0) })
-                
                 if self.isAllowArbitraryLocation {
                     let locationFound = self.searchResultLocations.filter({
                         $0.name.lowercased() == searchText.lowercased()}).count > 0
-                    
                     if !locationFound {
                         // Insert arbitrary location without coordinate
                         let locationItem = LocationItem(locationName: searchText)
                         self.searchResultLocations.insert(locationItem, at: 0)
                     }
                 }
-                
                 self.tableView.reloadData()
             })
         } else {
@@ -522,7 +486,6 @@ extension LocationPicker: UISearchBarDelegate {
 
 // MARK: Table View Delegate and Data Source
 extension LocationPicker: UITableViewDelegate, UITableViewDataSource {
-    
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -533,7 +496,6 @@ extension LocationPicker: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: LocationCell!
-        
         if indexPath.row == 0 {
             cell = LocationCell(locationType: .currentLocation, locationItem: nil)
             cell.locationNameLabel.text = currentLocationText
@@ -557,7 +519,6 @@ extension LocationPicker: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchBar.endEditing(true)
         longitudinalDistance = defaultLongitudinalDistance
-        
         if indexPath.row == 0 {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
@@ -608,19 +569,15 @@ extension LocationPicker: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    
 }
-
-
 // MARK: Map View Delegate
 
 extension LocationPicker: MKMapViewDelegate {
-    
     public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         if !animated {
             UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: {
                 self.pinView.frame.origin.y -= self.pinViewImageHeight / 2
-                }, completion: nil)
+            }, completion: nil)
         }
     }
     
@@ -636,21 +593,17 @@ extension LocationPicker: MKMapViewDelegate {
                 reverseGeocodeLocation(CLLocation(latitude: adjustedCoordinate.latitude, longitude: adjustedCoordinate.longitude))
             }
         }
-        
         if !animated {
             UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: {
                 self.pinView.frame.origin.y += self.pinViewImageHeight / 2
-                }, completion: nil)
+            }, completion: nil)
         }
     }
-    
 }
-
 
 // MARK: Location Manager Delegate
 
 extension LocationPicker: CLLocationManagerDelegate {
-    
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
@@ -665,5 +618,4 @@ extension LocationPicker: CLLocationManagerDelegate {
             }
         }
     }
-    
 }

@@ -29,9 +29,7 @@ class Contact {
         self.code = code
         self.fullName = fullName
     }
-    
 }
-
 
 class PhoneContacts {
     

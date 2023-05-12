@@ -57,7 +57,6 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         var visibleRect = CGRect()
-        
         visibleRect.origin = tutorialCollectionView.contentOffset
         visibleRect.size = tutorialCollectionView.bounds.size
         
@@ -81,6 +80,5 @@ extension TutorialViewController:UICollectionViewDelegate,UICollectionViewDataSo
             counter = 1
             self.pageControl.currentPage = counter
         }
-
     }
 }

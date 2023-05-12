@@ -21,10 +21,12 @@ class CreatePostPresenter: CreatePostPresenterProtocol {
     
     var view: CreatePostViewProtocol?
     
-    static func createPostModule(delegate:CreatePostUploadDelegate?, selectedImage: [UIImage?]?) -> UIViewController {
+    static func createPostModule(delegate:CreatePostUploadDelegate?, selectedImage: [UIImage?]?, data:PostListDataModel? , isEditPost: Bool) -> UIViewController {
         let view = CreatePostViewController()
         view.delegate = delegate
         view.imageSelect = selectedImage ?? []
+        view.isEditProfile = isEditPost
+        view.data = data
         var presenter: CreatePostPresenterProtocol = CreatePostPresenter()
         presenter.view = view
         view.presenter = presenter

@@ -55,6 +55,7 @@ class OrderSummaryViewController: UIViewController, OrderSummryViewProtocol {
     func getPaymentDetailsFromFireStore() {
         self.presenter?.getPaymenstDetails()
     }
+    
     //MARK: code for square payments configuration-------
     func configureSquarePayments() {
         let theme = SQIPTheme()
@@ -96,7 +97,8 @@ extension OrderSummaryViewController : SQIPCardEntryViewControllerDelegate {
                 db.collection("payments").document(transactionData?.id ?? "").setData(["user_id":"\(currentUserId)", "createdAt":"\(transactionData?.created_at ?? "")", "id": "\(transactionData?.id ?? "")", "order_id": "\(transactionData?.order_id ?? "")", "payments_status": "\(transactionData?.status ?? "")"], merge: true)
                 Singleton.shared.showMessage(message: AppStrings.paymentSuccess, isError: .success)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                    Singleton.shared.setHomeScreenView()
+                   // Singleton.shared.setHomeScreenView()
+                    self.popToRootViewController(false)
                 })
             } else {
                 if let error = errorDescription {

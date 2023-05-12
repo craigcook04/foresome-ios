@@ -84,7 +84,7 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
             db.collection("users").document(documentsId).setData(["user_profile_pic" : "\(tempImage.convertImageToBase64String())"], merge: true)
             ActivityIndicator.sharedInstance.showActivityIndicator()
             let currentLogedUserId  = Auth.auth().currentUser?.uid ?? ""
-            db.collection("users").document(currentLogedUserId).getDocument { (snapData, error) in
+            db.collection("users").document(documentsId).getDocument { (snapData, error) in
                 if let data = snapData?.data() {
                     UserDefaults.standard.set(data, forKey: "myUserData")
                 }
@@ -217,7 +217,7 @@ extension ProfileVC: VariationViewControllerDelegate {
                 self.picImageForProfile(sourcetpye: .camera)
             }
         } else {
-            picImageForProfile(sourcetpye: .photoLibrary)
+            self.picImageForProfile(sourcetpye: .photoLibrary)
         }
     }
 }

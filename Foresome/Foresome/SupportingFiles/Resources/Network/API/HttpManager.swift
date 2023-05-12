@@ -8,10 +8,7 @@
 
 import UIKit
 
-
 typealias SERVER_RESPONSE = (data:Data?, response:URLResponse?,error:Error? )
-
-
 
 class HttpManager: NSObject {
     static public func requestToServer(timeoutInterval: TimeInterval = 20,  _ url: String, params: [String:Any], httpMethod: API.HttpMethod, isZipped: Bool, receivedResponse:@escaping (SERVER_RESPONSE) -> ()){
@@ -52,5 +49,4 @@ class HttpManager: NSObject {
 //        }
         task.resume()
     }
-    
 }

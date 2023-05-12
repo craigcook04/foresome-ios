@@ -9,14 +9,12 @@ import Foundation
 import CoreLocation
 import UIKit
 
-
 class LocationManager : CLLocationManager {
     static let shared = LocationManager()
     var currentLocation: CLLocation?
     var isdenied:Bool = false
     
     var defaultLoc = CLLocation(latitude: 39.949861136189895, longitude: -75.15058250936818)
-    
     
     func getAuthorization(){
         self.delegate = self
@@ -52,10 +50,8 @@ class LocationManager : CLLocationManager {
         
     }
     
-    
     func alertForChangeLocationSetting(controller: UIViewController){
         let alertController = UIAlertController(title: "", message: "Please go to Settings and turn on the permissions", preferredStyle: .alert)
-
            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                    return
@@ -75,14 +71,11 @@ class LocationManager : CLLocationManager {
         CLGeocoder().reverseGeocodeLocation(location) { completion($0?.first, $1) }
     }
     
-    
     class func geocode(lat: Double, lng:Double, completion: @escaping (CLPlacemark?, Error?) -> ())  {
         let location = CLLocation(latitude: lat, longitude: lng)
         CLGeocoder().reverseGeocodeLocation(location) { completion($0?.first, $1)
         }
     }
-    
-    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
@@ -102,7 +95,6 @@ extension LocationManager: CLLocationManagerDelegate {
         self.stopUpdatingLocation()
     }
 }
-
 
 extension CLPlacemark {
     
@@ -136,13 +128,12 @@ extension CLPlacemark {
         return self.postalCode
     }
     
-    
     var address: String {
         var addressString : String = ""
         let pm:CLPlacemark = self
-//        if pm.name != nil{
-//            addressString += pm.name! + ", "
-//        }
+        //        if pm.name != nil{
+        //            addressString += pm.name! + ", "
+        //        }
         if pm.subLocality != nil {
             addressString += pm.subLocality! + ", "
         }
@@ -164,6 +155,4 @@ extension CLPlacemark {
         
         return addressString
     }
-    
-    
 }

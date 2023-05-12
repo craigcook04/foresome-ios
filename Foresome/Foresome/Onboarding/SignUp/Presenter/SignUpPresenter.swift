@@ -58,6 +58,7 @@ class SignUpPresenter: SignUpViewPresenter {
             return false
         }
     }
+    
     //MARK: code for create new user on firebase ------
     func createNewUser(fullName: String, email: String, password: String, confirmPassword: String) {
         ActivityIndicator.sharedInstance.showActivityIndicator()

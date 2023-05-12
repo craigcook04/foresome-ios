@@ -32,6 +32,7 @@ open class BottomResultView: UIView {
             self.label.text = resultText
         }
     }
+    
     var resultTextColor:UIColor = .textColor {
         didSet {
             self.label.textColor = resultTextColor
@@ -43,7 +44,6 @@ open class BottomResultView: UIView {
 //            label.font = resultFont
 //        }
 //    }
-    
     //MARK: - Button settings
     var buttonTitle:String = "Select Location" {
         didSet {
@@ -86,9 +86,7 @@ open class BottomResultView: UIView {
         self.cancelButton.setTitleColor(.textColor, for: .normal)
         self.cancelButton.backgroundColor = .clear
 //        self.cancelButton.titleLabel?.font = buttonFont
-        
     }
-    
     
     func setView() {
         label.numberOfLines = 3
@@ -126,7 +124,6 @@ open class BottomResultView: UIView {
         
         selectButton.addTarget(self, action: #selector(didSelect(_:)), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(didCancel(_:)), for: .touchUpInside)
-        
     }
     
     @objc private func didSelect(_ button:UIButton) {

@@ -114,7 +114,5 @@ public class LocationCell: UITableViewCell {
                 NSLayoutConstraint(item: locationAddressLabel, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
             }
         }
-        
     }
-
 }

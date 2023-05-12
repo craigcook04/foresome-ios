@@ -8,6 +8,7 @@
 import UIKit
 
 class VoteTableCell: UITableViewCell {
+    
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var pollView: UIView!
     @IBOutlet weak var progressView: UIView!
@@ -23,8 +24,8 @@ class VoteTableCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setPollData(data:PostListDataModel) {
-        self.itemLabel.text = ""
+    func setPollData(data:PostListDataModel, pollOptions: String) {
+        self.itemLabel.text = pollOptions
     }
 }
 

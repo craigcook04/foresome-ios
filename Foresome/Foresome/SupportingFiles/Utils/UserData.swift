@@ -7,11 +7,6 @@
 //
 
 import UIKit
-
-
-
-
-
 //class UserModel: Codable {
 //    var statusCode: Int?
 //    var message: String?
@@ -130,11 +125,5 @@ class ImageModel: NSObject {
 //            }
 //        }
 //    }
-//    
-    
-    
-   
-    
-    
-    
+//
 }

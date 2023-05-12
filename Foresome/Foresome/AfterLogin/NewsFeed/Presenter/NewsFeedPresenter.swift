@@ -36,7 +36,7 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
     
     func uploadimage(image: UIImage) {
         if let view = view as? NewsFeedViewController {
-            let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image])
+            let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image], data: nil, isEditPost: false)
             vc.hidesBottomBarWhenPushed = true
             view.pushViewController(vc, false)
         }

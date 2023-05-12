@@ -81,7 +81,6 @@ class Singleton: NSObject {
         }
     }
     
-    
     func setHomeScreenView() {
         var window: UIWindow?
         if #available(iOS 13, *) {
@@ -95,7 +94,6 @@ class Singleton: NSObject {
         }
         self.setHomeView(window: window)
     }
-    
     
     func setHomeView(window: UIWindow? = Singleton.shared.window) {
         Singleton.tabController = TabbarViewController()

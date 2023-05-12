@@ -22,10 +22,6 @@ class ForgotPasswordViewController: UIViewController {
         self.forgotLabel.text = AppStrings.titleLbl
     }
     
-    @IBAction func backAction(_ sender: UIButton) {
-        self.popVC()
-    }
-    
     func setKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification , object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification , object:nil)
@@ -43,6 +39,10 @@ class ForgotPasswordViewController: UIViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         submitBottomConstraint.constant = 40
         view.layoutIfNeeded()
+    }
+    
+    @IBAction func backAction(_ sender: UIButton) {
+        self.popVC()
     }
     
     @IBAction func submitAction(_ sender: UIButton) {

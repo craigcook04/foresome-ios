@@ -19,6 +19,5 @@ class CustomProgressBar: UIProgressView {
        }
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 8.0)
-       }
-
+    }
 }

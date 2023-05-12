@@ -39,6 +39,5 @@ class PresentableController: UIViewController {
             break
         }
     }
-    
 }
 

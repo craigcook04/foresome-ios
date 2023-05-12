@@ -94,7 +94,6 @@ class ActivityIndicator: UIView {
     }
 }
 
-
 extension UIWindow {
     static var key: UIWindow? {
         if #available(iOS 13, *) {

@@ -74,15 +74,12 @@ class CustomPickerController: UIViewController {
             let selectedValue = self.valueArray![self.customPicker.selectedRow(inComponent: 0)] //valueArray[customPicker.selectedRow(inComponent: 0)])
             self.delegate?.didSelectPicker(selectedValue, self.customPicker.selectedRow(inComponent: 0), self.tag, custom: self)
         }
-       
     }
-
 }
 
 extension CustomPickerController:  UIPickerViewDelegate, UIPickerViewDataSource  {
     //MARK: UIPickerViewDelegate
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) { 
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {

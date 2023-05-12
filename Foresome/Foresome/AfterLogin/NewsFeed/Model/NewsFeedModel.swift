@@ -14,11 +14,16 @@ class PostListDataModel: NSObject {
     var comments:[String]? = []
     var createdAt:String? = ""
     var updatedAt:String? = ""
-    var image:[URL]? = []
+    var image:[String]? = []
     var uid:String? = ""
     var id:String? = ""
     var post_type : String? = ""
     var profileImage : String = ""
+    var poll_title: String = ""
+    var poll_options: [String]? = []
+    var selectedAnswerCount : [Int] = []
+    var selectedAnswer: [Int] = []
+    var likedUserList : [String] = []
 }
 
 extension PostListDataModel {
@@ -46,7 +51,7 @@ extension PostListDataModel {
             self.updatedAt = updatedAt
         }
         
-        if let image = json["image"] as? [URL] {
+        if let image = json["image"] as? [String] {
             self.image = image
         }
         
@@ -61,9 +66,29 @@ extension PostListDataModel {
         if let post_type = json["post_type"] as? String {
             self.post_type = post_type
         }
-        
-        if let profileImage = json["profile_image"] as? String {
+
+        if let profileImage = json["profile"] as? String {
             self.profileImage = profileImage
+        }
+        
+        if let pollTitle = json["poll_title"] as? String {
+            self.poll_title = pollTitle
+        }
+        
+        if let pollOptions = json["poll_options"] as? [String] {
+            self.poll_options = pollOptions
+        }
+        
+        if let selectedAnswerCount = json["selectedAnswerCount"] as? [Int] {
+            self.selectedAnswerCount = selectedAnswerCount
+        }
+        
+        if let selectedAnswer = json["selectedAnswer"] as? [Int] {
+            self.selectedAnswer = selectedAnswer
+        }
+        
+        if let likedUserList = json["likedUserList"] as? [String] {
+            self.likedUserList = likedUserList
         }
     }
 }

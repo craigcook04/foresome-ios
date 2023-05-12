@@ -132,6 +132,9 @@
                                         <state key="normal" title="4,678" image="ic_comment">
                                             <color key="titleColor" red="0.59215686270000001" green="0.61176470589999998" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="commentAction:" destination="cUS-JK-dYg" eventType="touchUpInside" id="Z05-Ef-uks"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAd-Wn-bwQ">
                                         <rect key="frame" x="217.33333333333329" y="0.0" width="92.666666666666657" height="24"/>
@@ -141,6 +144,9 @@
                                         <state key="normal" title="Share" image="ic_share">
                                             <color key="titleColor" red="0.59215686270000001" green="0.61176470589999998" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="shareAction:" destination="cUS-JK-dYg" eventType="touchUpInside" id="NpC-77-fkL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -194,6 +200,7 @@
                 <outlet property="likeBtn" destination="p5X-DL-rdO" id="bb5-d2-OL0"/>
                 <outlet property="moreBtn" destination="6Oq-0F-4vD" id="sLA-rF-BEU"/>
                 <outlet property="numberOfVotesLabel" destination="T0u-OR-gHI" id="rSL-y0-aEa"/>
+                <outlet property="outerView" destination="0mi-fd-o7s" id="UJN-Kv-BmT"/>
                 <outlet property="pollTableView" destination="axE-hk-Lnp" id="syp-oe-27R"/>
                 <outlet property="postDescriptionLbl" destination="Ogl-Ld-Qoz" id="syJ-wf-d6l"/>
                 <outlet property="profileImage" destination="8pJ-95-tSI" id="UoL-hc-dUH"/>

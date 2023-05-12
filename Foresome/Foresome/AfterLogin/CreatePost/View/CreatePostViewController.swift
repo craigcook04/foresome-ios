@@ -22,14 +22,17 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var pollBtn: UIButton!
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var publishButton: UIButton!
-    
     @IBOutlet weak var textViewBottomConstraints: NSLayoutConstraint!
+    @IBOutlet weak var creatPostTitle: UILabel!
     
     var presenter: CreatePostPresenterProtocol?
     var imageSelect: [UIImage?] = []
     var imagePicker = GetImageFromPicker()
     let creatPostData = CreatePostModel()
     var delegate: CreatePostUploadDelegate?
+    var isEditProfile: Bool?
+    var data:PostListDataModel?
+    var downloadedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
         writePost.autocorrectionType = .no
         setKeyboard()
         self.setCellData()
+        setTopTitle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +50,34 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         self.managePublicButton()
+    }
+    
+    func setTopTitle() {
+        if self.isEditProfile == true {
+            self.creatPostTitle.text = "Edit Post"
+            data?.image?.forEach({ imges in
+                self.urlToImage(url: imges)
+            })
+            self.writePost.text = data?.postDescription ?? ""
+        } else {
+            self.creatPostTitle.text = "Create Post"
+        }
+    }
+    
+    func urlToImage(url: String) {
+        let url = URL(string: url)
+        let sessionTask = URLSession.shared
+        let request = URLRequest(url: url!)
+        let task = sessionTask.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if (error == nil) {
+                let image: UIImage = UIImage(data: data!)!
+                self.imageSelect.append(image)
+                DispatchQueue.main.async {
+                    self.selectImageCollection.reloadData()
+                }
+            }
+        })
+        task.resume()
     }
     
     func setProfileData() {
@@ -129,6 +161,7 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
                 switch result{
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
+                    print("image index is --==\(imageIndex)")
                     let image = imageData?.image ?? UIImage()
                     self?.imageSelect.append(image)
                     self?.selectImageCollection.reloadData()
@@ -149,6 +182,7 @@ extension CreatePostViewController: CreatePostViewProtocol, UIImagePickerControl
                 switch result {
                 case .success(let imageData):
                     let imageIndex = self?.imageSelect.firstIndex(where: {$0 == nil})
+                    print("image index is ---===\(imageIndex)")
                     let image = imageData?.image ?? UIImage()
                     self?.imageSelect.append(image)
                     self?.selectImageCollection.reloadData()
@@ -202,6 +236,7 @@ extension CreatePostViewController {
         })
     }
 }
+
 extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.imageSelect.count
@@ -219,6 +254,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
         return CGSize(width: collectionView.frame.width/3, height: collectionView.frame.height)
     }
 }
+
 extension CreatePostViewController: SelectImageCollectionCellDelegate {
     func removeImage(index: Int) {
         self.imageSelect.remove(at: index)

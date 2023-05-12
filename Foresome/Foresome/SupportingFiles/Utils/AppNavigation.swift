@@ -10,7 +10,6 @@ import UIKit
 
 class AppNavigation: UINavigationController {
 
-
     convenience init(root: UIViewController) {
         self.init(rootViewController: root)
         self.isNavigationBarHidden = true
@@ -36,5 +35,4 @@ class AppNavigation: UINavigationController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 }

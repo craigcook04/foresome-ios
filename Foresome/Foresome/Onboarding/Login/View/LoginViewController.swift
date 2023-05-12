@@ -87,7 +87,10 @@ class LoginViewController: UIViewController, LoginViewProtocol {
                     }
                     UserDefaultsCustom.setValue(value:(self.socialLoginId as? NSString) ?? "", forKey: "user_uid")
                     ActivityIndicator.sharedInstance.hideActivityIndicator()
-                    Singleton.shared.setHomeScreenView()
+                    //MARK: Need to redirect on user skill screen not home screen-----
+                    //Singleton.shared.setHomeScreenView()
+                    let skillVC = UserSkillPresenter.createUserSkillModule()
+                    self.pushViewController(skillVC, false)
                     let db = Firestore.firestore()
                     db.collection("users").getDocuments { (querySnapshot, err) in
                         ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -125,11 +128,11 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @IBAction func facebookAction(_ sender: UIButton) {
-        
+        print("facebook login in progress.....")
     }
     
     @IBAction func appleAction(_ sender: UIButton) {
-        
+        print("apple login in progress......")
     }
 }
 

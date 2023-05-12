@@ -183,9 +183,6 @@ struct ErrorMessage {
     static let websiteLinkHaveWrongFormat = "Website URL wrong format."
     static let pleaseEnterTaskTitle = "Please enter task title"
     static let userNameShouldContainMimum3Characters = "User name should contain minimum 3 characters"
-    
-    
-     
 }
 
 extension Int {

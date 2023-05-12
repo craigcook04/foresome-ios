@@ -80,8 +80,6 @@ public class ExpendableLinkLabel: UILabel {
         self.attributedText = attributedString
     }
     
-    
-
     public override var attributedText: NSAttributedString? {
         didSet {
             if let attributedText = attributedText {
@@ -164,8 +162,6 @@ public class ExpendableLinkLabel: UILabel {
             }
         }
     }
-    
-    
     
     
 //    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -493,5 +489,4 @@ extension String {
         guard let urlString = detectedFirstLink else { return nil }
         return URL(string: urlString)
     }
-    
 }

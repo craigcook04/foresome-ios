@@ -10,7 +10,6 @@ import UIKit
 
 
 class API {
-    
     //    DEV HOST
     static let imageHost = "http://www.21by90.com/api/"
     static let host = "http://testio.pouch.club/"

@@ -52,7 +52,6 @@ extension UIColor {
                 }
             }
         }
-
         return nil
     }
     
@@ -81,8 +80,6 @@ extension UIColor {
         let b = rgb[2]
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
-    
-    
     
     open class var themeConstrast:UIColor {
         return UIColor.white
@@ -120,7 +117,6 @@ extension UIColor {
         return UIColor.init(r: 0, g: 0, b: 0, a: 0.9)
     }
     
-    
     open class var profileDetailsHeaderColor:UIColor {
         return UIColor.init(r: 57, g: 74, b: 103, a: 1.0)
     }
@@ -132,7 +128,6 @@ extension UIColor {
     open class var presentationBgColor:UIColor {
         return UIColor.init(r: 0, g: 0, b: 0, a: 0.5)
     }
-      
     
     // custom button color
     
@@ -187,7 +182,6 @@ extension UIColor {
     open class var graySolidColor:UIColor {
         return UIColor(rgb: 0xDADADA)
     }
-    
     
     //MARK:- MEETWISE COLORS
     @nonobjc class var lightPurpleyBlue: UIColor {
@@ -279,7 +273,6 @@ extension UIColor {
     @nonobjc class var color1Fill: UIColor {
       return UIColor(red: 1.0, green: 97.0 / 255.0, blue: 171.0 / 255.0, alpha: 1.0)
     }
-    
     //MARK:- Create poll COLORS
     @nonobjc class var lightSkyBlue: UIColor {
         return UIColor(red: 227.0 / 255.0, green: 248.0 / 255.0, blue: 250.0 / 255.0, alpha: 1.0)
@@ -314,10 +307,7 @@ extension UIColor {
         let blue = colorCode & 0xff
         return UIColor(red: CGFloat(red) / 256, green: CGFloat(green) / 256, blue: CGFloat(blue) / 256, alpha: 1)
     }
-    
 }
-
-
 
 //MARK: ---- NEW COLORS
 extension UIColor {
@@ -355,8 +345,6 @@ extension UIColor {
         return UIColor(hexString: "222831")
     }
     
-    
-    
     ///Added
     enum AppAssetColor : String{
         case themeYellow = "themeYellow"
@@ -390,10 +378,6 @@ extension UIColor {
         case blueMain = "Blue_main"
         case backgroundWhite = "backgroundWhite"
         case blackMain = "Black_main"
-        
-        
-        
-       
     }
     static func appColor(_ name:AppAssetColor)->UIColor?{
         switch name{
@@ -459,9 +443,6 @@ extension UIColor {
             return UIColor(named: AppAssetColor.backgroundWhite.rawValue)
         case .blackMain:
             return UIColor(named: AppAssetColor.blackMain.rawValue)
-            
         }
-        
     }
-
 }

@@ -16,15 +16,15 @@ class TestTableHeader: UIView {
         super.awakeFromNib()
     }
     
-    @IBAction func notificationAction(_ sender: UIButton) {
-        print("notification action called")
-    }
-    
     func setHeaderData() {
         let strings = UserDefaults.standard.object(forKey: "myUserData") as? [String: Any]
         if let data = strings {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.userName.text = nameValue.uppercased()
         }
+    }
+    
+    @IBAction func notificationAction(_ sender: UIButton) {
+        print("notification action called")
     }
 }

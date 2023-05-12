@@ -32,13 +32,11 @@ class PlaceData: Codable {
         self.cityAddress = locationItem.cityAddressString
     }
     
-    
     init(lat: Double?, lng: Double?, address: String?) {
         self.lat = lat
         self.lng = lng
         self.fullAddress = address
     }
-    
     
 //    init(place: GMSPlace) {
 //        var keys = [String]()
@@ -58,7 +56,6 @@ class PlaceData: Codable {
 //        self.lat = place.coordinate.latitude
 //        self.lng = place.coordinate.longitude
 //    }
-    
 }
 
 class AutoCompletePlaces: LocationPicker {
@@ -86,5 +83,4 @@ class AutoCompletePlaces: LocationPicker {
     override func locationDidSelect(locationItem: LocationItem) {
         print("Select overrided method: " + locationItem.name)
     }
-    
 }

@@ -9,7 +9,6 @@
 import UIKit
 //import FirebaseMessaging
 
-
 struct UserDefaultsCustom {
     static let deviceToken = "deviceToken"
     static let accessToken = "accessToken"
@@ -78,5 +77,4 @@ extension UserDefaults {
     class func valueFor(key: String) -> Any? {
         return UserDefaults.standard.value(forKey: key)
     }
-    
 }

@@ -18,11 +18,9 @@ class ErrorView: UIView {
     @IBOutlet var errorMessage: UILabel!
     @IBOutlet var effectView: UIVisualEffectView!
     
-    
     var delegate: ErrorDelegate!
     var callBackFromError: ((Bool?) -> Void)?
    // var pushData: PushModel?
-    
     
     override func awakeFromNib() {
         errorMessage.textColor = UIColor.themeConstrast
@@ -103,5 +101,4 @@ class ErrorView: UIView {
 //            self.perform(#selector(self.hideErrorMessage), with: nil, afterDelay: 3.0)
         })
     }
-    
 }

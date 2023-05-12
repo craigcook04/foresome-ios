@@ -13,6 +13,5 @@ protocol TournamentDetailViewProtocol{
 
 protocol TournamentDetailPresenterProtocol {
     var view:TournamentDetailViewProtocol? {get set}
-    
 }
 

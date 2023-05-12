@@ -11,7 +11,6 @@ import UIKit
 
 class StyleKit: NSObject {
     
-    
     //MARK: - Canvas Drawings
     
     /// Page 1
@@ -335,6 +334,4 @@ class StyleKit: NSObject {
             return result
         }
     }
-    
-    
 }

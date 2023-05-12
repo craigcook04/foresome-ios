@@ -61,7 +61,6 @@ class Validator {
     }
 }
 
-
 extension String {
     var isValidURL: Bool {
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -73,7 +72,6 @@ extension String {
         }
     }
     
-    
     func isAlphanumeric(ignoreDiacritics: Bool = false) -> Bool {
         if ignoreDiacritics {
             return self.range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil && self != ""
@@ -81,7 +79,4 @@ extension String {
             return self.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil && self != ""
         }
     }
-    
-    
-    
 }

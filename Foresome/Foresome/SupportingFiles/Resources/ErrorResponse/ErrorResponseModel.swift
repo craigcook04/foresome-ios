@@ -21,7 +21,6 @@ struct MessageResponse : Mappable {
         success <- map["success"]
         response <- map["response"]
     }
-
 }
 
 struct ErrorResponse : Mappable {
@@ -33,7 +32,6 @@ struct ErrorResponse : Mappable {
     }
 
     mutating func mapping(map: Map) {
-
         error <- map["error"]
         success <- map["success"]
     }
@@ -53,5 +51,4 @@ struct ErrorData : Mappable {
         status_code <- map["status_code"]
         code <- map["code"]
     }
-
 }

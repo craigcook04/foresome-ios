@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseCore
+import Firebase
+
 protocol PollResultTableCellDelegate {
-    func PollMoreButton()
+    func pollMoreButton(data:PostListDataModel)
+    func sharePoll(data:PostListDataModel, pollImage: UIImage)
+    func voteInPoll(data:PostListDataModel, isVodeted: Bool, selectedIndex: Int)
 }
 
 class PollResultTableCell: UITableViewCell {
+    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var pollTableView: UITableView!
     @IBOutlet weak var postDescriptionLbl: ExpendableLinkLabel!
@@ -22,10 +29,12 @@ class PollResultTableCell: UITableViewCell {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var outerView: UIView!
     
     var selectedOption: Int?
     var isAnswer: Bool = false
     var delegate: PollResultTableCellDelegate?
+    var pollData: PostListDataModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,11 +44,7 @@ class PollResultTableCell: UITableViewCell {
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+
     func setCellData() {
         self.pollTableView.delegate = self
         self.pollTableView.dataSource = self
@@ -47,20 +52,58 @@ class PollResultTableCell: UITableViewCell {
     }
     
     func setPollCellData(data: PostListDataModel) {
-        self.userNameLbl.text = "\(data.author ?? "")--\(data.post_type ?? "")"
+        self.userNameLbl.text = "\(data.author ?? "")"
         self.profileImage.image = data.profileImage.base64ToImage()
-        self.timeLbl.text = data.createdAt?.toDouble?.toDate.utcToLocal?.toString(format: .full1)
-        self.postDescriptionLbl.text = data.postDescription
+        self.postDescriptionLbl.message = data.poll_title
         
+        for i in 0..<data.selectedAnswerCount.count {
+            print("selected answer count is---\(data.selectedAnswerCount[i])")
+        }
         
+        for i in 0..<data.selectedAnswer.count {
+            print("selected anser is ----\(data.selectedAnswer[i])")
+        }
+        
+        self.pollData = data
+        guard let postDate = data.createdAt?.millisecToDate() else {
+            return
+        }
+        let calendar = Calendar.current
+        let diff = calendar.dateComponents([.minute, .hour, .day, .year], from: postDate, to: Date())
+        if diff.year == 0 {
+            if postDate.isToday {
+                if diff.hour ?? 0 < 1 {
+                    if diff.minute ?? 0 < 1 {
+                        self.timeLbl.text = "just now"
+                    } else {
+                        self.timeLbl.text = "\(diff.minute ?? 0) mins"
+                    }
+                } else {
+                    self.timeLbl.text = "\(diff.hour ?? 0) hrs"
+                }
+            } else if postDate.isYesterday {
+                self.timeLbl.text =  "Yesterday"
+            } else {
+                self.timeLbl.text = postDate.toStringFormat()
+            }
+        } else {
+            self.timeLbl.text = postDate.toStringFormat()
+        }
     }
     
     func  setTableHeight() {
-        self.tableViewHeight.constant = 4 *  64
+        //self.tableViewHeight.constant = 4 *  64
+        if let data = pollData {
+            if let tableHeight = data.poll_options?.count {
+                self.tableViewHeight.constant = CGFloat((tableHeight *  64))
+            }
+        }
     }
     
     @IBAction func moreAction(_ sender: UIButton) {
-        self.delegate?.PollMoreButton()
+        if let data = self.pollData {
+            self.delegate?.pollMoreButton(data: data)
+        }
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
@@ -68,23 +111,43 @@ class PollResultTableCell: UITableViewCell {
         likeBtn.setTitle("1", for: .selected)
     }
     
-    @IBAction func commentAction(_ sender: UIButton) {
-        
-    }
+    @IBAction func commentAction(_ sender: UIButton) {}
     
     @IBAction func shareAction(_ sender: Any) {
-        
+        var image :UIImage?
+        let currentLayer = outerView.layer
+        let currentScale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(outerView.bounds.size, false, currentScale)
+        guard let currentContext = UIGraphicsGetCurrentContext() else {return}
+        currentLayer.render(in: currentContext)
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        guard let img = image else { return }
+        if let data = self.pollData {
+            self.delegate?.sharePoll(data: data, pollImage: img)
+        }
     }
 }
 
 extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return self.pollData?.poll_options?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //MARK: code added by deep----
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "VoteTableCell", for: indexPath) as? VoteTableCell else {
+            return UITableViewCell()
+        }
+//        pollData?.selectedAnswer.forEach({ voted in
+//            if voted == 1 {
+//                self.isAnswer = true
+//            } else {
+//                self.isAnswer =  false
+//            }
+//        })
+        
         if isAnswer == true {
-            let cell = tableView.dequeue(cellClass: VoteTableCell.self, forIndexPath: indexPath)
             if selectedOption == indexPath.row {
                 cell.progressView.backgroundColor = UIColor.appColor(.lightGreen)
                 cell.pollView.borderColor = UIColor.appColor(.green_main)
@@ -92,7 +155,7 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
                 cell.itemLabel.textAlignment = .left
                 let percentage = 24.0
                 cell.progressViewWidth.constant = CGFloat((percentage / 100) * Double(Int(cell.pollView.frame.width)))
-            }else{
+            } else {
                 cell.percentageLabel.isHidden = false
                 let percentage = 50.0
                 cell.progressViewWidth.constant = CGFloat((percentage / 100) * Double(Int(cell.pollView.frame.width)))
@@ -103,8 +166,7 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         } else {
-            let cell = tableView.dequeue(cellClass: VoteTableCell.self, forIndexPath: indexPath)
-            cell.itemLabel.text = "The Masters"
+            cell.itemLabel.text = self.pollData?.poll_options?[indexPath.row] ?? ""
             cell.percentageLabel.isHidden = true
             cell.itemLabel.textAlignment = .center
             cell.pollView.borderColor = UIColor.appColor(.light_Main)
@@ -113,6 +175,17 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if let data = self.pollData?.selectedAnswer {
+//            data.forEach({ seletedVote in
+//                if seletedVote > 0 {
+//                    return
+//                } else {
+//                    self.delegate?.voteInPoll(data: self.pollData ?? PostListDataModel(), isVodeted: true, selectedIndex: indexPath.row)
+//                }
+//            })
+//        }
+//        tableView.reloadData()
+        
         if self.isAnswer == false {
             self.isAnswer = true
             self.selectedOption = indexPath.row
@@ -130,3 +203,4 @@ extension PollResultTableCell: ExpendableLinkLabelDelegate {
         self.tableView?.endUpdates()
     }
 }
+ 

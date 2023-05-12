@@ -39,8 +39,6 @@ internal extension UIView {
             }
         }
     
-  
-    
     func setdd(){
         var pulse: CAGradientLayer = {
             let l = CAGradientLayer()
@@ -53,8 +51,6 @@ internal extension UIView {
             layer.addSublayer(l)
             return l
         }()
-
-       
     }
     // ChallengeDetailVC Cases color
     
@@ -74,7 +70,6 @@ internal extension UIView {
     func failedGradientColor(){
         self.applyGradient(colours: [UIColor(hexString: "#FF8181", alpha: 0.95),UIColor(hexString: "#F55E5E", alpha: 1)], locations: [0,1])
     }
-    
     
     func setHeight(_ h:CGFloat, animateTime:TimeInterval?=nil) {
         if let c = self.constraints.first(where: { $0.firstAttribute == .height && $0.relation == .equal }) {
@@ -103,9 +98,6 @@ internal extension UIView {
         }
     }
     
-    
-    
-    
     func addTarget(target: Any?, action: Selector?) {
         let gesture = UITapGestureRecognizer(target: target, action: action)
         self.isUserInteractionEnabled = true
@@ -123,7 +115,6 @@ internal extension UIView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         self.layer.mask = mask
-        
     }
     
     func addDashedBorder(_ color:UIColor, size:CGSize) {
@@ -163,7 +154,6 @@ internal extension UIView {
         self.borderWidth = borderWidth
         self.backgroundColor = background
     }
-    
     
     func setView(borderWidth:CGFloat, background:UIColor, outerColor:UIColor = UIColor.white) {
         self.borderColor = outerColor
@@ -240,7 +230,6 @@ internal extension UIView {
                 gradientLayer.colors = [fromColor, toColor]
                 gradientLayer.opacity = opacity
                 gradientLayer.name = "innerShadow"
-
                 switch edge {
                 case .top:
                     gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
@@ -367,7 +356,6 @@ internal extension UIView {
         self.roundCorners(corners: [.bottomLeft], radius: bottomLeft, width: self.frame.width, height: self.frame.height)
         self.roundCorners(corners: [.bottomRight], radius: bottomRight, width: self.frame.width, height: self.frame.height)
     }
-    
     // for corner radius
     @IBInspectable var isRounded: Bool {
         set  {
@@ -390,7 +378,6 @@ internal extension UIView {
             return self.layer.cornerRadius
         }
     }
-    
     //-----------round bottom corners---
     @IBInspectable var topCornerRadius: CGFloat {
         set (radius) {
@@ -401,7 +388,6 @@ internal extension UIView {
             return self.layer.cornerRadius
         }
     }
-    
     //-----------round bottom corners---
     @IBInspectable var bottomCornerRadius:CGFloat{
         set(radius){
@@ -436,7 +422,6 @@ internal extension UIView {
             return self.layer.cornerRadius
         }
     }
-    
     // for border width
     @IBInspectable var borderWidth: CGFloat {
         set (borderWidth) {
@@ -445,7 +430,6 @@ internal extension UIView {
             return self.layer.borderWidth
         }
     }
-    
     // for border Color
     @IBInspectable var borderColor:UIColor? {
         set (color) {
@@ -458,10 +442,6 @@ internal extension UIView {
             }
         }
     }
-    
-    
-    
-
     // shadow Radius
     @IBInspectable var shadowRadius: CGFloat
         {
@@ -475,7 +455,6 @@ internal extension UIView {
             return self.layer.shadowRadius
         }
     }
-    
     // shadow optacity
     @IBInspectable var shadowOptacity: Float
         {
@@ -486,7 +465,6 @@ internal extension UIView {
             return self.layer.shadowOpacity
         }
     }
-    
     //  for shadow color
     @IBInspectable var shadowColor:UIColor?
         {
@@ -522,7 +500,6 @@ internal extension UIView {
         }
     }
     
-    
     @IBInspectable var topRadius: CGFloat {
         set (radius) {
             self.roundCorners(corners: [.topRight,.topLeft], radius: radius, width: self.frame.width, height: self.frame.height)
@@ -552,7 +529,6 @@ internal extension UIView {
             return self.cornerRadius
         }
     }
-    
     //    @IBInspectable public var topLeftRadius: CGFloat
     //        {
     //        set (radius) {
@@ -594,8 +570,6 @@ internal extension UIView {
     //    }
     //
     
-    
-    
 //    func copyView<T: UIView>() -> T? {
 //        return NSKeyedUnarchiver.classForKeyedUnarchiver()  as? T
 //        unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
@@ -617,7 +591,6 @@ internal extension UIView {
 //        if let img = image {
 //            return img
 //        }
-        
     }
     
     func removeSubviews() {
@@ -631,13 +604,9 @@ internal extension UIView {
         imageView.image = self.takeScreenshot
         return imageView
     }
-
-    
 }
 
 extension UIView {
-    
-    
     class func header(size:CGSize, title:String?, textColor:UIColor = .placeholderColor) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: size.width-30, height: size.height))
@@ -663,7 +632,6 @@ extension UIView {
         let metrics = ["width" : NSNumber(value: width)]
         let views = ["lineView" : lineView]
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[lineView]|", options:NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
-
         switch position {
         case .top:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[lineView(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
@@ -676,7 +644,6 @@ extension UIView {
 //            break
         }
 //        return lineView
-        
     }
     
     func addCenterLine(color:UIColor) {
@@ -716,15 +683,12 @@ extension UIView {
             }
         }
     }
-    
 }
-
 
 enum LINE_POSITION {
     case top
     case bottom
 }
-
 
 extension UINib {
     var instantiate: [Any] {
@@ -738,7 +702,6 @@ extension UINib {
     class func instantiateView(with name:String) -> UIView? {
         return UINib(nibName: name).instantiateView
     }
-    
 }
 
 extension UIResponder {
@@ -755,7 +718,6 @@ extension UIResponder {
         }
     }
 }
-
 
 class DefaultPageControl: UIPageControl {
     override var currentPage: Int {
@@ -774,21 +736,20 @@ class DefaultPageControl: UIPageControl {
 }
 
 extension UIPageControl {
-  func customPageControl(dotFillColor:UIColor, dotBorderColor:UIColor, dotBorderWidth:CGFloat) {
-    for (pageIndex, dotView) in self.subviews.enumerated() {
-      if self.currentPage == pageIndex {
-        dotView.backgroundColor = dotFillColor
-        dotView.layer.cornerRadius = dotView.frame.size.height / 2
-      }else{
-        dotView.backgroundColor = .white
-        dotView.layer.cornerRadius = dotView.frame.size.height / 2
-        dotView.layer.borderColor = dotBorderColor.cgColor
-        dotView.layer.borderWidth = dotBorderWidth
-      }
+    func customPageControl(dotFillColor:UIColor, dotBorderColor:UIColor, dotBorderWidth:CGFloat) {
+        for (pageIndex, dotView) in self.subviews.enumerated() {
+            if self.currentPage == pageIndex {
+                dotView.backgroundColor = dotFillColor
+                dotView.layer.cornerRadius = dotView.frame.size.height / 2
+            }else{
+                dotView.backgroundColor = .white
+                dotView.layer.cornerRadius = dotView.frame.size.height / 2
+                dotView.layer.borderColor = dotBorderColor.cgColor
+                dotView.layer.borderWidth = dotBorderWidth
+            }
+        }
     }
-  }
 }
-
 // MARK: - VIEWS USE IN APP
 extension UIView{
     func setCurrentTextFieldBgView(){

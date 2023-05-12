@@ -63,10 +63,6 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         setSkillData()
     }
     
-    @IBAction func backAction(_ sender: UIButton) {
-        self.popVC()
-    }
-    
     func setBottomButton() {
         if isFromEditProfile == true {
             self.skipNowButton.isHidden = true
@@ -132,6 +128,10 @@ class SkillLevelViewController: UIViewController, UserSkillViewProtocol {
         handicapThreeLbl.textColor = UIColor.appColor(.Grey_dark)
     }
     
+    @IBAction func backAction(_ sender: UIButton) {
+        self.popVC()
+    }
+     
     @IBAction func nextAction(_ sender: UIButton) {
         //MARK: code added for tabbar ----
         if isAnySkillSelected == false {

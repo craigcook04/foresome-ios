@@ -40,6 +40,7 @@ extension String {
         case eeee = "EEEE"
         case ddMMM = "dd MMM"
         case MMddhmma = "[MM/dd, h:mm a]"
+        case ddmmyyyy = "DD/MM/YYYY"
     }
     
     var toDouble: Double? {
@@ -145,7 +146,6 @@ extension String {
             return NSLocalizedString(self, comment: " ")
         }
     }
-    
     ///Added
     var isEmail: Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -156,7 +156,6 @@ extension String {
     func getNumericValue()->String{
         return self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
-    
     
     func generateQRCode(scale: CGFloat) -> UIImage? {
         let data = self.data(using: String.Encoding.ascii)
@@ -199,7 +198,6 @@ extension String {
         return attributeString
     }
     
-    
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGRect {
         let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         
@@ -220,7 +218,6 @@ extension String {
         return size.width
     }
     
-    
     var html2String: String? {
         guard let data = data(using: .utf8) else { return nil }
         do {
@@ -231,7 +228,6 @@ extension String {
             return  nil
         }
     }
-    
     
     func stringToTime() -> String {
         let dateFormatter = DateFormatter()
@@ -247,7 +243,6 @@ extension String {
         dateFormatter.dateFormat = "hh:mm a"
         let timeSelected = dateFormatter.string(from: date1)
         // let updatedDate = "\(dateSelected) at \(timeSelected)"
-        
         return timeSelected
     }
     
@@ -298,14 +293,12 @@ extension String {
         return dateFormatter.date(from: String(self))
     }
     
-    
     func changeToDate(withFormat: format) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = withFormat.rawValue
         return dateFormatter.date(from: String(self))
     }
-    
     
     func localToUTC(format: format) -> String {
         let dateFormatter = DateFormatter()
@@ -316,7 +309,6 @@ extension String {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = format.rawValue
         let timeSelected = dateFormatter.string(from: date1)
-        
         return timeSelected
     }
     
@@ -329,7 +321,6 @@ extension String {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = String.format.full1.rawValue
         let timeSelected = dateFormatter.string(from: date1)
-        
         return timeSelected
     }
     
@@ -541,7 +532,6 @@ extension String {
             x=0
             y+=1
         }
-        
         return colorPixelFound
     }
     
@@ -558,7 +548,6 @@ extension String {
         
         return attString
     }
-    
     
     func timeInNumber(_ format:String) -> Int? {
         let hrs = self.stringToTime("HH", format) ?? ""
@@ -584,7 +573,6 @@ extension String {
             return "json data malformed"
         }
     }
-    
 }
 
 

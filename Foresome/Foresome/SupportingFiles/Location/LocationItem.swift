@@ -134,5 +134,4 @@ open class LocationItem: NSObject, NSCoding {
         aCoder.encode(mapItem.placemark.coordinate.longitude, forKey: "longitude")
         aCoder.encode(addressDictionary, forKey: "addressDictionary")
     }
-    
 }

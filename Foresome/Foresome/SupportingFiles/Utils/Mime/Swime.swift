@@ -12,7 +12,6 @@ import UIKit
 public struct Swime {
     /// File data
     let data: Data
-    
     ///  A static method to get the `MimeType` that matches the given file data
     ///
     ///  - returns: Optional<MimeType>
