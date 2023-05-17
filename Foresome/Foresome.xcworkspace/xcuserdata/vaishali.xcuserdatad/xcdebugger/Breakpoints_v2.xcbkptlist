@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "DF346F62-76D7-4291-BE5E-205621D9A742"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "createNewUser(fullName:email:password:confirmPassword:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9 - 1c9b0a5910df811c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "4613">
+               </Location>
+               <Location
+                  uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9 - 1c9b0a5910df811c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "4689">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "createNewUser(fullName:email:password:confirmPassword:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8 - 1c9b0a5910df8581"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "3485">
+               </Location>
+               <Location
+                  uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8 - b810b66bbda31a0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "101">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
