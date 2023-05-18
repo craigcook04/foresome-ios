@@ -137,6 +137,7 @@ struct Messages {
     static let pollCreatedMsg = "poll created successfully."
     static let optionsNotSame = "Answer not be same."
     static let postCreated = "post created successfully."
+    static let postEdit = "post edit successfully."
     static let enterFullName = "Please Enter FullName"
     static let enterEmailAdd = "Please Enter an Email"
     static let enterValidEmailAdd  = "Please Enter Valid Email"

@@ -19,6 +19,9 @@ import Firebase
 import FirebaseStorage
 
 class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
+    func uploadProgress(data: CreatePostModel, isEditProfile: Bool) {
+         
+    }
     
     var view: NewsFeedViewProtocol?
     
@@ -53,7 +56,7 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
     }
     
     func uploadProgress(data: CreatePostModel) {
-         
+        
     }
 }
 

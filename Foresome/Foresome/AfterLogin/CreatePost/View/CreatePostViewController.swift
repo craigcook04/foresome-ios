@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CreatePostUploadDelegate {
-    func uploadProgress(data:CreatePostModel)
+    func uploadProgress(data:CreatePostModel, isEditProfile: Bool)
 }
 
 class CreatePostViewController: UIViewController, UINavigationControllerDelegate {
@@ -141,8 +141,10 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func publishAction(_ sender: UIButton) {
          ActivityIndicator.sharedInstance.showActivityIndicator()
         creatPostData.postImages = self.imageSelect
+        creatPostData.createdDate = self.data?.createdAt ?? ""
+        creatPostData.postId = self.data?.id ?? ""
         self.navigationController?.popViewController(animated: false, completion: {
-            self.delegate?.uploadProgress(data: self.creatPostData)
+            self.delegate?.uploadProgress(data: self.creatPostData, isEditProfile: self.isEditProfile ?? false)
         })
     }
     
@@ -272,7 +274,12 @@ extension CreatePostViewController : GrowingTextViewDelegate {
             return false
         } else {
             if self.imageSelect.count > 0 {
-                return true
+                if isEditProfile == false {
+                    return true
+                } else {
+                    self.publishButton.isUserInteractionEnabled = true
+                    self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+                }
             } else {
                 if updatedString?.count ?? 0 > 0 {
                     self.publishButton.isUserInteractionEnabled = true

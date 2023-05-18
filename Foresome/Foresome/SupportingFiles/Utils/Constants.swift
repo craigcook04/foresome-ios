@@ -103,6 +103,8 @@ struct cellIdentifier {
     static let newsFeedTableCell = "NewsFeedTableCell"
     static let tournamentTableCell = "TournamentTableCell"
     static let voteTableCell = "VoteTableCell"
+    static let commentsTableViewCell = "CommentsTableViewCell"
+    
 }
 
 struct NIB_NAME {

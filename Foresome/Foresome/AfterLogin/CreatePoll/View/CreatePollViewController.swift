@@ -26,6 +26,7 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.optionsFieldArray.removeAll()
         yourQuestion.autocorrectionType = .no
         secondOption.autocorrectionType = .no
         firstOption.autocorrectionType = .no
@@ -33,6 +34,10 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
         secondOption.delegate = self
         firstOption.delegate = self
         self.setupFirstTwoOptions()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     func setupFirstTwoOptions() {

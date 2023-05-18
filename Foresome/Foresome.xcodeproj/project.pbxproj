@@ -229,6 +229,10 @@
 		7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */; };
 		7ED6CE9529CDE2A90094E690 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */; };
 		7EDF182329F7F21B006FCB49 /* hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDF182229F7F21A006FCB49 /* hello.png */; };
+		7EEE4A992A13620C00A81223 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE4A972A13620B00A81223 /* CommentsViewController.swift */; };
+		7EEE4A9A2A13620C00A81223 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE4A982A13620B00A81223 /* CommentsViewController.xib */; };
+		7EEE4A9D2A13624300A81223 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE4A9B2A13624300A81223 /* CommentsTableViewCell.swift */; };
+		7EEE4A9E2A13624300A81223 /* CommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE4A9C2A13624300A81223 /* CommentsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -457,6 +461,10 @@
 		7ED6CE9129CDE29F0094E690 /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		7ED6CE9229CDE2A90094E690 /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		7EDF182229F7F21A006FCB49 /* hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hello.png; sourceTree = "<group>"; };
+		7EEE4A972A13620B00A81223 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		7EEE4A982A13620B00A81223 /* CommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		7EEE4A9B2A13624300A81223 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		7EEE4A9C2A13624300A81223 /* CommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,6 +631,8 @@
 			children = (
 				4B594EA529DAA89F0078794A /* NewsFeedViewController.swift */,
 				4B594EA629DAA89F0078794A /* NewsFeedViewController.xib */,
+				7EEE4A972A13620B00A81223 /* CommentsViewController.swift */,
+				7EEE4A982A13620B00A81223 /* CommentsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -638,6 +648,8 @@
 				4B7E5C1F29DC437E000F576A /* PollResultTableCell.xib */,
 				4B7CC75729E16CC80002545F /* VoteTableCell.swift */,
 				4B7CC75829E16CC80002545F /* VoteTableCell.xib */,
+				7EEE4A9B2A13624300A81223 /* CommentsTableViewCell.swift */,
+				7EEE4A9C2A13624300A81223 /* CommentsTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1624,9 +1636,11 @@
 				4B75984A29C3352700A8E1B6 /* Lato-ThinItalic.ttf in Resources */,
 				4BC1062129E685BE000C6444 /* ProfileHeader.xib in Resources */,
 				4B68F31F29C3463800D80A85 /* Poppins-Medium.ttf in Resources */,
+				7EEE4A9E2A13624300A81223 /* CommentsTableViewCell.xib in Resources */,
 				4B594EB229DAABB70078794A /* TalkAboutTableCell.xib in Resources */,
 				7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */,
 				4B68F32C29C3463800D80A85 /* Poppins-MediumItalic.ttf in Resources */,
+				7EEE4A9A2A13620C00A81223 /* CommentsViewController.xib in Resources */,
 				4B75985F29C3352800A8E1B6 /* cancel_notes@3x.png in Resources */,
 				4B86BA5629D2AF6D00800A37 /* VariationViewController.xib in Resources */,
 				4B75973229C3326100A8E1B6 /* Assets.xcassets in Resources */,
@@ -1812,6 +1826,7 @@
 				4B75985929C3352700A8E1B6 /* Swime.swift in Sources */,
 				7E7E960129DC543000095CC0 /* TournamentsModel.swift in Sources */,
 				4B75987929C3352800A8E1B6 /* UIStoryboard+Custom.swift in Sources */,
+				7EEE4A992A13620C00A81223 /* CommentsViewController.swift in Sources */,
 				4B75987129C3352800A8E1B6 /* UIDevice.swift in Sources */,
 				7E7E95F729DC263F00095CC0 /* LocationProtocole.swift in Sources */,
 				4B76005429CB169100D1FE70 /* LocationController.swift in Sources */,
@@ -1830,6 +1845,7 @@
 				4B75986229C3352800A8E1B6 /* CustomProgressBar.swift in Sources */,
 				7ED6CE9429CDE2A90094E690 /* CustomNavController.swift in Sources */,
 				7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */,
+				7EEE4A9D2A13624300A81223 /* CommentsTableViewCell.swift in Sources */,
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
 				4BD4F36129DAEC170085B515 /* NewsHeader.swift in Sources */,
 				4BCEC4B229D6F978003A7BB6 /* ForgotPresenter.swift in Sources */,

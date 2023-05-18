@@ -49,11 +49,10 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
                 return
             }
         }
-        
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let createdDate = Date().miliseconds()
-        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"poll", "poll_title":"\(questioName)","poll_options": pollOptinsArray, "selectedAnswerCount":pollAnswersCountArray, "selectedAnswer":selectedAnserArray, "ispollEnded": false, "likedUserList": [String]()], merge: true) { err in
+        db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"", "id": "\(documentsId)", "image":"", "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[""], "post_type":"poll", "poll_title":"\(questioName)","poll_options": pollOptinsArray, "selectedAnswerCount":pollAnswersCountArray, "selectedAnswer":selectedAnserArray, "ispollEnded": false, "likedUserList": [String](), "voted_user_list": [String](), "selectedAnserIndex": 0], merge: true) { err in
             if err == nil {
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
                 Singleton.shared.showMessage(message: Messages.pollCreatedMsg, isError: .success)

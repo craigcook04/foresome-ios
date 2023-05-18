@@ -18,9 +18,10 @@ import FirebaseFirestore
 import Firebase
 
 protocol NewsFeedTableCellDelegate {
-    func moreButton(data: PostListDataModel)
+    func moreButton(data: PostListDataModel, index: Int)
     func sharePost(data: PostListDataModel, postImage: UIImage)
     func likePostData(data:PostListDataModel, isLiked: Bool)
+    func commmnetsPost(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
 class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
@@ -59,18 +60,26 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
+        //print("post list single data---\(data.json)")
+        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let myUserId = (stringss?["uid"] as? String ) ?? ""
         self.postdata = data
         self.userNameLbl.text = "\(data.author ?? "")"
+        if data.likedUserList.count == 0 {
+            self.likeBtn.isSelected = false
+        } else {
+            data.likedUserList.forEach({ myUserId in
+                if myUserId == myUserId {
+                    self.likeBtn.isSelected = true
+                } else {
+                    self.likeBtn.isSelected = false
+                }
+            })
+        }
         self.profileImage.image = data.profileImage.base64ToImage()
         self.likeBtn.setTitle("\(data.likedUserList.count)", for: .normal)
+        self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         
-        data.likedUserList.forEach({ likes in
-            if likes == data.uid {
-                self.likeBtn.isSelected = true
-            } else {
-                self.likeBtn.isSelected = false
-            }
-        })
         print("docs id is --==\(data.id ?? "")")
         for i in 0..<(data.image?.count ?? 0) {
             print("feed images is -----\(data.image?[i] ?? "")")
@@ -163,12 +172,15 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     @IBAction func moreAction(_ sender: UIButton) {
         if let data = self.postdata {
-            self.delegate?.moreButton(data: data)
+            self.delegate?.moreButton(data: data, index: indexPath?.row ?? 0)
         }
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
        print("comments section in progress.....")
+        if let data = self.postdata {
+            self.delegate?.commmnetsPost(data: data, isCommented: true, index:indexPath?.row ?? 0)
+        }
     }
     
     @IBAction func shareAction(_ sender: UIButton) {
@@ -192,13 +204,13 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-        likeBtn.setTitle("1", for: .selected)
-//        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected)
-//        if sender.isSelected == true {
-//            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 1)", for: .normal)
-//        } else {
-//            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + -1)", for: .normal)
-//        }
+        //likeBtn.setTitle("1", for: .selected)
+        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected)
+        if sender.isSelected == true {
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 1)", for: .normal)
+        } else {
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 0)", for: .normal)
+        }
     }
 }
 

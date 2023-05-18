@@ -11,7 +11,7 @@ class PostListDataModel: NSObject {
     var json: JSON!
     var author:String? = ""
     var postDescription:String? = ""
-    var comments:[String]? = []
+    var comments:[CommentsData]? = []
     var createdAt:String? = ""
     var updatedAt:String? = ""
     var image:[String]? = []
@@ -24,6 +24,9 @@ class PostListDataModel: NSObject {
     var selectedAnswerCount : [Int] = []
     var selectedAnswer: [Int] = []
     var likedUserList : [String] = []
+    var voted_user_list : [String] = []
+    var selectedAnserIndex: Int?
+    var reportedUserList: [String]?
 }
 
 extension PostListDataModel {
@@ -38,13 +41,23 @@ extension PostListDataModel {
         if let postDescription = json["description"] as? String {
             self.postDescription = postDescription
         }
-          
-        if let comments = json["comments"] as? [String] {
-            self.comments = comments
+//
+//        if let comments = json["comments"] as? [CommentsData] {
+//            self.comments = comments
+//        }
+//
+        if let comments = json["comments"] as? [[String:Any]] {
+            var comment_data = [CommentsData]()
+            comments.forEach{ commentDic in
+                comment_data.append(CommentsData(json:commentDic))
+            }
+            self.comments = comment_data
         }
         
         if let createdAt = json["createdAt"] as? String {
             self.createdAt = createdAt
+        } else if let createdAt = json["createdAt"] as? Double {
+            self.createdAt = "\(createdAt)"
         }
         
         if let updatedAt = json["updatedAt"] as? String {
@@ -66,7 +79,7 @@ extension PostListDataModel {
         if let post_type = json["post_type"] as? String {
             self.post_type = post_type
         }
-
+        
         if let profileImage = json["profile"] as? String {
             self.profileImage = profileImage
         }
@@ -89,6 +102,66 @@ extension PostListDataModel {
         
         if let likedUserList = json["likedUserList"] as? [String] {
             self.likedUserList = likedUserList
+        }
+        
+        if let voted_user_list = json["voted_user_list"] as? [String] {
+            self.voted_user_list = voted_user_list
+        }
+        
+        if let selectedAnserIndex = json["selectedAnserIndex"] as? Int {
+            self.selectedAnserIndex = selectedAnserIndex
+        }
+        
+        if let reportedUserList = json["reportedUserList"] as? [String] {
+            self.reportedUserList = reportedUserList
+        }
+    }
+}
+
+class CommentsData: NSObject {
+    var json: JSON!
+    var body: String? = ""
+    var createdAt: String? = ""
+    var id: String? = ""
+    var parentId: String = ""
+    var userId:String? = ""
+    var username: String? = ""
+    var userProfile: String? = ""
+}
+
+extension CommentsData {
+    convenience init(json: [String: Any]) {
+        self.init()
+        self.json = json
+        
+        if let body = json["body"] as? String {
+            self.body = body
+        }
+        
+        if let createdAt = json["createdAt"] as? String {
+            self.createdAt =  createdAt
+        } else if let createdAt = json["createdAt"] as? Double {
+            self.createdAt =  "\(createdAt)"
+        }
+        
+        if let id = json["id"] as? String {
+            self.id = id
+        }
+        
+        if let parentId = json["parentId"] as? String {
+            self.parentId = parentId
+        }
+        
+        if let userId = json["userId"] as? String {
+            self.userId = userId
+        }
+        
+        if let username = json["username"] as? String {
+            self.username = username
+        }
+        
+        if let userProfile = json["userProfile"] as? String {
+            self.userProfile = userProfile
         }
     }
 }
