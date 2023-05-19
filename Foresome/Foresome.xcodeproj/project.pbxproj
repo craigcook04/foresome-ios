@@ -233,6 +233,12 @@
 		7EEE4A9A2A13620C00A81223 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE4A982A13620B00A81223 /* CommentsViewController.xib */; };
 		7EEE4A9D2A13624300A81223 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE4A9B2A13624300A81223 /* CommentsTableViewCell.swift */; };
 		7EEE4A9E2A13624300A81223 /* CommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE4A9C2A13624300A81223 /* CommentsTableViewCell.xib */; };
+		7EF3EDEA2A17362400B282B0 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF3EDE82A17362400B282B0 /* NotificationsViewController.swift */; };
+		7EF3EDEB2A17362400B282B0 /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF3EDE92A17362400B282B0 /* NotificationsViewController.xib */; };
+		7EF3EDED2A17366D00B282B0 /* NotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF3EDEC2A17366D00B282B0 /* NotificationPresenter.swift */; };
+		7EF3EDEF2A17380300B282B0 /* NotificationPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF3EDEE2A17380300B282B0 /* NotificationPresenterProtocol.swift */; };
+		7EF3EDF32A1740DF00B282B0 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF3EDF12A1740DF00B282B0 /* NotificationsTableViewCell.swift */; };
+		7EF3EDF42A1740DF00B282B0 /* NotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF3EDF22A1740DF00B282B0 /* NotificationsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -465,6 +471,12 @@
 		7EEE4A982A13620B00A81223 /* CommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		7EEE4A9B2A13624300A81223 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		7EEE4A9C2A13624300A81223 /* CommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsTableViewCell.xib; sourceTree = "<group>"; };
+		7EF3EDE82A17362400B282B0 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		7EF3EDE92A17362400B282B0 /* NotificationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
+		7EF3EDEC2A17366D00B282B0 /* NotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenter.swift; sourceTree = "<group>"; };
+		7EF3EDEE2A17380300B282B0 /* NotificationPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenterProtocol.swift; sourceTree = "<group>"; };
+		7EF3EDF12A1740DF00B282B0 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		7EF3EDF22A1740DF00B282B0 /* NotificationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +547,7 @@
 		4B096A3C29D1844A00C05F53 /* AfterLogin */ = {
 			isa = PBXGroup;
 			children = (
+				7EEA82A72A1686DA0052BC0A /* Notification */,
 				4B236FEC29E91BBE00E36E6A /* Logout */,
 				4B9EA4C029E7C971009A5E36 /* EditProfile */,
 				4BC1061C29E68555000C6444 /* UserProfile */,
@@ -1551,6 +1564,52 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		7EEA82A72A1686DA0052BC0A /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				7EEA82A82A1686F10052BC0A /* Model */,
+				7EEA82A92A1686FF0052BC0A /* View */,
+				7EEA82AA2A1687070052BC0A /* Presenter */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		7EEA82A82A1686F10052BC0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = "../New Group/Model";
+			sourceTree = "<group>";
+		};
+		7EEA82A92A1686FF0052BC0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EF3EDF02A17409D00B282B0 /* Cell */,
+				7EF3EDE82A17362400B282B0 /* NotificationsViewController.swift */,
+				7EF3EDE92A17362400B282B0 /* NotificationsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EEA82AA2A1687070052BC0A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7EF3EDEC2A17366D00B282B0 /* NotificationPresenter.swift */,
+				7EF3EDEE2A17380300B282B0 /* NotificationPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7EF3EDF02A17409D00B282B0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7EF3EDF12A1740DF00B282B0 /* NotificationsTableViewCell.swift */,
+				7EF3EDF22A1740DF00B282B0 /* NotificationsTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1654,11 +1713,13 @@
 				4BF6C52C29C4535E00ECA881 /* TutorialCollectionCell.xib in Resources */,
 				7E73F15029D6D59800B653AB /* GoogleService-Info.plist in Resources */,
 				4B75984729C3352700A8E1B6 /* Lato-BlackItalic.ttf in Resources */,
+				7EF3EDEB2A17362400B282B0 /* NotificationsViewController.xib in Resources */,
 				4B93905229C9A01600D60450 /* LoginViewController.xib in Resources */,
 				4B75986029C3352800A8E1B6 /* ErrorView.xib in Resources */,
 				4B75984029C3352700A8E1B6 /* Lato-Italic.ttf in Resources */,
 				4B236FEB29E914EF00E36E6A /* LogoutViewController.xib in Resources */,
 				4B75972D29C3325F00A8E1B6 /* Main.storyboard in Resources */,
+				7EF3EDF42A1740DF00B282B0 /* NotificationsTableViewCell.xib in Resources */,
 				4B75984629C3352700A8E1B6 /* Lato-Regular.ttf in Resources */,
 				7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */,
 				4B68F32229C3463800D80A85 /* Poppins-ExtraBold.ttf in Resources */,
@@ -1827,11 +1888,14 @@
 				7E7E960129DC543000095CC0 /* TournamentsModel.swift in Sources */,
 				4B75987929C3352800A8E1B6 /* UIStoryboard+Custom.swift in Sources */,
 				7EEE4A992A13620C00A81223 /* CommentsViewController.swift in Sources */,
+				7EF3EDED2A17366D00B282B0 /* NotificationPresenter.swift in Sources */,
 				4B75987129C3352800A8E1B6 /* UIDevice.swift in Sources */,
 				7E7E95F729DC263F00095CC0 /* LocationProtocole.swift in Sources */,
+				7EF3EDEF2A17380300B282B0 /* NotificationPresenterProtocol.swift in Sources */,
 				4B76005429CB169100D1FE70 /* LocationController.swift in Sources */,
 				7E5338DE29E4388E001E3D9E /* SquarePaymentsApiFile.swift in Sources */,
 				7E7E95F929DC267100095CC0 /* LocationPresenter.swift in Sources */,
+				7EF3EDEA2A17362400B282B0 /* NotificationsViewController.swift in Sources */,
 				4BCEC4BE29D6FA5F003A7BB6 /* LoginProtocol.swift in Sources */,
 				4B75985229C3352700A8E1B6 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				4B75986D29C3352800A8E1B6 /* Date+Custom.swift in Sources */,
@@ -1847,6 +1911,7 @@
 				7E1A3BA029E59D8B0036AEDF /* PresentableController.swift in Sources */,
 				7EEE4A9D2A13624300A81223 /* CommentsTableViewCell.swift in Sources */,
 				4B4B078229CB278300881790 /* ProfilePictureViewController.swift in Sources */,
+				7EF3EDF32A1740DF00B282B0 /* NotificationsTableViewCell.swift in Sources */,
 				4BD4F36129DAEC170085B515 /* NewsHeader.swift in Sources */,
 				4BCEC4B229D6F978003A7BB6 /* ForgotPresenter.swift in Sources */,
 				4B75985D29C3352700A8E1B6 /* CustomNavigationBar.swift in Sources */,

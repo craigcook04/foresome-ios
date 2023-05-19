@@ -56,6 +56,7 @@ class CreatePollPresenter: CreatePollPresenterProtocol {
             if err == nil {
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
                 Singleton.shared.showMessage(message: Messages.pollCreatedMsg, isError: .success)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdatePollData"), object: self)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                     if let view = self.view as? CreatePollViewController {
                         view.popToRootViewController(false)

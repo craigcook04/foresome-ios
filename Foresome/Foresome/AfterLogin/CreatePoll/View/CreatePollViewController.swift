@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CreatePollViewControllerDelegate {
+    func updatePOllData()
+}
+
 
 class CreatePollViewController: UIViewController, UITextViewDelegate{
     
@@ -23,6 +27,8 @@ class CreatePollViewController: UIViewController, UITextViewDelegate{
     var previousOptionValue: Int = 0
     var optionsFieldArray = [AdditionalOption]()
     var presenter: CreatePollPresenterProtocol?
+    
+    var  delegate: CreatePollViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

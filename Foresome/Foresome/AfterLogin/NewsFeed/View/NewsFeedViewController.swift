@@ -49,6 +49,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         // super.viewWillAppear(animated)
         self.fetchPostData(isFromRefreh: false)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orderStatusChanged(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
         //setTableData()
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
@@ -67,6 +68,20 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     func updatetable() {
         self.newsFeedTableView.reloadData()
+    }
+    
+    
+    @objc func orderStatusChanged(_ sender: Notification) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            
+            DispatchQueue.main.async {
+                self.listPostData.removeAll()
+                self.listPostData = []
+                self.fetchPostData(isFromRefreh: false)
+            }
+            
+        })
+
     }
     
     func fetchPostData(isFromRefreh: Bool) {
@@ -706,6 +721,13 @@ extension NewsFeedViewController: CreatePostUploadDelegate {
         self.data = data
         self.uploadDataForPost(data: data)
         self.newsFeedTableView.reload(row: 0)
+    }
+}
+
+extension NewsFeedViewController: NewsHeaderProtocol {
+    func notificationBtnAction() {
+        let notificationVc = NotificationPresenter.createNotificationModule()
+        self.pushViewController(notificationVc, false)
     }
 }
 

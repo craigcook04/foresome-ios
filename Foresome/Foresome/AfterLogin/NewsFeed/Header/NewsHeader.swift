@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol NewsHeaderProtocol {
+    func notificationBtnAction()
+}
+
 class NewsHeader: UIView {
     
     @IBOutlet weak var userNameLbl: UILabel!
@@ -17,6 +21,8 @@ class NewsHeader: UIView {
     @IBOutlet weak var membersView: UIView!
     @IBOutlet weak var friendsView: UIView!
     @IBOutlet weak var bellButton: UIButton!
+    
+    var delegate: NewsHeaderProtocol?
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +34,10 @@ class NewsHeader: UIView {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.userNameLbl.text = nameValue.uppercased()
         }
+    }
+    
+    @IBAction func notificationAction(_ sender: UIButton) {
+        //self.delegate?.notificationBtnAction()
     }
     
     @IBAction func memberAction(_ sender: UIButton) {
