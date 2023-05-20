@@ -104,6 +104,7 @@ struct cellIdentifier {
     static let tournamentTableCell = "TournamentTableCell"
     static let voteTableCell = "VoteTableCell"
     static let commentsTableViewCell = "CommentsTableViewCell"
+    static let notificationsTableViewCell = "NotificationsTableViewCell"
     
 }
 

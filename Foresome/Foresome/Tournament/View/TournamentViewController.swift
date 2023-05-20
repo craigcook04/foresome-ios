@@ -85,6 +85,7 @@ extension TournamentViewController: UITableViewDelegate, UITableViewDataSource {
         if let image = cell?.imageItem.image {
             self.presenter?.passlistDatatoDetails(data: self.listTournamentsData[indexPath.row], tournamentsImage: image)
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

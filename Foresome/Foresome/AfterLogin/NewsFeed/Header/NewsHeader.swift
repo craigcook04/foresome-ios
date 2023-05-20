@@ -37,7 +37,7 @@ class NewsHeader: UIView {
     }
     
     @IBAction func notificationAction(_ sender: UIButton) {
-        //self.delegate?.notificationBtnAction()
+        self.delegate?.notificationBtnAction()
     }
     
     @IBAction func memberAction(_ sender: UIButton) {

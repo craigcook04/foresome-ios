@@ -15,7 +15,11 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TournamentHeader" customModule="Foresome" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TournamentHeader" customModule="Foresome" customModuleProvider="target">
+            <connections>
+                <outlet property="headerTitle" destination="6mC-cr-PwS" id="MIF-qh-QAW"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleAspectFill" id="iN0-l3-epB" customClass="TournamentHeader" customModule="Foresome" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="574" height="217"/>

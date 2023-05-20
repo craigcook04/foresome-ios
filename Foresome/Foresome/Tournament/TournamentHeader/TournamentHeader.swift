@@ -13,6 +13,12 @@ class TournamentHeader: UIView {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var headerImageView: UIImageView!
     
+    
+    @IBOutlet weak var headerTitle: UILabel!
+
+    
+    
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,4 +30,6 @@ class TournamentHeader: UIView {
             self.usernameLabel.text = nameValue.uppercased()
         }
     }
+
+    
 }

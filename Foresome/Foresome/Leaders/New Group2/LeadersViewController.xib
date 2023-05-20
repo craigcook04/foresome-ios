@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeadersViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="leaderBoardTable" destination="Tcr-AH-7G2" id="dsy-zB-8dm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,18 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In progress..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfs-mH-S2O">
-                    <rect key="frame" x="145.66666666666666" y="411.66666666666669" width="99" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-AH-7G2" customClass="StrachyHeaderTable" customModule="Foresome" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="794"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="rfs-mH-S2O" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="a6p-GL-b2L"/>
-                <constraint firstItem="rfs-mH-S2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xOi-QJ-WwX"/>
+                <constraint firstItem="Tcr-AH-7G2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HhA-Jh-Iaq"/>
+                <constraint firstAttribute="bottom" secondItem="Tcr-AH-7G2" secondAttribute="bottom" constant="50" id="Qq9-Cb-Mhi"/>
+                <constraint firstItem="Tcr-AH-7G2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bbw-d8-9D1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tcr-AH-7G2" secondAttribute="trailing" id="j5h-uI-lbi"/>
             </constraints>
             <point key="canvasLocation" x="-38" y="0.0"/>
         </view>

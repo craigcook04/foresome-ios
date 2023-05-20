@@ -171,6 +171,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         guard headerView == nil else { return }
         let height: CGFloat = 176
         let view = UIView.initView(view: NewsHeader.self)
+        view.delegate = self
         view.setHeaderData()
         self.newsFeedTableView.setStrachyHeader(header: view, height: height)
     }
