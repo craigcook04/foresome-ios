@@ -16,6 +16,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Firebase
+import ImageViewer_swift
 
 protocol NewsFeedTableCellDelegate {
     func moreButton(data: PostListDataModel, index: Int)
@@ -52,18 +53,69 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.numberOfLines = 0
         postDescriptionLbl.delegate = self
+        tapToDismiss()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func tapToDismiss() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissController))
+        self.imageWholeStack.isUserInteractionEnabled = true
+        self.imageWholeStack.addGestureRecognizer(tap)
+        tap.delegate = self
+        tap.numberOfTapsRequired = 1
+        
+        
+        
+//        self.imageTwo.isUserInteractionEnabled = true
+//        self.imageTwo.addGestureRecognizer(tap)
+//
+//        self.thirdImageBgView.isUserInteractionEnabled = true
+//        self.thirdImageBgView.addGestureRecognizer(tap)
+//
+//        self.imageThree.isUserInteractionEnabled = true
+//        self.imageThree.addGestureRecognizer(tap)
     }
     
+    @objc func dismissController() {
+        print("image tap guesture called.")
+        let urls = postdata?.image ?? []
+        var arrayOfUrl = [URL]()
+        arrayOfUrl.removeAll()
+        for i in 0..<(postdata?.image?.count ?? 0) {
+            if let ulr = URL(string: postdata?.image?[i] ?? "") {
+                arrayOfUrl.append(ulr)
+            }
+        }
+        
+        if postdata?.image?.count ?? 0 == 1 {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+        } else if postdata?.image?.count ?? 0 == 2 {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+            imageTwo.setupImageViewer(urls: arrayOfUrl)
+        } else {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+            imageTwo.setupImageViewer(urls: arrayOfUrl)
+            imageThree.setupImageViewer(urls: arrayOfUrl)
+        }
+        
+        arrayOfUrl.removeAll()
+        arrayOfUrl = []
+    }
+     
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
+        tapToDismiss()
+        
+        
         //print("post list single data---\(data.json)")
         let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (stringss?["uid"] as? String ) ?? ""
+        
+        print("image count in cell---\(data.image?.count ?? 0)")
+        
         self.postdata = data
+        
+        print("imagepost data count in cell---\(postdata?.image?.count ?? 0)")
+        
         self.userNameLbl.text = "\(data.author ?? "")"
         if data.likedUserList.count == 0 {
             self.likeBtn.isSelected = false
@@ -120,7 +172,7 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
             self.imageWholeStack.isHidden = false
             if (data.image?.count ?? 0) == 1 {
                 self.imageOne.isHidden = false
-                let url = URL(string: data.image?.first ?? "")
+                let url = URL(string: data.image?[0] ?? "")
                 self.imageOne.kf.setImage(with: url)
                 self.imageTwo.isHidden = true
                 self.thirdImageBgView.isHidden = true
@@ -131,7 +183,7 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
                 
                 self.imageTwo.isHidden = false
                 
-                let urlFirst = URL(string: data.image?.first ?? "")
+                let urlFirst = URL(string: data.image?[0] ?? "")
                 self.imageOne.kf.setImage(with: urlFirst)
                 
                 let urlSecond = URL(string: data.image?[1] ?? "")
@@ -147,7 +199,7 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
                 self.thirdImageBgView.isHidden = false
                 self.secondImageStackview.isHidden = false
                 
-                let urlFirst = URL(string: data.image?.first ?? "")
+                let urlFirst = URL(string: data.image?[0] ?? "")
                 self.imageOne.kf.setImage(with: urlFirst)
                 
                 let urlSecond = URL(string: data.image?[1] ?? "")
@@ -155,7 +207,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
                 
                 let urlThird = URL(string: data.image?[2] ?? "")
                 self.imageThree.kf.setImage(with: urlThird)
-                
                 self.thirdImageCountBgVieww.isHidden = true
             } else {
                 self.imageOne.isHidden = false
@@ -164,6 +215,16 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
                 self.thirdImageBgView.isHidden = false
                 self.thirdImageCountBgVieww.isHidden = false
                 self.secondImageStackview.isHidden = false
+                let urlFirst = URL(string: data.image?[0] ?? "")
+                self.imageOne.kf.setImage(with: urlFirst)
+                
+                let urlSecond = URL(string: data.image?[1] ?? "")
+                self.imageTwo.kf.setImage(with: urlSecond)
+                
+                let urlThird = URL(string: data.image?[2] ?? "")
+                self.imageThree.kf.setImage(with: urlThird)
+                self.imageCountLabel.text = "+\((data.image?.count ?? 0) - 3)"
+                
             }
         } else {
             self.imageWholeStack.isHidden = true

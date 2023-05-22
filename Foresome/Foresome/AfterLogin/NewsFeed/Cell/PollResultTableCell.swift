@@ -72,6 +72,8 @@ class PollResultTableCell: UITableViewCell {
             if data.voted_user_list[i] == (strings?["uid"] as? String ) ?? "" {
                 self.isAnswer = true
                 //self.tableView?.reloadData()
+                self.tableView?.beginUpdates()
+                self.tableView?.endUpdates()
             } else {
                 self.isAnswer = false
             }
@@ -238,7 +240,7 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isAnswer == true {
-            Singleton.shared.showMessage(message: "Already voted.", isError: .error)
+           // Singleton.shared.showMessage(message: "Already voted.", isError: .error)
             return
         } else {
             self.delegate?.voteInPoll(data: self.pollData ?? PostListDataModel(), isVodeted: true, selectedIndex: indexPath.row, currentPostIndex: self.currentIndex ?? 0)

@@ -38,8 +38,14 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var isEditProfile: Bool?
     var selectedPostIndex: Int?
     
+    
+    private let refreshControl = UIRefreshControl()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newsFeedTableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
         self.presenter?.saveCreatUserData()
         // fetchPostData(isFromRefreh: false)
         setTableData()
@@ -53,6 +59,13 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         //setTableData()
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
+        self.refreshControl.beginRefreshing()
+       fetchPostData(isFromRefreh: true)
+    }
+    
     
     func setTableData() {
         self.newsFeedTableView.delegate = self
@@ -113,6 +126,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 }
                 
                 self.newsFeedTableView.reloadData()
+                self.refreshControl.endRefreshing()
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
                 if let error = err?.localizedDescription {
@@ -506,7 +520,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         if isLiked == true {
             userPostLikedData.append(myUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
-            userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
+            userPostCollection.updateData(["likedUserList": userPostLikedData]) { error in
                 if error == nil {
                     print("like updated")
                     //self.fetchPostData(isFromRefreh: true)
@@ -514,7 +528,12 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
+                    Singleton.shared.showMessage(message: "Liked successf", isError: .success)
                 } else {
+                    if let error  =  error {
+                        print("error in case of like post---\(error)")
+                        Singleton.shared.showErrorMessage(error: error.localizedDescription, isError: .error)
+                    }
                     print("like not updated")
                 }
             }

@@ -91,22 +91,22 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="153.66666666666666" height="184"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-iW-joe">
-                                                <rect key="frame" x="155.66666666666663" y="0.0" width="153.33333333333337" height="0.0"/>
+                                                <rect key="frame" x="155.66666666666663" y="0.0" width="153.33333333333337" height="184"/>
                                                 <subviews>
-                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minimalism" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-94-78L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minimalism" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-94-78L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="153.33333333333334" height="91"/>
                                                     </imageView>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHk-7I-fQ2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHk-7I-fQ2">
+                                                        <rect key="frame" x="0.0" y="93" width="153.33333333333334" height="91"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="aGd-Bv-Nfw">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="153.33333333333334" height="91"/>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pvl-ru-FZ5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="153.33333333333334" height="91"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWv-uX-F87">
-                                                                        <rect key="frame" x="948.33333333333337" y="-15.333333333333329" width="23" height="31"/>
+                                                                        <rect key="frame" x="65.000000000000028" y="30" width="23" height="31"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="22"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
