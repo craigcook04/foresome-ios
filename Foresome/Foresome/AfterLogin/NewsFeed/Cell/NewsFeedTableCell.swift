@@ -47,6 +47,8 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     var delegate: NewsFeedTableCellDelegate?
     var postdata: PostListDataModel?
+    var isLikedPost: Bool = false
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,17 +64,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         self.imageWholeStack.addGestureRecognizer(tap)
         tap.delegate = self
         tap.numberOfTapsRequired = 1
-        
-        
-        
-//        self.imageTwo.isUserInteractionEnabled = true
-//        self.imageTwo.addGestureRecognizer(tap)
-//
-//        self.thirdImageBgView.isUserInteractionEnabled = true
-//        self.thirdImageBgView.addGestureRecognizer(tap)
-//
-//        self.imageThree.isUserInteractionEnabled = true
-//        self.imageThree.addGestureRecognizer(tap)
     }
     
     @objc func dismissController() {
@@ -105,7 +96,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     func setCellPostData(data: PostListDataModel) {
         tapToDismiss()
         
-        
         //print("post list single data---\(data.json)")
         let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (stringss?["uid"] as? String ) ?? ""
@@ -117,19 +107,22 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         print("imagepost data count in cell---\(postdata?.image?.count ?? 0)")
         
         self.userNameLbl.text = "\(data.author ?? "")"
-        if data.likedUserList.count == 0 {
+        if data.likedUserList?.count == 0 {
             self.likeBtn.isSelected = false
+            self.isLikedPost =  false
         } else {
-            data.likedUserList.forEach({ myUserId in
+            data.likedUserList?.forEach({ myUserId in
                 if myUserId == myUserId {
                     self.likeBtn.isSelected = true
+                    self.isLikedPost =  true
                 } else {
                     self.likeBtn.isSelected = false
+                    self.isLikedPost =  false
                 }
             })
         }
-        self.profileImage.image = data.profileImage.base64ToImage()
-        self.likeBtn.setTitle("\(data.likedUserList.count)", for: .normal)
+        self.profileImage.image = data.profileImage?.base64ToImage()
+        self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         
         print("docs id is --==\(data.id ?? "")")
@@ -267,10 +260,10 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         sender.isSelected = !(sender.isSelected)
         //likeBtn.setTitle("1", for: .selected)
         self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected)
-        if sender.isSelected == true {
-            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 1)", for: .normal)
+        if self.isLikedPost == true {
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
-            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 0)", for: .normal)
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
     }
 }

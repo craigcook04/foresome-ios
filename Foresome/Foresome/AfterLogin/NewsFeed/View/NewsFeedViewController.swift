@@ -37,7 +37,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var listPostData =  [PostListDataModel]()
     var isEditProfile: Bool?
     var selectedPostIndex: Int?
-    
+    var reportOrReported: String = AppStrings.reportPost
     
     private let refreshControl = UIRefreshControl()
     
@@ -48,15 +48,15 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
         self.presenter?.saveCreatUserData()
         // fetchPostData(isFromRefreh: false)
+        self.fetchPostData(isFromRefreh: false)
         setTableData()
         setTableFooter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // super.viewWillAppear(animated)
-        self.fetchPostData(isFromRefreh: false)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.orderStatusChanged(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
-        //setTableData()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pollCreatedSuccess(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
+        setTableData()
         ActivityIndicator.sharedInstance.hideActivityIndicator()
     }
     
@@ -84,20 +84,20 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    @objc func orderStatusChanged(_ sender: Notification) {
+    @objc func pollCreatedSuccess(_ sender: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-            
             DispatchQueue.main.async {
                 self.listPostData.removeAll()
                 self.listPostData = []
                 self.fetchPostData(isFromRefreh: false)
             }
-            
         })
-
     }
     
     func fetchPostData(isFromRefreh: Bool) {
+        for i in 0..<self.listPostData.count {
+            self.listPostData[i].poll_options?.removeAll()
+        }
         self.listPostData.removeAll()
         self.listPostData = []
         self.newsFeedTableView.reloadData()
@@ -120,11 +120,10 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 })
                 
                 self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
-                for i in 0..<self.listPostData.count  {
+                for i in 0..<self.listPostData.count {
                     print("printed docs id----\(self.listPostData[i].id)")
                     print("printed docs uid----\(self.listPostData[i].uid)")
                 }
-                
                 self.newsFeedTableView.reloadData()
                 self.refreshControl.endRefreshing()
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -134,10 +133,20 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 }
             }
         }
-        // self.newsFeedTableView.reloadData()
+        let indexpath = IndexPath(row: 0, section: 0)
+        let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
+        self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
+        cell?.tableView?.reloadData()
+        cell?.awakeFromNib()
+        for i in 0..<self.listPostData.count {
+            let indexpath = IndexPath(row: i, section: 0)
+              let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
+              self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
+              cell?.tableView?.reloadData()
+        }
+         self.newsFeedTableView.reloadData()
         print("total post count is----\(self.listPostData.count)")
     }
-    
     
     //MARK: fetch data for particular updation----
     func fetchPostUpdateData(isFromRefreh: Bool) {
@@ -172,13 +181,11 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
          self.newsFeedTableView.reloadData()
-        
-//        let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-//        self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
-//        self.newsFeedTableView.reloadData()
+        let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
+        self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
+        self.newsFeedTableView.reloadData()
         print("total post count is----\(self.listPostData.count)")
     }
-     
     
     //MARK: set table header-----
     func setTableHeader() {
@@ -330,16 +337,13 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         } else if listPostData[indexPath.row - 1].post_type == "poll" {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             let pollData = self.listPostData.filter{( $0.post_type == "poll")}
-            cell.setPollCellData(data: listPostData[indexPath.row - 1])
+            cell.setPollCellData(data: listPostData[indexPath.row - 1], index: indexPath.row)
             cell.setTableHeight()
-            //cell.awakeFromNib()
-            //            if cell.isAnswer == true {
-            //                cell.pollTableView.isUserInteractionEnabled = false
-            //            } else {
-            //                cell.pollTableView.isUserInteractionEnabled = true
-            //            }
             cell.currentIndex = indexPath.row - 1
+            cell.awakeFromNib()
+            cell.layoutSubviews()
             cell.delegate = self
+            //cell.pollTableView.reloadData()
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
@@ -500,9 +504,19 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             })
         } else {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
+            if strings?["uid"] as? String ?? "" == data.uid {
+                reportOrReported = "Reported"
+            } else {
+                reportOrReported = AppStrings.reportPost
+            }
+            
+            alert.addAction(UIAlertAction(title: reportOrReported, style: .default , handler:{ (UIAlertAction)in
                 print("report post called.")
-                self.reportPost(data: data, index: index)
+                if strings?["uid"] as? String ?? "" == data.uid {
+                    return
+                } else {
+                    self.reportPost(data: data, index: index)
+                }
             }))
             alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
                 print("dismiss called.")
@@ -518,7 +532,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (strings?["uid"] as? String ) ?? ""
         if isLiked == true {
-            userPostLikedData.append(myUserId)
+            userPostLikedData?.append(myUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData]) { error in
                 if error == nil {
@@ -528,7 +542,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
-                    Singleton.shared.showMessage(message: "Liked successf", isError: .success)
+                    //Singleton.shared.showMessage(message: "Liked successf", isError: .success)
                 } else {
                     if let error  =  error {
                         print("error in case of like post---\(error)")
@@ -538,7 +552,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                 }
             }
         } else {
-            userPostLikedData.remove(element: myUserId)
+            userPostLikedData?.remove(element: myUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
                 if error == nil {
@@ -576,7 +590,7 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (strings?["uid"] as? String ) ?? ""
         if isLiked == true {
-            userPostLikedData.append(myUserId)
+            userPostLikedData?.append(myUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
                 if error == nil {
@@ -591,7 +605,7 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
                 }
             }
         } else {
-            userPostLikedData.remove(element: myUserId)
+            userPostLikedData?.remove(element: myUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData]) { (error) in
                 if error == nil {
@@ -615,20 +629,39 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         let userPostCollection = db.collection("posts").document(data.id ?? "")
         print("selected index is -----\(selectedIndex)")
         var VotedUserList = [String]()
-        VotedUserList = data.voted_user_list
+        VotedUserList = data.voted_user_list ?? []
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (strings?["uid"] as? String ) ?? ""
         VotedUserList.append(myUserId)
         var votedOptionArray = [Int]()
-        for i in 0..<data.selectedAnswerCount.count {
+        for i in 0..<(data.selectedAnswerCount?.count ?? 0) {
             if i == selectedIndex {
-                votedOptionArray.append(data.selectedAnswerCount[i] + 1)
+                votedOptionArray.append((data.selectedAnswerCount?[i] ?? 0) + 1)
             } else {
-                votedOptionArray.append(data.selectedAnswerCount[i])
+                votedOptionArray.append(data.selectedAnswerCount?[i] ?? 0)
             }
         }
         print("voted woth option is ---=\(votedOptionArray)")
         print("voted woth option is ---=\(votedOptionArray.count)")
+         
+        let newPollData = PostListDataModel()
+        newPollData.voted_user_list = VotedUserList
+        newPollData.selectedAnswerCount = votedOptionArray
+        newPollData.author = data.author
+        newPollData.id = data.id
+        newPollData.createdAt =  data.createdAt
+        newPollData.uid =  data.uid
+        newPollData.comments = data.comments
+        newPollData.likedUserList = data.likedUserList
+        newPollData.poll_options =  data.poll_options
+        newPollData.poll_title = data.poll_title
+        newPollData.post_type = data.post_type
+        newPollData.selectedAnswer = data.selectedAnswer
+        newPollData.updatedAt = data.updatedAt
+        newPollData.json = data.json
+        newPollData.profileImage = data.profileImage
+        
+        
         userPostCollection.updateData(["selectedAnswer": [], "selectedAnswerCount": votedOptionArray, "voted_user_list": VotedUserList, "selectedAnserIndex": selectedIndex]) { error in
             if error == nil {
                 Singleton.shared.showMessage(message: "voted", isError: .success)
@@ -637,17 +670,26 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
 //                let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
 //                self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
                 //self.listPostData.removeAll()
-                self.fetchPostData(isFromRefreh: false)
+               // self.fetchPostData(isFromRefreh: false)
                 //self.newsFeedTableView.endUpdates()
 //                self.selectedPostIndex = currentPostIndex
 //                self.fetchPostUpdateData(isFromRefreh: false)
                 let indexpath = IndexPath(row: currentPostIndex , section: 0)
+                self.listPostData[currentPostIndex] = newPollData
+                let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
                 self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
+                cell?.tableView?.reloadData()
+                self.fetchPostUpdateData(isFromRefreh: false)
+                self.newsFeedTableView.scrollToRow(at: indexpath, at: .none, animated: false)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                    let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
-                    cell?.tableView?.reloadData()
-                })
+                if let i = self.listPostData.firstIndex(of: data) {
+                   
+                    
+                }
+//                
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+//                    
+//                })
             } else {
                 if let error = error {
                     Singleton.shared.showMessage(message: error.localizedDescription , isError: .error)
@@ -683,6 +725,13 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
                     if err == nil {
                         self.listPostData.removeAll()
                         self.fetchPostData(isFromRefreh: false)
+                        
+//                        self.newsFeedTableView.beginUpdates()
+//                        if let i = self.listPostData.firstIndex(of: data) {
+//                            self.listPostData.remove(at: i)
+//                        }
+                        //self.newsFeedTableView.endUpdates()
+                        
                         Singleton.shared.showMessage(message: "Post deleted successfully.", isError: .success)
                     } else {
                         if let err = err {
@@ -698,9 +747,18 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
             })
         } else {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
+            if strings?["uid"] as? String ?? "" == data.uid {
+                reportOrReported = "Reported"
+            } else {
+                reportOrReported = AppStrings.reportPost
+            }
             alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
                 print("report poll called.")
-                self.reportPost(data: data, index: index)
+                if strings?["uid"] as? String ?? "" == data.uid {
+                    return
+                } else {
+                    self.reportPost(data: data, index: index)
+                }
             }))
             alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in
                 print("dismiss post called.")
@@ -709,8 +767,6 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
             })
         }
     }
-    
-    
     
     func sharePoll(data: PostListDataModel, pollImage: UIImage) {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
@@ -749,8 +805,4 @@ extension NewsFeedViewController: NewsHeaderProtocol {
         self.pushViewController(notificationVc, false)
     }
 }
-
-
-
-
 

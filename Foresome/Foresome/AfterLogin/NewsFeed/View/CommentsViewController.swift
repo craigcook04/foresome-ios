@@ -46,7 +46,7 @@ class CommentsViewController: UIViewController {
         self.commetsTableView.delegate = self
         self.commetsTableView.dataSource = self
         self.commetsTableView.registerCell(class: CommentsTableViewCell.self)
-        self.userProfileImage.image = listPostData.profileImage.base64ToImage()
+        self.userProfileImage.image = listPostData.profileImage?.base64ToImage()
         
         listPostData.comments?.forEach({ commentsData in
             print("comments body\(commentsData.body)")
