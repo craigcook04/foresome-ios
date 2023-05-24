@@ -14,7 +14,7 @@ protocol PollResultTableCellDelegate {
     func pollMoreButton(data:PostListDataModel, index: Int)
     func sharePoll(data:PostListDataModel, pollImage: UIImage)
     func voteInPoll(data:PostListDataModel, isVodeted: Bool, selectedIndex: Int, currentPostIndex: Int)
-    func likePostDatas(data:PostListDataModel, isLiked: Bool)
+    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int)
     func commmnetsPoll(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -40,6 +40,8 @@ class PollResultTableCell: UITableViewCell {
     var votePercentage : Int?
     var assignPercentage: Double?
     var currentIndex: Int? 
+    var isLikedPoll: Bool = false
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +58,8 @@ class PollResultTableCell: UITableViewCell {
     }
     
     func setPollCellData(data: PostListDataModel, index: Int) {
+        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let myUserId = (stringss?["uid"] as? String ) ?? ""
         self.pollData = data
         self.currentIndex = index
         setDateData(data: data)
@@ -65,6 +69,24 @@ class PollResultTableCell: UITableViewCell {
         self.profileImage.image = data.profileImage?.base64ToImage()
         self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
+        self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
+        
+        if data.likedUserList?.count == 0 {
+            self.likeBtn.isSelected = false
+            self.isLikedPoll =  false
+        } else {
+            data.likedUserList?.forEach({ fetchedUserId in
+                if fetchedUserId == myUserId {
+                    self.likeBtn.isSelected = true
+                    self.isLikedPoll =  true
+                } else {
+                    self.likeBtn.isSelected = false
+                    self.isLikedPoll =  false
+                }
+            })
+        }
+        
+        
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         for i in 0..<(data.voted_user_list?.count ?? 0) {
             if data.voted_user_list?[i] ?? "" == (strings?["uid"] as? String ) ?? "" {
@@ -125,12 +147,12 @@ class PollResultTableCell: UITableViewCell {
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected)
-        if sender.isSelected == true {
-            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 1)", for: .normal)
+        if self.isLikedPoll == true {
+            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
-            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 0)", for: .normal)
+            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
+        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
     }
     
     @IBAction func commentAction(_ sender: UIButton) {

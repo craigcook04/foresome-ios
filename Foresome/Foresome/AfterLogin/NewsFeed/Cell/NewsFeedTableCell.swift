@@ -21,7 +21,7 @@ import ImageViewer_swift
 protocol NewsFeedTableCellDelegate {
     func moreButton(data: PostListDataModel, index: Int)
     func sharePost(data: PostListDataModel, postImage: UIImage)
-    func likePostData(data:PostListDataModel, isLiked: Bool)
+    func likePostData(data:PostListDataModel, isLiked: Bool, index:Int)
     func commmnetsPost(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -100,8 +100,8 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
             self.likeBtn.isSelected = false
             self.isLikedPost =  false
         } else {
-            data.likedUserList?.forEach({ myUserId in
-                if myUserId == myUserId {
+            data.likedUserList?.forEach({ fetchedUserId in
+                if fetchedUserId == myUserId {
                     self.likeBtn.isSelected = true
                     self.isLikedPost =  true
                 } else {
@@ -228,12 +228,12 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected)
         if self.isLikedPost == true {
             self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
             self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
+        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
     }
 }
 
