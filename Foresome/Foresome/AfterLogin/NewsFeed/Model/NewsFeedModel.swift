@@ -9,22 +9,22 @@ import Foundation
 
 class PostListDataModel: NSObject {
     var json: JSON!
-    var author:String? = ""
-    var postDescription:String? = ""
-    var comments:[CommentsData]? = []
-    var createdAt:String? = ""
-    var updatedAt:String? = ""
-    var image:[String]? = []
-    var uid:String? = ""
-    var id:String? = ""
-    var post_type : String? = ""
-    var profileImage : String = ""
-    var poll_title: String = ""
-    var poll_options: [String]? = []
-    var selectedAnswerCount : [Int] = []
-    var selectedAnswer: [Int] = []
-    var likedUserList : [String] = []
-    var voted_user_list : [String] = []
+    var author:String?
+    var postDescription:String?
+    var comments:[CommentsData]?
+    var createdAt:String?
+    var updatedAt:String?
+    var image:[String]?
+    var uid:String?
+    var id:String?
+    var post_type : String?
+    var profileImage : String?
+    var poll_title: String?
+    var poll_options: [String]?
+    var selectedAnswerCount : [Int]?
+    var selectedAnswer: [Int]?
+    var likedUserList : [String]?
+    var voted_user_list : [String]?
     var selectedAnserIndex: Int?
     var reportedUserList: [String]?
 }

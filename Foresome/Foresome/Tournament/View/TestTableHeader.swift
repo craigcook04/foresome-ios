@@ -24,6 +24,7 @@ class TestTableHeader: UIView {
     
     override class func awakeFromNib() {
         super.awakeFromNib()
+        
     }
     
     func setHeaderData() {

@@ -14,14 +14,14 @@ protocol PollResultTableCellDelegate {
     func pollMoreButton(data:PostListDataModel, index: Int)
     func sharePoll(data:PostListDataModel, pollImage: UIImage)
     func voteInPoll(data:PostListDataModel, isVodeted: Bool, selectedIndex: Int, currentPostIndex: Int)
-    func likePostDatas(data:PostListDataModel, isLiked: Bool)
+    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int)
     func commmnetsPoll(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
 class PollResultTableCell: UITableViewCell {
     
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var pollTableView: UITableView!
+   // @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var pollTableView: AutoResizeTableView!
     @IBOutlet weak var postDescriptionLbl: ExpendableLinkLabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
@@ -37,15 +37,16 @@ class PollResultTableCell: UITableViewCell {
     var isAnswer: Bool = false
     var delegate: PollResultTableCellDelegate?
     var pollData: PostListDataModel?
-    var  votePercentage : Int?
+    var votePercentage : Int?
     var assignPercentage: Double?
     var currentIndex: Int? 
+    var isLikedPoll: Bool = false
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("table height ----\(pollTableView.bounds.height)")
         setCellData()
-        setTableHeight()
-        //postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
     }
@@ -56,36 +57,61 @@ class PollResultTableCell: UITableViewCell {
         pollTableView.register(cellClass: VoteTableCell.self)
     }
     
-    func setPollCellData(data: PostListDataModel) {
-        //self.numberOfVotesLabel.text = "\(data.voted_user_list.count) votes • Poll ended"
-        
-        self.numberOfVotesLabel.text = "\(data.voted_user_list.count) votes"
-         
+    func setPollCellData(data: PostListDataModel, index: Int) {
+        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let myUserId = (stringss?["uid"] as? String ) ?? ""
+        self.pollData = data
+        self.currentIndex = index
+        setDateData(data: data)
+        //setTableHeight()
+        self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
         self.userNameLbl.text = "\(data.author ?? "")"
-        self.profileImage.image = data.profileImage.base64ToImage()
-        self.postDescriptionLbl.message = data.poll_title
+        self.profileImage.image = data.profileImage?.base64ToImage()
+        self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
+        self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
+        
+        if data.likedUserList?.count == 0 {
+            self.likeBtn.isSelected = false
+            self.isLikedPoll =  false
+        } else {
+            data.likedUserList?.forEach({ fetchedUserId in
+                if fetchedUserId == myUserId {
+                    self.likeBtn.isSelected = true
+                    self.isLikedPoll =  true
+                } else {
+                    self.likeBtn.isSelected = false
+                    self.isLikedPoll =  false
+                }
+            })
+        }
+        
+        
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        for i in 0..<(data.voted_user_list.count) {
-            print("voted user id ---\(data.voted_user_list[i])")
-            print("my user id is ----\((strings?["uid"] as? String ) ?? "")")
-            if data.voted_user_list[i] == (strings?["uid"] as? String ) ?? "" {
+        for i in 0..<(data.voted_user_list?.count ?? 0) {
+            if data.voted_user_list?[i] ?? "" == (strings?["uid"] as? String ) ?? "" {
+                print("data-----\(data.poll_title)")
                 self.isAnswer = true
-                //self.tableView?.reloadData()
             } else {
                 self.isAnswer = false
             }
         }
-        
-        for i in 0..<data.selectedAnswerCount.count {
-            print("selected answer count is---\(data.selectedAnswerCount[i])")
+        self.pollTableView.reloadData()
+        self.layoutIfNeeded()
+        self.layoutSubviews()
+        //self.setTableHeight()
+    }
+    
+    func  setTableHeight() {
+        if let data = pollData {
+            if let tableHeight = data.poll_options?.count {
+               // self.tableViewHeight.constant = CGFloat((tableHeight *  64))
+            }
         }
-        
-        for i in 0..<data.selectedAnswer.count {
-            print("selected anser is ----\(data.selectedAnswer[i])")
-        }
-        
-        self.pollData = data
+    }
+    
+    func setDateData(data: PostListDataModel) {
+        //MARK: code for set date diffrent diffrent formats----
         guard let postDate = data.createdAt?.millisecToDate() else {
             return
         }
@@ -112,30 +138,21 @@ class PollResultTableCell: UITableViewCell {
         }
     }
     
-    func  setTableHeight() {
-        //self.tableViewHeight.constant = 4 *  64
-        if let data = pollData {
-            if let tableHeight = data.poll_options?.count {
-                self.tableViewHeight.constant = CGFloat((tableHeight *  64))
-            }
-        }
-    }
-    
     @IBAction func moreAction(_ sender: UIButton) {
         if let data = self.pollData {
             self.delegate?.pollMoreButton(data: data, index: indexPath?.row ?? 0)
         }
+        print("more action called in case of poll.")
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-        //likeBtn.setTitle("1", for: .selected)
-        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected)
-        if sender.isSelected == true {
-            self.likeBtn.setTitle("\((self.pollData?.likedUserList.count ?? 0) + 1)", for: .normal)
+        if self.isLikedPoll == true {
+            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
-            self.likeBtn.setTitle("\((self.pollData?.likedUserList.count ?? 0) + 0)", for: .normal)
+            self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
+        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
@@ -170,102 +187,51 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "VoteTableCell", for: indexPath) as? VoteTableCell else {
             return UITableViewCell()
         }
-        
-//        pollData?.voted_user_list.forEach({ votedUserId in
-//            if let pollVotedUserId = self.pollData?.uid {
-//                if votedUserId == pollVotedUserId {
-//                    self.isAnswer = true
-//                } else {
-//                    self.isAnswer = false
-//                }
-//            }
-//        })
-         
-        print("selectedanser array---\(self.pollData?.selectedAnswer)")
-        print("selectedanser count array----\(self.pollData?.selectedAnswerCount)")
-        print("self.pollData?.voted_user_list-----\(self.pollData?.voted_user_list)")
-        
         if isAnswer == true {
             self.votePercentage = 0
-            self.pollData?.selectedAnswerCount.forEach({ elements in
+            self.pollData?.selectedAnswerCount?.forEach({ elements in
                 votePercentage = (votePercentage ?? 0) + elements
             })
-            
-            if self.pollData?.selectedAnswerCount.count ?? 0 > 0 {
-                self.assignPercentage = Double((Double(self.pollData?.selectedAnswerCount[indexPath.row] ?? 0) ) / Double((self.votePercentage) ?? 0))
+            if self.pollData?.selectedAnswerCount?.count ?? 0 > 0 {
+                self.assignPercentage = Double((Double(self.pollData?.selectedAnswerCount?[indexPath.row] ?? 0) ) / Double((self.votePercentage) ?? 0))
             }
-//            } else {
-//
-//            }
-            
-//            self.assignPercentage = Double((Double(self.pollData?.selectedAnswerCount[indexPath.row] ?? 0) ) / Double((self.votePercentage) ?? 0))
-//
-             
             if (pollData?.selectedAnserIndex ?? 0) == indexPath.row {
                 cell.progressView.backgroundColor = UIColor.appColor(.lightGreen)
                 cell.pollView.borderColor = UIColor.appColor(.green_main)
                 cell.percentageLabel.isHidden = false
                 cell.itemLabel.textAlignment = .left
-                //cell.progressViewWidth.constant = CGFloat(((self.assignPercentage ?? 0.0)) * Double(Int(cell.pollView.frame.width)))
-                
-                //cell.pollView.frame.width
-                
             } else {
                 cell.percentageLabel.isHidden = false
-                //cell.progressViewWidth.constant = CGFloat(((self.assignPercentage ?? 0.0)) * Double(Int(cell.pollView.frame.width)))
-                
                 cell.progressView.backgroundColor = UIColor.appColor(.light_Main)
                 cell.itemLabel.textAlignment = .left
                 cell.pollView.borderColor = UIColor.appColor(.light_Main)
             }
-            
-            cell.progressViewWidth.constant = (cell.pollView.frame.width * (self.assignPercentage ?? 0.0)) - 32
+            cell.progressViewWidth.constant = (cell.pollView.frame.width * (self.assignPercentage ?? 0.0))
             print("asssignned percent ---\(self.assignPercentage ?? 0.0)")
-             
-            
             cell.percentageLabel.text = "\(((self.assignPercentage ?? 0.0) * 100).roundTo(places: 2)) %"
-            cell.itemLabel.text = self.pollData?.poll_options?[indexPath.row] ?? ""
-           // cell.layoutSubviews()
-            return cell
         } else {
-            cell.itemLabel.text = self.pollData?.poll_options?[indexPath.row] ?? ""
             cell.percentageLabel.isHidden = true
             cell.itemLabel.textAlignment = .center
             cell.pollView.borderColor = UIColor.appColor(.light_Main)
-            return cell
         }
+        cell.itemLabel.text = self.pollData?.poll_options?[indexPath.row] ?? ""
+        self.tableView?.beginUpdates()
+        self.tableView?.endUpdates()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isAnswer == true {
-            Singleton.shared.showMessage(message: "Already voted.", isError: .error)
             return
         } else {
             self.delegate?.voteInPoll(data: self.pollData ?? PostListDataModel(), isVodeted: true, selectedIndex: indexPath.row, currentPostIndex: self.currentIndex ?? 0)
         }
-        
-        
-//        if let data = self.pollData?.selectedAnswerCount {
-//            data.forEach({ seletedVote in
-//                if seletedVote > 0 {
-//                    return
-//                } else {
-//                    self.delegate?.voteInPoll(data: self.pollData ?? PostListDataModel(), isVodeted: true, selectedIndex: indexPath.row)
-//                }
-//            })
-//        }
-        //tableView.reloadData()
-        
-//        if self.isAnswer == false {
-//            self.isAnswer = true
-//            self.selectedOption = indexPath.row
-//            tableView.reloadData()
-//        }
     }
 }
 
 extension PollResultTableCell: ExpendableLinkLabelDelegate {
     func tapableLabel(_ label: ExpendableLinkLabel, didTapUrl url: String, atRange range: NSRange) {
+        print("url is equal to ---\(url)")
     }
     
     func tapableLabel(_ label: ExpendableLinkLabel, didTapString string: String, atRange range: NSRange) {
@@ -273,4 +239,3 @@ extension PollResultTableCell: ExpendableLinkLabelDelegate {
         self.tableView?.endUpdates()
     }
 }
- 

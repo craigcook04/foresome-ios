@@ -16,11 +16,12 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Firebase
+import ImageViewer_swift
 
 protocol NewsFeedTableCellDelegate {
     func moreButton(data: PostListDataModel, index: Int)
     func sharePost(data: PostListDataModel, postImage: UIImage)
-    func likePostData(data:PostListDataModel, isLiked: Bool)
+    func likePostData(data:PostListDataModel, isLiked: Bool, index:Int)
     func commmnetsPost(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -46,44 +47,132 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     var delegate: NewsFeedTableCellDelegate?
     var postdata: PostListDataModel?
+    var isLikedPost: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.numberOfLines = 0
         postDescriptionLbl.delegate = self
+        addTapGuesture()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func addTapGuesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImage))
+        self.imageWholeStack.isUserInteractionEnabled = true
+        self.imageWholeStack.addGestureRecognizer(tap)
+        tap.delegate = self
+        tap.numberOfTapsRequired = 1
     }
     
+    @objc func tapForViewImage() {
+        print("image tap guesture called.")
+        let urls = postdata?.image ?? []
+        var arrayOfUrl = [URL]()
+        arrayOfUrl.removeAll()
+        for i in 0..<(postdata?.image?.count ?? 0) {
+            if let ulr = URL(string: postdata?.image?[i] ?? "") {
+                arrayOfUrl.append(ulr)
+            }
+        }
+        if postdata?.image?.count ?? 0 == 1 {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+        } else if postdata?.image?.count ?? 0 == 2 {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+            imageTwo.setupImageViewer(urls: arrayOfUrl)
+        } else {
+            imageOne.setupImageViewer(urls: arrayOfUrl)
+            imageTwo.setupImageViewer(urls: arrayOfUrl)
+            imageThree.setupImageViewer(urls: arrayOfUrl)
+        }
+        arrayOfUrl.removeAll()
+        arrayOfUrl = []
+    }
+     
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
-        //print("post list single data---\(data.json)")
+       addTapGuesture()
         let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let myUserId = (stringss?["uid"] as? String ) ?? ""
         self.postdata = data
         self.userNameLbl.text = "\(data.author ?? "")"
-        if data.likedUserList.count == 0 {
+        if data.likedUserList?.count == 0 {
             self.likeBtn.isSelected = false
+            self.isLikedPost =  false
         } else {
-            data.likedUserList.forEach({ myUserId in
-                if myUserId == myUserId {
+            data.likedUserList?.forEach({ fetchedUserId in
+                if fetchedUserId == myUserId {
                     self.likeBtn.isSelected = true
+                    self.isLikedPost =  true
                 } else {
                     self.likeBtn.isSelected = false
+                    self.isLikedPost =  false
                 }
             })
         }
-        self.profileImage.image = data.profileImage.base64ToImage()
-        self.likeBtn.setTitle("\(data.likedUserList.count)", for: .normal)
+        self.profileImage.image = data.profileImage?.base64ToImage()
+        self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
-        
-        print("docs id is --==\(data.id ?? "")")
-        for i in 0..<(data.image?.count ?? 0) {
-            print("feed images is -----\(data.image?[i] ?? "")")
+        self.postDescriptionLbl.message = data.postDescription ?? ""
+        self.setDateData(data: data)
+        self.setImageData(data: data)
+    }
+    
+    func setImageData(data: PostListDataModel) {
+        if (data.image?.count ?? 0) > 0 {
+            self.imageWholeStack.isHidden = false
+            if (data.image?.count ?? 0) == 1 {
+                self.imageOne.isHidden = false
+                let url = URL(string: data.image?[0] ?? "")
+                self.imageOne.kf.setImage(with: url)
+                self.imageTwo.isHidden = true
+                self.thirdImageBgView.isHidden = true
+                self.secondImageStackview.isHidden = true
+                self.thirdImageCountBgVieww.isHidden = true
+            } else if (data.image?.count ?? 0) == 2 {
+                self.imageOne.isHidden = false
+                self.imageTwo.isHidden = false
+                let urlFirst = URL(string: data.image?[0] ?? "")
+                self.imageOne.kf.setImage(with: urlFirst)
+                let urlSecond = URL(string: data.image?[1] ?? "")
+                self.imageTwo.kf.setImage(with: urlSecond)
+                self.secondImageStackview.isHidden = false
+                self.thirdImageCountBgVieww.isHidden = true
+                self.thirdImageBgView.isHidden = true
+            } else if (data.image?.count ?? 0) == 3 {
+                self.imageOne.isHidden = false
+                self.imageTwo.isHidden = false
+                self.imageThree.isHidden = false
+                self.thirdImageBgView.isHidden = false
+                self.secondImageStackview.isHidden = false
+                let urlFirst = URL(string: data.image?[0] ?? "")
+                self.imageOne.kf.setImage(with: urlFirst)
+                let urlSecond = URL(string: data.image?[1] ?? "")
+                self.imageTwo.kf.setImage(with: urlSecond)
+                let urlThird = URL(string: data.image?[2] ?? "")
+                self.imageThree.kf.setImage(with: urlThird)
+                self.thirdImageCountBgVieww.isHidden = true
+            } else {
+                self.imageOne.isHidden = false
+                self.imageTwo.isHidden = false
+                self.imageThree.isHidden = false
+                self.thirdImageBgView.isHidden = false
+                self.thirdImageCountBgVieww.isHidden = false
+                self.secondImageStackview.isHidden = false
+                let urlFirst = URL(string: data.image?[0] ?? "")
+                self.imageOne.kf.setImage(with: urlFirst)
+                let urlSecond = URL(string: data.image?[1] ?? "")
+                self.imageTwo.kf.setImage(with: urlSecond)
+                let urlThird = URL(string: data.image?[2] ?? "")
+                self.imageThree.kf.setImage(with: urlThird)
+                self.imageCountLabel.text = "+\((data.image?.count ?? 0) - 3)"
+            }
+        } else {
+            self.imageWholeStack.isHidden = true
         }
+    }
+    
+    func setDateData(data: PostListDataModel) {
         guard let postDate = data.createdAt?.millisecToDate() else {
             return
         }
@@ -108,66 +197,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         } else {
             self.postTime.text = postDate.toStringFormat()
         }
-        self.postDescriptionLbl.message = data.postDescription ?? ""
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        if strings?["uid"] as? String ?? "" == data.uid {
-           print("This is owner posts.")
-        } else {
-            print("This is other users posts.")
-        }
-        print("image counts in case of posts is --====\(data.image?.count ?? 0)")
-        if (data.image?.count ?? 0) > 0 {
-            self.imageWholeStack.isHidden = false
-            if (data.image?.count ?? 0) == 1 {
-                self.imageOne.isHidden = false
-                let url = URL(string: data.image?.first ?? "")
-                self.imageOne.kf.setImage(with: url)
-                self.imageTwo.isHidden = true
-                self.thirdImageBgView.isHidden = true
-                self.secondImageStackview.isHidden = true
-                self.thirdImageCountBgVieww.isHidden = true
-            } else if (data.image?.count ?? 0) == 2 {
-                self.imageOne.isHidden = false
-                
-                self.imageTwo.isHidden = false
-                
-                let urlFirst = URL(string: data.image?.first ?? "")
-                self.imageOne.kf.setImage(with: urlFirst)
-                
-                let urlSecond = URL(string: data.image?[1] ?? "")
-                self.imageTwo.kf.setImage(with: urlSecond)
-                
-                self.secondImageStackview.isHidden = false
-                self.thirdImageCountBgVieww.isHidden = true
-                self.thirdImageBgView.isHidden = true
-            } else if (data.image?.count ?? 0) == 3 {
-                self.imageOne.isHidden = false
-                self.imageTwo.isHidden = false
-                self.imageThree.isHidden = false
-                self.thirdImageBgView.isHidden = false
-                self.secondImageStackview.isHidden = false
-                
-                let urlFirst = URL(string: data.image?.first ?? "")
-                self.imageOne.kf.setImage(with: urlFirst)
-                
-                let urlSecond = URL(string: data.image?[1] ?? "")
-                self.imageTwo.kf.setImage(with: urlSecond)
-                
-                let urlThird = URL(string: data.image?[2] ?? "")
-                self.imageThree.kf.setImage(with: urlThird)
-                
-                self.thirdImageCountBgVieww.isHidden = true
-            } else {
-                self.imageOne.isHidden = false
-                self.imageTwo.isHidden = false
-                self.imageThree.isHidden = false
-                self.thirdImageBgView.isHidden = false
-                self.thirdImageCountBgVieww.isHidden = false
-                self.secondImageStackview.isHidden = false
-            }
-        } else {
-            self.imageWholeStack.isHidden = true
-        }
     }
     
     @IBAction func moreAction(_ sender: UIButton) {
@@ -177,14 +206,12 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
-       print("comments section in progress.....")
         if let data = self.postdata {
             self.delegate?.commmnetsPost(data: data, isCommented: true, index:indexPath?.row ?? 0)
         }
     }
     
     @IBAction func shareAction(_ sender: UIButton) {
-//        outerView.backgroundColor = .black
         var image :UIImage?
         let currentLayer = outerView.layer
         let currentScale = UIScreen.main.scale
@@ -194,9 +221,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         guard let img = image else { return }
-//        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
-       // Singleton.shared.showMessage(message: "QR code downloaded and saved to Gallery", isError: .success)
-//        outerView.backgroundColor = .clear
         if let data = self.postdata {
             self.delegate?.sharePost(data: data, postImage: img)
         }
@@ -204,19 +228,18 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     @IBAction func likeAction(_ sender: UIButton) {
         sender.isSelected = !(sender.isSelected)
-        //likeBtn.setTitle("1", for: .selected)
-        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected)
-        if sender.isSelected == true {
-            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 1)", for: .normal)
+        if self.isLikedPost == true {
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
-            self.likeBtn.setTitle("\((self.postdata?.likedUserList.count ?? 0) + 0)", for: .normal)
+            self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
+        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
     }
 }
 
 extension NewsFeedTableCell: ExpendableLinkLabelDelegate {
     func tapableLabel(_ label: ExpendableLinkLabel, didTapUrl url: String, atRange range: NSRange) {
-        print("url is -----\(url)")
+        
     }
     
     func tapableLabel(_ label: ExpendableLinkLabel, didTapString string: String, atRange range: NSRange) {

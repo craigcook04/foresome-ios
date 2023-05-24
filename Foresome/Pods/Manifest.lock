@@ -787,6 +787,7 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.0)
+  - ImageViewer.swift (3.3.8)
   - IQKeyboardManagerSwift (6.5.11)
   - Kingfisher (7.6.2)
   - leveldb-library (1.22.2)
@@ -814,6 +815,7 @@ DEPENDENCIES:
   - FirebaseFirestore
   - GooglePlacePicker
   - GoogleSignIn
+  - ImageViewer.swift (~> 3.0)
   - IQKeyboardManagerSwift
   - Kingfisher
   - ObjectMapper
@@ -846,6 +848,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
+    - ImageViewer.swift
     - IQKeyboardManagerSwift
     - Kingfisher
     - leveldb-library
@@ -881,6 +884,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
+  ImageViewer.swift: 284cd8127d31af8e5938674fb9f8e695a4cdf6c6
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
@@ -890,6 +894,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SquareInAppPaymentsSDK: 44371b3788070e74b43009ab90649455277653b4
 
-PODFILE CHECKSUM: b51258e7068cb40b6c39d925fc28618ecd520ae7
+PODFILE CHECKSUM: 23bb14d9df24bdbfa4e139d2456758b711c69de2
 
 COCOAPODS: 1.11.3
