@@ -20,7 +20,7 @@ protocol PollResultTableCellDelegate {
 
 class PollResultTableCell: UITableViewCell {
     
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+   // @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var pollTableView: AutoResizeTableView!
     @IBOutlet weak var postDescriptionLbl: ExpendableLinkLabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -37,14 +37,14 @@ class PollResultTableCell: UITableViewCell {
     var isAnswer: Bool = false
     var delegate: PollResultTableCellDelegate?
     var pollData: PostListDataModel?
-    var  votePercentage : Int?
+    var votePercentage : Int?
     var assignPercentage: Double?
     var currentIndex: Int? 
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("table height ----\(pollTableView.bounds.height)")
         setCellData()
-        setTableHeight()
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
     }
@@ -58,7 +58,8 @@ class PollResultTableCell: UITableViewCell {
     func setPollCellData(data: PostListDataModel, index: Int) {
         self.pollData = data
         self.currentIndex = index
-        setTableHeight()
+        setDateData(data: data)
+        //setTableHeight()
         self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
         self.userNameLbl.text = "\(data.author ?? "")"
         self.profileImage.image = data.profileImage?.base64ToImage()
@@ -66,26 +67,28 @@ class PollResultTableCell: UITableViewCell {
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         for i in 0..<(data.voted_user_list?.count ?? 0) {
-            print("voted user id ---\(data.voted_user_list?[i] ?? "")")
-            print("my user id is ----\((strings?["uid"] as? String ) ?? "")")
-            if data.voted_user_list?[i] == (strings?["uid"] as? String ) ?? "" {
+            if data.voted_user_list?[i] ?? "" == (strings?["uid"] as? String ) ?? "" {
+                print("data-----\(data.poll_title)")
                 self.isAnswer = true
-                print("isvoted in if case is --==\(self.isAnswer)")
-                self.tableView?.beginUpdates()
-                self.tableView?.endUpdates()
             } else {
-                print("isvoted in else case is --==\(self.isAnswer)")
                 self.isAnswer = false
             }
         }
-        
-        for i in 0..<(data.selectedAnswerCount?.count ?? 0) {
-            print("selected answer count is---\(data.selectedAnswerCount?[i] ?? 0)")
+        self.pollTableView.reloadData()
+        self.layoutIfNeeded()
+        self.layoutSubviews()
+        //self.setTableHeight()
+    }
+    
+    func  setTableHeight() {
+        if let data = pollData {
+            if let tableHeight = data.poll_options?.count {
+               // self.tableViewHeight.constant = CGFloat((tableHeight *  64))
+            }
         }
-        
-        for i in 0..<(data.selectedAnswer?.count ?? 0) {
-            print("selected anser is ----\(data.selectedAnswer?[i] ?? 0)")
-        }
+    }
+    
+    func setDateData(data: PostListDataModel) {
         //MARK: code for set date diffrent diffrent formats----
         guard let postDate = data.createdAt?.millisecToDate() else {
             return
@@ -110,22 +113,6 @@ class PollResultTableCell: UITableViewCell {
             }
         } else {
             self.timeLbl.text = postDate.toStringFormat()
-        }
-        self.pollTableView.layoutSubviews()
-        self.pollTableView.layoutIfNeeded()
-        self.layoutIfNeeded()
-
-//        DispatchQueue.main.async {
-//            self.pollTableView.reloadData()
-//           // self.pollTableView.invalidateIntrinsicContentSize()
-//        }
-    }
-    
-    func  setTableHeight() {
-        if let data = pollData {
-            if let tableHeight = data.poll_options?.count {
-                self.tableViewHeight.constant = CGFloat((tableHeight *  64))
-            }
         }
     }
     
@@ -197,7 +184,7 @@ extension PollResultTableCell: UITableViewDelegate, UITableViewDataSource {
                 cell.itemLabel.textAlignment = .left
                 cell.pollView.borderColor = UIColor.appColor(.light_Main)
             }
-            cell.progressViewWidth.constant = (cell.pollView.frame.width * (self.assignPercentage ?? 0.0)) - 32
+            cell.progressViewWidth.constant = (cell.pollView.frame.width * (self.assignPercentage ?? 0.0))
             print("asssignned percent ---\(self.assignPercentage ?? 0.0)")
             cell.percentageLabel.text = "\(((self.assignPercentage ?? 0.0) * 100).roundTo(places: 2)) %"
         } else {
