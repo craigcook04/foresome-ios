@@ -16,7 +16,7 @@ struct Constants {
     
     struct Square {
         static let SQUARE_LOCATION_ID: String = "REPLACE_ME"
-        static let APPLICATION_ID: String  = "sq0idp-Zmcos_008lyfULDLITy2PA"
+        static let APPLICATION_ID: String  = "sandbox-sq0idb-QQBqQxHpscxTIVWu-8fVrg"//"sq0idp-Zmcos_008lyfULDLITy2PA"
         static let CHARGE_SERVER_HOST: String = "https://connect.squareupsandbox.com/v2/payments"
         static let CHARGE_URL: String = "\(CHARGE_SERVER_HOST)/chargeForCookie"
         static let squarePaymentHost = "https://connect.squareupsandbox.com/v2/payments"

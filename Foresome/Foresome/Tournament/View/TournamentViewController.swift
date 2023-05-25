@@ -27,13 +27,14 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        getTournmentsData()
+       // getTournmentsData()
         setTableData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        getTournmentsData()
     }
     
     func setTableData() {
@@ -56,6 +57,7 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         db.collection("tournaments").getDocuments { (querySnapshot, err) in
+            print(err?.localizedDescription)
             ActivityIndicator.sharedInstance.hideActivityIndicator()
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let tournament =  document.data()

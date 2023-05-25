@@ -1,53 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "DF346F62-76D7-4291-BE5E-205621D9A742"
+   uuid = "A901724B-B19E-4C17-8A8E-954772C2172D"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9"
+            uuid = "E041FCE1-8CF5-45E0-8B43-9439761A6D4A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "createNewUser(fullName:email:password:confirmPassword:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "cardEntryViewController(_:didObtain:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C96F319D-9675-408B-8C28-0C90921E7416"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/Model/SquarePaymentsApiFile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "processPayment(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA9345A3-0501-4008-BA75-E0DDBCFDDE4A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "cardEntryViewController(_:didObtain:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9 - 1c9b0a5910df811c"
+                  uuid = "CA9345A3-0501-4008-BA75-E0DDBCFDDE4A - ab2373e5a777716b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foresome.PaymentsCreateData&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Foresome.OrderSummaryViewController.cardEntryViewController(_: __C.SQIPCardEntryViewController, didObtain: __C.SQIPCardDetails) async throws -&gt; ()"
                   moduleName = "Foresome"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "4613">
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "5309">
                </Location>
                <Location
-                  uuid = "558CC2B1-D244-4F5B-BCAF-595F1CCD86D9 - 1c9b0a5910df811c"
+                  uuid = "CA9345A3-0501-4008-BA75-E0DDBCFDDE4A - ab2373e5a777716b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foresome.PaymentsCreateData&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Foresome.OrderSummaryViewController.cardEntryViewController(_: __C.SQIPCardEntryViewController, didObtain: __C.SQIPCardDetails) async throws -&gt; ()"
                   moduleName = "Foresome"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "4689">
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "5381">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,49 +87,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8"
+            uuid = "E739BF93-3964-41F5-9F42-80CD01FB04F8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "createNewUser(fullName:email:password:confirmPassword:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "cardEntryViewController(_:didObtain:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8 - 1c9b0a5910df8581"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
-                  moduleName = "Foresome"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "3485">
-               </Location>
-               <Location
-                  uuid = "F0C8A0DC-5AAA-4913-9DD3-75FCFE945CB8 - b810b66bbda31a0a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Foresome.SignUpPresenter.createNewUser(fullName: Swift.String, email: Swift.String, password: Swift.String, confirmPassword: Swift.String) -&gt; ()"
-                  moduleName = "Foresome"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaishali/Documents/github/foresome_ios/Foresome/Foresome/Onboarding/SignUp/Presenter/SignUpPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "101">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3BECB3C7-766E-452D-9F48-F220F3AE280A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "cardEntryViewController(_:didObtain:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E1DEAB0-692B-420C-8C46-90F0761170A2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/OrderSummaryView/View/OrderSummaryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "cardEntryViewController(_:didCompleteWith:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
