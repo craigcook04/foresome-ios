@@ -52,7 +52,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         self.newsFeedTableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
         self.presenter?.saveCreatUserData()
-       // self.fetchPostData(isFromRefreh: false)
+        self.fetchPostData(isFromRefreh: false)
         setTableData()
         setTableHeader()
         setTableFooter()
@@ -62,7 +62,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
          super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.pollCreatedSuccess(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
         setTableData()
-        self.fetchPostData(isFromRefreh: false)
+        //self.fetchPostData(isFromRefreh: false)
         ActivityIndicator.sharedInstance.hideActivityIndicator()
         
     }
@@ -128,27 +128,16 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 }
             }
         }
-//        let indexpath = IndexPath(row: 0, section: 0)
-//        let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
-//        self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
-//        cell?.tableView?.reloadData()
-//        cell?.setTableHeight()
-//        cell?.awakeFromNib()
-//        for i in 0..<self.listPostData.count {
-//            let indexpath = IndexPath(row: i, section: 0)
-//              let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
-//              self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
-//              cell?.tableView?.reloadData()
-//              cell?.setTableHeight()
-//        }
          self.newsFeedTableView.reloadData()
     }
     
     
     func updateCreatedPollData() {
-        self.listPostData.removeAll()
-        self.listPostData = []
-        self.newsFeedTableView.reloadData()
+        DispatchQueue.main.async {
+            self.listPostData.removeAll()
+            self.listPostData = []
+            self.newsFeedTableView.reloadData()
+        }
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
         db.collection("posts").getDocuments { (querySnapshot, err) in
@@ -178,22 +167,14 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
             self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
             cell?.pollTableView?.reloadData()
-            //cell?.setTableHeight()
-            //cell?.awakeFromNib()
         })
         
-        
-//        for i in 0..<self.listPostData.count {
-//            let indexpath = IndexPath(row: i, section: 0)
-//              let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
-//              self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
-//              cell?.pollTableView?.reloadData()
-//              cell?.setTableHeight()
-//        }
-         self.newsFeedTableView.reloadData()
+        DispatchQueue.main.async {
+            self.newsFeedTableView.reloadData()
+           // self.fetchPostData(isFromRefreh: true)
+        }
+         
     }
-    
-    
     
     func datafetchfortest() {
         let db = Firestore.firestore()
@@ -221,9 +202,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     func fetchPostUpdateData(isFromRefreh: Bool) {
         self.listPostData.removeAll()
         if isFromRefreh == true {
-//            ActivityIndicator.sharedInstance.hideActivityIndicator()
-        } else {
-//            ActivityIndicator.sharedInstance.showActivityIndicator()
+         } else {
         }
         let db = Firestore.firestore()
         db.collection("posts").getDocuments { (querySnapshot, err) in
@@ -237,10 +216,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                     print("self.listpostdata---\(self.listPostData.count)")
                 })
                 self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
-                for i in 0..<self.listPostData.count  {
-                    print("printed docs id----\(self.listPostData[i].id)")
-                    print("printed docs uid----\(self.listPostData[i].uid)")
-                }
                 self.newsFeedTableView.reloadData()
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
@@ -407,17 +382,16 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             let pollData = self.listPostData.filter{( $0.post_type == "poll")}
             cell.setPollCellData(data: listPostData[indexPath.row - 1], index: indexPath.row)
+            
             cell.delegate = self
             cell.currentIndex = indexPath.row - 1
-//            cell.awakeFromNib()
-//            cell.setTableHeight()
-//            cell.layoutSubviews()
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
             cell.delegate = self
             let feedData = self.listPostData.filter({$0.post_type == "feed"})
             cell.setCellPostData(data: listPostData[indexPath.row - 1])
+            cell.awakeFromNib()
             return cell
         }
     }
@@ -436,12 +410,14 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
             let db = Firestore.firestore()
             var reportedUserList = data.reportedUserList
-            let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-            let myUserid = strings?["uid"] as? String ?? ""
-            reportedUserList?.append(myUserid)
+            reportedUserList?.append(UserDefaultsCustom.currentUserId)
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["reportedUserList": reportedUserList ?? []]) { error in
                 if error == nil {
+                    let newReportPostdata = PostListDataModel()
+                    newReportPostdata.reportedUserList = reportedUserList
+                    self.listPostData[index] = newReportPostdata
+                    self.newsFeedTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
                     Singleton.shared.showMessage(message: "Reported successfully.", isError: .success)
                 } else {
                     if let error = error {
@@ -450,7 +426,6 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }))
-        
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
             print("no action called")
         }))
@@ -488,6 +463,7 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
                     let image = imageData?.image ?? UIImage()
                     self?.dismiss(animated: false) {
                         let vc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [image], data: nil, isEditPost: false)
+                        vc.hidesBottomBarWhenPushed = true
                         self?.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .error(let message):
@@ -540,15 +516,10 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
     func likePostData(data: PostListDataModel, isLiked: Bool, index: Int) {
         let db = Firestore.firestore()
         var userPostLikedData = data.likedUserList
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        
-        let myUserId = (strings?["uid"] as? String ) ?? ""
         if isLiked == true {
-            userPostLikedData?.append(myUserId)
+            userPostLikedData?.append(UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            
-            
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { error in
                 if error == nil {
@@ -569,11 +540,9 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                 }
             }
         } else {
-            userPostLikedData?.remove(element: myUserId)
-            
+            userPostLikedData?.remove(element: UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
                 if error == nil {
@@ -581,10 +550,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     //                    self.fetchPostData(isFromRefreh: true)
                     self.newsFeedTableView.beginUpdates()
                     let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-                    
                     self.listPostData[index] = newDataForLikeUpdate
-                    
-                    
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
                 } else {
@@ -602,8 +568,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
     }
     
     func moreButton(data: PostListDataModel, index: Int) {
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        if strings?["uid"] as? String ?? "" == data.uid {
+        if UserDefaultsCustom.currentUserId == data.uid {
             //MARK: edit post case---
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
@@ -634,23 +599,21 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             })
         } else {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
-            
             data.reportedUserList?.forEach({ user_id in
-                if user_id == strings?["uid"] as? String ?? "" {
+                if user_id == UserDefaultsCustom.currentUserId {
                     reportOrReported = "Reported"
                     return
                 } else {
                     reportOrReported = AppStrings.reportPost
                 }
             })
-            
             alert.addAction(UIAlertAction(title: reportOrReported, style: .default , handler:{ (UIAlertAction)in
                 print("report post called.")
                 if (data.reportedUserList?.count ?? 0) == 0 {
                     self.reportPost(data: data, index: index)
                 } else {
                     data.reportedUserList?.forEach({ user_id in
-                        if user_id == strings?["uid"] as? String ?? "" {
+                        if user_id == UserDefaultsCustom.currentUserId{
                             return
                         } else {
                             self.reportPost(data: data, index: index)
@@ -670,7 +633,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
     
     func sharePost(data: PostListDataModel, postImage: UIImage) {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        var name = strings?["name"] ?? ""
+        let name = strings?["name"] ?? ""
         var addressText = "\(name) shared poll file:"
         let postTitle = data.postDescription ?? ""
         addressText += "\n\n\(postTitle)"
@@ -686,10 +649,8 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
     func likePostDatas(data: PostListDataModel, isLiked: Bool, index: Int) {
         let db = Firestore.firestore()
         var userPostLikedData = data.likedUserList
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        let myUserId = (strings?["uid"] as? String ) ?? ""
         if isLiked == true {
-            userPostLikedData?.append(myUserId)
+            userPostLikedData?.append(UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
             newDataForLikeUpdate.likedUserList = userPostLikedData
             let userPostCollection = db.collection("posts").document(data.id ?? "")
@@ -706,8 +667,8 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
                 }
             }
         } else {
-            userPostLikedData?.remove(element: myUserId)
-            var newDataForLikeUpdate = PostListDataModel()
+            userPostLikedData?.remove(element: UserDefaultsCustom.currentUserId)
+            let newDataForLikeUpdate = PostListDataModel()
             newDataForLikeUpdate.likedUserList = userPostLikedData
             let userPostCollection = db.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
@@ -731,9 +692,7 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         print("selected index is -----\(selectedIndex)")
         var VotedUserList = [String]()
         VotedUserList = data.voted_user_list ?? []
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        let myUserId = (strings?["uid"] as? String ) ?? ""
-        VotedUserList.append(myUserId)
+        VotedUserList.append(UserDefaultsCustom.currentUserId)
         var votedOptionArray = [Int]()
         for i in 0..<(data.selectedAnswerCount?.count ?? 0) {
             if i == selectedIndex {
@@ -763,40 +722,11 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
         userPostCollection.updateData(["selectedAnswer": [], "selectedAnswerCount": votedOptionArray, "voted_user_list": VotedUserList, "selectedAnserIndex": selectedIndex]) { error in
             if error == nil {
                 Singleton.shared.showMessage(message: "voted", isError: .success)
-               // self.newsFeedTableView.beginUpdates()
-                print("selected update index---\(self.selectedPostIndex ?? 0)")
-//                let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-//                self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
-                //self.listPostData.removeAll()
-               // self.fetchPostData(isFromRefreh: false)
-                //self.newsFeedTableView.endUpdates()
-//                self.selectedPostIndex = currentPostIndex
-//                self.fetchPostUpdateData(isFromRefreh: false)
-                
-    
-                
                 DispatchQueue.main.async {
                     let indexpath = IndexPath(row: currentPostIndex + 1 , section: 0)
                     self.listPostData[currentPostIndex] = newPollData
                     self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
                 }
-                
-//                let cell = self.newsFeedTableView.cellForRow(at: indexpath) as? PollResultTableCell
-//
-//                cell?.setPollCellData(data: newPollData, index: currentPostIndex)
-//                cell?.pollTableView?.reloadData()
-//                cell?.setTableHeight()
-                
-                //self.datafetchfortest()
-                
-                //self.fetchPostUpdateData(isFromRefreh: false)
-                //self.newsFeedTableView.scrollToRow(at: indexpath, at: .none, animated: false)
-                
-              
-//                
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-//                    
-//                })
             } else {
                 if let error = error {
                     Singleton.shared.showMessage(message: error.localizedDescription , isError: .error)
@@ -813,12 +743,8 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
     }
     
     func pollMoreButton(data: PostListDataModel, index: Int) {
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        if strings?["uid"] as? String ?? "" == data.uid {
+        if UserDefaultsCustom.currentUserId == data.uid {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
-            //            alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
-            //                print("edit poll called.")
-            //            }))
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
                 print("delete post called.")
                 let db = Firestore.firestore()
@@ -831,17 +757,6 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
                 db.collection("posts").document(data.id ?? "").delete() { err in
                     if err == nil {
                         self.fetchPostData(isFromRefreh: false)
-//                        self.newsFeedTableView.beginUpdates()
-//                        self.listPostData.remove(at: index)
-//                        self.newsFeedTableView.endUpdates()
-                        //self.datafetchfortest()
-                        
-//                        self.newsFeedTableView.beginUpdates()
-//                        if let i = self.listPostData.firstIndex(of: data) {
-//                            self.listPostData.remove(at: i)
-//                        }
-                        //self.newsFeedTableView.endUpdates()
-                        
                         Singleton.shared.showMessage(message: "Post deleted successfully.", isError: .success)
                     } else {
                         if let err = err {
@@ -857,17 +772,26 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
             })
         } else {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
-            if strings?["uid"] as? String ?? "" == data.uid {
-                reportOrReported = "Reported"
-            } else {
-                reportOrReported = AppStrings.reportPost
-            }
-            alert.addAction(UIAlertAction(title: AppStrings.reportPost, style: .default , handler:{ (UIAlertAction)in
-                print("report poll called.")
-                if strings?["uid"] as? String ?? "" == data.uid {
+            data.reportedUserList?.forEach({ user_id in
+                if user_id == UserDefaultsCustom.currentUserId {
+                    reportOrReported = "Reported"
                     return
                 } else {
+                    reportOrReported = AppStrings.reportPost
+                }
+            })
+            alert.addAction(UIAlertAction(title: reportOrReported, style: .default , handler:{ (UIAlertAction)in
+                print("report poll called.")
+                if (data.reportedUserList?.count ?? 0) == 0 {
                     self.reportPost(data: data, index: index)
+                } else {
+                    data.reportedUserList?.forEach({ user_id in
+                        if user_id == UserDefaultsCustom.currentUserId{
+                            return
+                        } else {
+                            self.reportPost(data: data, index: index)
+                        }
+                    })
                 }
             }))
             alert.addAction(UIAlertAction(title: AppStrings.dismiss, style: .cancel, handler:{ (UIAlertAction)in

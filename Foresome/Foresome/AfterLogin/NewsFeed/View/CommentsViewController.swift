@@ -71,13 +71,11 @@ class CommentsViewController: UIViewController {
 //                    self.listPostData.append(allPostData)
 //                    print("self.listpostdata---\(self.listPostData.count)")
 //                })
-//
 //                self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
 //                for i in 0..<self.listPostData.count  {
 //                    print("printed docs id----\(self.listPostData[i].id)")
 //                    print("printed docs uid----\(self.listPostData[i].uid)")
 //                }
-//
 //                self.newsFeedTableView.reloadData()
 //                ActivityIndicator.sharedInstance.hideActivityIndicator()
 //            } else {
@@ -138,7 +136,7 @@ class CommentsViewController: UIViewController {
          
         let db = Firestore.firestore()
          let userPostCollection = db.collection("posts").document(listPostData.id ?? "")
-        userPostCollection.setData(["comments": self.arrayOfDic], merge: true) { error in
+        userPostCollection.updateData(["comments": self.arrayOfDic]) { error in
             if error == nil {
                 Singleton.shared.showMessage(message: "Commented successfully.", isError: .success)
                 self.listPostData.comments?.append(addedCooments)
