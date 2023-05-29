@@ -494,7 +494,6 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
             }
         }
     }
-    
     //MARK: code for create new poll----
     func pollBtnAction() {
         let pollVc = CreatePollPresenter.createPollModule()
