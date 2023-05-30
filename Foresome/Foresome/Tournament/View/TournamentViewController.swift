@@ -47,6 +47,7 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         guard headerView == nil else { return }
         let height: CGFloat = 152
         let view = UIView.initView(view: TestTableHeader.self)
+        view.delegate = self
         view.setHeaderData()
         self.tournamentTableView.setStrachyHeader(header: view, height: height)
     }
@@ -98,3 +99,14 @@ extension TournamentViewController: UIScrollViewDelegate {
         self.tournamentTableView.setStrachyHeader()
     }
 }
+
+
+extension TournamentViewController: TestTableHeaderDelegate  {
+    func notificationBtnAction() {
+        let notificationVc = NotificationPresenter.createNotificationModule()
+        notificationVc.hidesBottomBarWhenPushed = true
+        self.pushViewController(notificationVc, false)
+    }
+    
+}
+

@@ -13,7 +13,23 @@ class FilterTableViewCell: UITableViewCell {
     @IBOutlet weak var filterView: UIView!
     
     
+    @IBOutlet weak var searchField: UITextField!
+    
+    
+    
+    @IBOutlet weak var filterIcon: UIButton!
+    
+    
+    
+    @IBOutlet weak var sortByLabel: UILabel!
+    
+    
+    
+    
     @IBOutlet weak var sortView: UIView!
+    
+    
+    @IBOutlet weak var sortSelectedButton: UIButton!
     
     
     
@@ -26,8 +42,12 @@ class FilterTableViewCell: UITableViewCell {
     }
     
     
-    
-    
-    
+    func setCellData(isSelected: Bool) {
+        if isSelected == true {
+            self.sortSelectedButton.isSelected = true
+        } else {
+            self.sortSelectedButton.isSelected = false
+        }
+    }
     
 }

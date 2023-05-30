@@ -51,49 +51,100 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        postDescriptionLbl.message = AppStrings.description
+        print("loged in user id---\(UserDefaultsCustom.currentUserId)")
+        //postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.numberOfLines = 0
         postDescriptionLbl.delegate = self
         addTapGuesture()
     }
 
     func addTapGuesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImage))
-        self.imageWholeStack.isUserInteractionEnabled = true
-        self.imageWholeStack.addGestureRecognizer(tap)
-        tap.delegate = self
-        tap.numberOfTapsRequired = 1
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImageOne))
+        self.imageOne.isUserInteractionEnabled = true
+        self.imageOne.addGestureRecognizer(tap2)
+        tap2.delegate = self
+        tap2.numberOfTapsRequired = 1
+        
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImageTwo))
+        self.imageTwo.isUserInteractionEnabled = true
+        self.imageTwo.addGestureRecognizer(tap3)
+        tap3.delegate = self
+        tap3.numberOfTapsRequired = 1
+        
+        let tap4 = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImageThree))
+        self.imageThree.isUserInteractionEnabled = true
+        self.imageThree.addGestureRecognizer(tap4)
+        tap4.delegate = self
+        tap4.numberOfTapsRequired = 1
+        
+        let tap5 = UITapGestureRecognizer(target: self, action: #selector(self.tapForViewImageThree))
+        self.thirdImageBgView.isUserInteractionEnabled = true
+        self.thirdImageBgView.addGestureRecognizer(tap5)
+        tap5.delegate = self
+        tap5.numberOfTapsRequired = 1
     }
     
-    @objc func tapForViewImage() {
-        print("image tap guesture called.")
+    @objc func tapForViewImageOne() {
         let urls = postdata?.image ?? []
-        var arrayOfUrl = [URL]()
-        arrayOfUrl.removeAll()
+        var arrayOfUrl: [URL]?
+        arrayOfUrl = []
         for i in 0..<(postdata?.image?.count ?? 0) {
             if let ulr = URL(string: postdata?.image?[i] ?? "") {
-                arrayOfUrl.append(ulr)
+                arrayOfUrl?.append(ulr)
             }
         }
-        if postdata?.image?.count ?? 0 == 1 {
-            imageOne.setupImageViewer(urls: arrayOfUrl)
-        } else if postdata?.image?.count ?? 0 == 2 {
-            imageOne.setupImageViewer(urls: arrayOfUrl)
-            imageTwo.setupImageViewer(urls: arrayOfUrl)
-        } else {
-            imageOne.setupImageViewer(urls: arrayOfUrl)
-            imageTwo.setupImageViewer(urls: arrayOfUrl)
-            imageThree.setupImageViewer(urls: arrayOfUrl)
-        }
-        arrayOfUrl.removeAll()
+        imageOne.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 0)
+        arrayOfUrl?.removeAll()
         arrayOfUrl = []
+        arrayOfUrl =  nil
+    }
+    
+    func forimagedisplay(data: PostListDataModel) {
+        let urls = postdata?.image ?? []
+        var arrayOfUrl: [URL]?
+        arrayOfUrl = []
+        for i in 0..<(postdata?.image?.count ?? 0) {
+            if let ulr = URL(string: postdata?.image?[i] ?? "") {
+                arrayOfUrl?.append(ulr)
+            }
+        }
+        imageOne.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 0)
+        imageTwo.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 1)
+        imageThree.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 2)
+    }
+      
+    @objc func tapForViewImageTwo() {
+        let urls = postdata?.image ?? []
+        var arrayOfUrl: [URL]?
+        arrayOfUrl = []
+        for i in 0..<(postdata?.image?.count ?? 0) {
+            if let ulr = URL(string: postdata?.image?[i] ?? "") {
+                arrayOfUrl?.append(ulr)
+            }
+        }
+        imageTwo.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 1)
+        arrayOfUrl?.removeAll()
+        arrayOfUrl = []
+        arrayOfUrl =  nil
+    }
+    
+    @objc func tapForViewImageThree() {
+        let urls = postdata?.image ?? []
+        var arrayOfUrl: [URL]?
+        arrayOfUrl = []
+        for i in 0..<(postdata?.image?.count ?? 0) {
+            if let ulr = URL(string: postdata?.image?[i] ?? "") {
+                arrayOfUrl?.append(ulr)
+            }
+        }
+        imageThree.setupImageViewer(urls: arrayOfUrl ?? [], initialIndex: 2)
+        arrayOfUrl?.removeAll()
+        arrayOfUrl = []
+        arrayOfUrl =  nil
     }
      
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
-       addTapGuesture()
-        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        let myUserId = (stringss?["uid"] as? String ) ?? ""
         self.postdata = data
         self.userNameLbl.text = "\(data.author ?? "")"
         if data.likedUserList?.count == 0 {
@@ -101,7 +152,7 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
             self.isLikedPost =  false
         } else {
             data.likedUserList?.forEach({ fetchedUserId in
-                if fetchedUserId == myUserId {
+                if fetchedUserId == UserDefaultsCustom.currentUserId {
                     self.likeBtn.isSelected = true
                     self.isLikedPost =  true
                 } else {

@@ -58,6 +58,7 @@ class ProfileVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
         guard  headerView == nil else { return }
         let height: CGFloat = 136
         let view = UIView.initView(view: ProfileHeader.self)
+        view.delegate = self
         view.setHeaderData()
         self.profileTableView.setStrachyHeader(header: view, height: height)
     }
@@ -226,5 +227,14 @@ extension ProfileVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.profileTableView.setStrachyHeader()
     }
+}
+
+extension ProfileVC: ProfileHeaderDelegate {
+    func notificationbtnAction() {
+        let notificationVc = NotificationPresenter.createNotificationModule()
+        notificationVc.hidesBottomBarWhenPushed = true
+        self.pushViewController(notificationVc, false)
+    }
+    
 }
 

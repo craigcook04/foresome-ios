@@ -9,8 +9,9 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
-    
     @IBOutlet weak var filterTableView: UITableView!
+    
+    var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +19,19 @@ class FilterViewController: UIViewController {
     }
     
     func setTableData() {
-        
         filterTableView.delegate =  self
         filterTableView.dataSource =  self
         filterTableView.register(cellClass: FilterTableViewCell.self)
-        //filterTableView.register(UINib(nibName: "FilterSectionHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "FilterSectionHeader")
-        
     }
+    
+    @IBAction func resetAction(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+
+    @IBAction func applyAction(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
+    
 }
 
 
@@ -47,30 +54,41 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
         if  indexPath.section == 0 {
             cell.sortView.isHidden = true
             cell.filterView.isHidden = false
+            cell.searchField.placeholder = FilterData.filterArray[indexPath.row].filterPlaceHolder
+            cell.filterIcon.setImage(FilterData.filterArray[indexPath.row].filterByIcon, for: .normal)
+            
         } else {
             cell.sortView.isHidden = false
             cell.filterView.isHidden = true
+            cell.sortByLabel.text = FilterData.sortByData[indexPath.row]
+            cell.setCellData(isSelected: selectedIndex == indexPath.row)
+            
         }
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = self.filterTableView.dequeueReusableHeaderFooterView(withIdentifier: "FilterSectionHeader" ) as? FilterSectionHeader
-//       // headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 56)
-//        return headerView
-//
-        
         let view = UIView.initView(view: FilterSectionHeader.self)
         view.delegate = self
-        
+        if section == 0 {
+            view.closeButton.isHidden = false
+            view.headerTitle.text = "Filter by"
+        } else {
+            view.closeButton.isHidden = true
+            view.headerTitle.text = "Sort by"
+        }
         return view
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 56
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.row
+        self.filterTableView.reload(section: 1, animation: .none)
+    }
+    
 }
 
 extension FilterViewController : FilterSectionHeaderDelegate {

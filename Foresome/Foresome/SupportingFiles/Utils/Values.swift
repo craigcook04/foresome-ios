@@ -90,6 +90,13 @@ struct AppStrings {
     static let tutorialDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
     static let tutorialDescription2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
     static let tutorialDescription3 =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
+    
+    static let searchByName = "Search friend by name..."
+    
+    static let selectLocation = "Select location"
+    
+    static let selectTournaments =  "Select tournament"
+    
 }
 
 struct Messages {

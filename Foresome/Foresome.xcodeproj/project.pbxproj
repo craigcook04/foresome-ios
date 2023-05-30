@@ -215,6 +215,11 @@
 		7E96B82C29ED1DE7005F8781 /* StrachyHeaderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */; };
 		7E96B83129ED3EE7005F8781 /* TestTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */; };
 		7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */; };
+		7EA402072A2495A2008CC248 /* SearchSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA402062A2495A2008CC248 /* SearchSectionHeader.swift */; };
+		7EA402092A2495B3008CC248 /* SearchSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA402082A2495B3008CC248 /* SearchSectionHeader.xib */; };
+		7EA4020C2A249E07008CC248 /* LeaderBoardSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA4020B2A249E07008CC248 /* LeaderBoardSectionHeader.swift */; };
+		7EA4020E2A249E2F008CC248 /* LeaderBoardSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA4020D2A249E2E008CC248 /* LeaderBoardSectionHeader.xib */; };
+		7EA402102A24AEFD008CC248 /* FilterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA4020F2A24AEFD008CC248 /* FilterDataModel.swift */; };
 		7EA8221529D41DD800755016 /* TournamentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8220B29D41DD800755016 /* TournamentTableCell.swift */; };
 		7EA8221629D41DD800755016 /* TournamentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220C29D41DD800755016 /* TournamentTableCell.xib */; };
 		7EA8221729D41DD800755016 /* TournamentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8220E29D41DD800755016 /* TournamentHeader.xib */; };
@@ -467,6 +472,11 @@
 		7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrachyHeaderTable.swift; sourceTree = "<group>"; };
 		7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableHeader.swift; sourceTree = "<group>"; };
 		7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableHeader.xib; sourceTree = "<group>"; };
+		7EA402062A2495A2008CC248 /* SearchSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionHeader.swift; sourceTree = "<group>"; };
+		7EA402082A2495B3008CC248 /* SearchSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionHeader.xib; sourceTree = "<group>"; };
+		7EA4020B2A249E07008CC248 /* LeaderBoardSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardSectionHeader.swift; sourceTree = "<group>"; };
+		7EA4020D2A249E2E008CC248 /* LeaderBoardSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderBoardSectionHeader.xib; sourceTree = "<group>"; };
+		7EA4020F2A24AEFD008CC248 /* FilterDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataModel.swift; sourceTree = "<group>"; };
 		7EA8220B29D41DD800755016 /* TournamentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentTableCell.swift; sourceTree = "<group>"; };
 		7EA8220C29D41DD800755016 /* TournamentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentTableCell.xib; sourceTree = "<group>"; };
 		7EA8220E29D41DD800755016 /* TournamentHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TournamentHeader.xib; sourceTree = "<group>"; };
@@ -1535,6 +1545,24 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		7EA402052A249530008CC248 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EA402062A2495A2008CC248 /* SearchSectionHeader.swift */,
+				7EA402082A2495B3008CC248 /* SearchSectionHeader.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EA4020A2A249DCF008CC248 /* LeaderBoard */ = {
+			isa = PBXGroup;
+			children = (
+				7EA4020B2A249E07008CC248 /* LeaderBoardSectionHeader.swift */,
+				7EA4020D2A249E2E008CC248 /* LeaderBoardSectionHeader.xib */,
+			);
+			path = LeaderBoard;
+			sourceTree = "<group>";
+		};
 		7EA8220929D41DD800755016 /* Tournament */ = {
 			isa = PBXGroup;
 			children = (
@@ -1626,6 +1654,7 @@
 		7EBFBA942A1794E600D04D53 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				7EA402052A249530008CC248 /* View */,
 				7EBFBA952A17950A00D04D53 /* SearchViewController.swift */,
 				7EBFBA962A17950A00D04D53 /* SearchViewController.xib */,
 			);
@@ -1663,6 +1692,7 @@
 		7EBFBAA42A1881D900D04D53 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				7EA4020A2A249DCF008CC248 /* LeaderBoard */,
 				7EBFBAA52A18820900D04D53 /* FilterSectionHeader.swift */,
 				7EBFBAA72A18829800D04D53 /* FilterSectionHeader.xib */,
 			);
@@ -1672,6 +1702,7 @@
 		7ECD27882A175C77000D6497 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7EA4020F2A24AEFD008CC248 /* FilterDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1889,6 +1920,7 @@
 				4B75986529C3352800A8E1B6 /* CustomPickerController.xib in Resources */,
 				4B68F32029C3463800D80A85 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				4BEB7CD729E6BEC3009635A0 /* ProfileVC.xib in Resources */,
+				7EA4020E2A249E2F008CC248 /* LeaderBoardSectionHeader.xib in Resources */,
 				4B75984329C3352700A8E1B6 /* Lato-Bold.ttf in Resources */,
 				4B4B078129CB278300881790 /* ProfilePictureViewController.xib in Resources */,
 				4B75984429C3352700A8E1B6 /* Lato-Black.ttf in Resources */,
@@ -1914,6 +1946,7 @@
 				4B6A6D5729CC1A8500CF44EC /* SkillLevelViewController.xib in Resources */,
 				4B68F32129C3463800D80A85 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				7EBFBA982A17950A00D04D53 /* SearchViewController.xib in Resources */,
+				7EA402092A2495B3008CC248 /* SearchSectionHeader.xib in Resources */,
 				7EBFBA932A178AC200D04D53 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2113,6 +2146,7 @@
 				4BF8789429DD485C00BF9E86 /* CreatePostViewController.swift in Sources */,
 				4B708B8E29D6E72F00C57A16 /* GrowingTextView.swift in Sources */,
 				7E96B82C29ED1DE7005F8781 /* StrachyHeaderTable.swift in Sources */,
+				7EA402072A2495A2008CC248 /* SearchSectionHeader.swift in Sources */,
 				7EBFBA922A178AC200D04D53 /* FriendsTableViewCell.swift in Sources */,
 				4B76005729CB169100D1FE70 /* Helpers.swift in Sources */,
 				4B75986729C3352800A8E1B6 /* UIView+Custom.swift in Sources */,
@@ -2125,9 +2159,11 @@
 				7E5338DC29E3D4DF001E3D9E /* TournamentsListPresenter.swift in Sources */,
 				4B75987429C3352800A8E1B6 /* UIFont+Custom.swift in Sources */,
 				4B236FEA29E914EF00E36E6A /* LogoutViewController.swift in Sources */,
+				7EA4020C2A249E07008CC248 /* LeaderBoardSectionHeader.swift in Sources */,
 				4BCEC4B429D6F98A003A7BB6 /* ForgotProtocol.swift in Sources */,
 				4B8C273229CAD6F0008D1880 /* SignUpViewController.swift in Sources */,
 				4BCEC4C429D6FB08003A7BB6 /* ProfilePresenter.swift in Sources */,
+				7EA402102A24AEFD008CC248 /* FilterDataModel.swift in Sources */,
 				4BE7C09F29D1856C00F47F4A /* TournamentDetailViewController.swift in Sources */,
 				4B594EA729DAA89F0078794A /* NewsFeedViewController.swift in Sources */,
 				4BFF0BCC29E6CA8D00BD888A /* UserProfileProtocol.swift in Sources */,

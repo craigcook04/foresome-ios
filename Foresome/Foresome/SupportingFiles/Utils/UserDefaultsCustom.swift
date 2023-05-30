@@ -24,6 +24,12 @@ struct UserDefaultsCustom {
         return UserDefaults.standard.value(forKey: "firstTimeOpen") == nil
     }
     
+    
+    static var currentUserId : String {
+        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        return (stringss?["uid"] as? String ) ?? ""
+    }
+    
     static func setValue(value:Any?, for key:String) {
         UserDefaults.standard.setValue(value, forKey: key)
     }
@@ -68,6 +74,7 @@ struct UserDefaultsCustom {
         }
         return nil
     }
+    
 }
    
 extension UserDefaults {

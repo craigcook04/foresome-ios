@@ -58,13 +58,15 @@ class PollResultTableCell: UITableViewCell {
     }
     
     func setPollCellData(data: PostListDataModel, index: Int) {
-        let stringss = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        let myUserId = (stringss?["uid"] as? String ) ?? ""
         self.pollData = data
         self.currentIndex = index
         setDateData(data: data)
         //setTableHeight()
-        self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
+        if (data.voted_user_list?.count ?? 0) > 1 {
+            self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
+        } else {
+            self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) vote"
+        }
         self.userNameLbl.text = "\(data.author ?? "")"
         self.profileImage.image = data.profileImage?.base64ToImage()
         self.postDescriptionLbl.message = data.poll_title ?? ""
@@ -76,7 +78,7 @@ class PollResultTableCell: UITableViewCell {
             self.isLikedPoll =  false
         } else {
             data.likedUserList?.forEach({ fetchedUserId in
-                if fetchedUserId == myUserId {
+                if fetchedUserId == UserDefaultsCustom.currentUserId {
                     self.likeBtn.isSelected = true
                     self.isLikedPoll =  true
                 } else {
@@ -86,10 +88,8 @@ class PollResultTableCell: UITableViewCell {
             })
         }
         
-        
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         for i in 0..<(data.voted_user_list?.count ?? 0) {
-            if data.voted_user_list?[i] ?? "" == (strings?["uid"] as? String ) ?? "" {
+            if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
                 print("data-----\(data.poll_title)")
                 self.isAnswer = true
             } else {

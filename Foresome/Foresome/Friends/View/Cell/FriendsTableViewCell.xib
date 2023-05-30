@@ -18,7 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="74" id="KGk-i7-Jjw" customClass="FriendsTableViewCell" customModule="Foresome" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="0.0" id="KGk-i7-Jjw" customClass="FriendsTableViewCell" customModule="Foresome" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -26,26 +26,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-b0-kmR">
-                        <rect key="frame" x="24" y="8" width="40" height="40"/>
+                        <rect key="frame" x="24" y="16" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Lw0-fw-w4y"/>
                             <constraint firstAttribute="height" constant="40" id="RKT-2U-aLh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Oliver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON9-1K-RoB">
-                        <rect key="frame" x="80" y="8" width="94" height="23"/>
+                        <rect key="frame" x="80" y="16" width="94" height="23"/>
                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                         <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joined on 7, Mar 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weg-3L-lBz">
-                        <rect key="frame" x="80" y="31" width="94" height="17"/>
+                        <rect key="frame" x="80" y="39" width="94" height="17"/>
                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                         <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ng1-Qe-w9d">
-                        <rect key="frame" x="184" y="8" width="112" height="40"/>
+                        <rect key="frame" x="184" y="16" width="112" height="40"/>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.98039215686274506" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="7fP-Mw-hto"/>
@@ -62,9 +62,12 @@
                                 <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="addFriendsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AK2-0L-6hT"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rzy-7z-7VJ">
-                        <rect key="frame" x="80" y="64" width="216" height="1"/>
+                        <rect key="frame" x="80" y="72" width="216" height="1"/>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Kck-4j-5Ra"/>
@@ -83,12 +86,15 @@
                     <constraint firstItem="ON9-1K-RoB" firstAttribute="top" secondItem="NJa-b0-kmR" secondAttribute="top" id="jbV-VA-ROo"/>
                     <constraint firstAttribute="trailing" secondItem="ng1-Qe-w9d" secondAttribute="trailing" constant="24" id="q1W-Dz-KDs"/>
                     <constraint firstItem="ng1-Qe-w9d" firstAttribute="centerY" secondItem="NJa-b0-kmR" secondAttribute="centerY" id="vXt-Mh-zTB"/>
-                    <constraint firstItem="NJa-b0-kmR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wEu-qJ-IAX"/>
+                    <constraint firstItem="NJa-b0-kmR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="wEu-qJ-IAX"/>
                     <constraint firstItem="ng1-Qe-w9d" firstAttribute="leading" secondItem="ON9-1K-RoB" secondAttribute="trailing" constant="10" id="x1E-Nx-eXL"/>
                     <constraint firstItem="Rzy-7z-7VJ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="y9i-0Q-4Hj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addFriendsButton" destination="ng1-Qe-w9d" id="uRG-Pz-wmf"/>
+            </connections>
             <point key="canvasLocation" x="60" y="42.654028436018955"/>
         </tableViewCell>
     </objects>

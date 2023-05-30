@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
+                <outlet property="searchButton" destination="f5c-ne-xAE" id="rTY-6m-G5c"/>
+                <outlet property="searchTableView" destination="j4z-BA-r8L" id="bed-6N-lnB"/>
+                <outlet property="searchTextField" destination="S5N-Oc-9l9" id="Zov-8A-lAx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -51,6 +54,9 @@
                             <state key="normal" image="ic_search">
                                 <color key="titleColor" red="0.25098039220000001" green="0.80392156859999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="serchAction:" destination="-1" eventType="touchUpInside" id="ckF-oX-fhs"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search user by name…" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S5N-Oc-9l9">
                             <rect key="frame" x="61" y="21.666666666666671" width="241" height="18.666666666666671"/>
@@ -73,11 +79,19 @@
                         <constraint firstItem="n4x-Lw-mca" firstAttribute="top" secondItem="Aip-QF-r1a" secondAttribute="bottom" constant="16" id="qlE-iU-FZZ"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="j4z-BA-r8L">
+                    <rect key="frame" x="0.0" y="110" width="390" height="700"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="j4z-BA-r8L" secondAttribute="bottom" id="9sF-bQ-4tR"/>
                 <constraint firstItem="s4s-05-P4B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DJg-cn-va4"/>
+                <constraint firstItem="j4z-BA-r8L" firstAttribute="top" secondItem="s4s-05-P4B" secondAttribute="bottom" id="Pm7-d4-nmv"/>
+                <constraint firstItem="j4z-BA-r8L" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d0E-MB-Mjd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="j4z-BA-r8L" secondAttribute="trailing" id="s0y-c5-eYq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s4s-05-P4B" secondAttribute="trailing" id="vj9-5T-1a8"/>
                 <constraint firstItem="s4s-05-P4B" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zDR-4z-qAr"/>
             </constraints>

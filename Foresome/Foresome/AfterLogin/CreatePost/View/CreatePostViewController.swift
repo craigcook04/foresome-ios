@@ -143,6 +143,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
         creatPostData.postImages = self.imageSelect
         creatPostData.createdDate = self.data?.createdAt ?? ""
         creatPostData.postId = self.data?.id ?? ""
+        creatPostData.postDescription = creatPostData.postDescription
         self.navigationController?.popViewController(animated: false, completion: {
             self.delegate?.uploadProgress(data: self.creatPostData, isEditProfile: self.isEditProfile ?? false)
         })
