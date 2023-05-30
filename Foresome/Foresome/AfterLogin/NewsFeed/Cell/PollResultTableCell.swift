@@ -61,7 +61,6 @@ class PollResultTableCell: UITableViewCell {
         self.pollData = data
         self.currentIndex = index
         setDateData(data: data)
-        //setTableHeight()
         if (data.voted_user_list?.count ?? 0) > 1 {
             self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
         } else {
@@ -72,7 +71,6 @@ class PollResultTableCell: UITableViewCell {
         self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
-        
         if data.likedUserList?.count == 0 {
             self.likeBtn.isSelected = false
             self.isLikedPoll =  false
@@ -87,16 +85,17 @@ class PollResultTableCell: UITableViewCell {
                 }
             })
         }
-        
         for i in 0..<(data.voted_user_list?.count ?? 0) {
             if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
-                print("data-----\(data.poll_title)")
+                print("data-----\(data.poll_title ?? "")")
                 self.isAnswer = true
             } else {
                 self.isAnswer = false
             }
         }
-        self.pollTableView.reloadData()
+        DispatchQueue.main.async {
+            self.pollTableView.reloadData()
+        }
         self.layoutIfNeeded()
         self.layoutSubviews()
         //self.setTableHeight()
@@ -105,6 +104,7 @@ class PollResultTableCell: UITableViewCell {
     func  setTableHeight() {
         if let data = pollData {
             if let tableHeight = data.poll_options?.count {
+                print("table height is equal is ===\(tableHeight)")
                // self.tableViewHeight.constant = CGFloat((tableHeight *  64))
             }
         }
