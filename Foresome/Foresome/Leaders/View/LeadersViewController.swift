@@ -17,7 +17,7 @@ import FirebaseFirestore
 import Firebase
 
 class LeadersViewController: UIViewController {
-   
+    
     @IBOutlet weak var leaderBoardTable: StrachyHeaderTable!
     
     weak var headerView: TestTableHeader?
@@ -39,31 +39,19 @@ class LeadersViewController: UIViewController {
         setTableHeader()
     }
     
-    
     func fetchMembersData() {
         let db = Firestore.firestore()
-        
-        
-        
-        
         db.collection("users").getDocuments { (querySnapshot, err) in
             ActivityIndicator.sharedInstance.hideActivityIndicator()
-            querySnapshot?.documents.enumerated().forEach({ (index,document) in
+            querySnapshot?.documents.enumerated().forEach({ (index, document) in
                 print("docs id is ----\(document.documentID)")
-                
-                
                 let membersData =  document.data()
-                
                 print("membersData is ---\(membersData.description)")
-                
-                
-                
                 //let tournamentsModel = TournamentModel(json: tournament)
                 //self.listTournamentsData.append(tournamentsModel)
             })
         }
     }
-    
     
     func setTableHeader() {
         guard headerView == nil else { return }
@@ -76,11 +64,8 @@ class LeadersViewController: UIViewController {
 }
 
 extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,15 +94,12 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 break
             }
-            
         } else {
             cell.lowRankview.isHidden = false
             cell.topRankView.isHidden = true
         }
         return cell
     }
-    
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
@@ -127,9 +109,7 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return nil
         }
-        
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
@@ -137,11 +117,7 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return 0.001
         }
-        
-       
     }
-    
-    
 }
 
 extension LeadersViewController: UIScrollViewDelegate {
@@ -158,13 +134,11 @@ extension LeadersViewController: TestTableHeaderDelegate {
     }
 }
 
-
 extension LeadersViewController: LeaderBoardSectionHeaderDelegate {
     func selectFilter() {
-         let filterVc = FilterViewController()
+        let filterVc = FilterViewController()
         self.present(filterVc, false)
     }
-    
 }
 
 

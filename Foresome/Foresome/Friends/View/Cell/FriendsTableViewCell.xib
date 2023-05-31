@@ -25,12 +25,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-b0-kmR">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-b0-kmR">
                         <rect key="frame" x="24" y="16" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Lw0-fw-w4y"/>
                             <constraint firstAttribute="height" constant="40" id="RKT-2U-aLh"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Oliver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON9-1K-RoB">
                         <rect key="frame" x="80" y="16" width="94" height="23"/>
@@ -94,11 +105,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addFriendsButton" destination="ng1-Qe-w9d" id="uRG-Pz-wmf"/>
+                <outlet property="joinedDate" destination="weg-3L-lBz" id="ufL-4n-mZE"/>
+                <outlet property="userName" destination="ON9-1K-RoB" id="gfv-V7-sbJ"/>
+                <outlet property="userProfile" destination="NJa-b0-kmR" id="cs4-zs-mqM"/>
             </connections>
             <point key="canvasLocation" x="60" y="42.654028436018955"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user" width="64" height="64"/>
+        <image name="ic_profile_placeholder" width="216" height="216"/>
     </resources>
 </document>

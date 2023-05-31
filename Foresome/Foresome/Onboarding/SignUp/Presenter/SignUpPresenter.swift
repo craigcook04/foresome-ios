@@ -66,7 +66,7 @@ class SignUpPresenter: SignUpViewPresenter {
             if (error == nil) {
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
                 let db = Firestore.firestore()
-                db.collection("users").document(result!.user.uid).setData(["name":"\(fullName)", "email":"\(email)", "createdDate:":"\(String(describing: Date().localToUtc))", "uid": result!.user.uid, "user_location":"", "user_profile_pic":"", "user_skill_level":""])
+                db.collection("users").document(result!.user.uid).setData(["name":"\(fullName)", "email":"\(email)", "createdDate:":"\(Date().localToUtc ?? Date())", "uid": result!.user.uid, "user_location":"", "user_profile_pic":"", "user_skill_level":""])
                 UserDefaultsCustom.setValue(value: result!.user.uid, forKey: "user_uid")
                 db.collection("users").document(result!.user.uid).getDocument { (snapData, error) in
                     if let data = snapData?.data() {

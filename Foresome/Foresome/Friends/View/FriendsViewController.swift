@@ -19,6 +19,8 @@ import Firebase
 class FriendsViewController: UIViewController {
     
     @IBOutlet weak var friendsTableView: StrachyHeaderTable!
+     
+    var listUserData =  [UserListModel]()
     
     weak var headerView: FriendsTableHeader?
     
@@ -42,26 +44,21 @@ class FriendsViewController: UIViewController {
     }
     
     func fetchMembersData() {
+        self.listUserData.removeAll()
+        self.listUserData = []
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()
-        db.collection("friends").getDocuments { (querySnapshot, err) in
+        db.collection("users").getDocuments { (querySnapshot, err) in
             ActivityIndicator.sharedInstance.hideActivityIndicator()
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
-                print("docs id is ----\(document.documentID)")
-                
-                
                 let membersData =  document.data()
-                
-                print("membersData is ---\(membersData.description)")
-                
-                
-                
-                //let tournamentsModel = TournamentModel(json: tournament)
-                //self.listTournamentsData.append(tournamentsModel)
+                let userlistdata = UserListModel(json: membersData)
+                self.listUserData.append(userlistdata)
             })
+            self.friendsTableView.reloadData()
         }
+        self.friendsTableView.reloadData()
     }
-    
-    
     
     func setTableHeader() {
         guard headerView == nil else { return }
@@ -75,12 +72,14 @@ class FriendsViewController: UIViewController {
 
 extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return listUserData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: FriendsTableViewCell.self, for: indexPath)
         cell.setCellData(isMemberData: isMembersdata)
+        cell.setListData(data: self.listUserData[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
@@ -116,4 +115,17 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
         self.pushViewController(searchVC, false)
     }
 }
+
+extension FriendsViewController: FriendsTableViewCellDelegate {
+    func addFriend(data: UserListModel?) {
+        Singleton.shared.showMessage(message: "Added successfully", isError: .success)
+        print("user name ---\(data?.name ?? "")")
+    }
+    
+    func makeUnFriend(data: UserListModel?) {
+        Singleton.shared.showMessage(message: "Unfriend successfully", isError: .success)
+        print("user name ---\(data?.name ?? "")")
+    }
+}
+
 

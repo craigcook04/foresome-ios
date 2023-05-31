@@ -383,7 +383,6 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
             let pollData = self.listPostData.filter{( $0.post_type == "poll")}
             cell.setPollCellData(data: listPostData[indexPath.row - 1], index: indexPath.row)
-            
             cell.delegate = self
             cell.currentIndex = indexPath.row - 1
             return cell
@@ -618,7 +617,6 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                         } else {
                             self.reportPost(data: data, index: index)
                         }
-                        
                     })
                 }
             }))
@@ -630,7 +628,6 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
         }
     }
   
-    
     func sharePost(data: PostListDataModel, postImage: UIImage) {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         let name = strings?["name"] ?? ""

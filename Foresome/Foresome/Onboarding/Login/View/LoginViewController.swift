@@ -103,7 +103,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
                                     }
                                 }
                             } else {
-                                db.collection("users").document(self.socialLoginId ?? "").setData(["name":"\(result?.user.displayName ?? "")", "email":"\(result?.user.email ?? "")", "createdDate:":"\(String(describing: Date().localToUtc))", "uid": self.socialLoginId ?? "", "user_location":"", "user_profile_pic":"\(self.userProfileString ?? "")", "user_skill_level":""]) { error in
+                                db.collection("users").document(self.socialLoginId ?? "").setData(["name":"\(result?.user.displayName ?? "")", "email":"\(result?.user.email ?? "")", "createdDate:":"\(Date().localToUtc ?? Date())", "uid": self.socialLoginId ?? "", "user_location":"", "user_profile_pic":"\(self.userProfileString ?? "")", "user_skill_level":""]) { error in
                                     if error == nil {
                                         db.collection("users").document(self.socialLoginId ?? "").getDocument { (snapData, error) in
                                             if let data = snapData?.data() {

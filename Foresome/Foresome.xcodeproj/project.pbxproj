@@ -212,6 +212,7 @@
 		7E7E960129DC543000095CC0 /* TournamentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960029DC543000095CC0 /* TournamentsModel.swift */; };
 		7E7E960B29DD4E2500095CC0 /* OrderSummryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */; };
 		7E7FE24C29D782620010114C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8C273129CAD6F0008D1880 /* SignUpViewController.xib */; };
+		7E8E96DC2A25F9C800F8F715 /* UserListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E96DB2A25F9C800F8F715 /* UserListDataModel.swift */; };
 		7E96B82C29ED1DE7005F8781 /* StrachyHeaderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */; };
 		7E96B83129ED3EE7005F8781 /* TestTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */; };
 		7E96B83229ED3EE7005F8781 /* TestTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */; };
@@ -469,6 +470,7 @@
 		7E7E95FE29DC3BEB00095CC0 /* UserSkillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSkillPresenter.swift; sourceTree = "<group>"; };
 		7E7E960029DC543000095CC0 /* TournamentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsModel.swift; sourceTree = "<group>"; };
 		7E7E960A29DD4E2500095CC0 /* OrderSummryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummryProtocol.swift; sourceTree = "<group>"; };
+		7E8E96DB2A25F9C800F8F715 /* UserListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListDataModel.swift; sourceTree = "<group>"; };
 		7E96B82B29ED1DE6005F8781 /* StrachyHeaderTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrachyHeaderTable.swift; sourceTree = "<group>"; };
 		7E96B82F29ED3EE1005F8781 /* TestTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableHeader.swift; sourceTree = "<group>"; };
 		7E96B83029ED3EE7005F8781 /* TestTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestTableHeader.xib; sourceTree = "<group>"; };
@@ -1473,6 +1475,7 @@
 		7E4752212A1784BB0044BDAD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E8E96DB2A25F9C800F8F715 /* UserListDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2077,6 +2080,7 @@
 				4B7CC75929E16CC80002545F /* VoteTableCell.swift in Sources */,
 				4B086B4029DD583D00972959 /* CreatePollViewController.swift in Sources */,
 				4B86BA5529D2AF6D00800A37 /* VariationViewController.swift in Sources */,
+				7E8E96DC2A25F9C800F8F715 /* UserListDataModel.swift in Sources */,
 				4B75987829C3352800A8E1B6 /* Double+Custom.swift in Sources */,
 				4B75985129C3352700A8E1B6 /* Validator.swift in Sources */,
 				4B75985929C3352700A8E1B6 /* Swime.swift in Sources */,
