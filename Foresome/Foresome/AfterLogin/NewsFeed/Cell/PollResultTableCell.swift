@@ -9,6 +9,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseCore
 import Firebase
+import ImageViewer_swift
 
 protocol PollResultTableCellDelegate {
     func pollMoreButton(data:PostListDataModel, index: Int)
@@ -61,13 +62,18 @@ class PollResultTableCell: UITableViewCell {
         self.pollData = data
         self.currentIndex = index
         setDateData(data: data)
+        self.profileImage.setupImageViewer()
         if (data.voted_user_list?.count ?? 0) > 1 {
             self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
         } else {
             self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) vote"
         }
         self.userNameLbl.text = "\(data.author ?? "")"
-        self.profileImage.image = data.profileImage?.base64ToImage()
+        
+        if (data.profileImage?.count ?? 0) > 0 {
+            self.profileImage.image = data.profileImage?.base64ToImage()
+        }
+        
         self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
@@ -93,6 +99,22 @@ class PollResultTableCell: UITableViewCell {
                 self.isAnswer = false
             }
         }
+        
+        //MARK: code for set comments button select or unselect----
+        if (data.comments?.count ?? 0) == 0 {
+            self.commentBtn.tintColor = UIColor(hexString: "#979CA0")
+        } else {
+            if let commentsData = data.comments {
+                commentsData.forEach({ fetchedUserId in
+                    if fetchedUserId.userId == UserDefaultsCustom.currentUserId {
+                        self.commentBtn.tintColor = UIColor(hexString: "#222831")
+                    } else {
+                        self.commentBtn.tintColor = UIColor(hexString: "#979CA0")
+                    }
+                })
+            }
+        }
+        
         DispatchQueue.main.async {
             self.pollTableView.reloadData()
         }

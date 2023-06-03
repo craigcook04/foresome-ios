@@ -43,15 +43,14 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     private let refreshControl = UIRefreshControl()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 15.0, *) {
             UITableView.appearance().isPrefetchingEnabled = false
         }
+        self.presenter?.saveCreatUserData()
         self.newsFeedTableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
-        self.presenter?.saveCreatUserData()
         self.fetchPostData(isFromRefreh: false)
         setTableData()
         setTableHeader()
@@ -61,10 +60,10 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.pollCreatedSuccess(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
+        self.presenter?.saveCreatUserData()
         setTableData()
         //self.fetchPostData(isFromRefreh: false)
         ActivityIndicator.sharedInstance.hideActivityIndicator()
-        
     }
     
     @objc private func refreshWeatherData(_ sender: Any) {
@@ -83,12 +82,11 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         setTableHeader()
         updatetable()
     }
-    //MARK: code for fetch data of posts------
     
+    //MARK: code for fetch data of posts------
     func updatetable() {
         self.newsFeedTableView.reloadData()
     }
-    
     
     @objc func pollCreatedSuccess(_ sender: Notification) {
         self.updateCreatedPollData()
@@ -173,7 +171,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             self.newsFeedTableView.reloadData()
            // self.fetchPostData(isFromRefreh: true)
         }
-         
     }
     
     func datafetchfortest() {
@@ -195,8 +192,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             self.newsFeedTableView.reloadData()
         }
     }
-    
-    
     
     //MARK: fetch data for particular updation----
     func fetchPostUpdateData(isFromRefreh: Bool) {
@@ -224,7 +219,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 }
             }
         }
-         self.newsFeedTableView.reloadData()
+        self.newsFeedTableView.reloadData()
         let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
         self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
         self.newsFeedTableView.reloadData()
@@ -277,7 +272,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 return
             }
             print(metadata)
-            riversRef.downloadURL { (url,error) in
+            riversRef.downloadURL { (url, error) in
                 guard let downloadUrl = url else {
                     return
                 }
@@ -330,7 +325,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         print("post image description is -====\(data.postDescription ?? "")")
         //MARK: code for update post -----
         if isEditProfile == true {
-            let userPostDocuments =  db.collection("posts").document(data.postId ?? "")
+            let userPostDocuments = db.collection("posts").document(data.postId ?? "")
             userPostDocuments.updateData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(data.createdDate ?? "")", "description":"\(data.postDescription ?? "")", "id": "\(data.postId ?? "")", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"\(Date().miliseconds())", "comments":[""], "post_type":"feed", "likedUserList": [String]()]) { error in
                 if error == nil {
                     Singleton.shared.showMessage(message: Messages.postEdit, isError: .success)
@@ -341,13 +336,17 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             }
         } else {
             //MARK: code for create post--------
-            db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[], "post_type":"feed", "likedUserList": [String](), "reportedUserList":[String]()], merge: true) { error in
-                if error == nil {
-                    Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
-                    self.fetchPostData(isFromRefreh: false)
-                } else {
-                    Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
+            if (uploadedImageUrls?.count ?? 0) > 0 || (data.postDescription?.count ?? 0) > 0 {
+                db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[], "post_type":"feed", "likedUserList": [String](), "reportedUserList":[String]()], merge: true) { error in
+                    if error == nil {
+                        Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
+                        self.fetchPostData(isFromRefreh: false)
+                    } else {
+                        Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
+                    }
                 }
+            } else {
+                Singleton.shared.showMessage(message: "Your post has been canceled", isError: .error)
             }
         }
         ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -524,7 +523,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     print("like updated")
                     //self.fetchPostData(isFromRefreh: true)
                     self.newsFeedTableView.beginUpdates()
-                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
+                    let reloadIndex = IndexPath(row: index, section: 0)
                     self.listPostData[index] = newDataForLikeUpdate
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
@@ -572,6 +571,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
                 print("edit post called.")
                 let editPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [], data: data, isEditPost: true)
+                editPostVc.hidesBottomBarWhenPushed = true
                 self.pushViewController(editPostVc, false)
             }))
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
@@ -611,7 +611,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     self.reportPost(data: data, index: index)
                 } else {
                     data.reportedUserList?.forEach({ user_id in
-                        if user_id == UserDefaultsCustom.currentUserId{
+                        if user_id == UserDefaultsCustom.currentUserId {
                             return
                         } else {
                             self.reportPost(data: data, index: index)
@@ -818,7 +818,7 @@ extension NewsFeedViewController: UIScrollViewDelegate {
     }
 }
 
-extension NewsFeedViewController: NewsFeedViewProtocol {}
+extension NewsFeedViewController: NewsFeedViewProtocol {  }
 
 extension NewsFeedViewController: CreatePostUploadDelegate {
     func uploadProgress(data: CreatePostModel, isEditProfile: Bool) {

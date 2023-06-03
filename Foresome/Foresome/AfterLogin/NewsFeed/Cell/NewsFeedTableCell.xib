@@ -35,7 +35,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MUD-db-Nya">
                                 <rect key="frame" x="16" y="16" width="148" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-97-CMz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-97-CMz">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="B5I-qy-1iK"/>
@@ -274,6 +274,7 @@
         <image name="ic_liked" width="24" height="24"/>
         <image name="ic_more" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>
+        <image name="ic_user_placeholder" width="40" height="40"/>
         <image name="minimalism" width="728" height="410"/>
         <image name="tutorial_screen" width="375" height="812"/>
         <systemColor name="systemBackgroundColor">

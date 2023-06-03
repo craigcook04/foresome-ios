@@ -32,7 +32,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yZQ-fU-uU6">
                                 <rect key="frame" x="16" y="16" width="170" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cccc" translatesAutoresizingMaskIntoConstraints="NO" id="8pJ-95-tSI">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8pJ-95-tSI">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="U1Y-V6-Wpu"/>
@@ -209,12 +209,12 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cccc" width="1920" height="1195"/>
         <image name="ic_comment" width="24" height="24"/>
         <image name="ic_like" width="24" height="24"/>
         <image name="ic_liked" width="24" height="24"/>
         <image name="ic_more" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>
+        <image name="ic_user_placeholder" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
