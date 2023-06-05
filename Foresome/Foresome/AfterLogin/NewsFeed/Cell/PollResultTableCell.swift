@@ -102,14 +102,17 @@ class PollResultTableCell: UITableViewCell {
         
         //MARK: code for set comments button select or unselect----
         if (data.comments?.count ?? 0) == 0 {
-            self.commentBtn.tintColor = UIColor(hexString: "#979CA0")
+            self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
+            self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
         } else {
             if let commentsData = data.comments {
                 commentsData.forEach({ fetchedUserId in
                     if fetchedUserId.userId == UserDefaultsCustom.currentUserId {
-                        self.commentBtn.tintColor = UIColor(hexString: "#222831")
+                        self.commentBtn.setImage(UIImage(named: "ic_comment_active"), for: .normal)
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#222831"), for: .normal)
                     } else {
-                        self.commentBtn.tintColor = UIColor(hexString: "#979CA0")
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
+                        self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
                     }
                 })
             }
