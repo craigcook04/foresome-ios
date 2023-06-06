@@ -46,7 +46,7 @@ class PollResultTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("table height ----\(pollTableView.bounds.height)")
+        print("table height-----\(pollTableView.bounds.height)")
         setCellData()
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
@@ -99,7 +99,6 @@ class PollResultTableCell: UITableViewCell {
                 self.isAnswer = false
             }
         }
-        
         //MARK: code for set comments button select or unselect----
         if (data.comments?.count ?? 0) == 0 {
             self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
@@ -117,7 +116,6 @@ class PollResultTableCell: UITableViewCell {
                 })
             }
         }
-        
         DispatchQueue.main.async {
             self.pollTableView.reloadData()
         }
@@ -171,6 +169,7 @@ class PollResultTableCell: UITableViewCell {
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
+        print("like action called.")
         sender.isSelected = !(sender.isSelected)
         if self.isLikedPoll == true {
             self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) - 1)", for: .normal)
@@ -181,6 +180,7 @@ class PollResultTableCell: UITableViewCell {
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
+        print("comments action called.")
         if let data = self.pollData {
             self.delegate?.commmnetsPoll(data: data, isCommented: true, index: indexPath?.row ?? 0)
         }

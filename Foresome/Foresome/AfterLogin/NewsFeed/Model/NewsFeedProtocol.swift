@@ -10,6 +10,10 @@ import UIKit
 
 protocol NewsFeedViewProtocol {
     var presenter: NewsFeedPresenterProtocol? {get set}
+    
+    func fetchAllPostData(data:[PostListDataModel])
+    
+    
 }
 
 protocol NewsFeedPresenterProtocol {
@@ -17,4 +21,6 @@ protocol NewsFeedPresenterProtocol {
     func createPost()
     func saveCreatUserData()
     func uploadimage(image: UIImage)
+    func fetchPostData(data:[PostListDataModel])
+    func fetchPostData()
 }

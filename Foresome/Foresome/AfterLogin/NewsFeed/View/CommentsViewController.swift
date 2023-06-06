@@ -86,14 +86,14 @@ class CommentsViewController: UIViewController {
 //        }
     }
     
-    
     @IBAction func backButtonAction(_ sender: UIButton) {
         self.popVC()
     }
     
     @IBAction func submitButtonAction(_ sender: UIButton) {
         print("submit button called")
-        
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        //MARK: code for make array to cooments data first----
         let addedCooments = CommentsData()
         addedCooments.id = listPostData.id
         addedCooments.username = listPostData.author
@@ -102,15 +102,15 @@ class CommentsViewController: UIViewController {
         addedCooments.body = commentsTextView.text
         addedCooments.createdAt = "\(Date().miliseconds())"
         addedCooments.userProfile = ""
-        
         if let comments = self.listPostData.comments {
             var comment_data = [CommentsData]()
-            comments.forEach{ commentDic in
-                comment_data.append( commentDic)
+            comments.forEach { commentDic in
+                comment_data.append(commentDic)
             }
             newCommentData = comment_data
         }
         
+        //MARK: code for make array of dictionary from comments data---
         let commentsId =  UUID().uuidString
         newCommentData.forEach({ newData in
             var jsonData = [String:Any]()
@@ -123,17 +123,18 @@ class CommentsViewController: UIViewController {
             jsonData["parentId"] = newData.parentId
             self.arrayOfDic.append(jsonData)
         })
+        //MARK: code for append new dictionary to old array of dictionary---
         
+        //MARK: code make change for solve comments user name issue---
         var jsonForNewCooments = [String:Any]()
-        jsonForNewCooments["username"] = listPostData.author
+        jsonForNewCooments["username"] = strings?["name"] as? String ?? ""
         jsonForNewCooments["id"] = commentsId
-        jsonForNewCooments["userId"] = listPostData.uid
+        jsonForNewCooments["userId"] = UserDefaultsCustom.currentUserId
         jsonForNewCooments["userProfile"] = ""
         jsonForNewCooments["body"] = commentsTextView.text
         jsonForNewCooments["createdAt"] = "\(Date().miliseconds())"
         jsonForNewCooments["parentId"] = ""
         self.arrayOfDic.append(jsonForNewCooments)
-         
         let db = Firestore.firestore()
          let userPostCollection = db.collection("posts").document(listPostData.id ?? "")
         userPostCollection.updateData(["comments": self.arrayOfDic]) { error in
