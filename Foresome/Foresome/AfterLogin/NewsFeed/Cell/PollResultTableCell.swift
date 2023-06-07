@@ -99,14 +99,7 @@ class PollResultTableCell: UITableViewCell {
                 }
             })
         }
-        for i in 0..<(data.voted_user_list?.count ?? 0) {
-            if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
-                print("data-----\(data.poll_title ?? "")")
-                self.isAnswer = true
-            } else {
-                self.isAnswer = false
-            }
-        }
+        self.isAnswered(data: data)
         //MARK: code for set comments button select or unselect----
         if (data.comments?.count ?? 0) == 0 {
             self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
@@ -166,6 +159,17 @@ class PollResultTableCell: UITableViewCell {
             }
         } else {
             self.timeLbl.text = postDate.toStringFormat()
+        }
+    }
+    
+    func isAnswered(data:PostListDataModel) {
+        isAnswer = false
+        for i in 0..<(data.voted_user_list?.count ?? 0) {
+            if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
+                print("data-----\(data.poll_title ?? "")")
+                self.isAnswer = true
+                return
+            }
         }
     }
     

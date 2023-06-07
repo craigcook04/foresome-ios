@@ -124,7 +124,12 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
                 })
             } else {
                 if let error = err?.localizedDescription {
-                    Singleton.shared.showMessage(message: error, isError: .error)
+                    if error == "Missing or insufficient permissions." {
+                        Singleton.shared.showMessage(message: error, isError: .error)
+                        Singleton.shared.logoutFromDevice()
+                    }
+                        
+                    
                 }
             }
         }
