@@ -7,8 +7,7 @@
 
 import UIKit
 
-
-class AutoResizeTableView:UITableView{
+class AutoResizeTableView: UITableView{
     override var contentSize: CGSize{
         didSet{
             invalidateIntrinsicContentSize()

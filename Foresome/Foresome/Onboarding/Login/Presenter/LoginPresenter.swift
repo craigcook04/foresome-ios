@@ -77,10 +77,12 @@ class LoginPresenter: LoginPresenterProtocol {
                             Singleton.shared.setHomeScreenView()
                         }
                     } else {
+                        ActivityIndicator.sharedInstance.hideActivityIndicator()
                         Singleton.shared.showMessage(message: error?.localizedDescription ?? "" , isError: .error)
                     }
                 }
             } else {
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
                 Singleton.shared.showMessage(message: Messages.invalidEmailPassword, isError: .error)
             }
         }

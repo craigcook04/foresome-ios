@@ -30,8 +30,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "uploadPostData(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "417"
-            endingLineNumber = "417"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "reportPost(data:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "uploadPostData(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "reportPost(data:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "reportPost(data:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "795"
-            endingLineNumber = "795"
+            startingLineNumber = "890"
+            endingLineNumber = "890"
             landmarkName = "pollMoreButton(data:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,13 +174,13 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "607"
-            endingLineNumber = "607"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "moreButton(data:index:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "BABE025B-FB21-4F12-A576-19432901C88C - a12537a5aecb5a1d"
+                  uuid = "BABE025B-FB21-4F12-A576-19432901C88C - a12537a5aecb586a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -190,12 +190,12 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "607"
-                  endingLineNumber = "607"
-                  offsetFromSymbolStart = "1356">
+                  startingLineNumber = "622"
+                  endingLineNumber = "622"
+                  offsetFromSymbolStart = "1296">
                </Location>
                <Location
-                  uuid = "BABE025B-FB21-4F12-A576-19432901C88C - 60d88cd71af35503"
+                  uuid = "BABE025B-FB21-4F12-A576-19432901C88C - 60d88cd71af35732"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -205,8 +205,8 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "608"
-                  endingLineNumber = "608"
+                  startingLineNumber = "623"
+                  endingLineNumber = "623"
                   offsetFromSymbolStart = "44">
                </Location>
             </Locations>
@@ -222,8 +222,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747"
+            startingLineNumber = "842"
+            endingLineNumber = "842"
             landmarkName = "voteInPoll(data:isVodeted:selectedIndex:currentPostIndex:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -279,38 +279,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6488C231-EC65-4D49-912A-FA3495CCE163"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/AfterLogin/CreatePost/View/CreatePostViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "publishAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BC729CF8-962F-4C16-AE9E-B870F754CA89"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/AfterLogin/CreatePost/View/CreatePostViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "publishAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2EA22FB7-117D-46FC-AB73-4B2D580485C5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -318,13 +286,13 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "796"
-            endingLineNumber = "796"
+            startingLineNumber = "891"
+            endingLineNumber = "891"
             landmarkName = "pollMoreButton(data:index:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2EA22FB7-117D-46FC-AB73-4B2D580485C5 - 25844a54c09f8bb6"
+                  uuid = "2EA22FB7-117D-46FC-AB73-4B2D580485C5 - 25844a54c09f87f7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -334,12 +302,12 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "796"
-                  endingLineNumber = "796"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
                   offsetFromSymbolStart = "1452">
                </Location>
                <Location
-                  uuid = "2EA22FB7-117D-46FC-AB73-4B2D580485C5 - a66eea2626473109"
+                  uuid = "2EA22FB7-117D-46FC-AB73-4B2D580485C5 - a66eea2626473dca"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -349,8 +317,8 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "797"
-                  endingLineNumber = "797"
+                  startingLineNumber = "892"
+                  endingLineNumber = "892"
                   offsetFromSymbolStart = "64">
                </Location>
             </Locations>
@@ -366,8 +334,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "797"
-            endingLineNumber = "797"
+            startingLineNumber = "892"
+            endingLineNumber = "892"
             landmarkName = "pollMoreButton(data:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,13 +350,13 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "reportPost(data:index:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "515C845C-7845-4784-A167-A11414C5F1F2 - 8805bdc5acbe5951"
+                  uuid = "515C845C-7845-4784-A167-A11414C5F1F2 - 8805bdc5acbe59ec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -398,12 +366,12 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "418"
-                  endingLineNumber = "418"
+                  startingLineNumber = "421"
+                  endingLineNumber = "421"
                   offsetFromSymbolStart = "212">
                </Location>
                <Location
-                  uuid = "515C845C-7845-4784-A167-A11414C5F1F2 - 5ff5ecec457cbd73"
+                  uuid = "515C845C-7845-4784-A167-A11414C5F1F2 - 5ff5ecec457cbef7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -413,9 +381,9 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "419"
-                  endingLineNumber = "419"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "140">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -430,8 +398,8 @@
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "760"
-            endingLineNumber = "760"
+            startingLineNumber = "855"
+            endingLineNumber = "855"
             landmarkName = "commmnetsPoll(data:isCommented:index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -455,15 +423,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5B56AB99-67EC-41A8-8C39-CE5CAE71AE5C"
+            uuid = "E29220A3-0682-439B-9FFD-7D3462A55E12"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
             landmarkName = "likePostData(data:isLiked:index:button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -471,65 +439,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DAB3D669-9337-4FBD-A554-5CD89102185A"
+            uuid = "71D1101B-E597-4094-9D08-A389312B8833"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Foresome/AfterLogin/NewsFeed/Presenter/NewsFeedPresenter.swift"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "fetchPostData()"
+            startingLineNumber = "575"
+            endingLineNumber = "575"
+            landmarkName = "likePostData(data:isLiked:index:button:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CC24C441-555A-44C8-B6C8-6A0E7214C30F"
+            uuid = "891A01ED-1E2B-43AA-90AB-E7A0AA2F32A6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Foresome/AfterLogin/NewsFeed/Cell/PollResultTableCell.swift"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "setDateData(data:)"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
+            landmarkName = "likePostData(data:isLiked:index:button:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CC24C441-555A-44C8-B6C8-6A0E7214C30F - fc3aef2aec3ea481"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Foresome.PollResultTableCell.setDateData(data: Foresome.PostListDataModel) -&gt; ()"
-                  moduleName = "Foresome"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/Cell/PollResultTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "940">
-               </Location>
-               <Location
-                  uuid = "CC24C441-555A-44C8-B6C8-6A0E7214C30F - fc3aef2aec3ea481"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Foresome.PollResultTableCell.setDateData(data: Foresome.PostListDataModel) -&gt; ()"
-                  moduleName = "Foresome"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/AfterLogin/NewsFeed/Cell/PollResultTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "1204">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38748C10-C771-40E7-A883-24FFBC244197"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "787"
+            endingLineNumber = "787"
+            landmarkName = "NewsFeedViewController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A56BEE39-A74C-4F78-A120-F2C295384CB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "535"
+            endingLineNumber = "535"
+            landmarkName = "likePostData(data:isLiked:index:button:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46C6BD95-9532-4C83-8F92-9A9CFAEB690C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
+            landmarkName = "likePostDatas(data:isLiked:index:button:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E24CF873-7CC9-42A7-B4E9-248402322D81"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/AfterLogin/NewsFeed/View/NewsFeedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "refreshPostData(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

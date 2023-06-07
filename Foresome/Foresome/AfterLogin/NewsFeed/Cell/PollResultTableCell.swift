@@ -15,7 +15,7 @@ protocol PollResultTableCellDelegate {
     func pollMoreButton(data:PostListDataModel, index: Int)
     func sharePoll(data:PostListDataModel, pollImage: UIImage)
     func voteInPoll(data:PostListDataModel, isVodeted: Bool, selectedIndex: Int, currentPostIndex: Int)
-    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int)
+    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int, button: UIButton)
     func commmnetsPoll(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -61,6 +61,14 @@ class PollResultTableCell: UITableViewCell {
     func setPollCellData(data: PostListDataModel, index: Int) {
         self.pollData = data
         self.currentIndex = index
+//        if data.poll_options?.count == 0 {
+//            self.pollTableView.isHidden = true
+//            self.contentView.layoutIfNeeded()
+//        } else {
+//            self.pollTableView.isHidden = true
+//            self.contentView.layoutIfNeeded()
+//        }
+        
         setDateData(data: data)
         self.profileImage.setupImageViewer()
         if (data.voted_user_list?.count ?? 0) > 1 {
@@ -170,13 +178,14 @@ class PollResultTableCell: UITableViewCell {
     
     @IBAction func likeAction(_ sender: UIButton) {
         print("like action called.")
+        sender.isUserInteractionEnabled = false
         sender.isSelected = !(sender.isSelected)
         if self.isLikedPoll == true {
             self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
             self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
-        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
+        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0, button: sender)
     }
     
     @IBAction func commentAction(_ sender: UIButton) {

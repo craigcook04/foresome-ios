@@ -5,7 +5,7 @@ public protocol ImageDataSource: AnyObject {
     func imageItem(at index:Int) -> ImageItem
 }
 
-public class ImageCarouselViewController:UIPageViewController, ImageViewerTransitionViewControllerConvertible {
+public class ImageCarouselViewController: UIPageViewController, ImageViewerTransitionViewControllerConvertible {
     
     unowned var initialSourceView: UIImageView?
     var sourceView: UIImageView? {

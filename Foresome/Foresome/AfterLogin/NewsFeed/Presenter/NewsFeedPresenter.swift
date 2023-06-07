@@ -83,6 +83,7 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
     }
     
     func fetchPostData() {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         var listPostData = [PostListDataModel]()
         let db = Firestore.firestore()
         db.collection("posts").getDocuments { (querySnapshot, err) in
@@ -92,15 +93,6 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
                     let postsData = posts.data()
                     let allPostData = PostListDataModel(json: postsData)
                     listPostData.append(allPostData)
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     self.view?.presenter?.view?.fetchAllPostData(data: listPostData)
                 })
             } else {
@@ -110,6 +102,34 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
             }
         }
     }
+    
+    
+    
+    func fetchPostData(isFromRefresh: Bool) {
+        if isFromRefresh == true {
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
+        } else {
+            ActivityIndicator.sharedInstance.showActivityIndicator()
+        }
+        var listPostData = [PostListDataModel]()
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (querySnapshot, err) in
+             ActivityIndicator.sharedInstance.hideActivityIndicator()
+            if err == nil {
+                querySnapshot?.documents.enumerated().forEach({ (index, posts) in
+                    let postsData = posts.data()
+                    let allPostData = PostListDataModel(json: postsData)
+                    listPostData.append(allPostData)
+                    self.view?.presenter?.view?.fetchAllPostData(data: listPostData)
+                })
+            } else {
+                if let error = err?.localizedDescription {
+                    Singleton.shared.showMessage(message: error, isError: .error)
+                }
+            }
+        }
+    }
+    
 }
 
 

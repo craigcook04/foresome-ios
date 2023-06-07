@@ -174,13 +174,13 @@ extension String {
     }
     
     func millisecToDate()-> Date{
-        print("millsec-----\(self)")
+       
         guard let value = self.toDouble else{return Date()}
         return Date(timeIntervalSince1970: (value / 1000.0))
     }
     
     func millisecStrToDate()-> Date{
-        print("millsec-----\(self)")
+        
         guard let value = self.toDouble else{return Date()}
         return Date(timeIntervalSince1970: (value))
     }

@@ -31,7 +31,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     let creatPostData = CreatePostModel()
     var delegate: CreatePostUploadDelegate?
     var isEditProfile: Bool?
-    var data:PostListDataModel?
+    var data: PostListDataModel?
     var downloadedImage: UIImage?
     
     override func viewDidLoad() {

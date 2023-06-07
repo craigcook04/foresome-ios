@@ -22,5 +22,5 @@ protocol NewsFeedPresenterProtocol {
     func saveCreatUserData()
     func uploadimage(image: UIImage)
     func fetchPostData(data:[PostListDataModel])
-    func fetchPostData()
+    func fetchPostData(isFromRefresh:Bool)
 }
