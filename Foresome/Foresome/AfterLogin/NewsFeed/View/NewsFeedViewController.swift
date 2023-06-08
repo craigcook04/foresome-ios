@@ -39,7 +39,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var newlistPostData = [PostListDataModel]()
     var isEditProfile: Bool?
     var selectedPostIndex: Int?
-    
     var reportOrReported: String = AppStrings.reportPost
     let firebaseDataBase = Firestore.firestore()
     private let refreshControl = UIRefreshControl()
@@ -335,7 +334,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         print("post image description is -====\(data.postDescription ?? "")")
         //MARK: code for update post -----
         if isEditProfile == true {
-            print("isedit profile ---\(isEditProfile)")
             let userPostDocuments = firebaseDataBase.collection("posts").document(data.postId ?? "")
             userPostDocuments.updateData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(data.createdDate ?? "")", "description":"\(data.postDescription ?? "")", "id": "\(data.postId ?? "")", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"\(Date().miliseconds())", "comments":[""], "post_type":"feed", "likedUserList": [String]()]) { error in
                 if error == nil {
@@ -616,7 +614,6 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             }))
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
                 print("delete post called.")
-                
                 print("post id for delete post---\(data.id ?? "")")
                 print("post description for delete post----\(data.postDescription ?? "")")
                 self.firebaseDataBase.collection("posts").document(data.id ?? "").delete() { err in
