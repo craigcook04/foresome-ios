@@ -58,6 +58,81 @@ class NewsFeedPresenter: NewsFeedPresenterProtocol, CreatePostUploadDelegate {
     func uploadProgress(data: CreatePostModel) {
         
     }
+    
+    func fetchPostData(data: [PostListDataModel]) {
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (querySnapshot, err) in
+             ActivityIndicator.sharedInstance.hideActivityIndicator()
+            if err == nil {
+                querySnapshot?.documents.enumerated().forEach({ (index, posts) in
+                    let postsData =  posts.data()
+                    print("post id is ---\(posts.documentID)")
+//                    print("total post is --===\(postsData.count)")
+//                    let allPostData = PostListDataModel(json: data)
+//                    self.listPostData.append(allPostData)
+//                    print("self.listpostdata---\(self.listPostData.count)")
+                })
+            } else {
+                if let error = err?.localizedDescription {
+                    print("error is ---\(error)")
+                    Singleton.shared.showMessage(message: error, isError: .error)
+                }
+            }
+        }
+    }
+    
+    func fetchPostData() {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        var listPostData = [PostListDataModel]()
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (querySnapshot, err) in
+             ActivityIndicator.sharedInstance.hideActivityIndicator()
+            if err == nil {
+                querySnapshot?.documents.enumerated().forEach({ (index, posts) in
+                    let postsData = posts.data()
+                    let allPostData = PostListDataModel(json: postsData)
+                    listPostData.append(allPostData)
+                    self.view?.presenter?.view?.fetchAllPostData(data: listPostData)
+                })
+            } else {
+                if let error = err?.localizedDescription {
+                    Singleton.shared.showMessage(message: error, isError: .error)
+                }
+            }
+        }
+    }
+     
+    func fetchPostData(isFromRefresh: Bool) {
+        if isFromRefresh == true {
+            ActivityIndicator.sharedInstance.hideActivityIndicator()
+        } else {
+            ActivityIndicator.sharedInstance.showActivityIndicator()
+        }
+        var listPostData = [PostListDataModel]()
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (querySnapshot, err) in
+             ActivityIndicator.sharedInstance.hideActivityIndicator()
+            if err == nil {
+                querySnapshot?.documents.enumerated().forEach({ (index, posts) in
+                    let postsData = posts.data()
+                    let allPostData = PostListDataModel(json: postsData)
+                    listPostData.append(allPostData)
+                    self.view?.presenter?.view?.fetchAllPostData(data: listPostData)
+                })
+            } else {
+                if let error = err?.localizedDescription {
+                    if error == "Missing or insufficient permissions." {
+                        Singleton.shared.showMessage(message: error, isError: .error)
+                        Singleton.shared.logoutFromDevice()
+                    }
+                        
+                    
+                }
+            }
+        }
+    }
 }
+
+
 
 

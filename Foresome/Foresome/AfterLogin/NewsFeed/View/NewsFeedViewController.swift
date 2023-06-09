@@ -21,6 +21,7 @@ import Kingfisher
 class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var newsFeedTableView: StrachyHeaderTable!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     var presenter: NewsFeedPresenterProtocol?
     var selectedOption: Int?
@@ -35,24 +36,24 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var uploadCount = 0
     var imageUplaodTask : StorageUploadTask?
     var listPostData =  [PostListDataModel]()
-    
     var newlistPostData = [PostListDataModel]()
     var isEditProfile: Bool?
     var selectedPostIndex: Int?
     var reportOrReported: String = AppStrings.reportPost
-    
+    let firebaseDataBase = Firestore.firestore()
     private let refreshControl = UIRefreshControl()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loader.isHidden = true
         if #available(iOS 15.0, *) {
             UITableView.appearance().isPrefetchingEnabled = false
         }
-        self.newsFeedTableView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+//        self.fetchPostData
+        
+        self.getPostDataFromPresenter()
         self.presenter?.saveCreatUserData()
-        self.fetchPostData(isFromRefreh: false)
+        self.newsFeedTableView.refreshControl = refreshControl
         setTableData()
         setTableHeader()
         setTableFooter()
@@ -60,17 +61,24 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
+        self.newsFeedTableView.refreshControl = refreshControl
+        self.getPostDataFromPresenter()
+        refreshControl.addTarget(self, action: #selector(refreshPostData(_:)), for: .valueChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(self.pollCreatedSuccess(_:)), name: NSNotification.Name(rawValue: "UpdatePollData"), object: nil)
+        self.presenter?.saveCreatUserData()
         setTableData()
-        //self.fetchPostData(isFromRefreh: false)
         ActivityIndicator.sharedInstance.hideActivityIndicator()
-        
     }
     
-    @objc private func refreshWeatherData(_ sender: Any) {
-        // Fetch Weather Data
+    func getPostDataFromPresenter() {
+        self.presenter?.fetchPostData(isFromRefresh: false)
+    }
+    
+    @objc private func refreshPostData(_ sender: Any) {
         self.refreshControl.beginRefreshing()
-       fetchPostData(isFromRefreh: true)
+        self.loader.isHidden = false
+        self.loader.startAnimating()
+        self.presenter?.fetchPostData(isFromRefresh: true)
     }
     
     func setTableData() {
@@ -83,19 +91,18 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         setTableHeader()
         updatetable()
     }
-    //MARK: code for fetch data of posts------
     
+    //MARK: code for fetch data of posts------
     func updatetable() {
         self.newsFeedTableView.reloadData()
     }
-    
     
     @objc func pollCreatedSuccess(_ sender: Notification) {
         self.updateCreatedPollData()
     }
     
     func fetchPostData(isFromRefreh: Bool) {
-        self.refreshControl.tintColor = .green
+        self.refreshControl.tintColor = .clear
         self.listPostData.removeAll()
         self.listPostData = []
         self.newsFeedTableView.reloadData()
@@ -104,8 +111,8 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         } else {
             ActivityIndicator.sharedInstance.showActivityIndicator()
         }
-        let db = Firestore.firestore()
-        db.collection("posts").getDocuments { (querySnapshot, err) in
+         
+        firebaseDataBase.collection("posts").getDocuments { (querySnapshot, err) in
              ActivityIndicator.sharedInstance.hideActivityIndicator()
             if err == nil {
                 querySnapshot?.documents.enumerated().forEach({ (index, posts) in
@@ -120,6 +127,8 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 self.newsFeedTableView.reloadData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                     self.refreshControl.endRefreshing()
+                    self.loader.isHidden = true
+                    self.loader.stopAnimating()
                 })
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
@@ -131,7 +140,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
          self.newsFeedTableView.reloadData()
     }
     
-    
     func updateCreatedPollData() {
         DispatchQueue.main.async {
             self.listPostData.removeAll()
@@ -139,8 +147,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             self.newsFeedTableView.reloadData()
         }
         ActivityIndicator.sharedInstance.showActivityIndicator()
-        let db = Firestore.firestore()
-        db.collection("posts").getDocuments { (querySnapshot, err) in
+        firebaseDataBase.collection("posts").getDocuments { (querySnapshot, err) in
              ActivityIndicator.sharedInstance.hideActivityIndicator()
             if err == nil {
                 querySnapshot?.documents.enumerated().forEach({ (index, posts) in
@@ -154,6 +161,8 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
                 self.newsFeedTableView.reloadData()
                 self.refreshControl.endRefreshing()
+                self.loader.isHidden = true
+                self.loader.stopAnimating()
                 ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
                 if let error = err?.localizedDescription {
@@ -171,14 +180,11 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         
         DispatchQueue.main.async {
             self.newsFeedTableView.reloadData()
-           // self.fetchPostData(isFromRefreh: true)
         }
-         
     }
     
     func datafetchfortest() {
-        let db = Firestore.firestore()
-        db.collection("posts").getDocuments { (querySnapshot, err) in
+        firebaseDataBase.collection("posts").getDocuments { (querySnapshot, err) in
             if err == nil {
                 querySnapshot?.documents.enumerated().forEach({ (index, posts) in
                     let postsData =  posts.data()
@@ -196,16 +202,13 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    
-    
     //MARK: fetch data for particular updation----
     func fetchPostUpdateData(isFromRefreh: Bool) {
         self.listPostData.removeAll()
         if isFromRefreh == true {
-         } else {
+        } else {
         }
-        let db = Firestore.firestore()
-        db.collection("posts").getDocuments { (querySnapshot, err) in
+        firebaseDataBase.collection("posts").getDocuments { (querySnapshot, err) in
             if err == nil {
                 querySnapshot?.documents.enumerated().forEach({ (index, posts) in
                     let postsData =  posts.data()
@@ -224,7 +227,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 }
             }
         }
-         self.newsFeedTableView.reloadData()
+        self.newsFeedTableView.reloadData()
         let indexpath = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
         self.newsFeedTableView.reloadRows(at: [indexpath], with: .none)
         self.newsFeedTableView.reloadData()
@@ -278,7 +281,7 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
                 return
             }
             print(metadata)
-            riversRef.downloadURL { (url,error) in
+            riversRef.downloadURL { (url, error) in
                 guard let downloadUrl = url else {
                     return
                 }
@@ -312,18 +315,19 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         imageUplaodTask?.observe(.success) { data in
-            
+            print("data in case of upload success---\(data.task)")
         }
         
         imageUplaodTask?.observe(.failure) { data in
-            
+            print("data in case of upload failure---\(data.task)")
         }
     }
     
     func uploadPostData(data: CreatePostModel) {
+        
         //MARK: code for create poll using firebase ---
         ActivityIndicator.sharedInstance.showActivityIndicator()
-        let db = Firestore.firestore()
+        
         let documentsId =  UUID().uuidString
         //MARK: code for upload multiple image upload-----
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
@@ -331,24 +335,30 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         print("post image description is -====\(data.postDescription ?? "")")
         //MARK: code for update post -----
         if isEditProfile == true {
-            let userPostDocuments =  db.collection("posts").document(data.postId ?? "")
+            let userPostDocuments = firebaseDataBase.collection("posts").document(data.postId ?? "")
             userPostDocuments.updateData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(data.createdDate ?? "")", "description":"\(data.postDescription ?? "")", "id": "\(data.postId ?? "")", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"\(Date().miliseconds())", "comments":[""], "post_type":"feed", "likedUserList": [String]()]) { error in
                 if error == nil {
                     Singleton.shared.showMessage(message: Messages.postEdit, isError: .success)
-                    self.fetchPostData(isFromRefreh: false)
+                    self.getPostDataFromPresenter()
                 } else {
                     Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
                 }
             }
         } else {
             //MARK: code for create post--------
-            db.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[], "post_type":"feed", "likedUserList": [String](), "reportedUserList":[String]()], merge: true) { error in
-                if error == nil {
-                    Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
-                    self.fetchPostData(isFromRefreh: false)
-                } else {
-                    Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
+            if (uploadedImageUrls?.count ?? 0) > 0 || (data.postDescription?.count ?? 0) > 0 {
+                print("uploadedImageUrls count is --===\(uploadedImageUrls?.count ?? 0)")
+                print("post description count is ---\(data.postDescription?.count ?? 0)")
+                firebaseDataBase.collection("posts").document(documentsId).setData(["author":"\(strings?["name"] ?? "")", "createdAt":"\(Date().miliseconds())", "description":"\(data.postDescription ?? "")", "id": "\(documentsId)", "image": uploadedImageUrls ?? [], "photoURL":"", "profile":"\(strings?["user_profile_pic"] ?? "")", "uid":"\(strings?["uid"] ?? "")", "updatedAt":"", "comments":[], "post_type":"feed", "likedUserList": [String](), "reportedUserList":[String]()], merge: true) { error in
+                    if error == nil {
+                        Singleton.shared.showMessage(message: Messages.postCreated, isError: .success)
+                        self.getPostDataFromPresenter()
+                    } else {
+                        Singleton.shared.showMessage(message: error?.localizedDescription ?? "", isError: .error)
+                    }
                 }
+            } else {
+                Singleton.shared.showMessage(message: "Your post has been canceled", isError: .error)
             }
         }
         ActivityIndicator.sharedInstance.hideActivityIndicator()
@@ -408,17 +418,17 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func reportPost(data: PostListDataModel, index: Int) {
         let alert = UIAlertController(title: "Report post", message: "Are you want to report this post?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
-            let db = Firestore.firestore()
+            
             var reportedUserList = data.reportedUserList
             reportedUserList?.append(UserDefaultsCustom.currentUserId)
-            let userPostCollection = db.collection("posts").document(data.id ?? "")
+            let userPostCollection = self.firebaseDataBase.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["reportedUserList": reportedUserList ?? []]) { error in
                 if error == nil {
                     let newReportPostdata = PostListDataModel()
                     newReportPostdata.reportedUserList = reportedUserList
                     self.listPostData[index] = newReportPostdata
                     self.newsFeedTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-                    Singleton.shared.showMessage(message: "Reported successfully.", isError: .success)
+                    Singleton.shared.showMessage(message:"Reported successfully.", isError: .success)
                 } else {
                     if let error = error {
                         Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
@@ -512,51 +522,78 @@ extension NewsFeedViewController: TalkAboutTableCellDelegate, UIImagePickerContr
 }
 
 extension NewsFeedViewController: NewsFeedTableCellDelegate {
-    func likePostData(data: PostListDataModel, isLiked: Bool, index: Int) {
-        let db = Firestore.firestore()
+    func likePostData(data: PostListDataModel, isLiked: Bool, index: Int, button: UIButton) {
+        print("button is selected---\(button.isSelected)")
+        print("button is userintraction---\(button.isUserInteractionEnabled)")
         var userPostLikedData = data.likedUserList
         if isLiked == true {
             userPostLikedData?.append(UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
+            newDataForLikeUpdate = data
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            let userPostCollection = db.collection("posts").document(data.id ?? "")
+            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
             userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { error in
+                button.isUserInteractionEnabled = true
                 if error == nil {
                     print("like updated")
-                    //self.fetchPostData(isFromRefreh: true)
                     self.newsFeedTableView.beginUpdates()
-                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-                    self.listPostData[index] = newDataForLikeUpdate
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                     //Singleton.shared.showMessage(message: "Liked successf", isError: .success)
                 } else {
-                    if let error  =  error {
+                    newDataForLikeUpdate = data
+                    newDataForLikeUpdate.likedUserList?.removeLast()
+                    if let error = error {
                         print("error in case of like post---\(error)")
                         Singleton.shared.showErrorMessage(error: error.localizedDescription, isError: .error)
                     }
+                    self.newsFeedTableView.beginUpdates()
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
+                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+                    self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                     print("like not updated")
                 }
             }
         } else {
             userPostLikedData?.remove(element: UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
+            print("new data for update like---\(newDataForLikeUpdate)")
+            newDataForLikeUpdate = data
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            let userPostCollection = db.collection("posts").document(data.id ?? "")
-            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
+            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
+            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { error in
+                button.isUserInteractionEnabled = true
                 if error == nil {
                     print("like removed updated")
-                    //                    self.fetchPostData(isFromRefreh: true)
                     self.newsFeedTableView.beginUpdates()
-                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-                    self.listPostData[index] = newDataForLikeUpdate
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                 } else {
+                    newDataForLikeUpdate = data
+                    userPostLikedData?.append(UserDefaultsCustom.currentUserId)
+                    print("error is in this case---\(error?.localizedDescription ?? "")")
+                    if let err = error {
+                        print("error in case of like and unlike ----\(err.localizedDescription)")
+                        Singleton.shared.showMessage(message:  err.localizedDescription , isError: .error)
+                    }
+                    self.newsFeedTableView.beginUpdates()
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
+                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+                    self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                     print("like removed not updated")
                 }
             }
-        }//likeBtn.setTitle("1", for: .selected)
+        }
     }
     
     func commmnetsPost(data: PostListDataModel, isCommented: Bool, index: Int) {
@@ -573,19 +610,19 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
             alert.addAction(UIAlertAction(title: AppStrings.editPost, style: .default , handler:{ (UIAlertAction)in
                 print("edit post called.")
                 let editPostVc = CreatePostPresenter.createPostModule(delegate: self, selectedImage: [], data: data, isEditPost: true)
+                editPostVc.hidesBottomBarWhenPushed = true
                 self.pushViewController(editPostVc, false)
             }))
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
                 print("delete post called.")
-                let db = Firestore.firestore()
                 print("post id for delete post---\(data.id ?? "")")
                 print("post description for delete post----\(data.postDescription ?? "")")
-                db.collection("posts").document(data.id ?? "").delete() { err in
+                self.firebaseDataBase.collection("posts").document(data.id ?? "").delete() { err in
                     if let err = err {
                         Singleton.shared.showMessage(message: err.localizedDescription, isError: .error)
                     } else {
                         self.listPostData.removeAll()
-                        self.fetchPostData(isFromRefreh: false)
+                        self.getPostDataFromPresenter()
                         Singleton.shared.showMessage(message: "Post deleted successfully.", isError: .success)
                     }
                 }
@@ -612,7 +649,7 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
                     self.reportPost(data: data, index: index)
                 } else {
                     data.reportedUserList?.forEach({ user_id in
-                        if user_id == UserDefaultsCustom.currentUserId{
+                        if user_id == UserDefaultsCustom.currentUserId {
                             return
                         } else {
                             self.reportPost(data: data, index: index)
@@ -643,49 +680,130 @@ extension NewsFeedViewController: NewsFeedTableCellDelegate {
 }
 
 extension NewsFeedViewController: PollResultTableCellDelegate {
-    func likePostDatas(data: PostListDataModel, isLiked: Bool, index: Int) {
-        let db = Firestore.firestore()
+    func likePostDatas(data: PostListDataModel, isLiked: Bool, index: Int, button: UIButton) {
+        print("button is selected---\(button.isSelected)")
+        print("button is userintraction---\(button.isUserInteractionEnabled)")
         var userPostLikedData = data.likedUserList
         if isLiked == true {
             userPostLikedData?.append(UserDefaultsCustom.currentUserId)
             var newDataForLikeUpdate = PostListDataModel()
+            newDataForLikeUpdate = data
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            let userPostCollection = db.collection("posts").document(data.id ?? "")
-            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
+            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
+            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { error in
+                button.isUserInteractionEnabled = true
                 if error == nil {
                     print("like updated")
                     self.newsFeedTableView.beginUpdates()
-                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-                    self.listPostData[index] = newDataForLikeUpdate
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
+                    //Singleton.shared.showMessage(message: "Liked successf", isError: .success)
                 } else {
+                    newDataForLikeUpdate = data
+                    newDataForLikeUpdate.likedUserList?.removeLast()
+                    if let error = error {
+                        print("error in case of like post---\(error)")
+                        Singleton.shared.showErrorMessage(error: error.localizedDescription, isError: .error)
+                    }
+                    self.newsFeedTableView.beginUpdates()
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
+                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+                    self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                     print("like not updated")
                 }
             }
         } else {
             userPostLikedData?.remove(element: UserDefaultsCustom.currentUserId)
-            let newDataForLikeUpdate = PostListDataModel()
+            var newDataForLikeUpdate = PostListDataModel()
+            print("new data for update like---\(newDataForLikeUpdate)")
+            newDataForLikeUpdate = data
             newDataForLikeUpdate.likedUserList = userPostLikedData
-            let userPostCollection = db.collection("posts").document(data.id ?? "")
-            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
+            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
+            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { error in
+                button.isUserInteractionEnabled = true
                 if error == nil {
                     print("like removed updated")
                     self.newsFeedTableView.beginUpdates()
-                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
-                    self.listPostData[index] = newDataForLikeUpdate
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
                     self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
                     self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                 } else {
+                    newDataForLikeUpdate = data
+                    userPostLikedData?.append(UserDefaultsCustom.currentUserId)
+                    print("error is in this case---\(error?.localizedDescription ?? "")")
+                    if let err = error {
+                        print("error in case of like and unlike ----\(err.localizedDescription)")
+                        Singleton.shared.showMessage(message:  err.localizedDescription , isError: .error)
+                    }
+                    self.newsFeedTableView.beginUpdates()
+                    let reloadIndex = IndexPath(row: index, section: 0)
+                    self.listPostData[index - 1] = newDataForLikeUpdate
+                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+                    self.newsFeedTableView.endUpdates()
+                    button.isUserInteractionEnabled = true
                     print("like removed not updated")
                 }
             }
         }
     }
     
+//    func likePostDatas(data: PostListDataModel, isLiked: Bool, index: Int) {
+//        var userPostLikedData = data.likedUserList
+//        if isLiked == true {
+//            userPostLikedData?.append(UserDefaultsCustom.currentUserId)
+//            var newDataForLikeUpdate = PostListDataModel()
+//            newDataForLikeUpdate = data
+//            newDataForLikeUpdate.likedUserList = userPostLikedData
+//            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
+//            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
+//                if error == nil {
+//                    print("like updated")
+//                    self.newsFeedTableView.beginUpdates()
+//                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
+//                    self.listPostData[index] = newDataForLikeUpdate
+//                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+//                    self.newsFeedTableView.endUpdates()
+//                } else {
+//                    print("like not updated")
+//                    if let error = error {
+//                        Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+//                    }
+//                }
+//            }
+//        } else {
+//            userPostLikedData?.remove(element: UserDefaultsCustom.currentUserId)
+//            var newDataForLikeUpdate = PostListDataModel()
+//            newDataForLikeUpdate = data
+//            newDataForLikeUpdate.likedUserList = userPostLikedData
+//            let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
+//            userPostCollection.updateData(["likedUserList": userPostLikedData ?? []]) { (error) in
+//                if error == nil {
+//                    print("like removed updated")
+//                    self.newsFeedTableView.beginUpdates()
+//                    let reloadIndex = IndexPath(row: self.selectedPostIndex ?? 0, section: 0)
+//                    self.listPostData[index] = newDataForLikeUpdate
+//                    self.newsFeedTableView.reloadRows(at: [reloadIndex], with: .none)
+//                    self.newsFeedTableView.endUpdates()
+//                } else {
+//                    print("like removed not updated")
+//                    if let error = error {
+//                        Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
     func voteInPoll(data: PostListDataModel, isVodeted: Bool, selectedIndex: Int, currentPostIndex: Int) {
-        let db = Firestore.firestore()
-        let userPostCollection = db.collection("posts").document(data.id ?? "")
+        
+        let userPostCollection = firebaseDataBase.collection("posts").document(data.id ?? "")
         print("selected index is -----\(selectedIndex)")
         var VotedUserList = [String]()
         VotedUserList = data.voted_user_list ?? []
@@ -698,7 +816,6 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
                 votedOptionArray.append(data.selectedAnswerCount?[i] ?? 0)
             }
         }
-         
         let newPollData = PostListDataModel()
         newPollData.voted_user_list = VotedUserList
         newPollData.selectedAnswerCount = votedOptionArray
@@ -744,16 +861,16 @@ extension NewsFeedViewController: PollResultTableCellDelegate {
             let alert = UIAlertController(title: AppStrings.more, message: AppStrings.selectOption, preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: AppStrings.delete, style: .destructive , handler:{ (UIAlertAction)in
                 print("delete post called.")
-                let db = Firestore.firestore()
+                
                 print("documnets id for deletion---\(data.id ?? "")")
                 print("doc data------\(data.poll_title)")
                 print("hello poll data is----\(data.poll_options?.count ?? 0)")
                 for i in 0..<(data.poll_options?.count ?? 0) {
                     print("poll optionsa----\(data.poll_options?[i] ?? "")")
                 }
-                db.collection("posts").document(data.id ?? "").delete() { err in
+                self.firebaseDataBase.collection("posts").document(data.id ?? "").delete() { err in
                     if err == nil {
-                        self.fetchPostData(isFromRefreh: false)
+                        self.getPostDataFromPresenter()
                         Singleton.shared.showMessage(message: "Post deleted successfully.", isError: .success)
                     } else {
                         if let err = err {
@@ -819,8 +936,6 @@ extension NewsFeedViewController: UIScrollViewDelegate {
     }
 }
 
-extension NewsFeedViewController: NewsFeedViewProtocol {}
-
 extension NewsFeedViewController: CreatePostUploadDelegate {
     func uploadProgress(data: CreatePostModel, isEditProfile: Bool) {
         self.isEditProfile = isEditProfile
@@ -838,3 +953,20 @@ extension NewsFeedViewController: NewsHeaderProtocol {
     }
 }
 
+extension NewsFeedViewController: NewsFeedViewProtocol {
+    func fetchAllPostData() {
+        print("fetch post data is called.")
+    }
+    
+    func fetchAllPostData(data: [PostListDataModel]) {
+        self.refreshControl.tintColor = .clear
+        self.listPostData.removeAll()
+        self.listPostData = []
+        self.listPostData = data
+        self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
+        self.newsFeedTableView.reloadData()
+        self.loader.stopAnimating()
+        self.loader.isHidden = true
+        self.refreshControl.endRefreshing()
+    }
+}

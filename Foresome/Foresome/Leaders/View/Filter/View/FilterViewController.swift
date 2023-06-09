@@ -31,9 +31,7 @@ class FilterViewController: UIViewController {
     @IBAction func applyAction(_ sender: UIButton) {
         self.dismiss(animated: false)
     }
-    
 }
-
 
 extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -86,14 +84,17 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
-        self.filterTableView.reload(section: 1, animation: .none)
+        for i in 0..<4 {
+            print("reloading index is ---\(i)")
+            let reloadIndex = IndexPath(row: i, section: 1)
+            self.filterTableView.reloadRows(at: [reloadIndex], with: .none)
+        }
     }
-    
 }
 
 extension FilterViewController : FilterSectionHeaderDelegate {
     func closeBtnAction() {
-        self.dismiss(animated: false)
+        self.dismiss(animated: true)
     }
 }
 

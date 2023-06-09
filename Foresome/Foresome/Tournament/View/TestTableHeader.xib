@@ -43,7 +43,7 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LL-Ud-Hga">
-                    <rect key="frame" x="334" y="207" width="32" height="32"/>
+                    <rect key="frame" x="334" y="216" width="32" height="32"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="ic_notification_active"/>
                     <connections>
@@ -56,7 +56,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nCF-oJ-gTM" secondAttribute="trailing" id="AxO-8Y-RdY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QoL-va-qwq" secondAttribute="bottom" constant="32" id="I8e-Tz-Gi5"/>
-                <constraint firstItem="2LL-Ud-Hga" firstAttribute="centerY" secondItem="QoL-va-qwq" secondAttribute="centerY" id="J8a-wZ-jeO"/>
+                <constraint firstItem="2LL-Ud-Hga" firstAttribute="centerY" secondItem="NuP-E6-mAk" secondAttribute="centerY" id="Oc9-uk-zqD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2LL-Ud-Hga" secondAttribute="trailing" constant="24" id="aeZ-5h-eVX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nCF-oJ-gTM" secondAttribute="bottom" constant="16" id="hrE-d9-imB"/>
                 <constraint firstItem="nCF-oJ-gTM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jEA-wr-9u2"/>

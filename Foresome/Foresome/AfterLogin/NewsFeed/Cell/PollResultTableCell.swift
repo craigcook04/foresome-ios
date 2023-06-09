@@ -9,12 +9,13 @@ import UIKit
 import FirebaseStorage
 import FirebaseCore
 import Firebase
+import ImageViewer_swift
 
 protocol PollResultTableCellDelegate {
     func pollMoreButton(data:PostListDataModel, index: Int)
     func sharePoll(data:PostListDataModel, pollImage: UIImage)
     func voteInPoll(data:PostListDataModel, isVodeted: Bool, selectedIndex: Int, currentPostIndex: Int)
-    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int)
+    func likePostDatas(data:PostListDataModel, isLiked: Bool, index:Int, button: UIButton)
     func commmnetsPoll(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -45,7 +46,7 @@ class PollResultTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("table height ----\(pollTableView.bounds.height)")
+        print("table height-----\(pollTableView.bounds.height)")
         setCellData()
         postDescriptionLbl.delegate = self
         postDescriptionLbl.numberOfLines = 0
@@ -60,14 +61,27 @@ class PollResultTableCell: UITableViewCell {
     func setPollCellData(data: PostListDataModel, index: Int) {
         self.pollData = data
         self.currentIndex = index
+//        if data.poll_options?.count == 0 {
+//            self.pollTableView.isHidden = true
+//            self.contentView.layoutIfNeeded()
+//        } else {
+//            self.pollTableView.isHidden = true
+//            self.contentView.layoutIfNeeded()
+//        }
+        
         setDateData(data: data)
+        self.profileImage.setupImageViewer()
         if (data.voted_user_list?.count ?? 0) > 1 {
             self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) votes"
         } else {
             self.numberOfVotesLabel.text = "\(data.voted_user_list?.count ?? 0) vote"
         }
         self.userNameLbl.text = "\(data.author ?? "")"
-        self.profileImage.image = data.profileImage?.base64ToImage()
+        
+        if (data.profileImage?.count ?? 0) > 0 {
+            self.profileImage.image = data.profileImage?.base64ToImage()
+        }
+        
         self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
@@ -85,12 +99,22 @@ class PollResultTableCell: UITableViewCell {
                 }
             })
         }
-        for i in 0..<(data.voted_user_list?.count ?? 0) {
-            if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
-                print("data-----\(data.poll_title ?? "")")
-                self.isAnswer = true
-            } else {
-                self.isAnswer = false
+        self.isAnswered(data: data)
+        //MARK: code for set comments button select or unselect----
+        if (data.comments?.count ?? 0) == 0 {
+            self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
+            self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
+        } else {
+            if let commentsData = data.comments {
+                commentsData.forEach({ fetchedUserId in
+                    if fetchedUserId.userId == UserDefaultsCustom.currentUserId {
+                        self.commentBtn.setImage(UIImage(named: "ic_comment_active"), for: .normal)
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#222831"), for: .normal)
+                    } else {
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
+                        self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
+                    }
+                })
             }
         }
         DispatchQueue.main.async {
@@ -138,6 +162,17 @@ class PollResultTableCell: UITableViewCell {
         }
     }
     
+    func isAnswered(data:PostListDataModel) {
+        isAnswer = false
+        for i in 0..<(data.voted_user_list?.count ?? 0) {
+            if data.voted_user_list?[i] ?? "" == UserDefaultsCustom.currentUserId {
+                print("data-----\(data.poll_title ?? "")")
+                self.isAnswer = true
+                return
+            }
+        }
+    }
+    
     @IBAction func moreAction(_ sender: UIButton) {
         if let data = self.pollData {
             self.delegate?.pollMoreButton(data: data, index: indexPath?.row ?? 0)
@@ -146,16 +181,19 @@ class PollResultTableCell: UITableViewCell {
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
+        print("like action called.")
+        sender.isUserInteractionEnabled = false
         sender.isSelected = !(sender.isSelected)
         if self.isLikedPoll == true {
             self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) - 1)", for: .normal)
         } else {
             self.likeBtn.setTitle("\((self.pollData?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
-        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
+        self.delegate?.likePostDatas(data: self.pollData ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0, button: sender)
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
+        print("comments action called.")
         if let data = self.pollData {
             self.delegate?.commmnetsPoll(data: data, isCommented: true, index: indexPath?.row ?? 0)
         }

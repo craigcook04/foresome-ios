@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendsViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
                 <outlet property="friendsTableView" destination="GUP-Xn-7gk" id="dBk-V8-Evt"/>
+                <outlet property="loader" destination="FIg-N9-CmJ" id="hm4-kc-UKi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,23 +22,32 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GUP-Xn-7gk" customClass="StrachyHeaderTable" customModule="Foresome" customModuleProvider="target">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GUP-Xn-7gk" customClass="StrachyHeaderTable" customModule="Foresome" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="794"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-N9-CmJ">
+                    <rect key="frame" x="176.66666666666666" y="67" width="37" height="37"/>
+                    <color key="color" name="nxtBtnColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="FIg-N9-CmJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9IZ-3q-rXe"/>
+                <constraint firstItem="FIg-N9-CmJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Pag-fM-78R"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GUP-Xn-7gk" secondAttribute="trailing" id="a5D-2H-3GG"/>
                 <constraint firstItem="GUP-Xn-7gk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bON-Vj-MLm"/>
                 <constraint firstAttribute="bottom" secondItem="GUP-Xn-7gk" secondAttribute="bottom" constant="50" id="ltt-Hq-BQB"/>
                 <constraint firstItem="GUP-Xn-7gk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uAF-Y7-4j7"/>
             </constraints>
-            <point key="canvasLocation" x="37" y="0.0"/>
+            <point key="canvasLocation" x="36.92307692307692" y="0.0"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="nxtBtnColor">
+            <color red="0.25098039215686274" green="0.80392156862745101" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

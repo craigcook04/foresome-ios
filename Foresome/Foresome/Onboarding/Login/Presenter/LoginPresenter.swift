@@ -57,7 +57,6 @@ class LoginPresenter: LoginPresenterProtocol {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         Auth.auth().signIn(withEmail: "\(email)", password: "\(password)") { [weak self] authResult, error in
             print(self as Any)
-            ActivityIndicator.sharedInstance.hideActivityIndicator()
             //MARK: code for get logged in user informations ----
             if error == nil {
                 let db = Firestore.firestore()
@@ -70,8 +69,20 @@ class LoginPresenter: LoginPresenterProtocol {
                     }
                 }
                 UserDefaultsCustom.setValue(value: (authResult?.user.uid as? NSString) ?? "", forKey: "user_uid")
-                Singleton.shared.setHomeScreenView()
+                db.collection("users").document(((authResult?.user.uid as? NSString) ?? "") as String).getDocument { (snapData, error) in
+                    if error == nil {
+                        ActivityIndicator.sharedInstance.hideActivityIndicator()
+                        if let data = snapData?.data() {
+                            UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
+                            Singleton.shared.setHomeScreenView()
+                        }
+                    } else {
+                        ActivityIndicator.sharedInstance.hideActivityIndicator()
+                        Singleton.shared.showMessage(message: error?.localizedDescription ?? "" , isError: .error)
+                    }
+                }
             } else {
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
                 Singleton.shared.showMessage(message: Messages.invalidEmailPassword, isError: .error)
             }
         }

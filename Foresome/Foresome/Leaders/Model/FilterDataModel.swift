@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 
-
 class FilterDataModel: NSObject {
     var filterByIcon: UIImage?
     var filterPlaceHolder: String?

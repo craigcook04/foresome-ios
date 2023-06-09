@@ -109,6 +109,10 @@ internal extension UITableView {
         self.reloadSections(IndexSet(integer: section), with: animation)
     }
     
+    func reloadWithNoAnimation(section: Int, animation: UITableView.RowAnimation = .none) {
+        self.reloadSections(IndexSet(integer: section), with: animation)
+    }
+    
     func sizeHeaderToFit() {
         if let headerView = tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height

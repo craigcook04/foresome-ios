@@ -37,6 +37,10 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.userNamelabel.text = nameValue.uppercased()
         }
+        searchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Search user by name…",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#909398")]
+        )
     }
     
     @IBAction func notificationAction(_ sender: UIButton) {
@@ -62,6 +66,8 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     }
     
     @IBAction func membersAction(_ sender: UIButton) {
+//        membersButton.isSelected = true
+//        friendsButton.isSelected = false
         if let delegate = delegate {
             delegate.membersAction()
         }
@@ -69,10 +75,11 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
         self.membersView.backgroundColor = UIColor.appColor(.green_main)
         self.friendsView.backgroundColor = UIColor.appColor(.themeWhite)
         self.friendsButton.titleLabel?.textColor = UIColor.appColor(.white_title)
-        
     }
     
     @IBAction func friendsAction(_ sender: UIButton) {
+//        membersButton.isSelected = false
+//        friendsButton.isSelected = true
         if let delegate = delegate {
             delegate.friendsAction()
         }

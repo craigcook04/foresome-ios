@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public protocol ExpendableLinkLabelDelegate: NSObjectProtocol {
     func tapableLabel(_ label: ExpendableLinkLabel, didTapUrl url: String, atRange range: NSRange)
     func tapableLabel(_ label: ExpendableLinkLabel, didTapString string: String, atRange range: NSRange)
@@ -20,7 +19,7 @@ public class ExpendableLinkLabel: UILabel {
     lazy var readLessFont: UIFont = UIFont.setCustom(.poppinsRegular, 14)
     lazy var readMoreString = "  ...Read More"
     lazy var readLessString = "  ...Read Less"
-    lazy var characterLimit: Int = 120 {
+    lazy var characterLimit: Int = 100 {
         didSet {
             setNeedsLayout()
         }

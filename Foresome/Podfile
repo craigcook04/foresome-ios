@@ -20,6 +20,8 @@ target 'Foresome' do
   pod 'Firebase/Storage'
   pod 'ImageViewer.swift', '~> 3.0'
   
+
+  
 end
 # Disable signing for pods
 post_install do |installer|

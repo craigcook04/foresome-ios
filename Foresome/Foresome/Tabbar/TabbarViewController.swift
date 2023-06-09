@@ -43,9 +43,9 @@ class TabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     private func setViewControllers() {
         let newsVC = NewsFeedPresenter.createNewsFeedModule()
-        let friendsVC  = FriendsViewController()
+        let friendsVC  = MembersAndFriendsPresenter.createMembersModules()
         let tourVC  = TournamentsListPresenter.createTournamentsListModules()
-        let leadersVC  = LeadersViewController()
+        let leadersVC  = LeaderBoardPresenter.createLeaderBoardModule()
         let profileVC  = ProfileVC()
         
         let controllers: [UIViewController] = [newsVC, friendsVC, tourVC, leadersVC, profileVC]

@@ -23,7 +23,5 @@ class LeaderBoardSectionHeader: UIView {
         if let delegate = delegate {
             delegate.selectFilter()
         }
-        
     }
-    
 }

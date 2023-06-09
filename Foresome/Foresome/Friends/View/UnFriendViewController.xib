@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnFriendViewController" customModule="Foresome" customModuleProvider="target">
+            <connections>
+                <outlet property="dismissButton" destination="VeB-se-6cW" id="8zN-Pc-ZWh"/>
+                <outlet property="dismissView" destination="SKO-iO-2kn" id="yx4-vy-YFV"/>
+                <outlet property="unfriendDescription" destination="rbz-WV-L9G" id="hf1-95-dc8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKO-iO-2kn">
+                    <rect key="frame" x="0.0" y="558" width="390" height="286"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-se-6cW">
+                            <rect key="frame" x="159" y="9" width="72" height="4"/>
+                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="4" id="WOB-pR-9fL"/>
+                                <constraint firstAttribute="width" constant="72" id="bdc-Gk-sH7"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="nn4-lw-njn"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unfriend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nV-OD-xKh">
+                            <rect key="frame" x="155" y="23" width="80" height="26"/>
+                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
+                            <color key="textColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to unfriend Robert Orgera? We won’t  tell them they were removed by you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-WV-L9G">
+                            <rect key="frame" x="24" y="65" width="342" height="63"/>
+                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                            <color key="textColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOI-JE-11N">
+                            <rect key="frame" x="24" y="160" width="342" height="56"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="Qdk-Dw-IC6"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Yes, I am Sure">
+                                <color key="titleColor" red="0.83137254900000002" green="0.054901960780000002" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isRounded" value="NO"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="confirmButtonAction:" destination="-1" eventType="touchUpInside" id="QKK-3W-Tjx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VeB-se-6cW" firstAttribute="top" secondItem="SKO-iO-2kn" secondAttribute="top" constant="9" id="15g-Vj-H3S"/>
+                        <constraint firstItem="gOI-JE-11N" firstAttribute="leading" secondItem="rbz-WV-L9G" secondAttribute="leading" id="1MX-N0-XaR"/>
+                        <constraint firstItem="VeB-se-6cW" firstAttribute="centerX" secondItem="SKO-iO-2kn" secondAttribute="centerX" id="6Jg-We-Z9U"/>
+                        <constraint firstItem="9nV-OD-xKh" firstAttribute="centerX" secondItem="VeB-se-6cW" secondAttribute="centerX" id="8Hr-Gr-WKj"/>
+                        <constraint firstItem="9nV-OD-xKh" firstAttribute="top" secondItem="VeB-se-6cW" secondAttribute="bottom" constant="10" id="9Ua-a8-1zX"/>
+                        <constraint firstAttribute="trailing" secondItem="rbz-WV-L9G" secondAttribute="trailing" constant="24" id="BQL-CG-lfy"/>
+                        <constraint firstItem="gOI-JE-11N" firstAttribute="top" secondItem="rbz-WV-L9G" secondAttribute="bottom" constant="32" id="Fky-ay-5vH"/>
+                        <constraint firstItem="gOI-JE-11N" firstAttribute="trailing" secondItem="rbz-WV-L9G" secondAttribute="trailing" id="Rql-fr-9tK"/>
+                        <constraint firstItem="rbz-WV-L9G" firstAttribute="top" secondItem="9nV-OD-xKh" secondAttribute="bottom" constant="16" id="WQq-S2-2D6"/>
+                        <constraint firstItem="rbz-WV-L9G" firstAttribute="leading" secondItem="SKO-iO-2kn" secondAttribute="leading" constant="24" id="dFG-Wy-AlJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SKO-iO-2kn" secondAttribute="trailing" id="GpS-ze-XLR"/>
+                <constraint firstAttribute="bottom" secondItem="SKO-iO-2kn" secondAttribute="bottom" id="Ku7-53-wD5"/>
+                <constraint firstItem="SKO-iO-2kn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="cMI-eE-L2b"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gOI-JE-11N" secondAttribute="bottom" constant="36" id="fUQ-q2-HRQ"/>
+                <constraint firstItem="SKO-iO-2kn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kUd-XH-VYv"/>
+            </constraints>
+            <point key="canvasLocation" x="61.538461538461533" y="0.0"/>
+        </view>
+    </objects>
+</document>

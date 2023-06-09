@@ -21,7 +21,7 @@ import ImageViewer_swift
 protocol NewsFeedTableCellDelegate {
     func moreButton(data: PostListDataModel, index: Int)
     func sharePost(data: PostListDataModel, postImage: UIImage)
-    func likePostData(data:PostListDataModel, isLiked: Bool, index:Int)
+    func likePostData(data:PostListDataModel, isLiked: Bool, index:Int, button: UIButton)
     func commmnetsPost(data:PostListDataModel, isCommented: Bool, index:Int)
 }
 
@@ -51,7 +51,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("loged in user id---\(UserDefaultsCustom.currentUserId)")
         //postDescriptionLbl.message = AppStrings.description
         postDescriptionLbl.numberOfLines = 0
         postDescriptionLbl.delegate = self
@@ -145,6 +144,8 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
      
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
+        
+        self.profileImage.setupImageViewer()
         self.postdata = data
         self.userNameLbl.text = "\(data.author ?? "")"
         if data.likedUserList?.count == 0 {
@@ -161,7 +162,26 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
                 }
             })
         }
-        self.profileImage.image = data.profileImage?.base64ToImage()
+        //MARK: code for set comments button select or unselect----
+        if (data.comments?.count ?? 0) == 0 {
+            self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
+            self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
+        } else {
+            if let commentsData = data.comments {
+                commentsData.forEach({ fetchedUserId in
+                    if fetchedUserId.userId == UserDefaultsCustom.currentUserId {
+                        self.commentBtn.setImage(UIImage(named: "ic_comment_active"), for: .normal)
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#222831"), for: .normal)
+                    } else {
+                        self.commentBtn.setTitleColor(UIColor(hexString: "#979CA0"), for: .normal)
+                        self.commentBtn.setImage(UIImage(named: "ic_comment"), for: .normal)
+                    }
+                })
+            }
+        }
+        if (data.profileImage?.count ?? 0) > 0 {
+            self.profileImage.image = data.profileImage?.base64ToImage()
+        }
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         self.postDescriptionLbl.message = data.postDescription ?? ""
@@ -257,6 +277,7 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
+        print("comment action called in case of post.")
         if let data = self.postdata {
             self.delegate?.commmnetsPost(data: data, isCommented: true, index:indexPath?.row ?? 0)
         }
@@ -278,13 +299,16 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
+        print("like action called in case of post.")
+        sender.isUserInteractionEnabled = false
         sender.isSelected = !(sender.isSelected)
         if self.isLikedPost == true {
             self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) - 1)", for: .normal)
-        } else {
+        }else{
             self.likeBtn.setTitle("\((self.postdata?.likedUserList?.count ?? 0) + 1)", for: .normal)
         }
-        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected, index: indexPath?.row ?? 0)
+        self.delegate?.likePostData(data: self.postdata ?? PostListDataModel(), isLiked: sender.isSelected
+                                    , index: indexPath?.row ?? 0, button: sender)
     }
 }
 

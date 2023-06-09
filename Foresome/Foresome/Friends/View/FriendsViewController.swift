@@ -19,20 +19,36 @@ import Firebase
 class FriendsViewController: UIViewController {
     
     @IBOutlet weak var friendsTableView: StrachyHeaderTable!
-     
+    
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
+    var presenter: FriendsPresenterProtocol?
     var listUserData =  [UserListModel]()
     
     weak var headerView: FriendsTableHeader?
     
     var isMembersdata: Bool = true
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loader.isHidden = true
+        self.friendsTableView.refreshControl = refreshControl
         setTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.friendsTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshFriendsData(_:)), for: .valueChanged)
+        fetchMembersData()
+    }
+    
+    @objc private func refreshFriendsData(_ sender: Any) {
+        self.refreshControl.beginRefreshing()
+        self.loader.isHidden = false
+        self.loader.startAnimating()
         fetchMembersData()
     }
     
@@ -57,6 +73,9 @@ class FriendsViewController: UIViewController {
             })
             self.friendsTableView.reloadData()
         }
+        self.loader.isHidden = true
+        self.refreshControl.endRefreshing()
+        self.loader.stopAnimating()
         self.friendsTableView.reloadData()
     }
     
@@ -125,7 +144,20 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
     func makeUnFriend(data: UserListModel?) {
         Singleton.shared.showMessage(message: "Unfriend successfully", isError: .success)
         print("user name ---\(data?.name ?? "")")
+        let confirmPovUp = UnFriendViewController()
+        confirmPovUp.modalPresentationStyle = .overFullScreen
+        self.present(confirmPovUp, true)
     }
+}
+
+extension FriendsViewController: FriendsViewProtocol {
+    
+    
+    func fetchUsersListData(data: [UserListModel]) {
+         
+    }
+    
+ 
 }
 
 

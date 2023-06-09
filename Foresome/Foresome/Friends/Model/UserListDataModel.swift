@@ -22,7 +22,6 @@ extension UserListModel {
     convenience init(json: [String: Any]) {
         self.init()
         self.json = json
-        
         if let name = json["name"] as? String {
             self.name = name
         }

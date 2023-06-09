@@ -32,6 +32,7 @@ class NewsHeader: UIView {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         if let data = strings {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
+            print("user name on post list---\(nameValue)")
             self.userNameLbl.text = nameValue.uppercased()
         }
     }
