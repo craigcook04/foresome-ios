@@ -19,16 +19,12 @@ import Firebase
 class FriendsViewController: UIViewController {
     
     @IBOutlet weak var friendsTableView: StrachyHeaderTable!
-    
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
     var presenter: FriendsPresenterProtocol?
     var listUserData =  [UserListModel]()
-    
     weak var headerView: FriendsTableHeader?
-    
     var isMembersdata: Bool = true
-    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -60,6 +56,7 @@ class FriendsViewController: UIViewController {
     }
     
     func fetchMembersData() {
+        self.refreshControl.tintColor = .clear
         self.listUserData.removeAll()
         self.listUserData = []
         ActivityIndicator.sharedInstance.showActivityIndicator()
@@ -117,13 +114,13 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
     }
     
     func membersAction() {
-         print("members called in controller")
+        print("members called in controller")
         self.isMembersdata = true
         self.friendsTableView.reloadData()
     }
     
     func friendsAction() {
-         print("friends called in controller")
+        print("friends called in controller")
         self.isMembersdata = false
         self.friendsTableView.reloadData()
     }
@@ -142,7 +139,6 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
     }
     
     func makeUnFriend(data: UserListModel?) {
-        Singleton.shared.showMessage(message: "Unfriend successfully", isError: .success)
         print("user name ---\(data?.name ?? "")")
         let confirmPovUp = UnFriendViewController()
         confirmPovUp.modalPresentationStyle = .overFullScreen
@@ -151,13 +147,8 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
 }
 
 extension FriendsViewController: FriendsViewProtocol {
-    
-    
     func fetchUsersListData(data: [UserListModel]) {
-         
     }
-    
- 
 }
 
 

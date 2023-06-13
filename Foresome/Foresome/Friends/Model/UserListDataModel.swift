@@ -28,8 +28,10 @@ extension UserListModel {
         if let user_skill_level = json["user_skill_level"] as? String {
             self.user_skill_level = user_skill_level
         }
-        if let createdDate = json["createdDate"] as? String {
+        if let createdDate = json["createdDate:"] as? String {
             self.createdDate = createdDate
+        } else if let createdDate = json["createdDate:"] as? Double {
+            self.createdDate = "\(createdDate)"
         }
         if let uid = json["uid"] as? String {
             self.uid = uid

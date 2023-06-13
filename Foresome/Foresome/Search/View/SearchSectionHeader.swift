@@ -11,9 +11,7 @@ protocol SearchSectionHeaderDelegate {
     func clearAction()
 }
 
-
 class SearchSectionHeader: UIView {
-    
     var delegate: SearchSectionHeaderDelegate?
     
     override class func awakeFromNib() {
@@ -21,11 +19,8 @@ class SearchSectionHeader: UIView {
     }
     
     @IBAction func clearButtonAction(_ sender: UIButton) {
-        
         if let delegate = delegate {
             delegate.clearAction()
         }
-        
     }
-    
 }

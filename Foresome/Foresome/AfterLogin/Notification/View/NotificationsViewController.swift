@@ -13,6 +13,8 @@ class NotificationsViewController: UIViewController, NotificationViewProtocol {
     
     var presenter: NotificationPresenterProtocol?
     
+    var numberOfRow = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTable()
@@ -30,12 +32,14 @@ class NotificationsViewController: UIViewController, NotificationViewProtocol {
     
     @IBAction func clearAllAction(_ sender: UIButton) {
         print("clear all action called.")
+        self.numberOfRow = 0
+        self.notificationTableView.reloadData()
     }
 }
 
 extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return numberOfRow
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,16 +50,13 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected index is -==\(indexPath.row)")
-        
     }
 }
 
-
 extension NotificationsViewController: NotificationsTableViewCellDelegate {
     func closeButtonAction() {
-         print("close button called ")
+        print("close button called ")
     }
-    
 }
 
 

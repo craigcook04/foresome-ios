@@ -31,6 +31,8 @@ class LeadersViewController: UIViewController, LeaderBoardViewProtocol {
     
     var firstThreeUsers = [UserListModel]()
     
+    var categoryValue : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTable()
@@ -59,7 +61,7 @@ class LeadersViewController: UIViewController, LeaderBoardViewProtocol {
                 let membersData =  document.data()
                 print("membersData is ---\(membersData.description)")
                 let leaderBoardData = document.data()
-                 
+                
                 let leaderBoardModel = LeaderBoardDataModel(json: leaderBoardData)
                 self.leaderBoardData.append(leaderBoardModel)
                 self.leaderBoardTable.reloadData()
@@ -132,108 +134,118 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: LeaderBoardTableViewCell.self, for: indexPath)
-        if indexPath.section == 0 {
-            cell.lowRankview.isHidden = true
-            cell.topRankView.isHidden = false
-            switch indexPath.row {
-            case 0:
-                let oneRankUserId = self.leaderBoardData.filter({$0.rank == 1}).first?.userId ?? ""
-                firestoreDb.collection("users").document(oneRankUserId).getDocument { (snapData, error) in
-                    if error == nil {
-                        if let data = snapData?.data() {
-                            self.userListData = UserListModel(json: data)
-                            cell.rankerName.text = self.userListData.name
-                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
-                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 1}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0))"
-                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
-                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
-                            }
-                        }
-                    } else {
-                        if let error = error {
-                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
-                        }
-                    }
-                }
-                cell.topRankInnerView.firstColor = UIColor(hexString: "#FFDE00")
-                cell.topRankInnerView.secondColor = UIColor(hexString: "#FD5900")
-                cell.rankValue.text = "1st"
-                break
-            case 1:
-                let secondRankUserId = self.leaderBoardData.filter({$0.rank == 2}).first?.userId ?? ""
-                firestoreDb.collection("users").document(secondRankUserId).getDocument { (snapData, error) in
-                    if error == nil {
-                        if let data = snapData?.data() {
-                            self.userListData = UserListModel(json: data)
-                            cell.rankerName.text = self.userListData.name
-                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 2}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
-                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 2}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 2}).first?.r2 ?? 0))"
-                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
-                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
-                            }
-                        }
-                    } else {
-                        if let error = error {
-                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
-                        }
-                    }
-                }
-                cell.topRankInnerView.firstColor = UIColor(hexString: "#DEDEDE")
-                cell.topRankInnerView.secondColor = UIColor(hexString: "#353535")
-                cell.rankValue.text = "2nd"
-                break
-            case 2:
-                let thirdRankUserId = self.leaderBoardData.filter({$0.rank == 3}).first?.userId ?? ""
-                firestoreDb.collection("users").document(thirdRankUserId).getDocument { (snapData, error) in
-                    if error == nil {
-                        if let data = snapData?.data() {
-                            self.userListData = UserListModel(json: data)
-                            cell.rankerName.text = self.userListData.name
-                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 3}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
-                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 3}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 3}).first?.r2 ?? 0))"
-                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
-                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
-                            }
-                        }
-                    } else {
-                        if let error = error {
-                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
-                        }
-                    }
-                }
-                cell.topRankInnerView.firstColor = UIColor(hexString: "#FFA28F")
-                cell.topRankInnerView.secondColor = UIColor(hexString: "#98230C")
-                cell.rankValue.text = "3rd"
-                break
-            default:
-                break
-            }
-        } else {
-            cell.lowRankview.isHidden = false
-            cell.topRankView.isHidden = true
-           let rankerUserId = self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].userId ?? ""
-            firestoreDb.collection("users").document(rankerUserId).getDocument { (snapData, error) in
-                if error == nil {
-                    if let data = snapData?.data() {
-                        self.userListData = UserListModel(json: data)
-                        if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
-                            cell.userProfileSecondSection.image = self.userListData.user_profile_pic?.base64ToImage()
-                        }
-                        cell.secondSectionRankerName.text = self.userListData.name
-                        cell.secondSectionRankValue.text = "#\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].rank ?? 0)"
-                        cell.secondSectionROneValue.text = "\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r1 ?? 0)"
-                        cell.secondSectionRTwoValue.text = "\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r2 ?? 0)"
-                        let totalRank = "\((self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r1 ?? 0 + (self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r2 ?? 0)))"
-                        cell.secondSectionRThreeValue.text = totalRank
-                    }
-                }
-            }
-            if indexPath.row == 0 {
-                cell.rankDetailsHeadings.isHidden = false
-            } else {
-                cell.rankDetailsHeadings.isHidden = true
-            }
-        }
+        
+        
+        cell.setCellLeaderBoardData(data: self.leaderBoardData, tableSection: indexPath.section
+                                    , tableRow: indexPath.row)
+        //
+        //        if indexPath.section == 0 {
+        //            cell.lowRankview.isHidden = true
+        //            cell.topRankView.isHidden = false
+        //            switch indexPath.row {
+        //            case 0:
+        //                let oneRankUserId = self.leaderBoardData.filter({$0.rank == 1}).first?.userId ?? ""
+        //                firestoreDb.collection("users").document(oneRankUserId).getDocument { (snapData, error) in
+        //                    if error == nil {
+        //                        if let data = snapData?.data() {
+        //                            self.userListData = UserListModel(json: data)
+        //                            cell.rankerName.text = self.userListData.name
+        //                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
+        //                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 1}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0))"
+        //                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
+        //                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
+        //                            }
+        //                        }
+        //                    } else {
+        //                        if let error = error {
+        //                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+        //                        }
+        //                    }
+        //                }
+        //                cell.topRankInnerView.firstColor = UIColor(hexString: "#FFDE00")
+        //                cell.topRankInnerView.secondColor = UIColor(hexString: "#FD5900")
+        //                cell.rankValue.text = "1st"
+        //                break
+        //            case 1:
+        //                let secondRankUserId = self.leaderBoardData.filter({$0.rank == 2}).first?.userId ?? ""
+        //
+        //                firestoreDb.collection("users").document(secondRankUserId).getDocument { (snapData, error) in
+        //                    if error == nil {
+        //                        if let data = snapData?.data() {
+        //                            self.userListData = UserListModel(json: data)
+        //                            cell.rankerName.text = self.userListData.name
+        //                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 2}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
+        //                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 2}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 2}).first?.r2 ?? 0))"
+        //                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
+        //                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
+        //                            }
+        //                        }
+        //                    } else {
+        //                        if let error = error {
+        //                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+        //                        }
+        //                    }
+        //                }
+        //                cell.topRankInnerView.firstColor = UIColor(hexString: "#DEDEDE")
+        //                cell.topRankInnerView.secondColor = UIColor(hexString: "#353535")
+        //                cell.rankValue.text = "2nd"
+        //                break
+        //            case 2:
+        //                let thirdRankUserId = self.leaderBoardData.filter({$0.rank == 3}).first?.userId ?? ""
+        //
+        //                firestoreDb.collection("users").document(thirdRankUserId).getDocument { (snapData, error) in
+        //                    if error == nil {
+        //                        if let data = snapData?.data() {
+        //                            self.userListData = UserListModel(json: data)
+        //                            cell.rankerName.text = self.userListData.name
+        //                            cell.rankDetailsLabel.text = "R1 \(self.leaderBoardData.filter({$0.rank == 3}).first?.r1 ?? 0) • R2 \(self.leaderBoardData.filter({$0.rank == 1}).first?.r2 ?? 0)"
+        //                            cell.rankCountLabel.text = "Total \((self.leaderBoardData.filter({$0.rank == 3}).first?.r1 ?? 0) + (self.leaderBoardData.filter({$0.rank == 3}).first?.r2 ?? 0))"
+        //                            if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
+        //                                cell.userImageView.image = self.userListData.user_profile_pic?.base64ToImage()
+        //                            }
+        //                        }
+        //                    } else {
+        //                        if let error = error {
+        //                            Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+        //                        }
+        //                    }
+        //                }
+        //                cell.topRankInnerView.firstColor = UIColor(hexString: "#FFA28F")
+        //                cell.topRankInnerView.secondColor = UIColor(hexString: "#98230C")
+        //                cell.rankValue.text = "3rd"
+        //                break
+        //            default:
+        //                break
+        //            }
+        //        } else {
+        //            cell.lowRankview.isHidden = false
+        //            cell.topRankView.isHidden = true
+        //           let rankerUserId = self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].userId ?? ""
+        //            firestoreDb.collection("users").document(rankerUserId).getDocument { (snapData, error) in
+        //                if error == nil {
+        //                    if let data = snapData?.data() {
+        //                        self.userListData = UserListModel(json: data)
+        //                        if (self.userListData.user_profile_pic?.count ?? 0) > 0 {
+        //                            cell.userProfileSecondSection.image = self.userListData.user_profile_pic?.base64ToImage()
+        //                        }
+        //                        cell.secondSectionRankerName.text = self.userListData.name
+        //                        cell.secondSectionRankValue.text = "#\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].rank ?? 0)"
+        //                        cell.secondSectionROneValue.text = "\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r1 ?? 0)"
+        //                        cell.secondSectionRTwoValue.text = "\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r2 ?? 0)"
+        //                        let totalRank = "\(((self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r1 ?? 0) + (self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r2 ?? 0)))"
+        //                        cell.secondSectionRThreeValue.text = totalRank
+        //                        print("total rank in case of next section--\(totalRank)")
+        //                        print("rank r1 in case of second section----\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r1 ?? 0)")
+        //                        print("rank r2 in case of second section-----\(self.leaderBoardData.filter({($0.rank ?? 0) > 3})[indexPath.row].r2 ?? 0)")
+        //                    }
+        //                }
+        //            }
+        //            if indexPath.row == 0 {
+        //                cell.rankDetailsHeadings.isHidden = false
+        //            } else {
+        //                cell.rankDetailsHeadings.isHidden = true
+        //            }
+        //        }
         return cell
     }
     
@@ -241,6 +253,7 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 1 {
             let view = UIView.initView(view: LeaderBoardSectionHeader.self)
             view.delegate = self
+            view.slelectedCategoryvalue.text = self.categoryValue ?? "All"
             return view
         } else {
             return nil
@@ -273,7 +286,18 @@ extension LeadersViewController: TestTableHeaderDelegate {
 extension LeadersViewController: LeaderBoardSectionHeaderDelegate {
     func selectFilter() {
         let filterVc = FilterViewController()
+        filterVc.delegate = self
         self.present(filterVc, true)
     }
 }
+
+extension LeadersViewController: FilterViewControllerDelegate {
+    func returnSelectedCategory(name: String) {
+        self.categoryValue = name
+        self.leaderBoardTable.reload(section: 1)
+    }
+}
+
+
+
 

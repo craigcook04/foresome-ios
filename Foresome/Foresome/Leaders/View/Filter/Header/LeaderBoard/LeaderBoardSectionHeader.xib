@@ -93,6 +93,9 @@
                 <constraint firstItem="mdo-ck-y0Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jaz-Gd-7JC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="slelectedCategoryvalue" destination="cIg-mc-s4w" id="cw3-fs-S8F"/>
+            </connections>
             <point key="canvasLocation" x="61.538461538461533" y="-279.38388625592415"/>
         </view>
     </objects>

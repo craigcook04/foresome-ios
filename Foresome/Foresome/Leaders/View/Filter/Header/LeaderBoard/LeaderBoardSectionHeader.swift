@@ -15,6 +15,8 @@ class LeaderBoardSectionHeader: UIView {
 
     var delegate:LeaderBoardSectionHeaderDelegate?
     
+    @IBOutlet weak var slelectedCategoryvalue: UILabel!
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

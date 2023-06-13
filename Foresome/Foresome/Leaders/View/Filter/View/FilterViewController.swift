@@ -7,11 +7,18 @@
 
 import UIKit
 
-class FilterViewController: UIViewController {
 
+protocol FilterViewControllerDelegate {
+    func returnSelectedCategory(name: String)
+}
+
+class FilterViewController: UIViewController {
+    
     @IBOutlet weak var filterTableView: UITableView!
     
     var selectedIndex: Int?
+    
+    var delegate: FilterViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +34,13 @@ class FilterViewController: UIViewController {
     @IBAction func resetAction(_ sender: UIButton) {
         self.dismiss(animated: false)
     }
-
+    
     @IBAction func applyAction(_ sender: UIButton) {
-        self.dismiss(animated: false)
+        self.dismiss(animated: false, completion: {
+            if let delegate = self.delegate {
+                delegate.returnSelectedCategory(name: FilterData.sortByData[self.selectedIndex ?? 0])
+            }
+        })
     }
 }
 
@@ -60,7 +71,6 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
             cell.filterView.isHidden = true
             cell.sortByLabel.text = FilterData.sortByData[indexPath.row]
             cell.setCellData(isSelected: selectedIndex == indexPath.row)
-            
         }
         return cell
     }
@@ -84,6 +94,7 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
+        
         for i in 0..<4 {
             print("reloading index is ---\(i)")
             let reloadIndex = IndexPath(row: i, section: 1)
@@ -97,6 +108,9 @@ extension FilterViewController : FilterSectionHeaderDelegate {
         self.dismiss(animated: true)
     }
 }
+
+
+
 
 
 

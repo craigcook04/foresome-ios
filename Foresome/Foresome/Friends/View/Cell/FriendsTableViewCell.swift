@@ -58,7 +58,13 @@ class FriendsTableViewCell: UITableViewCell {
     }
     
     func setDateData(data: UserListModel) {
-        guard let postDate = data.createdDate?.millisecToDate() else {
+//        guard let postDate = data.createdDate?.millisecToDate() else {
+        let stringFormat = data.createdDate ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        //"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.date(from: stringFormat)
+        guard let postDate = dateFormatter.date(from: stringFormat) else {
             return
         }
         let calendar = Calendar.current
