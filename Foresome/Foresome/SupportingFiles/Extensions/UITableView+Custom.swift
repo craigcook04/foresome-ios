@@ -48,7 +48,7 @@ internal extension UITableView {
         label.text = message
         label.textColor = UIColor.placeholderColor
         label.textAlignment = .center
-        label.font = UIFont.setCustom(.latoBold, 24)
+        label.font = UIFont.setCustom(.poppinsMedium, 24)
         label.center = CGPoint(x: self.center.x, y: self.center.y - 150)
         label.numberOfLines = 5
         self.backgroundView = label

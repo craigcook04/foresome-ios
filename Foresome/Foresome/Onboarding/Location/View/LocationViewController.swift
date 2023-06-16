@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class LocationViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate, LocationViewProtocol {
+class LocationViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, LocationViewProtocol {
     
     @IBOutlet weak var locationTextView: UITextView!
     @IBOutlet weak var locationButton: UIButton!

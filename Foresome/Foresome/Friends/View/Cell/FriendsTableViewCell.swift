@@ -14,23 +14,18 @@ protocol FriendsTableViewCellDelegate {
 }
 
 class FriendsTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var addFriendsButton: UIButton!
-    
     @IBOutlet weak var userProfile: UIImageView!
-    
     @IBOutlet weak var userName: UILabel!
-    
     @IBOutlet weak var joinedDate: UILabel!
     
     var delegate: FriendsTableViewCellDelegate?
-    
     var ismembers: Bool?
-    
     var membersData: UserListModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.userProfile.setupImageViewer()
     }
     
     func setCellData(isMemberData: Bool) {
@@ -54,7 +49,6 @@ class FriendsTableViewCell: UITableViewCell {
         self.userProfile.image = data.user_profile_pic?.base64ToImage()
         self.userName.text = data.name
         self.setDateData(data: data)
-        self.userProfile.setupImageViewer()
     }
     
     func setDateData(data: UserListModel) {
@@ -88,6 +82,13 @@ class FriendsTableViewCell: UITableViewCell {
         } else {
             self.joinedDate.text = "Joined on \(postDate.toUserListFormat())"
         }
+    }
+    
+    func showSearchData(searchData: UserListModel) {
+        self.membersData = searchData
+        self.userProfile.image = searchData.user_profile_pic?.base64ToImage()
+        self.userName.text = searchData.name
+        self.setDateData(data: searchData)
     }
      
     @IBAction func addFriendsAction(_ sender: UIButton) {

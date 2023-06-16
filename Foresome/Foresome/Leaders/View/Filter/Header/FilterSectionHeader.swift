@@ -20,10 +20,10 @@ class FilterSectionHeader: UIView {
     @IBOutlet weak var closeButton: UIButton!
     
     var delegate: FilterSectionHeaderDelegate?
-    override class func awakeFromNib() {
+  
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
     
     @IBAction func closeAction(_ sender: UIButton) {
         

@@ -12,19 +12,16 @@ protocol TestTableHeaderDelegate {
 }
 
 class TestTableHeader: UIView {
- 
+    
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var tournamentsName: UILabel!
     
-    
     @IBOutlet weak var headerTitle: UILabel!
-    
     
     var delegate: TestTableHeaderDelegate?
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     func setHeaderData() {

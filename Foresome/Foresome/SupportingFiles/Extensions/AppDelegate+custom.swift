@@ -91,3 +91,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
 //        print("Firebase registration token: \(fcmToken)")
 //    }
 //}
+
+//MARK: extension for uiapplication to manage app open-----
+extension UIApplication {
+    class func isFirstLaunch() -> Bool {
+        if !UserDefaults.standard.bool(forKey: "hasBeenLaunchedBeforeFlag") {
+            UserDefaults.standard.set(true, forKey: "hasBeenLaunchedBeforeFlag")
+            UserDefaults.standard.synchronize()
+            return true
+        }
+        return false
+    }
+}

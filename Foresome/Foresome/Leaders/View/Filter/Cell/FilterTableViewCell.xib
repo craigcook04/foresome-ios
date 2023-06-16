@@ -40,7 +40,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="oQN-AF-AkP"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -52,6 +52,9 @@
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="ic_search"/>
+                                                <connections>
+                                                    <action selector="filterByAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XSI-X0-diW"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

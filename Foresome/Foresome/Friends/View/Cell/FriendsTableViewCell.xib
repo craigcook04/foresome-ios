@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-b0-kmR">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-b0-kmR">
                         <rect key="frame" x="24" y="16" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Lw0-fw-w4y"/>
@@ -44,13 +44,13 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Oliver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON9-1K-RoB">
-                        <rect key="frame" x="80" y="16" width="94" height="23"/>
+                        <rect key="frame" x="80" y="16" width="94" height="22.666666666666671"/>
                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                         <color key="textColor" red="0.13333333333333333" green="0.15686274509803921" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joined on 7, Mar 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weg-3L-lBz">
-                        <rect key="frame" x="80" y="39" width="94" height="17"/>
+                        <rect key="frame" x="80" y="38.666666666666664" width="94" height="17"/>
                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                         <color key="textColor" red="0.56470588235294117" green="0.57647058823529407" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -113,6 +113,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_profile_placeholder" width="216" height="216"/>
+        <image name="ic_user_placeholder" width="40" height="40"/>
     </resources>
 </document>

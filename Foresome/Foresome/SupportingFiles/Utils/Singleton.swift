@@ -68,6 +68,14 @@ class Singleton: NSObject {
         }
     }
     
+    func gotoTutorials() {
+        DispatchQueue.main.async {
+            let view = UIStoryboard.rootController(identifier: "MainNavigation") as! UINavigationController
+                self.window?.rootViewController = view
+                self.window?.makeKeyAndVisible()
+        }
+    }
+    
     func gotoHome() {
         DispatchQueue.main.async {
             let view = TabbarViewController()

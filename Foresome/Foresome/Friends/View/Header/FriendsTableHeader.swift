@@ -26,7 +26,7 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     
     var delegate: FriendsTableHeaderDelegate?
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     
@@ -45,14 +45,13 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     
     @IBAction func notificationAction(_ sender: UIButton) {
         print("hello ")
-        
         if let delegate = delegate {
             delegate.notificationBtnAction()
         }
     }
     
     @IBAction func searchAction(_ sender: UIButton) {
-        print("hello  bbv")
+        print("hello  seach action called.")
     }
     
     @IBAction func searchButtonAction(_ sender: UIButton) {

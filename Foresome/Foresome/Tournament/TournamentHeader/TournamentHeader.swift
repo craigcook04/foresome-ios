@@ -16,10 +16,7 @@ class TournamentHeader: UIView {
     
     @IBOutlet weak var headerTitle: UILabel!
 
-    
-    
-    
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     
@@ -29,7 +26,5 @@ class TournamentHeader: UIView {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
             self.usernameLabel.text = nameValue.uppercased()
         }
-    }
-
-    
+    }    
 }

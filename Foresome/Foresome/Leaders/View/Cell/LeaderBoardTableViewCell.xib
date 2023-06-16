@@ -15,6 +15,9 @@
         <array key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
         </array>
+        <array key="Poppins-SemiBoldItalic.ttf">
+            <string>Poppins-SemiBoldItalic</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -96,11 +99,11 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-Fz-fa4">
-                                                <rect key="frame" x="32" y="24.666666666666671" width="17" height="15"/>
+                                                <rect key="frame" x="32" y="24.666666666666671" width="15.666666666666664" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="jjy-Wc-3NW"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBoldItalic" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -165,7 +168,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoU-T1-bAS">
                                                         <rect key="frame" x="0.0" y="34" width="350" height="57"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="KoX-z2-gbF">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="KoX-z2-gbF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="40" id="d6R-Dh-fJa"/>
@@ -302,7 +305,6 @@
     <resources>
         <image name="ic_user_placeholder" width="40" height="40"/>
         <image name="number_background" width="56" height="48"/>
-        <image name="user" width="64" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

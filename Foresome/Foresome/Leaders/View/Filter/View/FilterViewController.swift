@@ -7,9 +7,9 @@
 
 import UIKit
 
-
 protocol FilterViewControllerDelegate {
     func returnSelectedCategory(name: String)
+    func selectedFilterAndSortOption(friendName: String, tournamentId: String, sortingOption: String)
 }
 
 class FilterViewController: UIViewController {
@@ -17,8 +17,11 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var filterTableView: UITableView!
     
     var selectedIndex: Int?
-    
     var delegate: FilterViewControllerDelegate?
+    var friendNameForFilter: String?
+    var tournamentId: String?
+    
+    var isResetFilter: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,46 +35,54 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func resetAction(_ sender: UIButton) {
-        self.dismiss(animated: false)
+        self.isResetFilter = true
+        self.selectedIndex = nil
+        self.filterTableView.reloadData()
     }
     
     @IBAction func applyAction(_ sender: UIButton) {
         self.dismiss(animated: false, completion: {
             if let delegate = self.delegate {
                 delegate.returnSelectedCategory(name: FilterData.sortByData[self.selectedIndex ?? 0])
+                delegate.selectedFilterAndSortOption(friendName: self.friendNameForFilter ?? "", tournamentId: self.tournamentId ?? "", sortingOption: FilterData.sortByData[self.selectedIndex ?? 0])
             }
         })
     }
 }
 
 extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 2
         } else {
-            return 4
+            return 3
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: FilterTableViewCell.self, for: indexPath)
+        
         if  indexPath.section == 0 {
             cell.sortView.isHidden = true
             cell.filterView.isHidden = false
             cell.searchField.placeholder = FilterData.filterArray[indexPath.row].filterPlaceHolder
             cell.filterIcon.setImage(FilterData.filterArray[indexPath.row].filterByIcon, for: .normal)
-            
         } else {
             cell.sortView.isHidden = false
             cell.filterView.isHidden = true
             cell.sortByLabel.text = FilterData.sortByData[indexPath.row]
             cell.setCellData(isSelected: selectedIndex == indexPath.row)
         }
+        cell.delegate = self
+        if isResetFilter == true {
+            cell.resetFilterAndSorting()
+        }
+        cell.tournamentsIndex = indexPath.row
+        cell.addPickerView()
         return cell
     }
     
@@ -89,12 +100,11 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 56
+        return 56.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
-        
         for i in 0..<4 {
             print("reloading index is ---\(i)")
             let reloadIndex = IndexPath(row: i, section: 1)
@@ -109,6 +119,18 @@ extension FilterViewController : FilterSectionHeaderDelegate {
     }
 }
 
+extension FilterViewController : FilterTableViewCellDelegate {
+    func getUpdatedText(filterBy: String, index: Int) {
+        print("index of filter text fields is ---\(index)")
+        if index == 0 {
+            print("filter by name is ----\(filterBy)")
+            self.friendNameForFilter = filterBy
+        } else {
+            print("filter by tournaments is ---\(filterBy)")
+            self.tournamentId = filterBy
+        }
+    }
+}
 
 
 

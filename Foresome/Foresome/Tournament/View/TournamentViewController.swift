@@ -52,7 +52,7 @@ class TournamentViewController: UIViewController, TournamenstsListViewProtocol {
         self.tournamentTableView.setStrachyHeader(header: view, height: height)
     }
     
-    //MARK: code for get tournamnets dtaa from firebase----------
+    //MARK: code for get tournamnets data from firebase----------
     func getTournmentsData() {
         ActivityIndicator.sharedInstance.showActivityIndicator()
         let db = Firestore.firestore()

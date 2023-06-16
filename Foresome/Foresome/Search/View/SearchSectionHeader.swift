@@ -14,7 +14,7 @@ protocol SearchSectionHeaderDelegate {
 class SearchSectionHeader: UIView {
     var delegate: SearchSectionHeaderDelegate?
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     

@@ -11,10 +11,12 @@ import UIKit
 class AdditionalOption: UIView {
     @IBOutlet weak var optionAdd: GrowingTextView!
     @IBOutlet weak var characterCountLabel: UILabel!
-    
-    override class func awakeFromNib() {
+ 
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 }
+
+
 
 

@@ -47,7 +47,7 @@ class UnFriendViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func confirmButtonAction(_ sender: UIButton) {
         print("make unfriend request.")
-        Singleton.shared.showMessage(message: "Unfriends successfully.", isError: .success)
+        Singleton.shared.showMessage(message: "unfriended succesfully.", isError: .success)
         UIView.animate(withDuration: 0.3) {
             self.dismissView.transform = CGAffineTransform(translationX: 0, y: self.dismissView.frame.height)
         } completion: { isSucceed in
@@ -55,4 +55,5 @@ class UnFriendViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 }
+
 

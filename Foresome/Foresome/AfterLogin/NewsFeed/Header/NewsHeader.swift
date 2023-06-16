@@ -23,9 +23,14 @@ class NewsHeader: UIView {
     @IBOutlet weak var bellButton: UIButton!
     
     var delegate: NewsHeaderProtocol?
-    
-    override class func awakeFromNib() {
+   
+    override func awakeFromNib() {
         super.awakeFromNib()
+        self.fetchUserDummyData()
+    }
+    
+    func fetchUserDummyData() {
+        print("user dummy data fetched called.")
     }
     
     func setHeaderData() {

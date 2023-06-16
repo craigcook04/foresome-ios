@@ -4,14 +4,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeadersViewController" customModule="Foresome" customModuleProvider="target">
             <connections>
                 <outlet property="leaderBoardTable" destination="Tcr-AH-7G2" id="dsy-zB-8dm"/>
+                <outlet property="loader" destination="TG4-ob-HHr" id="HxV-Nj-aXW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,10 +21,14 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-AH-7G2" customClass="StrachyHeaderTable" customModule="Foresome" customModuleProvider="target">
+                <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-AH-7G2" customClass="StrachyHeaderTable" customModule="Foresome" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="794"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TG4-ob-HHr">
+                    <rect key="frame" x="176.66666666666666" y="67" width="37" height="37"/>
+                    <color key="color" name="nxtBtnColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,14 +36,16 @@
                 <constraint firstItem="Tcr-AH-7G2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HhA-Jh-Iaq"/>
                 <constraint firstAttribute="bottom" secondItem="Tcr-AH-7G2" secondAttribute="bottom" constant="50" id="Qq9-Cb-Mhi"/>
                 <constraint firstItem="Tcr-AH-7G2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bbw-d8-9D1"/>
+                <constraint firstItem="TG4-ob-HHr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="f5Z-Zp-lTq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tcr-AH-7G2" secondAttribute="trailing" id="j5h-uI-lbi"/>
+                <constraint firstItem="TG4-ob-HHr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sSo-Oi-Q2h"/>
             </constraints>
-            <point key="canvasLocation" x="-38" y="0.0"/>
+            <point key="canvasLocation" x="-38.46153846153846" y="0.0"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="nxtBtnColor">
+            <color red="0.25098039215686274" green="0.80392156862745101" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

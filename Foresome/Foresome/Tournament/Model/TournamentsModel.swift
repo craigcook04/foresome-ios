@@ -18,6 +18,7 @@ class TournamentModel : NSObject {
     var availability: Int?  = 0
     var address: String? = ""
     var tournament_id: String?
+    var id : String?
     var time:[String]?
 }
 
@@ -55,6 +56,10 @@ extension TournamentModel {
         
         if let tournaments_time = json["time"] as? [String] {
             self.time = tournaments_time
+        }
+        
+        if let id = json["id"] as? String {
+            self.id = id
         }
     }
 }

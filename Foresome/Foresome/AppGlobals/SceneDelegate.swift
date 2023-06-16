@@ -33,7 +33,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if ((UserDefaults.standard.value(forKey: "user_uid") as? String)?.count ?? 0) > 0 {
             Singleton.shared.setHomeScreenView()
         } else {
-            Singleton.shared.gotoLogin()
+            if UIApplication.isFirstLaunch()  == true {
+                Singleton.shared.gotoTutorials()
+            } else {
+                Singleton.shared.gotoLogin()
+            }
         }
         
        // var handle: AuthStateDidChangeListenerHandle?
