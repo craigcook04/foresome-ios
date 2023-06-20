@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+import Firebase
+import FirebaseFirestore
 
 class LeaderBoardDataModel : NSObject {
     var json: JSON!
@@ -15,30 +16,41 @@ class LeaderBoardDataModel : NSObject {
     var r2: Int?
     var rank: Int?
     var userId: String?
+    var usersDetails: UserListModel?
+    var total:Int?
 }
 
 extension  LeaderBoardDataModel {
-    convenience init(json: [String: Any]) {
+    
+    convenience init(tournamentId: String, r1: Int, r2: Int, rank: Int, userId: String) {
         self.init()
-        self.json = json
-        if let tournamentId = json["tournamentId"] as? String {
-            self.tournamentId = tournamentId
+        self.tournamentId = tournamentId
+        self.r1 = r1
+        self.r2 = r2
+        self.rank = rank
+        self.userId = userId
+        self.total = r1 + r2
+    }
+    
+    func getData(snapshot: QuerySnapshot?) -> [LeaderBoardDataModel] {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        guard let documents = snapshot?.documents else {return []}
+        let leaderboardData = documents.map { queryDocumentSnapshot -> LeaderBoardDataModel in
+            let data = queryDocumentSnapshot.data()
+            let r1 = data["r1"] as? Int ?? 0
+            let r2 = data["r2"] as? Int ?? 0
+            let tournamentId = data["tournamentId"] as? String ?? ""
+            let rank = data["rank"] as? Int ?? 0
+            let userId = data["userId"] as? String ?? ""
+            
+            return LeaderBoardDataModel(tournamentId: tournamentId, r1: r1, r2: r2, rank: rank, userId: userId)
         }
-        if let r1 = json["r1"] as? Int {
-            self.r1 = r1
-        }
-        
-        if let r2 = json["r2"] as? Int {
-            self.r2 = r2
-        }
-        
-        if let rank = json["rank"] as? Int {
-            self.rank = rank
-        }
-        
-        if let userId = json["userId"] as? String {
-            self.userId = userId
-        }
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
+        return leaderboardData
+    }
+    
+    func setUserDetails(userId:String) {
+       
     }
 }
 

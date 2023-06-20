@@ -10,6 +10,8 @@ import UIKit
 
 protocol NewsHeaderProtocol {
     func notificationBtnAction()
+    func membersAction()
+    func friendsAction()
 }
 
 class NewsHeader: UIView {
@@ -23,7 +25,7 @@ class NewsHeader: UIView {
     @IBOutlet weak var bellButton: UIButton!
     
     var delegate: NewsHeaderProtocol?
-   
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.fetchUserDummyData()
@@ -43,7 +45,9 @@ class NewsHeader: UIView {
     }
     
     @IBAction func notificationAction(_ sender: UIButton) {
-        self.delegate?.notificationBtnAction()
+        if let delegate = self.delegate {
+            delegate.notificationBtnAction()
+        }
     }
     
     @IBAction func memberAction(_ sender: UIButton) {
@@ -51,6 +55,9 @@ class NewsHeader: UIView {
         self.membersView.backgroundColor = UIColor.appColor(.green_main)
         self.friendsView.backgroundColor = UIColor.appColor(.themeWhite)
         self.friendsButton.titleLabel?.textColor = UIColor.appColor(.white_title)
+        if let delegate = self.delegate {
+            delegate.membersAction()
+        }
     }
     
     @IBAction func friendAction(_ sender: UIButton) {
@@ -58,5 +65,8 @@ class NewsHeader: UIView {
         self.membersView.backgroundColor = UIColor.appColor(.themeWhite)
         self.friendsView.backgroundColor = UIColor.appColor(.green_main)
         self.friendsButton.setTitleColor(.appColor(.green_main), for: .normal)
+        if let delegate = self.delegate {
+            delegate.friendsAction()
+        }
     }
 }

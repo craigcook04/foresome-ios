@@ -101,6 +101,7 @@ class FilterTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
             
             delegate.getUpdatedText(filterBy: self.arrayOfTournamentsId?[row] ?? "", index: indexPath?.row ?? 0)
         }
+        
         self.listTournamentsData.forEach({ tournamentsDetails in
             print("tournamentsDetails title is ---\(tournamentsDetails.title ?? "")")
             print("tournamentsDetails id is ---\(tournamentsDetails.id ?? "")")

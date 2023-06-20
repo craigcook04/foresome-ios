@@ -36,12 +36,17 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     var uploadCount = 0
     var imageUplaodTask : StorageUploadTask?
     var listPostData =  [PostListDataModel]()
+    
+    var friendsListPostData = [PostListDataModel]()
+    var isMembersPost: Bool = true
+     
     var newlistPostData = [PostListDataModel]()
     var isEditProfile: Bool?
     var selectedPostIndex: Int?
     var reportOrReported: String = AppStrings.reportPost
     let firebaseDataBase = Firestore.firestore()
     private let refreshControl = UIRefreshControl()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +55,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
             UITableView.appearance().isPrefetchingEnabled = false
         }
 //        self.fetchPostData
-        
         self.getPostDataFromPresenter()
         self.presenter?.saveCreatUserData()
         self.newsFeedTableView.refreshControl = refreshControl
@@ -111,7 +115,6 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
         } else {
             ActivityIndicator.sharedInstance.showActivityIndicator()
         }
-         
         firebaseDataBase.collection("posts").getDocuments { (querySnapshot, err) in
              ActivityIndicator.sharedInstance.hideActivityIndicator()
             if err == nil {
@@ -377,32 +380,62 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
 
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.listPostData.count + 1)
+        if isMembersPost == true {
+            return (self.listPostData.count + 1)
+        } else {
+            return self.friendsListPostData.count + 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
-            cell.setProfileData()
-            if let data = self.data {
-                cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
+        if isMembersPost == true {
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+                cell.setProfileData()
+                if let data = self.data {
+                    cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
+                }
+                cell.delegate = self
+                return cell
+            } else if listPostData[indexPath.row - 1].post_type == "poll" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
+                let pollData = self.listPostData.filter{( $0.post_type == "poll")}
+                cell.setPollCellData(data: listPostData[indexPath.row - 1], index: indexPath.row)
+                cell.delegate = self
+                cell.currentIndex = indexPath.row - 1
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
+                cell.delegate = self
+                let feedData = self.listPostData.filter({$0.post_type == "feed"})
+                cell.setCellPostData(data: listPostData[indexPath.row - 1])
+                cell.awakeFromNib()
+                return cell
             }
-            cell.delegate = self
-            return cell
-        } else if listPostData[indexPath.row - 1].post_type == "poll" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
-            let pollData = self.listPostData.filter{( $0.post_type == "poll")}
-            cell.setPollCellData(data: listPostData[indexPath.row - 1], index: indexPath.row)
-            cell.delegate = self
-            cell.currentIndex = indexPath.row - 1
-            return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
-            cell.delegate = self
-            let feedData = self.listPostData.filter({$0.post_type == "feed"})
-            cell.setCellPostData(data: listPostData[indexPath.row - 1])
-            cell.awakeFromNib()
-            return cell
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.createPostTableCell, for: indexPath) as? TalkAboutTableCell else {return UITableViewCell()}
+                cell.setProfileData()
+                if let data = self.data {
+                    cell.setCellDataAndProgress(data: data, progress: progressCount, uploadedCount: totalUploadedImage)
+                }
+                cell.delegate = self
+                return cell
+            } else if friendsListPostData[indexPath.row - 1].post_type == "poll" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.pollResultTableCell, for: indexPath) as? PollResultTableCell else{return UITableViewCell()}
+                let pollData = self.friendsListPostData.filter{( $0.post_type == "poll")}
+                cell.setPollCellData(data: friendsListPostData[indexPath.row - 1], index: indexPath.row)
+                cell.delegate = self
+                cell.currentIndex = indexPath.row - 1
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier.newsFeedTableCell, for: indexPath) as? NewsFeedTableCell else {return UITableViewCell()}
+                cell.delegate = self
+                let feedData = self.friendsListPostData.filter({$0.post_type == "feed"})
+                cell.setCellPostData(data: friendsListPostData[indexPath.row - 1])
+                cell.awakeFromNib()
+                return cell
+            }
         }
     }
     
@@ -946,6 +979,29 @@ extension NewsFeedViewController: CreatePostUploadDelegate {
 }
 
 extension NewsFeedViewController: NewsHeaderProtocol {
+    func membersAction() {
+         print("member action in controller called.")
+        self.isMembersPost = true
+        self.newsFeedTableView.reloadData()
+    }
+    
+    func friendsAction() {
+        self.isMembersPost = false
+        print("friends action in controller called.")
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let usersFriendsList:[String] = strings?["friends"]  as? [String] ?? []
+        let data =  self.listPostData.filter { list in
+            if list.uid != UserDefaultsCustom.currentUserId && usersFriendsList.contains(where: {$0 == list.uid}) {
+                return true
+            } else {
+                return false
+            }
+        }
+        self.friendsListPostData = data
+        self.newsFeedTableView.reloadData()
+        print(data.count)
+    }
+    
     func notificationBtnAction() {
         let notificationVc = NotificationPresenter.createNotificationModule()
         notificationVc.hidesBottomBarWhenPushed = true

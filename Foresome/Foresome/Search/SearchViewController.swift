@@ -38,6 +38,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.searchTextField.becomeFirstResponder()
         self.fetchMembersData()
     }
     

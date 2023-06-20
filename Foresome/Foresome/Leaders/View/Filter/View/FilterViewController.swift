@@ -65,7 +65,6 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: FilterTableViewCell.self, for: indexPath)
-        
         if  indexPath.section == 0 {
             cell.sortView.isHidden = true
             cell.filterView.isHidden = false

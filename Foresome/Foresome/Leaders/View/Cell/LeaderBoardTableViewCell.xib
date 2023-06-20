@@ -180,7 +180,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnb-Vy-b4y">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnb-Vy-b4y">
                                                                 <rect key="frame" x="56" y="0.0" width="80" height="22.666666666666668"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="80" id="Q6z-JZ-jwe"/>
@@ -190,7 +190,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="#2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="our-OD-yR7">
-                                                                <rect key="frame" x="55.999999999999993" y="22.666666666666657" width="18.666666666666664" height="17.333333333333329"/>
+                                                                <rect key="frame" x="55.999999999999993" y="22.666666666666657" width="18.666666666666664" height="18.333333333333329"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
                                                                 <color key="textColor" red="0.18823529411764706" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -233,7 +233,6 @@
                                                             <constraint firstItem="qcE-92-C76" firstAttribute="top" secondItem="KoX-z2-gbF" secondAttribute="bottom" constant="16" id="Hmu-HJ-z81"/>
                                                             <constraint firstAttribute="bottom" secondItem="qcE-92-C76" secondAttribute="bottom" id="Lfp-LC-6dj"/>
                                                             <constraint firstItem="Mnb-Vy-b4y" firstAttribute="top" secondItem="hoU-T1-bAS" secondAttribute="top" id="NCB-Go-jIx"/>
-                                                            <constraint firstItem="our-OD-yR7" firstAttribute="bottom" secondItem="KoX-z2-gbF" secondAttribute="bottom" id="QiY-Rz-Mfg"/>
                                                             <constraint firstAttribute="trailing" secondItem="qcE-92-C76" secondAttribute="trailing" id="Vg1-pQ-fHs"/>
                                                             <constraint firstAttribute="trailing" secondItem="jKl-jq-dij" secondAttribute="trailing" id="XY6-Bf-OXe"/>
                                                             <constraint firstItem="jKl-jq-dij" firstAttribute="top" secondItem="Mnb-Vy-b4y" secondAttribute="top" id="Xn9-yi-wX4"/>

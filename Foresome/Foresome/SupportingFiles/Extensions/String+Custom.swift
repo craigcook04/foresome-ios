@@ -20,7 +20,7 @@ extension String {
         case ddM4EEEE = "dd MMMM EEEE"
         case ddM3EEEE = "dd MMM EEEE"
         case ddM3y4 = "dd MMM yyyy"
-        case d2M4y4 = "dd MMMM yyyy"
+        case d2M4y4 = "dd, MMMM yyyy"
         case M4y4 = "MMMM yyyy"
         case m3y4 = "MMM yyyy"
         case time = "hh:mm a"
