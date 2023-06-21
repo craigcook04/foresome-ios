@@ -44,24 +44,36 @@ class FriendsTableViewCell: UITableViewCell {
 //        }
     }
     
-    func setListData(data: UserListModel, isMemberData: Bool) {
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        var usersFriendsList = strings?["friends"] ?? []
-        self.usersFriendsList = usersFriendsList as? [String] ?? []
+    func setListData(data: UserListModel, isMemberData: Bool, usersFriendsList:[String]) {
+      //  let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+//        var usersFriendsList = strings?["friends"] ?? []
+        self.usersFriendsList = usersFriendsList
         if isMemberData == true {
-            self.usersFriendsList.forEach({ usersData in
-                if usersData == data.uid {
-                    addFriendsButton.setTitle("Remove", for: .normal)
-                    addFriendsButton.layer.borderWidth = 0
-                    addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
-                    addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
-                } else {
-                    addFriendsButton.setTitle("Add Friend", for: .normal)
-                    addFriendsButton.layer.borderWidth = 0
-                    addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
-                    addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
-                }
-            })
+            if self.usersFriendsList.contains(data.uid ?? "") == true{
+                addFriendsButton.setTitle("Remove", for: .normal)
+                addFriendsButton.layer.borderWidth = 0
+                addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
+                addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
+            } else {
+                addFriendsButton.setTitle("Add Friend", for: .normal)
+                addFriendsButton.layer.borderWidth = 0
+                addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
+                addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
+            }
+            
+//            self.usersFriendsList.forEach({ usersData in
+//                if usersData == data.uid {
+//                    addFriendsButton.setTitle("Remove", for: .normal)
+//                    addFriendsButton.layer.borderWidth = 0
+//                    addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
+//                    addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
+//                } else {
+//                    addFriendsButton.setTitle("Add Friend", for: .normal)
+//                    addFriendsButton.layer.borderWidth = 0
+//                    addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
+//                    addFriendsButton.setTitleColor(UIColor(hexString: "#40CD93"), for: .normal)
+//                }
+//            })
         } else {
             addFriendsButton.backgroundColor = .white
             addFriendsButton.setTitle("Unfriend", for: .normal)

@@ -41,7 +41,7 @@ class FriendsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // self.addCollectionData()
-        self.fetchFriendsData()
+        //self.fetchFriendsData()
         self.friendsTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshFriendsData(_:)), for: .valueChanged)
         fetchMembersData(isFromRefresh: false)
@@ -62,14 +62,14 @@ class FriendsViewController: UIViewController {
         subcollectionRef.addDocument(data: ["user_id:":""])
     }
     
-    func fetchFriendsData() {
-        firebaseDb.collection("friends").getDocuments { (querySnapshot, err) in
-            querySnapshot?.documents.enumerated().forEach({ (index,document) in
-                let membersData =  document.data()
-                print("friends data ----\(membersData)")
-            })
-        }
-    }
+//    func fetchFriendsData() {
+//        firebaseDb.collection("friends").getDocuments { (querySnapshot, err) in
+//            querySnapshot?.documents.enumerated().forEach({ (index,document) in
+//                let membersData =  document.data()
+//                print("friends data ----\(membersData)")
+//            })
+//        }
+//    }
     
     func setTableView() {
         self.friendsTableView.delegate = self
@@ -96,6 +96,11 @@ class FriendsViewController: UIViewController {
                 let userlistdata = UserListModel(json: membersData)
                 self.listUserData.append(userlistdata)
             })
+            
+            let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+            let usersFriendsList = strings?["friends"] ?? []
+            self.usersFriendsList = usersFriendsList as? [String] ?? []
+            
             self.friendsTableView.reloadData()
         }
         self.loader.isHidden = true
@@ -137,9 +142,9 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell =  tableView.dequeueReusableCell(cell: FriendsTableViewCell.self, for: indexPath)
         cell.setCellData(isMemberData: isMembersdata)
         if self.isMembersdata == false {
-            cell.setListData(data: self.friendsListData[indexPath.row], isMemberData: self.isMembersdata)
+            cell.setListData(data: self.friendsListData[indexPath.row], isMemberData: self.isMembersdata, usersFriendsList: self.usersFriendsList)
         } else {
-            cell.setListData(data: self.listUserData[indexPath.row], isMemberData: self.isMembersdata)
+            cell.setListData(data: self.listUserData[indexPath.row], isMemberData: self.isMembersdata, usersFriendsList: self.usersFriendsList)
         }
         cell.delegate = self
         return cell
@@ -164,52 +169,76 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
         print("members called in controller")
         self.isMembersdata = true
         self.friendsTableView.reloadData()
-        self.getOnlyMembersData()
-        self.arrayOfNoUserName.forEach({ userid in
-            print("no user name user id is ----\(userid)")
-        })
+        //self.getOnlyMembersData()
+//        self.arrayOfNoUserName.forEach({ userid in
+//            print("no user name user id is ----\(userid)")
+//        })
     }
     
     //MARK: update friends list when user make unfriends-----
     func updateUnfriendsListData(friendsList: [String]) {
         ActivityIndicator.sharedInstance.showActivityIndicator()
+        //self.friendsListData.removeAll()
+        
+        
         self.friendsListData.removeAll()
-        self.listUserData.forEach({ allUsersListData in
-            print("all users list uid is ---\(allUsersListData.uid ?? "")")
-            friendsList.forEach({ friendsData in
+        self.usersFriendsList.forEach({ friendsData in
+            self.listUserData.forEach({ allUsersListData in
                 if allUsersListData.uid == friendsData {
                     self.friendsListData.append(allUsersListData)
                 }
             })
-            ActivityIndicator.sharedInstance.hideActivityIndicator()
-            self.friendsTableView.reloadData()
         })
+        
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
+        self.friendsTableView.reloadData()
+        
+//        self.listUserData.forEach({ allUsersListData in
+//            print("all users list uid is ---\(allUsersListData.uid ?? "")")
+//            friendsList.forEach({ friendsData in
+//                if allUsersListData.uid == friendsData {
+//                    self.friendsListData.append(allUsersListData)
+//                }
+//            })
+//            ActivityIndicator.sharedInstance.hideActivityIndicator()
+//            self.friendsTableView.reloadData()
+//        })
     }
     
     func friendsAction() {
         print("friends called in controller")
         self.isMembersdata = false
         //MARK: only fetch those users which have in  current login user friend list---
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        var usersFriendsList = strings?["friends"] ?? []
-        self.usersFriendsList = usersFriendsList as? [String] ?? []
+       // let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+       // var usersFriendsList = strings?["friends"] ?? []
+       // self.usersFriendsList = usersFriendsList as? [String] ?? []
         //MARK: add friends list data inside this data-------
-        self.listUserData.forEach({ allUsersListData in
-            print("all users list uid is ---\(allUsersListData.uid ?? "")")
-            self.usersFriendsList.forEach({ friendsData in
+        self.friendsListData.removeAll()
+        self.usersFriendsList.forEach({ friendsData in
+            self.listUserData.forEach({ allUsersListData in
                 if allUsersListData.uid == friendsData {
                     self.friendsListData.append(allUsersListData)
                 }
             })
-            self.friendsTableView.reloadData()
         })
-        self.listUserData.forEach({ data in
-            if data.name == "" || data.name == nil {
-                if let user_id = data.uid {
-                    self.arrayOfNoUserName.append(user_id)
-                }
-            }
-        })
+        self.friendsTableView.reloadData()
+        
+//        self.listUserData.forEach({ allUsersListData in
+//            print("all users list uid is ---\(allUsersListData.uid ?? "")")
+//            self.usersFriendsList.forEach({ friendsData in
+//                if allUsersListData.uid == friendsData {
+//                    self.friendsListData.append(allUsersListData)
+//                }
+//            })
+//            self.friendsTableView.reloadData()
+//        })
+//        self.listUserData.forEach({ data in
+//            if data.name == "" || data.name == nil {
+//                if let user_id = data.uid {
+//                    self.arrayOfNoUserName.append(user_id)
+//                }
+//            }
+//        })
     }
      
     func deleteAllEmptyUsers() {
@@ -223,15 +252,15 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
     }
      
     //MARK: code for seprate only members data and remove all friends data from users list ------
-    func getOnlyMembersData() {
-        self.listUserData.forEach({ allListData in
-            self.usersFriendsList.forEach({ userFriendsData  in
-                if allListData.uid == userFriendsData {
-                    self.listUserData.remove(element: allListData)
-                }
-            })
-        })
-    }
+//    func getOnlyMembersData() {
+//        self.listUserData.forEach({ allListData in
+//            self.usersFriendsList.forEach({ userFriendsData  in
+//                if allListData.uid == userFriendsData {
+//                    self.listUserData.remove(element: allListData)
+//                }
+//            })
+//        })
+//    }
     //MARK: code for search data--------
     func searchData() {
         let searchVC = SearchViewController()
@@ -242,22 +271,21 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
 
 extension FriendsViewController: FriendsTableViewCellDelegate {
     func addFriend(data: UserListModel?) {
+    
         //MARK: First fetch current users all data from users collections -------------
         let currentUserId = UserDefaultsCustom.currentUserId
-        firebaseDb.collection("users").document((currentUserId) as String).getDocument { (snapData, error) in
-            if error == nil {
-                ActivityIndicator.sharedInstance.hideActivityIndicator()
-                if let data = snapData?.data() {
-                    UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
-                }
-            } else {
-                ActivityIndicator.sharedInstance.hideActivityIndicator()
-                Singleton.shared.showMessage(message: error?.localizedDescription ?? "" , isError: .error)
-            }
-        }
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-        var usersFriendsList = strings?["friends"] ?? []
-        self.usersFriendsList = usersFriendsList as? [String] ?? []
+//        firebaseDb.collection("users").document((currentUserId) as String).getDocument { (snapData, error) in
+//            if error == nil {
+//                ActivityIndicator.sharedInstance.hideActivityIndicator()
+//                if let data = snapData?.data() {
+//                    UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
+//                }
+//            } else {
+//                ActivityIndicator.sharedInstance.hideActivityIndicator()
+//                Singleton.shared.showMessage(message: error?.localizedDescription ?? "" , isError: .error)
+//            }
+//        }
+        
         let userToAddFriends = data?.uid ?? ""
         self.usersFriendsList.append(userToAddFriends)
         print("user id to want to add friend ---\(data?.uid ?? "")")
@@ -267,18 +295,29 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
         firebaseDb.collection("users").document(currentUserId).setData(["friends":self.usersFriendsList], merge: true) { error  in
             if error == nil {
                 Singleton.shared.showMessage(message: "Add friend successfully.", isError: .success)
-                self.listUserData.removeAll { singleUserData in
-                    singleUserData.uid = userToAddFriends
+                DispatchQueue.main.async {
                     self.friendsTableView.reloadData()
-                    return true
                 }
-                if let data = data {
-                    let removeIndex =  self.listUserData.firstIndex(of: data)
-                    print("remove index is equal to ----\(removeIndex ?? 0)")
-                    if let index = removeIndex {
-                        self.listUserData.remove(at: index)
+                
+                self.firebaseDb.collection("users").document(currentUserId).getDocument { (snapData, error) in
+                    if let data = snapData?.data() {
+                        UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
                     }
                 }
+                
+                
+//                self.listUserData.removeAll { singleUserData in
+//                    singleUserData.uid = userToAddFriends
+//                    self.friendsTableView.reloadData()
+//                    return true
+//                }
+//                if let data = data {
+//                    let removeIndex =  self.listUserData.firstIndex(of: data)
+//                    print("remove index is equal to ----\(removeIndex ?? 0)")
+//                    if let index = removeIndex {
+//                        self.listUserData.remove(at: index)
+//                    }
+//                }
             } else {
                 if let error = error {
                     Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
@@ -290,9 +329,11 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
     
     func makeUnFriend(data: UserListModel?) {
         print("user name ---\(data?.name ?? "")")
+        self.usersFriendsList.remove(element: data?.uid ?? "")
         let confirmPovUp = UnFriendViewController()
         confirmPovUp.delegate = self
         confirmPovUp.userToMakeUnfriends = data ?? UserListModel()
+        confirmPovUp.usersFriendsList = self.usersFriendsList
         confirmPovUp.modalPresentationStyle = .overFullScreen
         self.present(confirmPovUp, true)
     }
