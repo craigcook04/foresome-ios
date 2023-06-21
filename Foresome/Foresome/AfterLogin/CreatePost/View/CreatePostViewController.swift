@@ -55,10 +55,11 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     func setTopTitle() {
         if self.isEditProfile == true {
             self.creatPostTitle.text = "Edit Post"
-            data?.image?.forEach({ imges in
-                self.urlToImage(url: imges)
-            })
+//            data?.image?.forEach({ imges in
+//                self.urlToImage(url: imges)
+//            })
             self.writePost.text = data?.postDescription ?? ""
+            creatPostData.postDescription = self.writePost.text
         } else {
             self.creatPostTitle.text = "Create Post"
         }
@@ -103,16 +104,15 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func publishBtnActive() {
-        if (creatPostData.postDescription?.count ?? 0) > 0 {
-            return
-        } else {
-            if self.imageSelect.count > 0 {
+        if (creatPostData.postDescription?.count ?? 0) > 0 || imageSelect.count > 0 {
+          
+           // if self.imageSelect.count > 0 {
                 self.publishButton.isUserInteractionEnabled = true
                 self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
-            } else {
-                self.publishButton.isUserInteractionEnabled = false
-                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
-            }
+//            } else {
+//                self.publishButton.isUserInteractionEnabled = false
+//                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+//            }
         }
     }
     
@@ -144,6 +144,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
         creatPostData.createdDate = self.data?.createdAt ?? ""
         creatPostData.postId = self.data?.id ?? ""
         creatPostData.postDescription = creatPostData.postDescription
+        creatPostData.imageUrl = self.data?.image
         self.navigationController?.popViewController(animated: false, completion: {
             self.delegate?.uploadProgress(data: self.creatPostData, isEditProfile: self.isEditProfile ?? false)
         })
@@ -242,13 +243,26 @@ extension CreatePostViewController {
 
 extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imageSelect.count
+        if isEditProfile == true {
+            return (self.data?.image?.count ?? 0) + self.imageSelect.count
+        } else {
+            return self.imageSelect.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(cellClass: SelectImageCollectionCell.self, forIndexPath: indexPath)
         cell.selectedRow = indexPath.row
-        cell.selectImage.image = self.imageSelect[indexPath.row]
+        if isEditProfile == false {
+            cell.selectImage.image = self.imageSelect[indexPath.row]
+        } else {
+            if indexPath.item < self.data?.image?.count ?? 0 {
+                let url = URL(string: self.data?.image?[indexPath.item] ?? "")
+                cell.selectImage.kf.setImage(with: url)
+            } else {
+                cell.selectImage.image = self.imageSelect[indexPath.row - (self.data?.image?.count ?? 0)]
+            }
+        }
         cell.delegate = self
         return cell
     }
@@ -260,7 +274,8 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
 
 extension CreatePostViewController: SelectImageCollectionCellDelegate {
     func removeImage(index: Int) {
-        self.imageSelect.remove(at: index)
+        self.data?.image?.remove(at: index)
+        //self.imageSelect.remove(at: index)
         self.selectImageCollection.reloadData()
         self.publishBtnActive()
     }
