@@ -257,9 +257,12 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     func uploadDataForPost(data:CreatePostModel) {
         if (data.postImages?.count ?? 0) > 0 {
             for i in 0..<(data.postImages?.count ?? 0) {
-                uploadimages(image: data.postImages?[i] ?? UIImage())
+                uploadimages(image: data.postImages?[i] ?? UIImage(), imagesURL: data.imageUrl)
             }
         } else {
+            if let urls = data.imageUrl {
+                uploadedImageUrls = urls
+            }
             self.uploadPostData(data: self.data ?? CreatePostModel())
         }
     }
@@ -273,7 +276,10 @@ class NewsFeedViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     //MARK: code for upload image one by one ---
-    func uploadimages(image: UIImage) {
+    func uploadimages(image: UIImage, imagesURL:[String]?) {
+        if let urls = imagesURL {
+            uploadedImageUrls = urls
+        }
         let storageRef = Storage.storage().reference()
         var data = Data()
         data = image.pngData() ?? Data()
