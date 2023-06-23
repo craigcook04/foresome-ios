@@ -16,6 +16,7 @@ class UserListModel: NSObject {
     var user_location:String?
     var email:String?
     var user_profile_pic:String?
+    var friends : [String]?
 }
 
 extension UserListModel {
@@ -44,6 +45,9 @@ extension UserListModel {
         }
         if let user_profile_pic = json["user_profile_pic"] as? String {
             self.user_profile_pic = user_profile_pic
+        }
+        if let friends = json["friends"] as? [String] {
+            self.friends = friends
         }
     }
 }

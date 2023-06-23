@@ -28,6 +28,7 @@ class SearchViewController: UIViewController {
     let firebaseDb = Firestore.firestore()
     var sectionHeight = 56.0
     var recentSearchData = [UserListModel]()
+    var headerView : SearchSectionHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,13 +97,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView.initView(view: SearchSectionHeader.self)
-        view.delegate = self
+        let view = self.headerView//UIView.initView(view: SearchSectionHeader.self)
+        view?.delegate = self
         return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHeight
+        return  sectionHeight
     }
 }
 
@@ -123,12 +124,14 @@ extension SearchViewController: UITextFieldDelegate {
         print("new text is ---\(updatedString)")
         if updatedString == " " {
             self.sectionHeight = 56.0
+            self.headerView = UIView.initView(view: SearchSectionHeader.self)
             self.searchTableView.reloadData()
             return false
         } else {
             if updatedString.count > 0 {
                 print("updated string is ----\(updatedString)")
                 self.sectionHeight = 0.001
+                self.headerView = nil
                 let searchText = updatedString
                 self.filteredUserData = self.listUserData.filter({$0.name?.contains(searchText.lowercased()) ?? false})
                 self.filteredUserData = self.listUserData.filter({$0.name?.lowercased().contains(searchText.lowercased()) ?? false})
@@ -137,6 +140,7 @@ extension SearchViewController: UITextFieldDelegate {
                 self.filteredUserData.removeAll()
                 self.filteredUserData = []
                 self.sectionHeight = 56.0
+                self.headerView = UIView.initView(view: SearchSectionHeader.self)
                 self.searchTableView.reloadData()
             }
             return true

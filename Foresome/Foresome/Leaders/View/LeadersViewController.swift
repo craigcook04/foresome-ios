@@ -29,14 +29,18 @@ class LeadersViewController: UIViewController {
     let firestoreDb = Firestore.firestore()
     var userListData = UserListModel()
     var leaderBoardData = [LeaderBoardDataModel]()
+    var filteredData = [LeaderBoardDataModel]()
     var allUsersList = [UserListModel]()
     var firstThreeUsers = [UserListModel]()
     var categoryValue : String?
     private let refreshControl = UIRefreshControl()
+    var usersFriendsList: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.leaderBoardTable.refreshControl = refreshControl
+        self.leaderBoardTable.automaticallyAdjustsScrollIndicatorInsets = false
         setTable()
     }
     
@@ -45,7 +49,6 @@ class LeadersViewController: UIViewController {
         self.loader.isHidden = true
         self.leaderBoardTable.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshLeaderBoardData(_:)), for: .valueChanged)
-        // self.fetchLeaderBoardData(isFromRefresh: false)
         //MARK: code for fetch leaders board data from presenter---
         self.presenter?.fetchPresenterViewLeaderBoard(isFromRefresh: false)
     }
@@ -54,9 +57,7 @@ class LeadersViewController: UIViewController {
         self.refreshControl.beginRefreshing()
         self.loader.isHidden = false
         self.loader.startAnimating()
-        //self.presenter?.fetchPostData(isFromRefresh: true)
-        // self.fetchLeaderBoardData(isFromRefresh: true)
-        self.presenter?.fetchPresenterViewLeaderBoard(isFromRefresh: false)
+        self.presenter?.fetchPresenterViewLeaderBoard(isFromRefresh: true)
     }
     
     func setTable() {
@@ -64,71 +65,6 @@ class LeadersViewController: UIViewController {
         self.leaderBoardTable.dataSource = self
         self.leaderBoardTable.register(cellClass: LeaderBoardTableViewCell.self)
         setTableHeader()
-    }
-    //
-    //    func fetchLeaderBoardData(isFromRefresh: Bool) {
-    //        self.leaderBoardData.removeAll()
-    //        self.leaderBoardData = []
-    //        self.refreshControl.tintColor = .clear
-    //        if isFromRefresh ==  true {
-    //            ActivityIndicator.sharedInstance.hideActivityIndicator()
-    //            self.refreshControl.beginRefreshing()
-    //            self.loader.isHidden = false
-    //            self.loader.startAnimating()
-    //        } else {
-    //            ActivityIndicator.sharedInstance.showActivityIndicator()
-    //        }
-    //        firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-    //            ActivityIndicator.sharedInstance.hideActivityIndicator()
-    //            querySnapshot?.documents.enumerated().forEach({ (index, document) in
-    //                print("docs id is ----\(document.documentID)")
-    //                let membersData =  document.data()
-    //                print("membersData is ---\(membersData.description)")
-    //                let leaderBoardData = document.data()
-    //                let leaderBoardModel = LeaderBoardDataModel(json: leaderBoardData)
-    //                self.leaderBoardData.append(leaderBoardModel)
-    //                self.leaderBoardTable.reloadData()
-    //                print("user leader board rank value is ---\(self.leaderBoardData[index].rank ?? 0)")
-    //                print("user leader board r1 rank value is ---------\(self.leaderBoardData[index].r1 ?? 0)")
-    //                print("user leader board r2 rank value is ---------\(self.leaderBoardData[index].r2 ?? 0)")
-    //                self.refreshControl.endRefreshing()
-    //                self.loader.isHidden = true
-    //                self.loader.stopAnimating()
-    //                self.fetchParticularUserData(userId: self.leaderBoardData[index].userId ?? "")
-    //                print("user id in in case of leader rank data -----\(self.leaderBoardData[index].userId ?? "")")
-    //            })
-    //            self.leaderBoardTable.reloadData()
-    //        }
-    //    }
-    
-    func fetchParticularUserData(userId: String) {
-        firestoreDb.collection("users").document(userId).getDocument { (snapData, error) in
-            if error == nil {
-                if let data = snapData?.data() {
-                    self.userListData = UserListModel(json: data)
-                    self.allUsersList.append(self.userListData)
-                    print("user name---\(self.userListData.name ?? "")")
-                    print("user uid---\(self.userListData.uid ?? "")")
-                    print("user user_skill---\(self.userListData.user_skill_level ?? "")")
-                    print("user createdDate---\(self.userListData.createdDate ?? "")")
-                    print("user user_location---\(self.userListData.user_location ?? "")")
-                    print("user email---\(self.userListData.email ?? "")")
-                    self.firstTopRank(data: self.userListData)
-                }
-            } else {
-                if let error = error {
-                    Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
-                }
-            }
-        }
-    }
-    
-    func firstTopRank(data: UserListModel) {
-        print("passed user data is---start")
-        print("user data--\(data.name ?? "")")
-        print("user data--\(data.email ?? "")")
-        print("user data--\(data.uid ?? "")")
-        print("passed user data is---end")
     }
     
     func setTableHeader() {
@@ -143,21 +79,25 @@ class LeadersViewController: UIViewController {
 
 extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if leaderBoardData.count > 0 {
+            return 2
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return self.leaderBoardData.filter({$0.rank ?? 0 < 4 }).count
         } else {
-            return self.leaderBoardData.filter({ $0.rank ?? 0 > 3}).count
+            return self.filteredData.filter({ $0.rank ?? 0 > 3}).count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: LeaderBoardTableViewCell.self, for: indexPath)
         if self.leaderBoardData.count > 0 {
-            cell.setCellLeaderBoardData(data: self.leaderBoardData, tableSection: indexPath.section, tableRow: indexPath.row, sortByCondition: self.categoryValue ?? "All")
+            cell.setCellLeaderBoardData(data: self.leaderBoardData, tableSection: indexPath.section, tableRow: indexPath.row, sortByCondition: self.categoryValue ?? "All", dataForSecondSection: self.filteredData)
         } else {
             return UITableViewCell()
         }
@@ -175,9 +115,26 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let view = UIView()
+            view.backgroundColor = .red
+            return view
+        }
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
-            return 50
+            if leaderBoardData.count < 4 {
+                return 0.001
+            } else {
+                return 50
+            }
         } else {
             return 0.001
         }
@@ -211,72 +168,57 @@ extension LeadersViewController: FilterViewControllerDelegate {
         print("friends name is -----\(friendName)")
         print("tournaments id is -----\(tournamentId)")
         print("sorting option is ------\(sortingOption)")
-        
         var query = ""
-        
         //MARK: sorting will be work as well as with sort conditions ----
         //MARK: filter data cases -----
         if friendName.count > 0 {
             query = query + "username=\(friendName)"
-            //MARK: filter by only friends name not tournaments id ----
-            print("only friends name no tournaments.")
-            
         }
-        
         if tournamentId.count > 0 {
             //MARK: filter by friends name and tournaments both -----
             query = "\(query)&tournamentId=\(tournamentId)"
-            print("both friends name and tournaments.")
-            firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-                ActivityIndicator.sharedInstance.hideActivityIndicator()
-                self.leaderBoardData = LeaderBoardDataModel().getData(snapshot: querySnapshot)
-                print("leader board query data is----")
-                print("\(self.leaderBoardData.count)")
-                print("\(self.leaderBoardData.first?.r1)")
-                print("\(self.leaderBoardData.first?.r2)")
-                print("\(self.leaderBoardData.first?.rank)")
-                print("\(self.leaderBoardData.first?.userId)")
-                print("\(self.leaderBoardData.first?.tournamentId)")
-                print("\(self.leaderBoardData.first?.usersDetails?.name)")
-                print("\(self.leaderBoardData.first?.usersDetails?.email)")
-                print("user leader board query data end.")
-                self.leaderBoardData = self.leaderBoardData.filter({$0.tournamentId == tournamentId})
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.tournamentId == tournamentId})
+            if sortingOption == "Highest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else if sortingOption == "Lowest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else {
                 self.leaderBoardTable.reloadData()
             }
         }
         
         if friendName.count == 0 && tournamentId.count == 0 {
-            firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-                ActivityIndicator.sharedInstance.hideActivityIndicator()
-                self.leaderBoardData = LeaderBoardDataModel().getData(snapshot: querySnapshot)
+            if sortingOption == "Highest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else if sortingOption == "Lowest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
+                self.leaderBoardTable.reloadData()
             }
         }
-        if sortingOption == "Highest score" {
-//            firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-//                ActivityIndicator.sharedInstance.hideActivityIndicator()
-//                self.leaderBoardData = LeaderBoardDataModel().getData(snapshot: querySnapshot)
-//            }
-            self.leaderBoardData = self.leaderBoardData.sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
-            //self.leaderBoardTable.reloadData()
-        } else if sortingOption == "Lowest score" {
-//            firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-//                ActivityIndicator.sharedInstance.hideActivityIndicator()
-//                self.leaderBoardData = LeaderBoardDataModel().getData(snapshot: querySnapshot)
-//            }
-            self.leaderBoardData = self.leaderBoardData.sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
-            //self.leaderBoardTable.reloadData()
-        } else {
-            //            self.leaderBoardData = self.leaderBoardData.sorted(by: {$0.total ?? 0 < $1.total ?? 0})
-//            firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-//                ActivityIndicator.sharedInstance.hideActivityIndicator()
-//                self.leaderBoardData = LeaderBoardDataModel().getData(snapshot: querySnapshot)
-                //self.leaderBoardTable.reloadData()
-            //}
+        
+        if friendName.count > 0 {
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == friendName })
+            if sortingOption == "Highest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else if sortingOption == "Lowest score" {
+                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else {
+                self.leaderBoardTable.reloadData()
+            }
         }
     }
     
     func returnSelectedCategory(name: String) {
-        print("sort by category return from filte vc---\(name)")
         self.categoryValue = name
         self.leaderBoardTable.reloadData()
     }
@@ -289,16 +231,12 @@ func fetchPresenterLeaderBoard() {
 extension LeadersViewController: LeaderBoardViewProtocol {
     func fetchPresenterLeaderBoard(leaderBoardData: [LeaderBoardDataModel]) {
         self.leaderBoardData = leaderBoardData
+        self.filteredData = leaderBoardData
         self.leaderBoardTable.reloadData()
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
         self.loader.isHidden = true
         self.loader.stopAnimating()
         self.refreshControl.endRefreshing()
-        print("leader board data count---\(leaderBoardData.count)")
-        print("leader board data first user details ----\(leaderBoardData.first?.r1 ?? 0)")
-        print("leader board data first user details ----\(leaderBoardData.first?.r2 ?? 0)")
-        print("leader board data first user details ----\(leaderBoardData.first?.rank ?? 0)")
-        print("leader board data first user details ----\(leaderBoardData.first?.tournamentId ?? "")")
-        print("leader board data first user details ----\(leaderBoardData.first?.userId ?? "")")
         if let firstUserDetils = leaderBoardData.first?.usersDetails {
             print("leader board data first user details ----\(firstUserDetils.name ?? "")")
             print("leader board data first user details ----\(firstUserDetils.uid ?? "")")

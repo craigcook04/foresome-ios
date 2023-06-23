@@ -9,7 +9,7 @@ import UIKit
 import ImageViewer_swift
 
 protocol FriendsTableViewCellDelegate {
-    func addFriend(data:UserListModel?)
+    func addFriend(data:UserListModel?, removeButton: UIButton)
     func makeUnFriend(data:UserListModel?)
 }
 
@@ -49,7 +49,7 @@ class FriendsTableViewCell: UITableViewCell {
 //        var usersFriendsList = strings?["friends"] ?? []
         self.usersFriendsList = usersFriendsList
         if isMemberData == true {
-            if self.usersFriendsList.contains(data.uid ?? "") == true{
+            if self.usersFriendsList.contains(data.uid ?? "") == true {
                 addFriendsButton.setTitle("Remove", for: .normal)
                 addFriendsButton.layer.borderWidth = 0
                 addFriendsButton.backgroundColor = UIColor(hexString: "#EBFAF4")
@@ -147,7 +147,7 @@ class FriendsTableViewCell: UITableViewCell {
         print("add friends called")
         if let delegate = delegate {
             if self.ismembers == true {
-                delegate.addFriend(data: self.membersData)
+                delegate.addFriend(data: self.membersData, removeButton: sender)
             } else {
                 delegate.makeUnFriend(data: self.membersData)
             }

@@ -104,6 +104,7 @@ extension FilterViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
+        UserDefaults.standard.set(indexPath.row as? Int, forKey: "selectedFilter")
         for i in 0..<4 {
             print("reloading index is ---\(i)")
             let reloadIndex = IndexPath(row: i, section: 1)

@@ -33,7 +33,7 @@ extension  LeaderBoardDataModel {
     }
     
     func getData(snapshot: QuerySnapshot?) -> [LeaderBoardDataModel] {
-        ActivityIndicator.sharedInstance.showActivityIndicator()
+        //ActivityIndicator.sharedInstance.showActivityIndicator()
         guard let documents = snapshot?.documents else {return []}
         let leaderboardData = documents.map { queryDocumentSnapshot -> LeaderBoardDataModel in
             let data = queryDocumentSnapshot.data()
@@ -45,7 +45,7 @@ extension  LeaderBoardDataModel {
             
             return LeaderBoardDataModel(tournamentId: tournamentId, r1: r1, r2: r2, rank: rank, userId: userId)
         }
-        ActivityIndicator.sharedInstance.hideActivityIndicator()
+        //ActivityIndicator.sharedInstance.hideActivityIndicator()
         return leaderboardData
     }
     

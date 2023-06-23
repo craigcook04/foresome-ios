@@ -24,47 +24,20 @@ import FirebaseFirestore
     
     //MARK: code for fetch leaders board  data from presenter-----
     func fetchPresenterViewLeaderBoard(isFromRefresh: Bool) {
-        fetchDataFromFirebase()
+        fetchDataFromFirebase(isFromRefresh: isFromRefresh)
     }
     
-    func fetchDataFromFirebase() {
+     func fetchDataFromFirebase(isFromRefresh:Bool) {
         let firestoreDb = Firestore.firestore()
-        ActivityIndicator.sharedInstance.showActivityIndicator()
+         if isFromRefresh == true {
+             ActivityIndicator.sharedInstance.hideActivityIndicator()
+         } else {
+             ActivityIndicator.sharedInstance.showActivityIndicator()
+         }
         firestoreDb.collection("leaderboard").getDocuments { (querySnapshot, err) in
-            ActivityIndicator.sharedInstance.hideActivityIndicator()
             let model = LeaderBoardDataModel()
             self.leaderBoardData = model.getData(snapshot: querySnapshot)
             self.updateTheUserDetails(index: 0)
-            
-            
-            
-//            firestoreDb.collection("users").document(rankerUserId).getDocument { (snapData, error) in
-//                if error == nil {
-//                    if let data = snapData?.data() {
-//                        self.userListData = UserListModel(json: data)
-//                        self.leaderBoardData[index].usersDetails = self.userListData
-//                    }
-//                } else {
-//                    if let error = error {
-//                        Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
-//                    }
-//                }
-//            }
-            
-//            documents.enumerated().forEach({ (index, document) in
-//                print("docs id is ----\(document.documentID)")
-//                guard let documentData = document.data() else {return}
-//                let leaderBoardData = document.data()
-//              //  if let leaderBoardData = leaderBoardData {
-//                let leaderBoardModel = LeaderBoardDataModel(json: leaderBoardData ?? [:])
-//                    let rankerUserId = self.leaderBoardModel[index].userId
-//                    self.leaderBoardData.append(leaderBoardModel)
-//              //  }
-//                print("user leader board rank value is ---\(self.leaderBoardData[index].rank ?? 0)")
-//                print("user leader board r1 rank value is ---------\(self.leaderBoardData[index].r1 ?? 0)")
-//                print("user leader board r2 rank value is ---------\(self.leaderBoardData[index].r2 ?? 0)")
-//                print("user id in in case of leader rank data -----\(self.leaderBoardData[index].userId ?? "")")
-//            })
         }
     }
      
