@@ -37,6 +37,7 @@ class FilterTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     var arrayOfTournamentsId: [String]?
     
     override func awakeFromNib() {
+        self.searchField.autocorrectionType  = .no
         super.awakeFromNib()
         self.searchField.delegate = self
         self.pickerView.delegate = self

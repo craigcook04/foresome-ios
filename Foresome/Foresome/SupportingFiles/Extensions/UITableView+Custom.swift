@@ -53,6 +53,21 @@ internal extension UITableView {
         label.numberOfLines = 5
         self.backgroundView = label
     }
+    
+    //MARK: table view background view with some modifications------
+    func setBackgroundWithCustomView(message: String) {
+        let view = UIView(frame: self.bounds)
+        let label = UILabel()
+        label.text = message
+        label.textColor = UIColor.placeholderColor
+        label.textAlignment = .center
+        label.font = UIFont.setCustom(.poppinsMedium, 24)
+        label.frame = CGRect(x: 0, y: 110, width: SCREEN_SIZE.width, height: 100)
+        label.numberOfLines = 5
+        view.addSubview(label)
+        self.backgroundView = view
+    }
+    
     func setTableBackgroundView(message: String, color:UIColor? = .white, fontName: FONT_NAME = .SFProDisplay_Bold, fontSize: CGFloat = 14) {
         let label = UILabel()
         label.setLabel(message, color, fontName, fontSize)

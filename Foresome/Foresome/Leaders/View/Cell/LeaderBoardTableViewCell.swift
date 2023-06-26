@@ -118,7 +118,6 @@ class LeaderBoardTableViewCell: UITableViewCell {
                 //MARK: sorting of data on basis of ranking in greater order-------
                 lowRankview.isHidden = false
                 topRankView.isHidden = true
-                
                 self.dataForLastSection = self.dataForLastSection.sorted(by: { ($0.rank ?? 0) < ($1.rank ?? 0)})
                 let rankerUserId = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].userId ?? ""
                 if rankerUserId.isEmpty == true || rankerUserId.count == 0 {
@@ -127,6 +126,8 @@ class LeaderBoardTableViewCell: UITableViewCell {
                 self.secondSectionRankerName.text = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.name ?? ""
                 if (self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.count ?? 0) > 0 {
                     self.userProfileSecondSection.image = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.base64ToImage()
+                } else {
+                    self.userProfileSecondSection.image = UIImage(named: "ic_user_placeholder")
                 }
                 self.secondSectionRankValue.text = "#\(self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].rank ?? 0)"
                 print("index path value is ---\(tableRow)")
@@ -155,6 +156,8 @@ class LeaderBoardTableViewCell: UITableViewCell {
                 self.dataForLastSection = self.dataForLastSection.sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
                 if (self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.count ?? 0) > 0 {
                     self.userProfileSecondSection.image =  self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.base64ToImage()
+                } else {
+                    self.userProfileSecondSection.image = UIImage(named: "ic_user_placeholder")
                 }
                 self.secondSectionRankerName.text = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.name ?? ""
                 self.secondSectionRankValue.text = "#\(self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].rank ?? 0)"
@@ -183,6 +186,8 @@ class LeaderBoardTableViewCell: UITableViewCell {
                 
                 if (self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.count ?? 0) > 0 {
                     self.userProfileSecondSection.image = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.base64ToImage()
+                } else {
+                    self.userProfileSecondSection.image = UIImage(named: "ic_user_placeholder")
                 }
                 self.secondSectionRankerName.text = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.name ?? ""
                 self.secondSectionRankValue.text = "#\(self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].rank ?? 0)"
@@ -210,6 +215,8 @@ class LeaderBoardTableViewCell: UITableViewCell {
                 }
                 if (self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.count ?? 0) > 0 {
                     self.userProfileSecondSection.image = self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.user_profile_pic?.base64ToImage()
+                } else {
+                    self.userProfileSecondSection.image = UIImage(named: "ic_user_placeholder")
                 }
                 self.secondSectionRankerName.text =  self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].usersDetails?.name ?? ""
                 self.secondSectionRankValue.text = "#\(self.dataForLastSection.filter({($0.rank ?? 0) > 3})[tableRow].rank ?? 0)"

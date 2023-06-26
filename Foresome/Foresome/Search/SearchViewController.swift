@@ -29,8 +29,10 @@ class SearchViewController: UIViewController {
     var sectionHeight = 56.0
     var recentSearchData = [UserListModel]()
     var headerView : SearchSectionHeader?
+    var usersFriendsList: [String] = []
     
     override func viewDidLoad() {
+        self.searchTextField.autocorrectionType  = .no
         super.viewDidLoad()
         self.customPlaceholder()
         searchTextField.delegate = self
@@ -39,6 +41,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getUserFriendsList()
         self.searchTextField.becomeFirstResponder()
         self.fetchMembersData()
     }
@@ -78,21 +81,38 @@ class SearchViewController: UIViewController {
         print("back called")
         self.popVC()
     }
+    
+    func getUserFriendsList() {
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        let usersFriendsList = strings?["friends"] ?? []
+        self.usersFriendsList = usersFriendsList as? [String] ?? []
+    }
+    
+    //MARK: update friends list when user make unfriends-----
+    func updateUnfriendsListData(friendsList: [String]) {
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        self.filteredUserData.removeAll()
+        self.usersFriendsList.forEach({ friendsData in
+            self.listUserData.forEach({ allUsersListData in
+                if allUsersListData.uid == friendsData {
+                    self.filteredUserData.append(allUsersListData)
+                }
+            })
+        })
+        ActivityIndicator.sharedInstance.hideActivityIndicator()
+        self.searchTableView.reloadData()
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.filteredUserData.count == 0 {
-            self.searchTableView.setBackgroundView(message: "No data found")
-        } else {
-            self.searchTableView.restore()
-        }
         return self.filteredUserData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: FriendsTableViewCell.self, for: indexPath)
-        cell.showSearchData(searchData: self.filteredUserData[indexPath.row])
+        cell.delegate = self
+        cell.showSearchData(searchData: self.filteredUserData[indexPath.row], isMemberData: true, usersFriendsList: self.usersFriendsList)
         return cell
     }
     
@@ -135,6 +155,11 @@ extension SearchViewController: UITextFieldDelegate {
                 let searchText = updatedString
                 self.filteredUserData = self.listUserData.filter({$0.name?.contains(searchText.lowercased()) ?? false})
                 self.filteredUserData = self.listUserData.filter({$0.name?.lowercased().contains(searchText.lowercased()) ?? false})
+                if self.filteredUserData.count == 0 {
+                    self.searchTableView.setBackgroundWithCustomView(message: "No data found")
+                } else {
+                    self.searchTableView.restore()
+                }
                 self.searchTableView.reloadData()
             } else {
                 self.filteredUserData.removeAll()
@@ -147,4 +172,64 @@ extension SearchViewController: UITextFieldDelegate {
         }
     }
 }
+
+extension SearchViewController: FriendsTableViewCellDelegate {
+    func makeUnFriend(data: UserListModel?, senderButton: UIButton) {
+        print("senderButton current title is ----\(senderButton.currentTitle ?? "")")
+        if senderButton.currentTitle == "Unfriend" {
+            print("user id to make unfriend----\(data?.uid ?? "")")
+            print("user name to make unfriend----\(data?.name ?? "")")
+            self.usersFriendsList.remove(element: data?.uid ?? "")
+            let confirmPovUp = UnFriendViewController()
+            confirmPovUp.delegate = self
+            confirmPovUp.userToMakeUnfriends = data ?? UserListModel()
+            confirmPovUp.usersFriendsList = self.usersFriendsList
+            confirmPovUp.modalPresentationStyle = .overFullScreen
+            self.present(confirmPovUp, true)
+        } else {
+            print("user id to make friend ---\(data?.uid ?? "")")
+            print("user name to make friend-----\(data?.name ?? "")")
+            let currentUserId = UserDefaultsCustom.currentUserId
+            let userToAddFriends = data?.uid ?? ""
+            self.usersFriendsList.append(userToAddFriends)
+            print("user id to want to add friend ---\(data?.uid ?? "")")
+            print("data for added to friends list is ---\(self.usersFriendsList)")
+            //MARK: code for add friends in users friends listing---
+            print("current login user id ---\(currentUserId)")
+            firebaseDb.collection("users").document(currentUserId).setData(["friends":self.usersFriendsList], merge: true) { error  in
+                if error == nil {
+                    Singleton.shared.showMessage(message: "Add friend successfully.", isError: .success)
+                    DispatchQueue.main.async {
+                        self.searchTableView.reloadData()
+                    }
+                    self.firebaseDb.collection("users").document(currentUserId).getDocument { (snapData, error) in
+                        if let data = snapData?.data() {
+                            UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
+                        }
+                    }
+                } else {
+                    if let error = error {
+                        Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
+                    }
+                }
+            }
+        }
+        //self.searchTableView.reloadData()
+    }
+    
+    func addFriend(data: UserListModel?, removeButton: UIButton) {
+        print("add friends called in search controller.")
+    }
+}
+
+extension SearchViewController : UnFriendViewControllerDelegate {
+    func updateFriendsData(friendsListData: [String]) {
+        print("updated friends list data count is ----\(friendsListData.count)")
+        self.usersFriendsList = friendsListData
+        self.searchTableView.reloadData()
+    }
+}
+
+
+
 

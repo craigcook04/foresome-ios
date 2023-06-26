@@ -77,15 +77,15 @@ class FriendsViewController: UIViewController {
                 let userlistdata = UserListModel(json: membersData)
                 self.listUserData.append(userlistdata)
             })
-            self.listUserData.sort(by: {($0.createdDate?.millisecToDate() ?? Date()).compare($1.createdDate?.millisecToDate() ?? Date()) == .orderedDescending })
+            self.listUserData.sort(by: {($0.name ?? "").compare($1.name ?? "") == .orderedAscending })
+            self.loader.isHidden = true
+            self.refreshControl.endRefreshing()
+            self.loader.stopAnimating()
             let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
             let usersFriendsList = strings?["friends"] ?? []
             self.usersFriendsList = usersFriendsList as? [String] ?? []
             self.friendsTableView.reloadData()
         }
-        self.loader.isHidden = true
-        self.refreshControl.endRefreshing()
-        self.loader.stopAnimating()
         self.friendsTableView.reloadData()
     }
     
@@ -162,7 +162,6 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
                 }
             })
         })
-        
         ActivityIndicator.sharedInstance.hideActivityIndicator()
         self.friendsTableView.reloadData()
     }
@@ -201,6 +200,16 @@ extension FriendsViewController: FriendsTableHeaderDelegate {
 }
 
 extension FriendsViewController: FriendsTableViewCellDelegate {
+    func makeUnFriend(data: UserListModel?, senderButton: UIButton) {
+        print("user name ---\(data?.name ?? "")")
+        self.usersFriendsList.remove(element: data?.uid ?? "")
+        let confirmPovUp = UnFriendViewController()
+        confirmPovUp.delegate = self
+        confirmPovUp.userToMakeUnfriends = data ?? UserListModel()
+        confirmPovUp.usersFriendsList = self.usersFriendsList
+        confirmPovUp.modalPresentationStyle = .overFullScreen
+        self.present(confirmPovUp, true)
+    }
     func addFriend(data: UserListModel?, removeButton: UIButton) {
         print("sender current title is---\(removeButton.currentTitle ?? "")")
         //MARK: First fetch current users all data from users collections -------------
@@ -228,18 +237,6 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
             }
         } else {
             let currentUserId = UserDefaultsCustom.currentUserId
-            //        firebaseDb.collection("users").document((currentUserId) as String).getDocument { (snapData, error) in
-            //            if error == nil {
-            //                ActivityIndicator.sharedInstance.hideActivityIndicator()
-            //                if let data = snapData?.data() {
-            //                    UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
-            //                }
-            //            } else {
-            //                ActivityIndicator.sharedInstance.hideActivityIndicator()
-            //                Singleton.shared.showMessage(message: error?.localizedDescription ?? "" , isError: .error)
-            //            }
-            //        }
-            
             let userToAddFriends = data?.uid ?? ""
             self.usersFriendsList.append(userToAddFriends)
             print("user id to want to add friend ---\(data?.uid ?? "")")
@@ -257,46 +254,19 @@ extension FriendsViewController: FriendsTableViewCellDelegate {
                             UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
                         }
                     }
-                    //                self.listUserData.removeAll { singleUserData in
-                    //                    singleUserData.uid = userToAddFriends
-                    //                    self.friendsTableView.reloadData()
-                    //                    return true
-                    //                }
-                    //                if let data = data {
-                    //                    let removeIndex =  self.listUserData.firstIndex(of: data)
-                    //                    print("remove index is equal to ----\(removeIndex ?? 0)")
-                    //                    if let index = removeIndex {
-                    //                        self.listUserData.remove(at: index)
-                    //                    }
-                    //                }
                 } else {
                     if let error = error {
                         Singleton.shared.showMessage(message: error.localizedDescription, isError: .error)
                     }
                 }
             }
-            print("user name ---\(data?.name ?? "")")
         }
-    }
-   
-    func makeUnFriend(data: UserListModel?) {
-        print("user name ---\(data?.name ?? "")")
-        self.usersFriendsList.remove(element: data?.uid ?? "")
-        let confirmPovUp = UnFriendViewController()
-        confirmPovUp.delegate = self
-        confirmPovUp.userToMakeUnfriends = data ?? UserListModel()
-        confirmPovUp.usersFriendsList = self.usersFriendsList
-        confirmPovUp.modalPresentationStyle = .overFullScreen
-        self.present(confirmPovUp, true)
     }
 }
 
 extension FriendsViewController: FriendsViewProtocol {
     func fetchUsersListData(data: [UserListModel]) {
         data.forEach({ singleData in
-            print("single data name is----\(singleData.name ?? "")")
-            print("single data email is----\(singleData.email ?? "")")
-            print("single data uid is ----\(singleData.uid ?? "")")
         })
     }
 }

@@ -503,38 +503,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "040E8476-352A-4A9E-BB9E-BF13E912665B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/Friends/View/FriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "FriendsViewController"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "94E82BDB-3B8E-4766-986C-566963D2A602"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/Friends/View/FriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "membersAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "908878C1-C99E-42A3-9FE4-A54A03350137"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -542,8 +510,8 @@
             filePath = "Foresome/Friends/View/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "friendsAction()"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,8 +526,8 @@
             filePath = "Foresome/Friends/View/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "FriendsViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -590,13 +558,13 @@
             filePath = "Foresome/Friends/View/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "friendsAction()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0847B848-2565-40D9-95EA-8AF83EEE432D - ca76b05ae28ca4ee"
+                  uuid = "0847B848-2565-40D9-95EA-8AF83EEE432D - ca76b05ae28ca509"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -606,12 +574,12 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/Friends/View/FriendsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
                   offsetFromSymbolStart = "72">
                </Location>
                <Location
-                  uuid = "0847B848-2565-40D9-95EA-8AF83EEE432D - 8204ff32a6419111"
+                  uuid = "0847B848-2565-40D9-95EA-8AF83EEE432D - 8204ff32a6419130"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -621,8 +589,8 @@
                   urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/Friends/View/FriendsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
                   offsetFromSymbolStart = "76">
                </Location>
             </Locations>
@@ -638,8 +606,8 @@
             filePath = "Foresome/Friends/View/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "friendsAction()"
             landmarkType = "7">
          </BreakpointContent>
@@ -654,8 +622,8 @@
             filePath = "Foresome/Friends/View/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "deleteAllEmptyUsers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -670,8 +638,8 @@
             filePath = "Foresome/Leaders/View/LeadersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "fetchPresenterLeaderBoard(leaderBoardData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -695,22 +663,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EF661169-F05E-4F66-B541-46B438AC654C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Foresome/Search/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1197DE32-8AA8-4900-B340-F8436C1B7ED8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -721,6 +673,134 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "tableView(_:heightForFooterInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94FD96F3-0EE8-4C1E-B03D-0A6C451BBFDC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Leaders/View/Cell/LeaderBoardTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "setCellLeaderBoardData(data:tableSection:tableRow:sortByCondition:dataForSecondSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEEE20DC-19BE-43A1-8849-5C3BFC01FCE9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Leaders/View/LeadersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "selectedFilterAndSortOption(friendName:tournamentId:sortingOption:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AEEE20DC-19BE-43A1-8849-5C3BFC01FCE9 - 629abfdff74bcd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Foresome.LeadersViewController.selectedFilterAndSortOption(friendName: Swift.String, tournamentId: Swift.String, sortingOption: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/Leaders/View/LeadersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "222"
+                  endingLineNumber = "222"
+                  offsetFromSymbolStart = "6920">
+               </Location>
+               <Location
+                  uuid = "AEEE20DC-19BE-43A1-8849-5C3BFC01FCE9 - d1280559ee432334"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #20 (Foresome.LeaderBoardDataModel) -&gt; Swift.Bool in Foresome.LeadersViewController.selectedFilterAndSortOption(friendName: Swift.String, tournamentId: Swift.String, sortingOption: Swift.String) -&gt; ()"
+                  moduleName = "Foresome"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rakeshkumar/Documents/GitHub/foresome_ios/Foresome/Foresome/Leaders/View/LeadersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "222"
+                  endingLineNumber = "222"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1958B402-6170-42F3-A074-F22EDC1283E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Friends/View/FriendsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "membersAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "530B870C-7B0C-4B8B-964B-3B28848EEF01"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Search/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "addFriend(data:removeButton:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A844482E-43B6-481E-9D2D-76D4BC7CB186"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Search/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "makeUnFriend(data:senderButton:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83C5603E-F27D-45CC-8402-4DE414092C06"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foresome/Search/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "updateFriendsData(friendsListData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

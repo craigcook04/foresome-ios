@@ -63,19 +63,12 @@ class UnFriendViewController: UIViewController, UIGestureRecognizerDelegate {
             self.dismiss(animated: false)
         }
     }
+    
     @IBAction func dismissAction(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    
     @IBAction func confirmButtonAction(_ sender: UIButton) {
-        print("make unfriend request.")
-        //        Singleton.shared.showMessage(message: "unfriended succesfully.", isError: .success)
-//        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
-//        var usersFriendsList = strings?["friends"] ?? []
-//        self.usersFriendsList = usersFriendsList as? [String] ?? []
-//        let userToMakeUnfriend = userToMakeUnfriends.uid
-        //self.usersFriendsList.remove(element: userToMakeUnfriend ?? "")
-     //   print("user id to want to remove from friend list ---\(userToMakeUnfriends.uid ?? "")")
-       // print("data for added to friends list is ---\(self.usersFriendsList)")
         //MARK: code for add friends in users friends listing---
         let currentUserId = UserDefaultsCustom.currentUserId
         print("current login user id ---\(currentUserId)")

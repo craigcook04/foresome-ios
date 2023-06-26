@@ -179,10 +179,10 @@ extension LeadersViewController: FilterViewControllerDelegate {
             query = "\(query)&tournamentId=\(tournamentId)"
             self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.tournamentId == tournamentId})
             if sortingOption == "Highest score" {
-                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()
             } else if sortingOption == "Lowest score" {
-                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()
             } else {
                 self.leaderBoardTable.reloadData()
@@ -207,10 +207,26 @@ extension LeadersViewController: FilterViewControllerDelegate {
             self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
             self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == friendName })
             if sortingOption == "Highest score" {
-                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()
             } else if sortingOption == "Lowest score" {
-                self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else {
+                self.leaderBoardTable.reloadData()
+            }
+        }
+        
+        if friendName.count > 0 && tournamentId.count > 0  {
+            print("search by friends and tournamentsid same time.")
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == friendName })
+            self.filteredData = self.filteredData + self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == tournamentId })
+            if sortingOption == "Highest score" {
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
+                self.leaderBoardTable.reloadData()
+            } else if sortingOption == "Lowest score" {
+                self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) < ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()
             } else {
                 self.leaderBoardTable.reloadData()
