@@ -16,9 +16,7 @@ protocol LeaderBoardViewProtocol {
 protocol LeaderBoardPresenterProtocol {
     var view: LeaderBoardViewProtocol? { get set }
     func fetchPresenterViewLeaderBoard(leaderBoardData:[LeaderBoardDataModel])
-    
     func fetchPresenterViewLeaderBoard(isFromRefresh: Bool)
-    
 }
 
 

@@ -80,8 +80,9 @@ class PollResultTableCell: UITableViewCell {
         
         if (data.profileImage?.count ?? 0) > 0 {
             self.profileImage.image = data.profileImage?.base64ToImage()
+        } else {
+            self.profileImage.image = UIImage(named: "ic_user_placeholder")
         }
-        
         self.postDescriptionLbl.message = data.poll_title ?? ""
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)

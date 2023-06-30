@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class LeaderBoardDataModel : NSObject {
     var json: JSON!
-    var tournamentId: String?
+    var tournamentId: [String]?
     var r1: Int?
     var r2: Int?
     var rank: Int?
@@ -22,7 +22,7 @@ class LeaderBoardDataModel : NSObject {
 
 extension  LeaderBoardDataModel {
     
-    convenience init(tournamentId: String, r1: Int, r2: Int, rank: Int, userId: String) {
+    convenience init(tournamentId: [String], r1: Int, r2: Int, rank: Int, userId: String) {
         self.init()
         self.tournamentId = tournamentId
         self.r1 = r1
@@ -39,7 +39,7 @@ extension  LeaderBoardDataModel {
             let data = queryDocumentSnapshot.data()
             let r1 = data["r1"] as? Int ?? 0
             let r2 = data["r2"] as? Int ?? 0
-            let tournamentId = data["tournamentId"] as? String ?? ""
+            let tournamentId = data["tournamentId"] as? [String] ?? []
             let rank = data["rank"] as? Int ?? 0
             let userId = data["userId"] as? String ?? ""
             

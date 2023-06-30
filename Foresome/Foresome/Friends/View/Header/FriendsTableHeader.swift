@@ -44,14 +44,12 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     }
     
     @IBAction func notificationAction(_ sender: UIButton) {
-        print("hello ")
         if let delegate = delegate {
             delegate.notificationBtnAction()
         }
     }
     
     @IBAction func searchAction(_ sender: UIButton) {
-        print("hello  seach action called.")
     }
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
@@ -65,8 +63,8 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     }
     
     @IBAction func membersAction(_ sender: UIButton) {
-//        membersButton.isSelected = true
-//        friendsButton.isSelected = false
+        //        membersButton.isSelected = true
+        //        friendsButton.isSelected = false
         if let delegate = delegate {
             delegate.membersAction()
         }
@@ -77,8 +75,8 @@ class FriendsTableHeader: UIView, UITextFieldDelegate {
     }
     
     @IBAction func friendsAction(_ sender: UIButton) {
-//        membersButton.isSelected = false
-//        friendsButton.isSelected = true
+        //        membersButton.isSelected = false
+        //        friendsButton.isSelected = true
         if let delegate = delegate {
             delegate.friendsAction()
         }

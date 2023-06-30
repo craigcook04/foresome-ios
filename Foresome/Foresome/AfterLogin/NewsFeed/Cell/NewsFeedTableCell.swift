@@ -144,7 +144,6 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
      
     //MARK: code for set cell data----
     func setCellPostData(data: PostListDataModel) {
-        
         self.profileImage.setupImageViewer()
         self.postdata = data
         self.userNameLbl.text = "\(data.author ?? "")"
@@ -180,7 +179,13 @@ class NewsFeedTableCell: UITableViewCell,UIActionSheetDelegate {
             }
         }
         if (data.profileImage?.count ?? 0) > 0 {
-            self.profileImage.image = data.profileImage?.base64ToImage()
+            if data.profileImage?.isValidURL == true {
+                self.profileImage.image = UIImage(named: "ic_user_placeholder")
+            } else {
+                self.profileImage.image = data.profileImage?.base64ToImage()
+            }
+        } else {
+            self.profileImage.image = UIImage(named: "ic_user_placeholder")
         }
         self.likeBtn.setTitle("\(data.likedUserList?.count ?? 0)", for: .normal)
         self.commentBtn.setTitle("\(data.comments?.count ?? 0)", for: .normal)

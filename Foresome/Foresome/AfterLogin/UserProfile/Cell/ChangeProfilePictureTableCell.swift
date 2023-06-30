@@ -34,10 +34,10 @@ class ChangeProfilePictureTableCell: UITableViewCell {
     }
     
     @IBAction func changeProfileAction(_ sender: UIButton) {
-        
+        print("change profile action called.")
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        
+        print("next button action called.")
     }
 }

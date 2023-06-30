@@ -15,6 +15,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Firebase
+import CoreData
 
 class SearchViewController: UIViewController {
     
@@ -22,14 +23,15 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
-    var numberOfRow = 10
     var listUserData =  [UserListModel]()
     var filteredUserData = [UserListModel]()
+    var recentSearchData = [UserListModel]()
+    var recentSearchUserIds : [String]?
     let firebaseDb = Firestore.firestore()
     var sectionHeight = 56.0
-    var recentSearchData = [UserListModel]()
     var headerView : SearchSectionHeader?
     var usersFriendsList: [String] = []
+    var showRecentSearchData: Bool = false
     
     override func viewDidLoad() {
         self.searchTextField.autocorrectionType  = .no
@@ -41,9 +43,15 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.assignRecentSearchData()
+        self.searchButton.isHidden = true
         self.getUserFriendsList()
         self.searchTextField.becomeFirstResponder()
         self.fetchMembersData()
+    }
+    
+    func assignRecentSearchData() {
+        self.recentSearchUserIds = (UserDefaults.standard.value(forKey: AppStrings.recentSearchData) as? [String]) ?? []
     }
     
     func customPlaceholder() {
@@ -66,19 +74,36 @@ class SearchViewController: UIViewController {
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let membersData =  document.data()
                 let userlistdata = UserListModel(json: membersData)
-                self.listUserData.append(userlistdata)
+                if userlistdata.uid != UserDefaultsCustom.currentUserId {
+                    self.listUserData.append(userlistdata)
+                } else {
+                    print("no need to append current login user in user listing.")
+                }
             })
             self.searchTableView.reloadData()
         }
         self.searchTableView.reloadData()
     }
     
+    func fetchRecentSearchData() {
+        self.listUserData.forEach({ singleSearchData in
+            if recentSearchUserIds?.contains(where: {$0 == singleSearchData.uid}) == true  {
+                self.recentSearchData.append(singleSearchData)
+            }
+        })
+        self.searchTableView.reloadData()
+    }
+    
     @IBAction func serchAction(_ sender: UIButton) {
-        print("search action called.")
+        self.searchButton.isHidden = true
+        self.searchTextField.text?.removeAll()
+        self.searchTableView.backgroundView = nil
+        self.filteredUserData.removeAll()
+        self.filteredUserData = []
+        self.searchTableView.reloadData()
     }
     
     @IBAction func backAction(_ sender: UIButton) {
-        print("back called")
         self.popVC()
     }
     
@@ -106,13 +131,21 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredUserData.count
+        if showRecentSearchData ==  true {
+            return self.recentSearchData.count
+        } else {
+            return self.filteredUserData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(cell: FriendsTableViewCell.self, for: indexPath)
         cell.delegate = self
-        cell.showSearchData(searchData: self.filteredUserData[indexPath.row], isMemberData: true, usersFriendsList: self.usersFriendsList)
+        if showRecentSearchData == true {
+            cell.showSearchData(searchData: self.recentSearchData[indexPath.row], isMemberData: true, usersFriendsList: self.usersFriendsList, isfromRecent: true)
+        } else {
+            cell.showSearchData(searchData: self.filteredUserData[indexPath.row], isMemberData: true, usersFriendsList: self.usersFriendsList, isfromRecent: false)
+        }
         return cell
     }
     
@@ -123,7 +156,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return  sectionHeight
+        return sectionHeight
     }
 }
 
@@ -131,6 +164,9 @@ extension SearchViewController : SearchSectionHeaderDelegate {
     func clearAction() {
         self.filteredUserData.removeAll()
         self.filteredUserData = []
+        UserDefaults.standard.removeObject(forKey: AppStrings.recentSearchData)
+        self.recentSearchData.removeAll()
+        self.recentSearchData = []
         self.searchTableView.reloadData()
     }
 }
@@ -143,14 +179,18 @@ extension SearchViewController: UITextFieldDelegate {
         let updatedString = text.replacingCharacters(in: range, with: string)
         print("new text is ---\(updatedString)")
         if updatedString == " " {
+            self.searchButton.isHidden = true
             self.sectionHeight = 56.0
+            self.showRecentSearchData = true
+            self.fetchRecentSearchData()
             self.headerView = UIView.initView(view: SearchSectionHeader.self)
             self.searchTableView.reloadData()
             return false
         } else {
             if updatedString.count > 0 {
-                print("updated string is ----\(updatedString)")
+                self.searchButton.isHidden = false
                 self.sectionHeight = 0.001
+                self.showRecentSearchData = false
                 self.headerView = nil
                 let searchText = updatedString
                 self.filteredUserData = self.listUserData.filter({$0.name?.contains(searchText.lowercased()) ?? false})
@@ -162,9 +202,12 @@ extension SearchViewController: UITextFieldDelegate {
                 }
                 self.searchTableView.reloadData()
             } else {
+                self.searchButton.isHidden = true
                 self.filteredUserData.removeAll()
                 self.filteredUserData = []
                 self.sectionHeight = 56.0
+                self.showRecentSearchData = true
+                self.fetchRecentSearchData()
                 self.headerView = UIView.initView(view: SearchSectionHeader.self)
                 self.searchTableView.reloadData()
             }
@@ -187,6 +230,11 @@ extension SearchViewController: FriendsTableViewCellDelegate {
             confirmPovUp.modalPresentationStyle = .overFullScreen
             self.present(confirmPovUp, true)
         } else {
+            if let userListData = data {
+                // self.recentSearchData.append(userListData)
+                self.recentSearchUserIds?.append(userListData.uid ?? "")
+                UserDefaults.standard.set(self.recentSearchUserIds ?? [], forKey: AppStrings.recentSearchData)
+            }
             print("user id to make friend ---\(data?.uid ?? "")")
             print("user name to make friend-----\(data?.name ?? "")")
             let currentUserId = UserDefaultsCustom.currentUserId
@@ -214,7 +262,6 @@ extension SearchViewController: FriendsTableViewCellDelegate {
                 }
             }
         }
-        //self.searchTableView.reloadData()
     }
     
     func addFriend(data: UserListModel?, removeButton: UIButton) {
@@ -224,12 +271,8 @@ extension SearchViewController: FriendsTableViewCellDelegate {
 
 extension SearchViewController : UnFriendViewControllerDelegate {
     func updateFriendsData(friendsListData: [String]) {
-        print("updated friends list data count is ----\(friendsListData.count)")
-        self.usersFriendsList = friendsListData
-        self.searchTableView.reloadData()
+        self.updateUnfriendsListData(friendsList: friendsListData)
     }
 }
-
-
 
 

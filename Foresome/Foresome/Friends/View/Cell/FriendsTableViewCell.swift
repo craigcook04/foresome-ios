@@ -74,7 +74,12 @@ class FriendsTableViewCell: UITableViewCell {
     }
     
     //MARK: code for set cell data in case of search controller ------
-    func showSearchData(searchData: UserListModel, isMemberData: Bool, usersFriendsList:[String]) {
+    func showSearchData(searchData: UserListModel, isMemberData: Bool, usersFriendsList:[String], isfromRecent: Bool) {
+        if isfromRecent == true {
+            self.addFriendsButton.isHidden = true
+        } else {
+            self.addFriendsButton.isHidden = false
+        }
         self.membersData = searchData
         if (searchData.user_profile_pic?.count ?? 0) > 0 {
             self.userProfile.image = searchData.user_profile_pic?.base64ToImage()

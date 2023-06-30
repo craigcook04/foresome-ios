@@ -55,9 +55,9 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     func setTopTitle() {
         if self.isEditProfile == true {
             self.creatPostTitle.text = "Edit Post"
-//            data?.image?.forEach({ imges in
-//                self.urlToImage(url: imges)
-//            })
+            //            data?.image?.forEach({ imges in
+            //                self.urlToImage(url: imges)
+            //            })
             self.writePost.text = data?.postDescription ?? ""
             creatPostData.postDescription = self.writePost.text
         } else {
@@ -105,14 +105,13 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     
     func publishBtnActive() {
         if (creatPostData.postDescription?.count ?? 0) > 0 || imageSelect.count > 0 {
-          
-           // if self.imageSelect.count > 0 {
-                self.publishButton.isUserInteractionEnabled = true
-                self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
-//            } else {
-//                self.publishButton.isUserInteractionEnabled = false
-//                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
-//            }
+            // if self.imageSelect.count > 0 {
+            self.publishButton.isUserInteractionEnabled = true
+            self.publishButton.setTitleColor(UIColor.appColor(.green_main), for: .normal)
+            //            } else {
+            //                self.publishButton.isUserInteractionEnabled = false
+            //                self.publishButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+            //            }
         }
     }
     
@@ -139,7 +138,7 @@ class CreatePostViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func publishAction(_ sender: UIButton) {
-         ActivityIndicator.sharedInstance.showActivityIndicator()
+        ActivityIndicator.sharedInstance.showActivityIndicator()
         creatPostData.postImages = self.imageSelect
         creatPostData.createdDate = self.data?.createdAt ?? ""
         creatPostData.postId = self.data?.id ?? ""

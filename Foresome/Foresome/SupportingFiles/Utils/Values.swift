@@ -54,6 +54,7 @@ struct AppStrings {
     static let logout = "Logout"
     static let changeProfilePicture = "Change Profile Picture"
     static let rightArrow = ""
+    static let recentSearchData = "recentSearchData"
     //MARK: keys for foursome-----
     static let userDatas = "myUserData"
     static let profileUpdated = "Profile updated successfully."
@@ -61,6 +62,7 @@ struct AppStrings {
     static let userNameSuffix = "HELLO,"
     static let option = "Option"
     static let reportPost = "Report post"
+    static let reportedPost = "Reported"
     static let editPost = "Edit post"
     static let delete = "Delete"
     static let dismiss = "Dismiss"
@@ -90,13 +92,14 @@ struct AppStrings {
     static let tutorialDescription1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
     static let tutorialDescription2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
     static let tutorialDescription3 =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis."
-    
     static let searchByName = "Search friend by name..."
-    
     static let selectLocation = "Select location"
-    
     static let selectTournaments =  "Select tournament"
-    
+    //MARK: new keys added for filter and sort
+    static let friendsName = "friendsName"
+    static let tournamentsId = "tournamentsId"
+    static let tournamentsName = "tournamentsName"
+    static let sortOptionIndex = "sortOptionIndex"
 }
 
 struct Messages {

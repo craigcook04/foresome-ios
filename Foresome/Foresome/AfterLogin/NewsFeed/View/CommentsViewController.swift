@@ -28,7 +28,7 @@ class CommentsViewController: UIViewController {
     
     var listPostData = PostListDataModel()
     var newCommentData = [CommentsData]()
-    var arrayOfDic = [[String:Any]]()
+    var commentsData = [CommentsData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,7 @@ class CommentsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setEmptyView()
         self.submitButton.isUserInteractionEnabled = false
         self.submitButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
     }
@@ -46,44 +47,41 @@ class CommentsViewController: UIViewController {
         self.commetsTableView.delegate = self
         self.commetsTableView.dataSource = self
         self.commetsTableView.registerCell(class: CommentsTableViewCell.self)
-        self.userProfileImage.image = listPostData.profileImage?.base64ToImage()
-        
-        listPostData.comments?.forEach({ commentsData in
-            print("comments body\(commentsData.body)")
-            print("comments json\(commentsData.json)")
-            print("comments userporfile\(commentsData.userProfile)")
-            print("comments userId\(commentsData.userId)")
-            print("comments parentId\(commentsData.parentId)")
-            print("comments id\(commentsData.id)")
-            print("comments username\(commentsData.username)")
-        })
+        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        if let data = strings {
+            if let image = (data["user_profile_pic"] as? String ?? "").base64ToImage() {
+                self.userProfileImage.image = image
+            } else {
+                self.userProfileImage.image = UIImage(named: "ic_user_placeholder")
+            }
+        }
     }
     
-    func fetchAPostData() {
-//        let db = Firestore.firestore()
-//        db.collection("posts").getDocuments { (querySnapshot, err) in
-//             if err == nil {
-//                querySnapshot?.documents.enumerated().forEach({ (index, posts) in
-//                    let postsData =  posts.data()
-//                    print("post id is ---\(posts.documentID)")
-//                    print("total post is --===\(postsData.count)")
-//                    let allPostData = PostListDataModel(json: postsData)
-//                    self.listPostData.append(allPostData)
-//                    print("self.listpostdata---\(self.listPostData.count)")
-//                })
-//                self.listPostData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
-//                for i in 0..<self.listPostData.count  {
-//                    print("printed docs id----\(self.listPostData[i].id)")
-//                    print("printed docs uid----\(self.listPostData[i].uid)")
-//                }
-//                self.newsFeedTableView.reloadData()
-//                ActivityIndicator.sharedInstance.hideActivityIndicator()
-//            } else {
-//                if let error = err?.localizedDescription {
-//                    Singleton.shared.showMessage(message: error, isError: .error)
-//                }
-//            }
-//        }
+    func setEmptyView() {
+        if (self.listPostData.comments?.count ?? 0) > 0 {
+            self.commetsTableView.backgroundView = nil
+        } else {
+            self.commetsTableView.setBackgroundView(message:"No comments found")
+        }
+    }
+    
+    func updateCommentsData(currentPostId: String) {
+        let db = Firestore.firestore()
+        db.collection("posts").document(currentPostId).getDocument { snapShotData, error in
+            if error == nil {
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
+                if let foundPostData = snapShotData?.data() {
+                    let dataToModelData = PostListDataModel(json: foundPostData)
+                    self.listPostData = dataToModelData
+                    self.listPostData.comments = dataToModelData.comments
+                }
+            } else {
+                if let foundError = error {
+                    ActivityIndicator.sharedInstance.hideActivityIndicator()
+                    Singleton.shared.showMessage(message: foundError.localizedDescription, isError: .error)
+                }
+            }
+        }
     }
     
     @IBAction func backButtonAction(_ sender: UIButton) {
@@ -91,62 +89,50 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func submitButtonAction(_ sender: UIButton) {
-        print("submit button called")
-        let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
+        dismissKeyboard()
+        self.submitButton.isUserInteractionEnabled = false
+        self.submitButton.setTitleColor(UIColor.appColor(.grey_Light), for: .normal)
+        ActivityIndicator.sharedInstance.showActivityIndicator()
+        var arrayOfDic = [[String:Any]]()
+        let userData = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         //MARK: code for make array to cooments data first----
+        let commentsId =  UUID().uuidString
         let addedCooments = CommentsData()
-        addedCooments.id = listPostData.id
-        addedCooments.username = listPostData.author
-        addedCooments.userId = listPostData.uid
+        addedCooments.id = commentsId
+        addedCooments.username = userData?["name"] as? String ?? ""
+        addedCooments.userId = UserDefaultsCustom.currentUserId
         addedCooments.parentId = ""
         addedCooments.body = commentsTextView.text
         addedCooments.createdAt = "\(Date().miliseconds())"
         addedCooments.userProfile = ""
+        commentsTextView.text.removeAll()
+        self.listPostData.comments?.append(addedCooments)
         if let comments = self.listPostData.comments {
-            var comment_data = [CommentsData]()
             comments.forEach { commentDic in
-                comment_data.append(commentDic)
+                var jsonData = [String:Any]()
+                jsonData["username"] = commentDic.username
+                jsonData["id"] = commentDic.id
+                jsonData["userId"] = commentDic.userId
+                jsonData["userProfile"] = ""
+                jsonData["body"] = commentDic.body
+                jsonData["createdAt"] = commentDic.createdAt
+                jsonData["parentId"] = commentDic.parentId
+                arrayOfDic.append(jsonData)
             }
-            newCommentData = comment_data
         }
-        
-        //MARK: code for make array of dictionary from comments data---
-        let commentsId =  UUID().uuidString
-        newCommentData.forEach({ newData in
-            var jsonData = [String:Any]()
-            jsonData["username"] = newData.username
-            jsonData["id"] = newData.id
-            jsonData["userId"] = newData.userId
-            jsonData["userProfile"] = ""
-            jsonData["body"] = newData.body
-            jsonData["createdAt"] = newData.createdAt
-            jsonData["parentId"] = newData.parentId
-            self.arrayOfDic.append(jsonData)
-        })
-        //MARK: code for append new dictionary to old array of dictionary---
-        
-        //MARK: code make change for solve comments user name issue---
-        var jsonForNewCooments = [String:Any]()
-        jsonForNewCooments["username"] = strings?["name"] as? String ?? ""
-        jsonForNewCooments["id"] = commentsId
-        jsonForNewCooments["userId"] = UserDefaultsCustom.currentUserId
-        jsonForNewCooments["userProfile"] = ""
-        jsonForNewCooments["body"] = commentsTextView.text
-        jsonForNewCooments["createdAt"] = "\(Date().miliseconds())"
-        jsonForNewCooments["parentId"] = ""
-        self.arrayOfDic.append(jsonForNewCooments)
         let db = Firestore.firestore()
-         let userPostCollection = db.collection("posts").document(listPostData.id ?? "")
-        userPostCollection.updateData(["comments": self.arrayOfDic]) { error in
+        let userPostCollection = db.collection("posts").document(listPostData.id ?? "")
+        userPostCollection.updateData(["comments": arrayOfDic]) { error in
             if error == nil {
                 Singleton.shared.showMessage(message: "Commented successfully.", isError: .success)
-                self.listPostData.comments?.append(addedCooments)
+                self.setEmptyView()
                 self.commetsTableView.reloadData()
-                self.commetsTableView.scrollToRow(at: IndexPath(row:(self.listPostData.comments?.count ?? 0) - 1, section: 0), at: .none, animated: false)
-                self.commentsTextView.text.removeAll()
+                self.commetsTableView.scrollToRow(at: IndexPath(row:0, section: 0), at: .top, animated: true)
+                ActivityIndicator.sharedInstance.hideActivityIndicator()
             } else {
-             if let error = error {
-                 Singleton.shared.showMessage(message: (error.localizedDescription), isError: .error)
+                if let error = error {
+                    Singleton.shared.showMessage(message: (error.localizedDescription), isError: .error)
+                    ActivityIndicator.sharedInstance.hideActivityIndicator()
                 }
             }
         }
@@ -166,7 +152,15 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = commetsTableView.dequeueReusableCell(withIdentifier: cellIdentifier.commentsTableViewCell, for: indexPath) as? CommentsTableViewCell else {
             return UITableViewCell()
         }
-        cell.setCellData(data: self.listPostData.comments?[indexPath.row] ?? CommentsData())
+        self.commentsData = self.listPostData.comments ?? []
+        self.commentsData.sort(by: {($0.createdAt?.millisecToDate() ?? Date()).compare($1.createdAt?.millisecToDate() ?? Date()) == .orderedDescending })
+        //        cell.setCellData(data: self.listPostData.comments?[indexPath.row] ?? CommentsData())
+        cell.setCellData(data: self.commentsData[indexPath.row])
+        if ((self.listPostData.comments?.count ?? 0) - 1) == indexPath.row {
+            cell.sepratorView.isHidden = true
+        } else {
+            cell.sepratorView.isHidden = false
+        }
         return cell
     }
 }

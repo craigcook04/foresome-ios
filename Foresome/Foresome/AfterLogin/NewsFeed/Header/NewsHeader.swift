@@ -15,7 +15,6 @@ protocol NewsHeaderProtocol {
 }
 
 class NewsHeader: UIView {
-    
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var eventLbl: UILabel!
     @IBOutlet weak var memberButton: UIButton!
@@ -28,18 +27,12 @@ class NewsHeader: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.fetchUserDummyData()
-    }
-    
-    func fetchUserDummyData() {
-        print("user dummy data fetched called.")
     }
     
     func setHeaderData() {
         let strings = UserDefaults.standard.object(forKey: AppStrings.userDatas) as? [String: Any]
         if let data = strings {
             let nameValue = "\(AppStrings.userNameSuffix) \(data["name"] as? String ?? "")!"
-            print("user name on post list---\(nameValue)")
             self.userNameLbl.text = nameValue.uppercased()
         }
     }
@@ -51,22 +44,22 @@ class NewsHeader: UIView {
     }
     
     @IBAction func memberAction(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.membersAction()
+        }
         self.memberButton.titleLabel?.textColor = UIColor.appColor(.green_main)
         self.membersView.backgroundColor = UIColor.appColor(.green_main)
         self.friendsView.backgroundColor = UIColor.appColor(.themeWhite)
         self.friendsButton.titleLabel?.textColor = UIColor.appColor(.white_title)
-        if let delegate = self.delegate {
-            delegate.membersAction()
-        }
     }
     
     @IBAction func friendAction(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.friendsAction()
+        }
         self.memberButton.titleLabel?.textColor = UIColor.appColor(.white_title)
         self.membersView.backgroundColor = UIColor.appColor(.themeWhite)
         self.friendsView.backgroundColor = UIColor.appColor(.green_main)
         self.friendsButton.setTitleColor(.appColor(.green_main), for: .normal)
-        if let delegate = self.delegate {
-            delegate.friendsAction()
-        }
     }
 }

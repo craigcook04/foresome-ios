@@ -45,8 +45,20 @@ class FilterTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
         self.getTournmentsData()
     }
     
-    func setCellData(isSelected: Bool) {
-        if isSelected == true {
+    func setFilterData(index: Int) {
+        if index == 0 {
+            if ((UserDefaults.standard.value(forKey: AppStrings.friendsName) as? String)?.count ?? 0)  > 0 {
+                self.searchField.text = UserDefaults.standard.value(forKey: AppStrings.friendsName) as? String ?? ""
+            }
+        } else {
+            if ((UserDefaults.standard.value(forKey: AppStrings.tournamentsName) as? String)?.count ?? 0)  > 0 {
+                self.searchField.text = UserDefaults.standard.value(forKey: AppStrings.tournamentsName) as? String ?? ""
+            }
+        }
+    }
+    
+    func setCellData(isSelected: Bool, index: Int) {
+        if index == (UserDefaults.standard.value(forKey: AppStrings.sortOptionIndex) as? Int ?? 0) {
             self.sortSelectedButton.isSelected = true
         } else {
             self.sortSelectedButton.isSelected = false
@@ -93,21 +105,16 @@ class FilterTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         searchField.text = self.listTournamentsData[row].title
+        UserDefaults.standard.set(self.listTournamentsData[row].title ?? "", forKey: AppStrings.tournamentsName)
+        UserDefaults.standard.set(self.listTournamentsData[row].id ?? "" , forKey: AppStrings.tournamentsId)
         if let delegate = self.delegate {
-//            if let selectedTournamentsId = self.listTournamentsData[row].id {
-//                delegate.getUpdatedText(filterBy: selectedTournamentsId, index: indexPath?.row ?? 0)
-//            }
-            
             print("tournaments docs id is ---==\(self.arrayOfTournamentsId?[row] ?? "")")
-            
             delegate.getUpdatedText(filterBy: self.arrayOfTournamentsId?[row] ?? "", index: indexPath?.row ?? 0)
         }
-        
         self.listTournamentsData.forEach({ tournamentsDetails in
             print("tournamentsDetails title is ---\(tournamentsDetails.title ?? "")")
             print("tournamentsDetails id is ---\(tournamentsDetails.id ?? "")")
         })
-        
         searchField.resignFirstResponder()
     }
     
@@ -137,11 +144,11 @@ extension FilterTableViewCell: UITextFieldDelegate {
                     }
                 } else {
                     if let delegate = self.delegate {
-                       // delegate.getUpdatedText(filterBy: self.tournamentsId ?? "", index: indexPath?.row ?? 0)
+                        // delegate.getUpdatedText(filterBy: self.tournamentsId ?? "", index: indexPath?.row ?? 0)
                     }
                 }
             } else {
-                print("selected search else case. ")
+                print("selected search else case.")
             }
             return true
         }

@@ -129,6 +129,8 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                 cell.toggleButton.isHidden = false
                 cell.nextButton.isHidden = true
                 cell.versionLabel.isHidden = true
+                cell.setNotificationToggle()
+                cell.delegate = self
             case .termsOfServices :
                 cell.toggleButton.isHidden = true
                 cell.nextButton.isHidden = false
@@ -174,7 +176,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             break
         case .notificationSettings:
             let cell = tableView.dequeue(cellClass: ProfileTableCell.self)
-           if  cell?.toggleButton.isSelected == true {
+            if  cell?.toggleButton.isSelected == true {
                 print("selected done")
             } else {
                 print("unselected done")
@@ -235,6 +237,14 @@ extension ProfileVC: ProfileHeaderDelegate {
         notificationVc.hidesBottomBarWhenPushed = true
         self.pushViewController(notificationVc, false)
     }
-    
 }
+
+extension ProfileVC: ProfileTableCellDelegate {
+    func updateNotificationSetting() {
+        let reloadIndex = IndexPath(row: 3, section: 0)
+        self.profileTableView.reloadRows(at: [reloadIndex], with: .none)
+    }
+}
+
+
 

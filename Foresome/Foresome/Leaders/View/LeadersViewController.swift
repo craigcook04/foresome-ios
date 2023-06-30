@@ -38,7 +38,6 @@ class LeadersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.leaderBoardTable.refreshControl = refreshControl
         self.leaderBoardTable.automaticallyAdjustsScrollIndicatorInsets = false
         setTable()
@@ -57,6 +56,7 @@ class LeadersViewController: UIViewController {
         self.refreshControl.beginRefreshing()
         self.loader.isHidden = false
         self.loader.startAnimating()
+        self.presenter?.fetchPresenterViewLeaderBoard(isFromRefresh: true)
         self.presenter?.fetchPresenterViewLeaderBoard(isFromRefresh: true)
     }
     
@@ -87,6 +87,11 @@ extension LeadersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.leaderBoardData.count == 0 {
+            self.leaderBoardTable.setBackgroundView(message: "No data found")
+        } else {
+            self.leaderBoardTable.backgroundView = nil
+        }
         if section == 0 {
             return self.leaderBoardData.filter({$0.rank ?? 0 < 4 }).count
         } else {
@@ -177,7 +182,7 @@ extension LeadersViewController: FilterViewControllerDelegate {
         if tournamentId.count > 0 {
             //MARK: filter by friends name and tournaments both -----
             query = "\(query)&tournamentId=\(tournamentId)"
-            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.tournamentId == tournamentId})
+            self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.tournamentId?.contains(where: {$0 == tournamentId}) ?? false})
             if sortingOption == "Highest score" {
                 self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()
@@ -221,7 +226,7 @@ extension LeadersViewController: FilterViewControllerDelegate {
             print("search by friends and tournamentsid same time.")
             self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3})
             self.filteredData = self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == friendName })
-            self.filteredData = self.filteredData + self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.usersDetails?.name ?? "" == tournamentId })
+            self.filteredData = self.filteredData + self.leaderBoardData.filter({$0.rank ?? 0 > 3}).filter({$0.tournamentId?.contains(where: {$0 == tournamentId}) ?? false})
             if sortingOption == "Highest score" {
                 self.filteredData = self.filteredData.filter({$0.rank ?? 0 > 3}).sorted(by: {($0.total ?? 0) > ($1.total ?? 0)})
                 self.leaderBoardTable.reloadData()

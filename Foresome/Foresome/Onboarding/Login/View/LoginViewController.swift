@@ -100,6 +100,8 @@ class LoginViewController: UIViewController, LoginViewProtocol {
                                     if let data = snapData?.data() {
                                         let userdata = ReturnUserData()
                                         UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
+//                                        let skillVC = UserSkillPresenter.createUserSkillModule()
+//                                        self.pushViewController(skillVC, false)
                                     }
                                 }
                             } else {
@@ -109,6 +111,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
                                             if let data = snapData?.data() {
                                                 let userdata = ReturnUserData()
                                                 UserDefaults.standard.set(data, forKey: AppStrings.userDatas)
+                                                //Singleton.shared.setHomeScreenView()
                                             }
                                         }
                                     } else {

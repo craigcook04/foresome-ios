@@ -51,7 +51,7 @@
                                 <constraint firstAttribute="height" constant="40" id="UTX-po-kzJ"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="ic_search">
+                            <state key="normal" image="ic_filter_close">
                                 <color key="titleColor" red="0.25098039220000001" green="0.80392156859999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -100,7 +100,7 @@
     </objects>
     <resources>
         <image name="ic_back_black" width="24" height="24"/>
-        <image name="ic_search" width="24" height="24"/>
+        <image name="ic_filter_close" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

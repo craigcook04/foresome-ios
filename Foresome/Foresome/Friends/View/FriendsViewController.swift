@@ -75,7 +75,11 @@ class FriendsViewController: UIViewController {
             querySnapshot?.documents.enumerated().forEach({ (index,document) in
                 let membersData =  document.data()
                 let userlistdata = UserListModel(json: membersData)
-                self.listUserData.append(userlistdata)
+                if userlistdata.uid != UserDefaultsCustom.currentUserId {
+                    self.listUserData.append(userlistdata)
+                } else {
+                    print("no need to append current user in users listing.")
+                }
             })
             self.listUserData.sort(by: {($0.name ?? "").compare($1.name ?? "") == .orderedAscending })
             self.loader.isHidden = true
